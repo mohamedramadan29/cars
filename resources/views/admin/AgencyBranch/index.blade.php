@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    الوكالات
+    فروع الوكالة :: {{ $agency['name']  }}
 @endsection
 @section('css')
 
@@ -29,10 +29,9 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center gap-1">
-                            <h4 class="card-title flex-grow-1"> الوكالات </h4>
-
-                            <a href="{{url('admin/agency/add')}}" class="btn btn-sm btn-primary">
-                                اضف وكالة جديدة <i class="ti ti-plus"></i>
+                            <h4 class="card-title flex-grow-1">  فروع الوكالة {{ $agency['name']  }} </h4>
+                            <a href="{{url('admin/agency_branch/add/'.$agency['id'])}}" class="btn btn-sm btn-primary">
+                                اضف فرع جديد  <i class="ti ti-plus"></i>
                             </a>
                         </div>
 
@@ -53,45 +52,34 @@
                                         <th> الدولة</th>
                                         <th> المدينة</th>
                                         <th> العنوان</th>
-                                        <th> نوع السيارات</th>
-                                        <th> الصورة</th>
+                                        <th> رقم الهاتف  </th>
                                         <th> العمليات</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @php
-
                                         $i = 1;
                                     @endphp
-                                    @foreach($agencies as $agency)
+                                    @foreach($branches as $branche)
                                         <tr>
                                             <td>
                                                 {{$i++}}
                                             </td>
-                                            <td> {{$agency['name']}} </td>
-                                            <td> {{$agency['country']}}  </td>
-                                            <td> {{$agency['city']}}  </td>
-                                            <td> {{$agency['address']}}  </td>
-                                            <td> {{$agency['car_status']}}  </td>
-                                            <td>
-                                                <img class="img-thumbnail"
-                                                     src="{{asset('assets/uploads/Agency/'.$agency['logo'])}}" width="60"
-                                                     height="60px" alt="">
-                                            </td>
+                                            <td> {{$branche['name']}} </td>
+                                            <td> {{$branche['country']}}  </td>
+                                            <td> {{$branche['city']}}  </td>
+                                            <td> {{$branche['address']}}  </td>
+                                            <td> {{$branche['phone']}}  </td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a href="{{url('admin/agency/update/'.$agency['id'])}}"
+                                                    <a href="{{url('admin/agency_branch/update/'.$branche['id'])}}"
                                                        class="btn btn-soft-primary btn-sm">
                                                         <iconify-icon icon="solar:pen-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </a>
-                                                    <a href="{{url('admin/agency_branch/'.$agency['id'])}}"
-                                                       class="btn btn-soft-primary btn-sm">
-                                                         الفروع
-                                                    </a>
                                                     <button type="button" class="btn btn-soft-danger btn-sm"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#delete_agency_{{$agency['id']}}">
+                                                            data-bs-target="#delete_agency_{{$branche['id']}}">
                                                         <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </button>
@@ -99,7 +87,7 @@
                                             </td>
                                         </tr>
                                         <!-- Modal -->
-                                        @include('admin.Agency.delete')
+                                        @include('admin.AgencyBranch.delete')
                                     @endforeach
 
                                     </tbody>

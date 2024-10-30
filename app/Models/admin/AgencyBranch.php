@@ -11,5 +11,5 @@ class AgencyBranch extends Model
     use HasTranslations;
     use HasFactory;
     protected $guarded = [];
-    public $translatable = ['name','address'];
+    public $translatable = ['name','address','work_time'];
 }

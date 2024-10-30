@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\PublicSettingController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\admin\CarMarkController;
 use \App\Http\Controllers\admin\AgencyController;
+use \App\Http\Controllers\admin\AgencyBranchController;
 Route::group(['prefix' => 'admin'], function () {
 // Admin Login
 
@@ -49,6 +50,15 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post','get'],'agency/add','store');
             Route::match(['post','get'],'agency/update/{id}','update');
             Route::post('agency/delete/{id}','delete');
+        });
+
+        //////////////////////////// Start Agency Branch /////////////////
+        ///
+        Route::controller(AgencyBranchController::class)->group(function (){
+            Route::get('agency_branch/{id}','index');
+            Route::match(['post','get'],'agency_branch/add/{id}','store');
+            Route::match(['post','get'],'agency_branch/update/{id}','update');
+            Route::post('agency_branch/delete/{id}','delete');
         });
         ///////////////////// Start Sub Categories
 

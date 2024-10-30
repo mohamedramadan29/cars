@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('address');
             $table->string('phone');
+            $table->string('car_status');
+            $table->string('work_time');
             $table->timestamps();
         });
     }

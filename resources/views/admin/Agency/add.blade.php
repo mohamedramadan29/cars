@@ -182,7 +182,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"> لوجو الماركة  </h4>
+                                <h4 class="card-title"> لوجو الوكالة  </h4>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
@@ -197,7 +197,7 @@
                                     <button type="submit" class="btn btn-outline-secondary w-100">  حفظ <i class='bx bxs-save'></i> </button>
                                 </div>
                                 <div class="col-lg-2">
-                                    <a href="{{url('admin/car-marks')}}" class="btn btn-primary w-100"> رجوع </a>
+                                    <a href="{{url('admin/agency')}}" class="btn btn-primary w-100"> رجوع </a>
                                 </div>
 
                             </div>
