@@ -120,6 +120,29 @@
 
 
             <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarautorepair" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarautorepair">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                                   </span>
+                    <span class="nav-text"> مراكز الصيانة  </span>
+                </a>
+                <div class="collapse" id="sidebarautorepair">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/auto_repairs')}}">  جميع المراكز  </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/auto_repair/add')}}"> اضف  مركز جديد </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
+
+            <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebarOrders">
                                    <span class="nav-icon">

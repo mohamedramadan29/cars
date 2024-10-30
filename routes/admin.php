@@ -8,6 +8,7 @@ use \App\Http\Controllers\admin\AgencyController;
 use \App\Http\Controllers\admin\AgencyBranchController;
 use \App\Http\Controllers\admin\ShowRoomController;
 use \App\Http\Controllers\admin\CarNumbersController;
+use \App\Http\Controllers\admin\AutoRepairController;
 Route::group(['prefix' => 'admin'], function () {
 // Admin Login
 
@@ -81,10 +82,13 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('car_number/delete/{id}','delete');
         });
 
-//////////// Start Social Media
-///
-        Route::controller(SocialMediaController::class)->group(function () {
-            Route::match(['post', 'get'], 'social-media/update', 'update');
+        //////////// Start AutoRepair
+        ///
+        Route::controller(AutoRepairController::class)->group(function (){
+            Route::get('auto_repairs','index');
+            Route::match(['post','get'],'auto_repair/add','store');
+            Route::match(['post','get'],'auto_repair/update/{id}','update');
+            Route::post('auto_repair/delete/{id}','delete');
         });
 
 ///////////////// Start Product Attribute /////////////////////////
