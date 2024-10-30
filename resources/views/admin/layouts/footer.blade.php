@@ -34,5 +34,6 @@
 <script src="{{asset('assets/admin/js/pages/dashboard.js')}}"></script>
 @toastifyJs
 @yield('js')
+
 </body>
 </html>

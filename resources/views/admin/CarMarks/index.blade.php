@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    العلامات التجارية
+    الماركات
 @endsection
 @section('css')
 
@@ -29,10 +29,10 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center gap-1">
-                            <h4 class="card-title flex-grow-1"> العلامات التجارية   </h4>
+                            <h4 class="card-title flex-grow-1">  ماركات السيارات    </h4>
 
-                            <a href="{{url('admin/brand/add')}}" class="btn btn-sm btn-primary">
-                                 اضف علامة تجارية  <i class="ti ti-plus"></i>
+                            <a href="{{url('admin/car_mark/add')}}" class="btn btn-sm btn-primary">
+                                 اضف جديد   <i class="ti ti-plus"></i>
                             </a>
                         </div>
 
@@ -49,8 +49,9 @@
                                             </div>
                                         </th>
                                         <th> الاسم   </th>
-                                        <th> الحالة</th>
+                                        <th> الاسم باللغة الانجليزية  </th>
                                         <th> الصورة</th>
+                                        <th> الحالة</th>
                                         <th> العمليات</th>
                                     </tr>
                                     </thead>
@@ -59,7 +60,7 @@
 
                                     $i = 1;
                                     @endphp
-                                    @foreach($brands as $brand)
+                                    @foreach($marks as $mark)
                                         <tr>
                                             <td>
                                                 {{$i++}}
@@ -68,24 +69,28 @@
 {{--                                                    <label class="form-check-label" for="customCheck2">&nbsp;</label>--}}
 {{--                                                </div>--}}
                                             </td>
-                                            <td> {{$brand['name']}} </td>
+                                            <td> {{$mark['name']}} </td>
+                                            <td> {{$mark->getTranslation('name','en')}} </td>
                                             <td>
-                                                @if($brand['status'] == 1)
+                                                @if($mark['status'] == 1)
                                                     <span class="badge bg-success"> مفعل  </span>
                                                 @else
                                                     <span class="badge bg-danger"> غير مفعل  </span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <img class="img-thumbnail" src="{{asset('assets/uploads/brands/'.$brand['image'])}}" width="80" height="80px" alt="">
+                                                <img class="img-thumbnail" src="{{asset('assets/uploads/Marks/'.$mark['logo'])}}" width="80" height="80px" alt="">
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a href="{{url('admin/brand/update/'.$brand['id'])}}" class="btn btn-soft-primary btn-sm">
+                                                    <a href="{{url('admin/car_mark/update/'.$mark['id'])}}" class="btn btn-soft-primary btn-sm">
                                                         <iconify-icon icon="solar:pen-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </a>
-                                                    <button type="button" class="btn btn-soft-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete_category_{{$brand['id']}}">
+                                                    <a href="{{url('admin/car_mark/models/'.$mark['id'])}}" class="btn btn-soft-primary btn-sm">
+                                                        الموديلات
+                                                    </a>
+                                                    <button type="button" class="btn btn-soft-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete_category_{{$mark['id']}}">
                                                         <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </button>
@@ -93,7 +98,7 @@
                                             </td>
                                         </tr>
                                         <!-- Modal -->
-                                        @include('admin.Brands.delete')
+                                        @include('admin.CarMarks.delete')
                                     @endforeach
 
                                     </tbody>

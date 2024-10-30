@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    اضافة علامة تجارية
+    اضافة ماركة جديدة
 @endsection
 @section('css')
 @endsection
@@ -10,7 +10,7 @@
 
         <!-- Start Container Fluid -->
         <div class="container-xxl">
-            <form method="post" action="{{url('admin/brand/add')}}" enctype="multipart/form-data">
+            <form method="post" action="{{url('admin/car_mark/add')}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
@@ -42,54 +42,54 @@
                                         </div>
 
                                     </div>
-
                                     <div class="col-lg-6">
 
-                                        <label for="crater" class="form-label"> حالة التفعيل </label>
-                                        <select required name="status" class="form-control" id="crater" data-choices
-                                                data-choices-groups data-placeholder="Select Crater">
-                                            <option value=""> -- حدد الحالة --</option>
-                                            <option value="0">غير مفعل</option>
-                                            <option value="1">مفعل</option>
-                                        </select>
+                                        <div class="mb-3">
+                                            <label for="name_en" class="form-label">  الاسم باللغة الانجليزية   </label>
+                                            <input required type="text" id="name_en" class="form-control" name="name_en"
+                                                   value="{{old('nam_en')}}">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <div class="mb-3">
+                                            <label for="description" class="form-label">  الوصف   </label>
+                                            <textarea name="description" class="form-control"></textarea>
+                                        </div>
 
                                     </div>
 
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="description_en" class="form-label">    الوصف باللغة الانجليزية    </label>
+                                            <textarea name="description_en" class="form-control"></textarea>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">صورة العلامة التجارية </h4>
+                                <h4 class="card-title"> لوجو الماركة  </h4>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
                                     <input type="file" class="form-control" name="image" accept="image/*">
                                 </div>
-                                <!-- File Upload -->
-                                {{--                            <form action="https://techzaa.getappui.com/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">--}}
-                                {{--                                <div class="fallback">--}}
-                                {{--                                    <input name="file" type="file" multiple />--}}
-                                {{--                                </div>--}}
-                                {{--                                <div class="dz-message needsclick">--}}
-                                {{--                                    <i class="bx bx-cloud-upload fs-48 text-primary"></i>--}}
-                                {{--                                    <h3 class="mt-4">Drop your images here, or <span class="text-primary">click to browse</span></h3>--}}
-                                {{--                                    <span class="text-muted fs-13">--}}
-                                {{--                                                       1600 x 1200 (4:3) recommended. PNG, JPG and GIF files are allowed--}}
-                                {{--                                                  </span>--}}
-                                {{--                                </div>--}}
-                                {{--                            </form>--}}
                             </div>
                         </div>
 
                         <div class="p-3 bg-light mb-3 rounded">
                             <div class="row justify-content-end g-2">
                                 <div class="col-lg-2">
-                                    <a href="{{url('admin/brands')}}" class="btn btn-primary w-100"> رجوع </a>
-                                </div>
-                                <div class="col-lg-2">
                                     <button type="submit" class="btn btn-outline-secondary w-100">  حفظ <i class='bx bxs-save'></i> </button>
                                 </div>
+                                <div class="col-lg-2">
+                                    <a href="{{url('admin/car-marks')}}" class="btn btn-primary w-100"> رجوع </a>
+                                </div>
+
                             </div>
                         </div>
                     </div>

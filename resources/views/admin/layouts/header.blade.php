@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <!-- Title Meta -->
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title> @yield('title') </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A fully responsive premium admin dashboard template"/>
@@ -26,6 +26,7 @@
     <script src="{{asset('assets/admin/js/config.js')}}"></script>
     @toastifyCss
     @yield('css')
+
 </head>
 
 <body>
@@ -65,13 +66,14 @@
                         $unreadNotificationsUsers = \Illuminate\Support\Facades\Auth::guard('admin')->user()->unreadNotifications;
                     @endphp
 
-                            <!-- Notification -->
+                        <!-- Notification -->
                     <div class="dropdown topbar-item">
                         <button type="button" class="topbar-button position-relative"
                                 id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                             <iconify-icon icon="solar:bell-bing-bold-duotone" class="fs-24 align-middle"></iconify-icon>
-                            <span class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">
+                            <span
+                                class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">
                                 @if ($unreadNotificationsUsers->count() > 0)
                                     {{ $unreadNotificationsUsers->count() }}
                                 @else
@@ -92,10 +94,12 @@
                                 @foreach($unreadNotificationsUsers as $notification)
                                     <div data-simplebar style="max-height: 280px;">
                                         <!-- Item -->
-                                        <a href="{{url('admin/order/update/'.$notification['data']['order_id'])}}" class="dropdown-item py-3 border-bottom">
+                                        <a href="{{url('admin/order/update/'.$notification['data']['order_id'])}}"
+                                           class="dropdown-item py-3 border-bottom">
                                             <div class="d-flex">
                                                 <div class="flex-grow-1">
-                                                    <p class="mb-0 fw-semibold"> رقم الطلب  {{ $notification['data']['order_id'] }} </p>
+                                                    <p class="mb-0 fw-semibold"> رقم
+                                                        الطلب {{ $notification['data']['order_id'] }} </p>
                                                     <p class="mb-0 text-wrap">
                                                         لديك طلب جديد علي الموقع
                                                     </p>
@@ -115,13 +119,18 @@
                         </div>
                     </div>
 
-                    <!-- User -->
+                    @php
+
+                        $publicsetting = \App\Models\admin\PublicSetting::first();
+
+                    @endphp
+                        <!-- User -->
                     <div class="dropdown topbar-item">
                         <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                                         <span class="d-flex align-items-center">
                                              <img class="rounded-circle" width="32"
-                                                  src="{{Storage::url('uploads/PublicSetting/'.$publicsetting['website_logo'])}}"
+                                                  src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}"
                                                   alt="avatar-3">
                                         </span>
                         </a>
@@ -131,11 +140,11 @@
                                 مرحبا {{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}} ! </h6>
                             <a class="dropdown-item" href="{{url('admin/update_admin_details')}}">
                                 <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span
-                                        class="align-middle"> حسابي  </span>
+                                    class="align-middle"> حسابي  </span>
                             </a>
                             <a class="dropdown-item" href="{{url('admin/update_admin_password')}}">
                                 <i class="bx bx-message-dots text-muted fs-18 align-middle me-1"></i><span
-                                        class="align-middle"> تغير كلمة المرور  </span>
+                                    class="align-middle"> تغير كلمة المرور  </span>
                             </a>
                             <div class="dropdown-divider my-1"></div>
                             <a class="dropdown-item text-danger" href="{{route('logout')}}">

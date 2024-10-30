@@ -1,15 +1,20 @@
+@php
+
+    $publicsetting = \App\Models\admin\PublicSetting::first();
+
+@endphp
 <!-- ========== App Menu Start ========== -->
 <div class="main-nav">
     <!-- Sidebar Logo -->
     <div class="logo-box">
         <a href="{{url('admin/dashboard')}}" class="logo-dark">
-            <img src="{{Storage::url('uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-sm" alt="logo sm">
-            <img src="{{Storage::url('uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-lg" alt="logo dark">
+            <img src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-sm" alt="logo sm">
+            <img src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-lg" alt="logo dark">
         </a>
 
         <a href="{{url('admin/dashboard')}}" class="logo-light">
-            <img src="{{Storage::url('uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-sm" alt="logo sm">
-            <img src="{{Storage::url('uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-lg" alt="logo light">
+            <img src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-sm" alt="logo sm">
+            <img src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-lg" alt="logo light">
         </a>
     </div>
 
@@ -33,20 +38,41 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarProducts">
+                <a class="nav-link menu-arrow" href="#sidebarmarks" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarBrands">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:clipboard-list-bold-duotone"></iconify-icon>
+                                   </span>
+                    <span class="nav-text">  الماركات   </span>
+                </a>
+                <div class="collapse" id="sidebarmarks">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/car-marks')}}"> تفاصيل الماركات  </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/car_mark/add')}}"> اضف جديد </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebaragency" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebaragency">
                                    <span class="nav-icon">
                                         <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
                                    </span>
-                    <span class="nav-text">  المنتجات  </span>
+                    <span class="nav-text">  الوكالات   </span>
                 </a>
-                <div class="collapse" id="sidebarProducts">
+                <div class="collapse" id="sidebaragency">
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/products')}}"> جميع المنتجات </a>
+                            <a class="sub-nav-link" href="{{url('admin/agency')}}"> جميع الوكالات  </a>
                         </li>
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/product/add')}}"> اضف منتج جديد </a>
+                            <a class="sub-nav-link" href="{{url('admin/agency/add')}}"> اضف منتج جديد </a>
                         </li>
                     </ul>
                 </div>
@@ -64,26 +90,6 @@
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
                             <a class="sub-nav-link" href="{{url('admin/main-categories')}}"> التصنيفات الرئيسية </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarBrands" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarBrands">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:clipboard-list-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text">  العلامات التجارية   </span>
-                </a>
-                <div class="collapse" id="sidebarBrands">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/brands')}}"> العلامات التجارية </a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/brand/add')}}"> اضف جديد </a>
                         </li>
                     </ul>
                 </div>
