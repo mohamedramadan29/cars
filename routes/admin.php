@@ -7,6 +7,7 @@ use \App\Http\Controllers\admin\CarMarkController;
 use \App\Http\Controllers\admin\AgencyController;
 use \App\Http\Controllers\admin\AgencyBranchController;
 use \App\Http\Controllers\admin\ShowRoomController;
+use \App\Http\Controllers\admin\CarNumbersController;
 Route::group(['prefix' => 'admin'], function () {
 // Admin Login
 
@@ -71,15 +72,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('showroom/delete/{id}','delete');
         });
 
-/////////// Start Brands
+            /////////// Start Car Numbers
 
-        Route::controller(BrandController::class)->group(function () {
-            Route::get('brands', 'index');
-            Route::match(['post', 'get'], 'brand/add', 'store');
-            Route::match(['post', 'get'], 'brand/update/{id}', 'update');
-            Route::post('brand/delete/{id}', 'delete');
+        Route::controller(CarNumbersController::class)->group(function (){
+            Route::get('car_numbers','index');
+            Route::match(['post','get'],'car_number/add','store');
+            Route::match(['post','get'],'car_number/update/{id}','update');
+            Route::post('car_number/delete/{id}','delete');
         });
-
 
 //////////// Start Social Media
 ///

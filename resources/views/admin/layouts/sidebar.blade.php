@@ -99,21 +99,25 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarCategory">
+                <a class="nav-link menu-arrow" href="#sidebarcarnumbers" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarcarnumbers">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:clipboard-list-bold-duotone"></iconify-icon>
+                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
                                    </span>
-                    <span class="nav-text">  التصنيفات  </span>
+                    <span class="nav-text"> ارقام مميزة  </span>
                 </a>
-                <div class="collapse" id="sidebarCategory">
+                <div class="collapse" id="sidebarcarnumbers">
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/main-categories')}}"> التصنيفات الرئيسية </a>
+                            <a class="sub-nav-link" href="{{url('admin/car_numbers')}}">  جميع الارقام   </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/car_number/add')}}"> اضف رقم  جديد </a>
                         </li>
                     </ul>
                 </div>
             </li>
+
 
             <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
