@@ -79,6 +79,26 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarshowroom" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarshowroom">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                                   </span>
+                    <span class="nav-text">  المعارض   </span>
+                </a>
+                <div class="collapse" id="sidebarshowroom">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/showrooms')}}"> جميع المعارض   </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/showroom/add')}}"> اضف معرض جديد </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebarCategory">
                                    <span class="nav-icon">

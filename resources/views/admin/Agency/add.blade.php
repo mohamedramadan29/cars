@@ -145,35 +145,35 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="phone2" class="form-label">  رقم هاتف ثاني ( اختياري )   </label>
-                                            <input required type="text" id="phone2" class="form-control" name="phone2"
+                                            <input   type="text" id="phone2" class="form-control" name="phone2"
                                                    value="{{old('phone2')}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="website" class="form-label">  رابط الموقع الالكتروني   </label>
-                                            <input required type="text" id="website" class="form-control" name="website"
+                                            <input   type="text" id="website" class="form-control" name="website"
                                                    value="{{old('website')}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="facebook_link" class="form-label">  رابط الفيسبوك   </label>
-                                            <input required type="text" id="facebook_link" class="form-control" name="facebook_link"
+                                            <input   type="text" id="facebook_link" class="form-control" name="facebook_link"
                                                    value="{{old('facebook_link')}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="twitter_link" class="form-label">  رابط تويتر    </label>
-                                            <input required type="text" id="twitter_link" class="form-control" name="twitter_link"
+                                            <input   type="text" id="twitter_link" class="form-control" name="twitter_link"
                                                    value="{{old('twitter_link')}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="instagram_link" class="form-label">  رابط انستجرام     </label>
-                                            <input required type="text" id="instagram_link" class="form-control" name="instagram_link"
+                                            <input   type="text" id="instagram_link" class="form-control" name="instagram_link"
                                                    value="{{old('instagram_link')}}">
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <input type="file" class="form-control" name="image" accept="image/*">
+                                    <input required type="file" class="form-control" name="image" accept="image/*">
                                 </div>
                             </div>
                         </div>

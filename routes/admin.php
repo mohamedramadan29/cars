@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\admin\CarMarkController;
 use \App\Http\Controllers\admin\AgencyController;
 use \App\Http\Controllers\admin\AgencyBranchController;
+use \App\Http\Controllers\admin\ShowRoomController;
 Route::group(['prefix' => 'admin'], function () {
 // Admin Login
 
@@ -60,13 +61,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post','get'],'agency_branch/update/{id}','update');
             Route::post('agency_branch/delete/{id}','delete');
         });
-        ///////////////////// Start Sub Categories
+        ///////////////////// Start Show Rooms /////////////////
+        ///
 
-        Route::controller(SubCategoryController::class)->group(function () {
-            Route::get('sub-categories/{id}', 'index');
-            Route::match(['post', 'get'], 'sub-category/add/{id}', 'store');
-            Route::match(['post', 'get'], 'sub-category/update/{id}', 'update');
-            Route::post('sub-category/delete/{id}', 'delete');
+        Route::controller(ShowRoomController::class)->group(function (){
+            Route::get('showrooms','index');
+            Route::match(['post','get'],'showroom/add','store');
+            Route::match(['post','get'],'showroom/update/{id}','update');
+            Route::post('showroom/delete/{id}','delete');
         });
 
 /////////// Start Brands
