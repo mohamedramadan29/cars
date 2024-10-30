@@ -24,7 +24,7 @@
                                     </div>
                                 </div> <!-- end col -->
                                 <div class="col-6 text-end">
-                                    <p class="text-muted mb-0"> الطلبات </p>
+                                    <p class="text-muted mb-0">  عدد الاعلانات الكلي   </p>
                                     <h3 class="text-dark mt-1 mb-0"> 3 </h3>
                                 </div> <!-- end col -->
                             </div> <!-- end row-->
@@ -48,7 +48,7 @@
                                     </div>
                                 </div> <!-- end col -->
                                 <div class="col-6 text-end">
-                                    <p class="text-muted mb-0"> المنتجات </p>
+                                    <p class="text-muted mb-0"> الاعلانات الفعالة  </p>
                                     <h3 class="text-dark mt-1 mb-0"> 5 </h3>
                                 </div> <!-- end col -->
                             </div> <!-- end row-->
@@ -73,7 +73,7 @@
                                     </div>
                                 </div> <!-- end col -->
                                 <div class="col-6 text-end">
-                                    <p class="text-muted mb-0"> التصنيفات الرئيسية </p>
+                                    <p class="text-muted mb-0"> اعلانات تحت المراجعه  </p>
                                     <h3 class="text-dark mt-1 mb-0"> 7 </h3>
                                 </div> <!-- end col -->
                             </div> <!-- end row-->
@@ -96,7 +96,51 @@
                                     </div>
                                 </div> <!-- end col -->
                                 <div class="col-6 text-end">
-                                    <p class="text-muted mb-0 text-truncate"> العملاء </p>
+                                    <p class="text-muted mb-0 text-truncate">  الوكاالات  </p>
+                                    <h3 class="text-dark mt-1 mb-0">3</h3>
+                                </div> <!-- end col -->
+                            </div> <!-- end row-->
+                        </div> <!-- end card body -->
+                        <div class="card-footer py-2 bg-light bg-opacity-50">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="#!" class="text-reset fw-semibold fs-12"> مشاهدة التفاصيل </a>
+                            </div>
+                        </div> <!-- end card body -->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+                <div class="col-md-3">
+                    <div class="card overflow-hidden">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="avatar-md bg-soft-primary rounded">
+                                        <i class="bx bx-user avatar-title fs-24 text-primary"></i>
+                                    </div>
+                                </div> <!-- end col -->
+                                <div class="col-6 text-end">
+                                    <p class="text-muted mb-0 text-truncate">  المعارض   </p>
+                                    <h3 class="text-dark mt-1 mb-0">3</h3>
+                                </div> <!-- end col -->
+                            </div> <!-- end row-->
+                        </div> <!-- end card body -->
+                        <div class="card-footer py-2 bg-light bg-opacity-50">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="#!" class="text-reset fw-semibold fs-12"> مشاهدة التفاصيل </a>
+                            </div>
+                        </div> <!-- end card body -->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+                <div class="col-md-3">
+                    <div class="card overflow-hidden">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="avatar-md bg-soft-primary rounded">
+                                        <i class="bx bx-user avatar-title fs-24 text-primary"></i>
+                                    </div>
+                                </div> <!-- end col -->
+                                <div class="col-6 text-end">
+                                    <p class="text-muted mb-0 text-truncate"> منتدي الاراء   </p>
                                     <h3 class="text-dark mt-1 mb-0">3</h3>
                                 </div> <!-- end col -->
                             </div> <!-- end row-->

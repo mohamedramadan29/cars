@@ -13,8 +13,8 @@
         </a>
 
         <a href="{{url('admin/dashboard')}}" class="logo-light">
-            <img src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-sm" alt="logo sm">
-            <img src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-lg" alt="logo light">
+            <img    src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-sm" alt="logo sm">
+            <img   style="height: 85px !important;"  src="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}" class="logo-lg" alt="logo light">
         </a>
     </div>
 
