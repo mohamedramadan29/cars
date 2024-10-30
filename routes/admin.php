@@ -9,6 +9,7 @@ use \App\Http\Controllers\admin\AgencyBranchController;
 use \App\Http\Controllers\admin\ShowRoomController;
 use \App\Http\Controllers\admin\CarNumbersController;
 use \App\Http\Controllers\admin\AutoRepairController;
+use \App\Http\Controllers\admin\TopicCategoryController;
 Route::group(['prefix' => 'admin'], function () {
 // Admin Login
 
@@ -89,6 +90,15 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post','get'],'auto_repair/add','store');
             Route::match(['post','get'],'auto_repair/update/{id}','update');
             Route::post('auto_repair/delete/{id}','delete');
+        });
+
+        //////////// Start TopicCategories
+        ///
+        Route::controller(TopicCategoryController::class)->group(function (){
+            Route::get('topic_category','index');
+            Route::match(['post','get'],'topic_category/add','store');
+            Route::match(['post','get'],'topic_category/update/{id}','update');
+            Route::post('topic_category/delete/{id}','delete');
         });
 
 ///////////////// Start Product Attribute /////////////////////////

@@ -139,71 +139,26 @@
                 </div>
             </li>
 
-
-
-
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarOrders">
+                <a class="nav-link menu-arrow" href="#sidebartopiccategory" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebartopiccategory">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:bag-smile-bold-duotone"></iconify-icon>
+                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
                                    </span>
-                    <span class="nav-text">  الطلبات  </span>
+                    <span class="nav-text"> منتدي الاراء  </span>
                 </a>
-                <div class="collapse" id="sidebarOrders">
+                <div class="collapse" id="sidebartopiccategory">
                     <ul class="nav sub-navbar-nav">
-
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/orders')}}"> جميع الطلبات  </a>
+                            <a class="sub-nav-link" href="{{url('admin/topic_category')}}">  الاقسام  </a>
                         </li>
-{{--                        <li class="sub-nav-item">--}}
-{{--                            <a class="sub-nav-link" href="{{url('admin/order/store')}}"> اضافة طلب </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="sub-nav-item">--}}
-{{--                            <a class="sub-nav-link" href="{{url('admin/orders/archive')}}"> ارشيف الطلبات  </a>--}}
-{{--                        </li>--}}
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarAttributes" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarAttributes">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:confetti-minimalistic-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text">  سمات المنتج المتغير   </span>
-                </a>
-                <div class="collapse" id="sidebarAttributes">
-                    <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/attributes')}}"> مشاهدة السمات المتاحة </a>
+                            <a class="sub-nav-link" href="{{url('admin/auto_repair/add')}}"> المواضيع  </a>
                         </li>
                     </ul>
                 </div>
             </li>
 
-{{--            <li class="nav-item">--}}
-{{--                <a class="nav-link menu-arrow" href="#sidebarInvoice" data-bs-toggle="collapse" role="button"--}}
-{{--                   aria-expanded="false" aria-controls="sidebarInvoice">--}}
-{{--                                   <span class="nav-icon">--}}
-{{--                                        <iconify-icon icon="solar:bill-list-bold-duotone"></iconify-icon>--}}
-{{--                                   </span>--}}
-{{--                    <span class="nav-text">  الفواتير  </span>--}}
-{{--                </a>--}}
-{{--                <div class="collapse" id="sidebarInvoice">--}}
-{{--                    <ul class="nav sub-navbar-nav">--}}
-{{--                        <li class="sub-nav-item">--}}
-{{--                            <a class="sub-nav-link" href="invoice-list.html">List</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="sub-nav-item">--}}
-{{--                            <a class="sub-nav-link" href="invoice-details.html">Details</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="sub-nav-item">--}}
-{{--                            <a class="sub-nav-link" href="invoice-add.html">Create</a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </li>--}}
             <li class="menu-title mt-2"> اعدادات الموقع</li>
 
             <li class="nav-item">
@@ -212,15 +167,6 @@
                                         <iconify-icon icon="solar:settings-bold-duotone"></iconify-icon>
                                    </span>
                     <span class="nav-text">  الاعدادات العامة   </span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('admin/social-media/update')}}">
-                                   <span class="nav-icon">
-                                         <iconify-icon icon="solar:share-circle-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text">  مواقع التواصل الاجتماعي    </span>
                 </a>
             </li>
 
@@ -272,98 +218,6 @@
 
 
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarCoupons" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarCoupons">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text"> كوبونات الخصم  </span>
-                </a>
-                <div class="collapse" id="sidebarCoupons">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/coupons')}}"> جميع الكوبونات </a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/coupon/add')}}"> اضافة كوبون </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarshippingCity" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarshippingCity">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:case-round-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text"> المدن المتاحة للشحن  </span>
-                </a>
-                <div class="collapse" id="sidebarshippingCity">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/shipping-city')}}"> مدن الشحن </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('admin/reviews')}}">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:chat-square-like-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text">  آراء العملاء </span>
-                </a>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('admin/reports')}}">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:chat-round-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text">  تقارير  </span>
-                </a>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarfaqs" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarfaqs">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:question-circle-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text">الاسئلة الشائعة للمتجر    </span>
-                </a>
-                <div class="collapse" id="sidebarfaqs">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/faqs')}}"> الاسئلة الشائعة للمتجر </a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/faq/add')}}"> اضافة سوال جديد </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebartopnavbar" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebartopnavbar">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:case-round-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text"> الشريط الاعلاني اعلي المتجر  </span>
-                </a>
-                <div class="collapse" id="sidebartopnavbar">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/top-navbar')}}">التفاصيل </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarbanners" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebarbanners">
                                    <span class="nav-icon">
@@ -379,89 +233,6 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarcolors" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sidebarcolors">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:case-round-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text"> الوان الموقع   </span>
-                </a>
-                <div class="collapse" id="sidebarcolors">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/colors')}}">التفاصيل </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sideadvanatge" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sideadvanatge">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:case-round-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text"> مميزات المتجر  </span>
-                </a>
-                <div class="collapse" id="sideadvanatge">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/advantages')}}">التفاصيل </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sideadoffers" data-bs-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="sideadoffers">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:case-round-bold-duotone"></iconify-icon>
-                                   </span>
-                    <span class="nav-text">  صفحات الهبوط </span>
-                </a>
-                <div class="collapse" id="sideadoffers">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/offers')}}"> مشاهدة الكل   </a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/offer_orders')}}"> مشاهدة  الطلبات    </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-
-            {{--            <li class="nav-item">--}}
-{{--                <a class="nav-link" href="apps-email.html">--}}
-{{--                                   <span class="nav-icon">--}}
-{{--                                        <iconify-icon icon="solar:mailbox-bold-duotone"></iconify-icon>--}}
-{{--                                   </span>--}}
-{{--                    <span class="nav-text"> Email </span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-
-{{--            <li class="nav-item">--}}
-{{--                <a class="nav-link" href="apps-calendar.html">--}}
-{{--                                   <span class="nav-icon">--}}
-{{--                                        <iconify-icon icon="solar:calendar-bold-duotone"></iconify-icon>--}}
-{{--                                   </span>--}}
-{{--                    <span class="nav-text"> Calendar </span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-
-{{--            <li class="nav-item">--}}
-{{--                <a class="nav-link" href="apps-todo.html">--}}
-{{--                                   <span class="nav-icon">--}}
-{{--                                        <iconify-icon icon="solar:checklist-bold-duotone"></iconify-icon>--}}
-{{--                                   </span>--}}
-{{--                    <span class="nav-text"> Todo </span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-
 
         </ul>
     </div>
