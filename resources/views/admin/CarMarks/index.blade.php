@@ -83,14 +83,14 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a href="{{url('admin/car_mark/update/'.$mark['id'])}}" class="btn btn-soft-primary btn-sm">
+                                                    <a href="{{url('admin/car_mark/update/'.$mark['id'])}}" class="btn btn-primary btn-sm">
                                                         <iconify-icon icon="solar:pen-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </a>
-                                                    <a href="{{url('admin/car_mark/models/'.$mark['id'])}}" class="btn btn-soft-primary btn-sm">
+                                                    <a href="{{url('admin/car_mark/models/'.$mark['id'])}}" class="btn btn-warning btn-sm">
                                                         الموديلات
                                                     </a>
-                                                    <button type="button" class="btn btn-soft-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete_category_{{$mark['id']}}">
+                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete_category_{{$mark['id']}}">
                                                         <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </button>

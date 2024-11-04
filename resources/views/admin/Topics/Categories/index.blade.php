@@ -67,13 +67,13 @@
 
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <button type="button" class="btn btn-soft-primary btn-sm"
+                                                    <button type="button" class="btn btn-success btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#edit_category_{{$category['id']}}">
-                                                        <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
+                                                        <iconify-icon icon="solar:pen-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </button>
-                                                    <button type="button" class="btn btn-soft-danger btn-sm"
+                                                    <button type="button" class="btn btn-danger btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#delete_category_{{$category['id']}}">
                                                         <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"

@@ -81,15 +81,15 @@
                                             <td>
                                                 <div class="d-flex gap-2">
                                                     <a href="{{url('admin/agency/update/'.$agency['id'])}}"
-                                                       class="btn btn-soft-primary btn-sm">
+                                                       class="btn btn-success btn-sm">
                                                         <iconify-icon icon="solar:pen-2-broken"
                                                                       class="align-middle fs-18"></iconify-icon>
                                                     </a>
                                                     <a href="{{url('admin/agency_branch/'.$agency['id'])}}"
-                                                       class="btn btn-soft-primary btn-sm">
+                                                       class="btn btn-warning btn-sm">
                                                          الفروع
                                                     </a>
-                                                    <button type="button" class="btn btn-soft-danger btn-sm"
+                                                    <button type="button" class="btn btn-danger btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#delete_agency_{{$agency['id']}}">
                                                         <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
