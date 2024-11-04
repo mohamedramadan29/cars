@@ -40,8 +40,8 @@
                                                    class="form-control bg-" placeholder=" البريد الالكتروني  ">
                                         </div>
                                         <div class="mb-3">
-                                            <a href="#"
-                                               class="float-end text-muted text-unline-dashed ms-1"> نسيت كلمة المرور    ؟؟ </a>
+{{--                                            <a href="#"--}}
+{{--                                               class="float-end text-muted text-unline-dashed ms-1"> نسيت كلمة المرور    ؟؟ </a>--}}
                                             <label class="form-label" for="example-password">كلمة المرور</label>
                                             <input name="password" type="password" id="example-password" class="form-control"
                                                    placeholder="كلمة المرور">
@@ -54,7 +54,7 @@
                                         </div>
 
                                         <div class="mb-1 text-center d-grid">
-                                            <button class="btn btn-soft-primary" type="submit"> تسجيل دخول  </button>
+                                            <button class="btn btn-primary" type="submit"> تسجيل دخول  </button>
                                         </div>
                                     </form>
 

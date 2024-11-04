@@ -15,15 +15,15 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <div class="card overflow-hidden">
+                    <div class="card overflow-hidden dashboard_info">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="avatar-md bg-soft-primary rounded">
-                                        <i class="bx bx-cart avatar-title fs-32 text-primary"></i>
+                                <div class="col-3">
+                                    <div class="avatar-md bg-danger rounded">
+                                        <i class="bi bi-car-front-fill avatar-title fs-32 text-primary"></i>
                                     </div>
                                 </div> <!-- end col -->
-                                <div class="col-6 text-end">
+                                <div class="col-9 text-center">
                                     <p class="text-muted mb-0">  عدد الاعلانات الكلي   </p>
                                     <h3 class="text-dark mt-1 mb-0"> 3 </h3>
                                 </div> <!-- end col -->
@@ -38,120 +38,121 @@
                     </div> <!-- end card -->
                 </div> <!-- end col -->
                 <div class="col-md-3">
-                    <div class="card overflow-hidden">
+                    <div class="card overflow-hidden dashboard_info">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="avatar-md bg-soft-primary rounded">
-                                        <iconify-icon icon="solar:t-shirt-bold-duotone"
-                                                      class="avatar-title fs-32 text-primary"></iconify-icon>
+                                <div class="col-3">
+                                    <div class="avatar-md bg-success rounded">
+                                        <i class="bi bi-card-checklist avatar-title fs-32"></i>
                                     </div>
                                 </div> <!-- end col -->
-                                <div class="col-6 text-end">
-                                    <p class="text-muted mb-0"> الاعلانات الفعالة  </p>
-                                    <h3 class="text-dark mt-1 mb-0"> 5 </h3>
+                                <div class="col-9 text-center">
+                                    <p class="text-muted mb-0">  الاعلانات الفعالة  </p>
+                                    <h3 class="text-dark mt-1 mb-0"> 8 </h3>
                                 </div> <!-- end col -->
                             </div> <!-- end row-->
                         </div> <!-- end card body -->
                         <div class="card-footer py-2 bg-light bg-opacity-50">
                             <div class="d-flex align-items-center justify-content-between">
-                                <a href="{{url('admin/products')}}" class="text-reset fw-semibold fs-12"> مشاهدة
+                                <a href="{{url('admin/orders')}}" class="text-reset fw-semibold fs-12"> مشاهدة
+                                    التفاصيل </a>
+                            </div>
+                        </div> <!-- end card body -->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+                <div class="col-md-3">
+                    <div class="card overflow-hidden dashboard_info">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="avatar-md bg-warning rounded">
+                                        <i class="bi bi-ui-checks-grid avatar-title fs-32"></i>
+                                    </div>
+                                </div> <!-- end col -->
+                                <div class="col-9 text-center">
+                                    <p class="text-muted mb-0">  اعلانات تحت المراجعه   </p>
+                                    <h3 class="text-dark mt-1 mb-0"> 3 </h3>
+                                </div> <!-- end col -->
+                            </div> <!-- end row-->
+                        </div> <!-- end card body -->
+                        <div class="card-footer py-2 bg-light bg-opacity-50">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="{{url('admin/orders')}}" class="text-reset fw-semibold fs-12"> مشاهدة
+                                    التفاصيل </a>
+                            </div>
+                        </div> <!-- end card body -->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+                <div class="col-md-3">
+                    <div class="card overflow-hidden dashboard_info">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="avatar-md bg-info rounded">
+                                        <i class="bi bi-building avatar-title fs-32"></i>
+                                    </div>
+                                </div> <!-- end col -->
+                                <div class="col-9 text-center">
+                                    <p class="text-muted mb-0">  الوكاالات   </p>
+                                    <h3 class="text-dark mt-1 mb-0"> 3 </h3>
+                                </div> <!-- end col -->
+                            </div> <!-- end row-->
+                        </div> <!-- end card body -->
+                        <div class="card-footer py-2 bg-light bg-opacity-50">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="{{url('admin/orders')}}" class="text-reset fw-semibold fs-12"> مشاهدة
+                                    التفاصيل </a>
+                            </div>
+                        </div> <!-- end card body -->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+                <div class="col-md-3">
+                    <div class="card overflow-hidden dashboard_info">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="avatar-md bg-secondary rounded">
+                                        <i class="bi bi-buildings-fill avatar-title fs-32"></i>
+                                    </div>
+                                </div> <!-- end col -->
+                                <div class="col-9 text-center">
+                                    <p class="text-muted mb-0">  المعارض  </p>
+                                    <h3 class="text-dark mt-1 mb-0"> 3 </h3>
+                                </div> <!-- end col -->
+                            </div> <!-- end row-->
+                        </div> <!-- end card body -->
+                        <div class="card-footer py-2 bg-light bg-opacity-50">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="{{url('admin/orders')}}" class="text-reset fw-semibold fs-12"> مشاهدة
+                                    التفاصيل </a>
+                            </div>
+                        </div> <!-- end card body -->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+                <div class="col-md-3">
+                    <div class="card overflow-hidden dashboard_info">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="avatar-md bg-dark rounded">
+                                        <i class="bi bi-people-fill avatar-title fs-32 "></i>
+                                    </div>
+                                </div> <!-- end col -->
+                                <div class="col-9 text-center">
+                                    <p class="text-muted mb-0"> منتدي الاراء  </p>
+                                    <h3 class="text-dark mt-1 mb-0"> 3 </h3>
+                                </div> <!-- end col -->
+                            </div> <!-- end row-->
+                        </div> <!-- end card body -->
+                        <div class="card-footer py-2 bg-light bg-opacity-50">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="{{url('admin/orders')}}" class="text-reset fw-semibold fs-12"> مشاهدة
                                     التفاصيل </a>
                             </div>
                         </div> <!-- end card body -->
                     </div> <!-- end card -->
                 </div> <!-- end col -->
 
-                <div class="col-md-3">
-                    <div class="card overflow-hidden">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="avatar-md bg-soft-primary rounded">
-                                        <iconify-icon icon="solar:clipboard-list-bold-duotone"
-                                                      class="avatar-title fs-24 text-primary"></iconify-icon>
-                                    </div>
-                                </div> <!-- end col -->
-                                <div class="col-6 text-end">
-                                    <p class="text-muted mb-0"> اعلانات تحت المراجعه  </p>
-                                    <h3 class="text-dark mt-1 mb-0"> 7 </h3>
-                                </div> <!-- end col -->
-                            </div> <!-- end row-->
-                        </div> <!-- end card body -->
-                        <div class="card-footer py-2 bg-light bg-opacity-50">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="{{url('admin/main-categories')}}" class="text-reset fw-semibold fs-12"> مشاهدة التفاصيل </a>
-                            </div>
-                        </div> <!-- end card body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
-
-                <div class="col-md-3">
-                    <div class="card overflow-hidden">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="avatar-md bg-soft-primary rounded">
-                                        <i class="bx bx-user avatar-title fs-24 text-primary"></i>
-                                    </div>
-                                </div> <!-- end col -->
-                                <div class="col-6 text-end">
-                                    <p class="text-muted mb-0 text-truncate">  الوكاالات  </p>
-                                    <h3 class="text-dark mt-1 mb-0">3</h3>
-                                </div> <!-- end col -->
-                            </div> <!-- end row-->
-                        </div> <!-- end card body -->
-                        <div class="card-footer py-2 bg-light bg-opacity-50">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#!" class="text-reset fw-semibold fs-12"> مشاهدة التفاصيل </a>
-                            </div>
-                        </div> <!-- end card body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
-                <div class="col-md-3">
-                    <div class="card overflow-hidden">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="avatar-md bg-soft-primary rounded">
-                                        <i class="bx bx-user avatar-title fs-24 text-primary"></i>
-                                    </div>
-                                </div> <!-- end col -->
-                                <div class="col-6 text-end">
-                                    <p class="text-muted mb-0 text-truncate">  المعارض   </p>
-                                    <h3 class="text-dark mt-1 mb-0">3</h3>
-                                </div> <!-- end col -->
-                            </div> <!-- end row-->
-                        </div> <!-- end card body -->
-                        <div class="card-footer py-2 bg-light bg-opacity-50">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#!" class="text-reset fw-semibold fs-12"> مشاهدة التفاصيل </a>
-                            </div>
-                        </div> <!-- end card body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
-                <div class="col-md-3">
-                    <div class="card overflow-hidden">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="avatar-md bg-soft-primary rounded">
-                                        <i class="bx bx-user avatar-title fs-24 text-primary"></i>
-                                    </div>
-                                </div> <!-- end col -->
-                                <div class="col-6 text-end">
-                                    <p class="text-muted mb-0 text-truncate"> منتدي الاراء   </p>
-                                    <h3 class="text-dark mt-1 mb-0">3</h3>
-                                </div> <!-- end col -->
-                            </div> <!-- end row-->
-                        </div> <!-- end card body -->
-                        <div class="card-footer py-2 bg-light bg-opacity-50">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#!" class="text-reset fw-semibold fs-12"> مشاهدة التفاصيل </a>
-                            </div>
-                        </div> <!-- end card body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
             </div> <!-- end row -->
 
         </div>

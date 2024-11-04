@@ -8,8 +8,12 @@
     <meta name="author" content="Techzaa"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('assets/admin/images/favicon.ico')}}">
+    @php
+        $publicsetting = \App\Models\admin\PublicSetting::select('website_logo')->first();
+    @endphp
+        <!-- App favicon -->
+    <link rel="shortcut icon" href="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}">
+
 
     <!-- Vendor css (Require in all Page) -->
     <link href="{{asset('assets/admin/css/vendor.min.css')}}" rel="stylesheet" type="text/css"/>

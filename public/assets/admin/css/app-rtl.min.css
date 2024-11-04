@@ -24666,8 +24666,8 @@ p.no-span::after {
     color:#777777;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
-    background-color:#ff6c2f !important;
-    border-color:#ff6c2f !important;
+    background-color:#c30100 !important;
+    border-color:#c30100 !important;
     color:#fff !important;
 }
 .table > thead{
@@ -24687,3 +24687,25 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
     text-align:right !important;
 }
 /***************************** End New Style  ***********************/
+
+.btn-primary{
+    background-color:#C30000;
+    border-color:#C30000;
+}
+.btn-primary:hover{
+    background-color:#C30000;
+    border-color:#C30000;
+}
+
+.btn-danger{
+    background-color:#ff2b2b;
+    border-color:#ff2b2b;
+}
+.bg-danger{
+    background-color:#C30000 !important;
+    border-color:#C30000 !important;
+    color:#fff !important;
+}
+.bg-danger i{
+    color:#fff !important;
+}

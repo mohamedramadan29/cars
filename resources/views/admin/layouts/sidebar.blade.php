@@ -31,10 +31,36 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{url('admin/dashboard')}}">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:widget-5-bold-duotone"></iconify-icon>
+                                       <i class="bi bi-house-door-fill"></i>
                                    </span>
                     <span class="nav-text"> الرئيسية  </span>
                 </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebaradvs" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarBrands">
+                                   <span class="nav-icon">
+                                         <i class="bi bi-car-front-fill"></i>
+                                   </span>
+                    <span class="nav-text">  الاعلانات  </span>
+                </a>
+                <div class="collapse" id="sidebaradvs">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/advertisements')}}"> جميع الاعلانات   </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/advertisements/active')}}">  اعلانات فعالة  </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/advertisements/under_review')}}">   اعلانات تحت المراجعه  </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/adv/add')}}"> اضف اعلان  </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
 
             <li class="nav-item">
@@ -62,7 +88,7 @@
                 <a class="nav-link menu-arrow" href="#sidebaragency" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebaragency">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                                         <i class="bi bi-building"></i>
                                    </span>
                     <span class="nav-text">  الوكالات   </span>
                 </a>
@@ -82,7 +108,7 @@
                 <a class="nav-link menu-arrow" href="#sidebarshowroom" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebarshowroom">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                                        <i class="bi bi-buildings-fill"></i>
                                    </span>
                     <span class="nav-text">  المعارض   </span>
                 </a>
@@ -102,7 +128,7 @@
                 <a class="nav-link menu-arrow" href="#sidebarcarnumbers" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebarcarnumbers">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                                        <i class="bi bi-123"></i>
                                    </span>
                     <span class="nav-text"> ارقام مميزة  </span>
                 </a>
@@ -123,7 +149,7 @@
                 <a class="nav-link menu-arrow" href="#sidebarautorepair" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebarautorepair">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                                        <i class="bi bi-building-fill-gear"></i>
                                    </span>
                     <span class="nav-text"> مراكز الصيانة  </span>
                 </a>
@@ -143,7 +169,7 @@
                 <a class="nav-link menu-arrow" href="#sidebartopiccategory" data-bs-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="sidebartopiccategory">
                                    <span class="nav-icon">
-                                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                                        <i class="bi bi-people-fill"></i>
                                    </span>
                     <span class="nav-text"> منتدي الاراء  </span>
                 </a>

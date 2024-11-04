@@ -9,8 +9,14 @@
     <meta name="author" content="Techzaa"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
+    @php
+
+    $publicsetting = \App\Models\admin\PublicSetting::select('website_logo')->first();
+
+
+    @endphp
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('assets/admin/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('assets/uploads/PublicSetting/'.$publicsetting['website_logo'])}}">
 
     <!-- Vendor css (Require in all Page) -->
     <link href="{{asset('assets/admin/css/vendor.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -21,16 +27,14 @@
     <!-- App css (Require in all Page) -->
     <link href="{{asset('assets/admin/css/app-rtl.min.css')}}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <!-- Theme Config js (Require in all Page) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="{{asset('assets/admin/js/config.js')}}"></script>
     @toastifyCss
     @yield('css')
 
 </head>
-
 <body>
-
 <!-- START Wrapper -->
 <div class="wrapper">
 
@@ -55,11 +59,11 @@
                 <div class="d-flex align-items-center gap-1">
 
                     <!-- Theme Color (Light/Dark) -->
-                    <div class="topbar-item">
-                        <button type="button" class="topbar-button" id="light-dark-mode">
-                            <iconify-icon icon="solar:moon-bold-duotone" class="fs-24 align-middle"></iconify-icon>
-                        </button>
-                    </div>
+{{--                    <div class="topbar-item">--}}
+{{--                        <button type="button" class="topbar-button" id="light-dark-mode">--}}
+{{--                            <iconify-icon icon="solar:moon-bold-duotone" class="fs-24 align-middle"></iconify-icon>--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
 
                     @php
 
