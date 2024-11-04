@@ -7,6 +7,8 @@ use App\Http\Traits\Message_Trait;
 use App\Http\Traits\Upload_Images;
 use App\Models\admin\Advertisment;
 use App\Models\admin\CarImage;
+use App\Models\admin\CarMark;
+use App\Models\admin\CarModels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +28,7 @@ class AdvertismentController extends Controller
 
     public function store(Request $request)
     {
+        $marks = CarMark::all();
         if ($request->isMethod('post')) {
             try {
                 $data = $request->all();
@@ -153,6 +156,6 @@ class AdvertismentController extends Controller
                 return Redirect::back()->withInput()->withErrors(['error' => $e->getMessage()]);
             }
         }
-        return view('admin.Advertisments.store');
+        return view('admin.Advertisments.store',compact('marks'));
     }
 }

@@ -13,4 +13,8 @@ class ShowRoom extends Model
     protected $guarded = [];
     public $translatable = ['name','address','desc','work_time'];
 
+    public function advs()
+    {
+        return $this->hasMany(Advertisment::class,'showroom');
+    }
 }

@@ -13,4 +13,13 @@ class Agency extends Model
     protected $guarded = [];
     public $translatable = ['name','address','desc','work_time'];
 
+
+    public function branches()
+    {
+        return $this->hasMany(AgencyBranch::class,'agency_id');
+    }
+    public function advs()
+    {
+        return $this->hasMany(Advertisment::class,'agency');
+    }
 }

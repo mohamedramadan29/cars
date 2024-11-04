@@ -17,4 +17,9 @@ class Advertisment extends Model
     {
         return $this->hasMany(CarImage::class, 'adv_id');
     }
+
+    public function carMark()
+    {
+        return $this->belongsTo(CarMark::class,'c_brand');
+    }
 }

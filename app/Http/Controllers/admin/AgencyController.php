@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
+use App\Http\Traits\Slug_Trait;
 use App\Http\Traits\Upload_Images;
 use App\Models\admin\Agency;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class AgencyController extends Controller
 {
     use Message_Trait;
     use Upload_Images;
+    use Slug_Trait;
 
     public function index()
     {
@@ -28,7 +30,6 @@ class AgencyController extends Controller
             try {
 
                 $data = $request->all();
-
                 $rules = [
                     'name' => 'required',
                     'name_en' => 'required',
@@ -71,6 +72,7 @@ class AgencyController extends Controller
                 $agency = new Agency();
                 $agency->create([
                     'name' => ['ar' => $data['name'], 'en' => $data['name_en']],
+                    'slug'=>$this->CustomeSlug($data['name']),
                     'logo' => $file_name,
                     'country' => $data['country'],
                     'city' => $data['city'],
@@ -156,9 +158,9 @@ class AgencyController extends Controller
                         'logo' => $file_name,
                     ]);
                 }
-
                 $agency->update([
                     'name' => ['ar' => $data['name'], 'en' => $data['name_en']],
+                    'slug'=>$this->CustomeSlug($data['name']),
                     'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address_en']],

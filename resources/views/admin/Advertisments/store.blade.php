@@ -51,26 +51,10 @@
                                         <div class="mb-3">
                                             <label for="name_en" class="form-label"> الماركة </label>
                                             <select class="form-select" name="c_brand" id="brand" required="">
-                                                <option value="">حدد الماركة</option>
-                                                <option value="1">أودي</option>
-                                                <option value="2">شفروليه</option>
-                                                <option value="3">تويوتا</option>
-                                                <option value="4">فولكس فاجن</option>
-                                                <option value="5">فورد</option>
-                                                <option value="6">كيا</option>
-                                                <option value="7">مرسيدس</option>
-                                                <option value="8">بورش</option>
-                                                <option value="9">لمبورغيني</option>
-                                                <option value="11">نيسان</option>
-                                                <option value="12">سيتروين</option>
-                                                <option value="13">هوندا</option>
-                                                <option value="14">هيونداي</option>
-                                                <option value="15">فيات</option>
-                                                <option value="16">بيجو</option>
-                                                <option value="17">لاند روفر</option>
-                                                <option value="18">رينو</option>
-                                                <option value="19">جاغوار</option>
-                                                <option value="20">ميتسوبيشي</option>
+                                                <option value="" disabled selected>حدد الماركة</option>
+                                                @foreach($marks as $mark)
+                                                    <option value="{{$mark['id']}}"> {{$mark['name']}} </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

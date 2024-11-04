@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
+use App\Http\Traits\Slug_Trait;
 use App\Http\Traits\Upload_Images;
 use App\Models\admin\AutoRepair;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class AutoRepairController extends Controller
 
     use Message_Trait;
     use Upload_Images;
+    use Slug_Trait;
 
     public function index()
     {
@@ -69,6 +71,7 @@ class AutoRepairController extends Controller
                 $repair = new AutoRepair();
                 $repair->create([
                     'name' => ['ar' => $data['name'], 'en' => $data['name_en']],
+                    'slug'=>$this->CustomeSlug($data['name']),
                     'logo' => $file_name,
                     'country' => $data['country'],
                     'city' => $data['city'],
@@ -147,6 +150,7 @@ class AutoRepairController extends Controller
 
                 $repair->update([
                     'name' => ['ar' => $data['name'], 'en' => $data['name_en']],
+                    'slug'=>$this->CustomeSlug($data['name']),
                     'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address_en']],
