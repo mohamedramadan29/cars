@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous"> -->
@@ -25,6 +26,7 @@
     <meta name="description"
           content="سوق وحراج سيارات . يأتيكم موقع بآخر عروض السيارات الجديدة والسيارات المستعملة المعروضة للبيع في معارض وحراجات الدول مع اسعارها، مواصفاتها، واسماء وارقام جوالات المعارض والصالات، والوكالات، أولاً بأول">
     <meta name="keywords" content="سوق،حراج،سيارات،السيارات المستعملة،السيارات الجديدة،معارض،وكالات،ارقام ">
+    @toastifyCss
 </head>
 
 <body>

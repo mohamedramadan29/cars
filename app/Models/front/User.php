@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\front;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,11 +17,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+//    protected $fillable = [
+//        'name',
+//        'email',
+//        'password',
+//        'phone',
+//
+//    ];
+
+protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.

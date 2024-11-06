@@ -5,10 +5,12 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Agency;
 use App\Models\admin\AgencyBranch;
+use App\Models\admin\AgencyRent;
 use App\Models\admin\AutoRepair;
 use App\Models\admin\CarMark;
 use App\Models\admin\CarNumber;
 use App\Models\admin\ShowRoom;
+use App\Models\admin\TopicCategory;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -46,7 +48,14 @@ class FrontController extends Controller
     ///
     public function rent()
     {
+        $agencies = AgencyRent::all();
+        return view('front.rent',compact('agencies'));
+    }
 
+    public function rent_details($slug)
+    {
+        $rent = AgencyRent::where('slug',$slug)->with('advs')->first();
+        return view('front.rent_details',compact('rent'));
     }
 
     ///////////////// Start Car Numbers
@@ -67,5 +76,15 @@ class FrontController extends Controller
     {
         $repair = AutoRepair::where('slug',$slug)->first();
         return view('front.repair_details',compact('repair'));
+    }
+
+
+    //////////////////// Start Forums //////////////////
+    ///
+    public function forums()
+    {
+        $categories = TopicCategory::all();
+        return view('front.forums' ,compact('categories'));
+
     }
 }

@@ -92,7 +92,7 @@
                     <li class="nav-item"><a href="new-car.php"><i class="fa fa-car"></i> سيارات جديدة </a></li>
                     <li class="nav-item"><a href="used-car.php"><i class="fa fa-car"></i> سيارات مستعملة</a></li>
                 </ul>
-                <a href="create-2.php" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
+                <a href="{{url('user/car/add')}}" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
                         class="fa fa-plus"></i> بيع سيارتك</a>
                 <a href="create-2.html" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
                         class="fa fa-plus"></i> بيع دراجتك </a>
@@ -128,7 +128,7 @@
             <li><a href="{{url('rent')}}"><i class="fas fa-handshake"></i> تأجير </a></li>
             <li><a href="{{url('car_numbers')}}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
             <li><a href="{{url('auto-repair')}}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
-            <li><a href="forums.php"><i class="far fa-comments"></i> منتدى الأراء</a></li>
+            <li><a href="{{url('forums')}}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
             <li><a href="subscription.php"><i class="fas fa-star"></i> العضويات المميزة</a></li>
         </ul>
     </div>
@@ -176,6 +176,7 @@
                                 class="fas fa-user-plus"></i> تسجيل حساب جديد</button>
                     </form>
                     <form id="regform" method="post" autocomplete="off" class="form-signup">
+                        @csrf
                         <div class="social-login">
                             <a href="https://www.facebook.com/v3.2/dialog/oauth?client_id=1691520907771284&amp;state=2b5c16521c44b86f6a9fdd4116efbd72&amp;response_type=code&amp;sdk=php-sdk-5.7.0&amp;redirect_uri=https%3A%2F%2Fwww.chakirdev.com%2Fdemo%2FCars%2F&amp;scope=email"
                                class="btn facebook-btn social-btn"><span><i class="fab fa-facebook-f"></i> تسجيل عن
@@ -189,11 +190,11 @@
                         <p style="text-align:center">أو</p>
                         <div id="result" class="mt-2"></div>
                         <div class="clr"></div>
-                        <input type="text" name="username" id="user-name" class="form-control"
+                        <input type="text" name="name" id="name" class="form-control"
                                placeholder="الإسم كامل" autofocus>
                         <input type="email" name="email" id="user-email" class="form-control"
                                placeholder="البريد الإلكتروني" autofocus>
-                        <input type="number" name="mobile" id="user-mobile" class="form-control"
+                        <input type="number" name="phone" id="user-mobile" class="form-control"
                                placeholder="رقم الهاتف" autofocus>
                         <input type="password" name="password" id="user-pass" class="form-control"
                                placeholder="كلمة السر" autofocus>
@@ -291,45 +292,68 @@
 </script>
 <script>
     $(document).ready(function() {
+        // Set up the CSRF token for all AJAX requests
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $("#registerBtn").click(function() {
             var formData = $('#regform').serialize();
             $.ajax({
-                type: "POST", // method : POST
-                url: 'https://www.chakirdev.com/demo/Cars/form-register.php', // action : register.php
+                type: "POST",
+                url: '{{ url('user/register') }}',
                 data: formData,
-
                 beforeSend: function() {
-                    $("#result").text("Please wait..");
+                    $("#result").text(" جاري التسجيل ... ");
                 },
-
                 success: function(res) {
-                    $("#result").html(res);
+                    $("#result").html(res.message);
                 },
-                error: function(e) {
-                    $("#result").text("Failed to save");
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        let errorMessages = '';
+                        $.each(errors, function(key, value) {
+                            errorMessages += value[0] + '<br>';
+                        });
+                        $("#result").html(errorMessages);
+                    } else {
+                        $("#result").text(" فشل التسجيل من فضلك حاول مرة اخري  ");
+                    }
                 }
             });
         });
+
     });
-    $(document).ready(function() {
-        $("#loginBtn").click(function() {
-            var formData = $('#logform').serialize();
-            $.ajax({
-                type: "POST", // method : POST
-                url: 'https://www.chakirdev.com/demo/Cars/form-login.php', // action : register.php
-                data: formData,
-
-                beforeSend: function() {
-                    $("#result2").text("Please wait..");
-                },
-
-                success: function(res) {
-                    $("#result2").html(res);
-                },
-                error: function(e) {
-                    $("#result2").text("Failed to save");
+    $("#loginBtn").click(function() {
+        var formData = $('#logform').serialize();
+        $.ajax({
+            type: "POST",
+            url: '{{ url('login') }}',
+            data: formData,
+            beforeSend: function() {
+                $("#result2").text("Please wait..");
+            },
+            success: function(res) {
+                if (res.redirect) {
+                    window.location.href = res.redirect;
+                } else if (res.error) {
+                    $("#result2").text(res.error);
                 }
-            });
+            },
+            error: function(e) {
+                if (e.status === 422) {
+                    var errors = e.responseJSON.errors;
+                    var errorMsg = "";
+                    $.each(errors, function(key, value) {
+                        errorMsg += value[0] + "<br>";
+                    });
+                    $("#result2").html(errorMsg);
+                } else {
+                    $("#result2").text("Failed to login. Please try again.");
+                }
+            }
         });
     });
 </script>

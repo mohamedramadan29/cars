@@ -13,4 +13,9 @@ class AgencyRent extends Model
     use HasFactory;
     protected $guarded = [];
     public $translatable = ['name','address','desc','work_time'];
+
+    public function advs()
+    {
+        return $this->hasMany(Advertisment::class,'agency_rent');
+    }
 }

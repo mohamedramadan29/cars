@@ -25,7 +25,6 @@ class AdvertismentController extends Controller
         $advs = Advertisment::with('carImages')->get();
         return view('admin.Advertisments.index', compact('advs'));
     }
-
     public function store(Request $request)
     {
         $marks = CarMark::all();
