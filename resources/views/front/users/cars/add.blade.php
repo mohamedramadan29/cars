@@ -488,7 +488,6 @@
 
     <link href="imagesfiles/jquery.fileuploader.css" media="all" rel="stylesheet">
     <link href="imagesfiles/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
-
     <script src="imagesfiles/jquery.fileuploader.min.js" type="text/javascript"></script>
     <script src="imagesfiles/custom.js" type="text/javascript"></script>
     <script type="text/javascript">
