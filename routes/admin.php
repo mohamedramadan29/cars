@@ -11,7 +11,7 @@ use \App\Http\Controllers\admin\CarNumbersController;
 use \App\Http\Controllers\admin\AutoRepairController;
 use \App\Http\Controllers\admin\TopicCategoryController;
 use \App\Http\Controllers\admin\AdvertismentController;
-
+use \App\Http\Controllers\admin\AgencyRentController;
 Route::group(['prefix' => 'admin'], function () {
 // Admin Login
 
@@ -111,6 +111,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post', 'get'], 'adv/add', 'store');
             Route::match(['post', 'get'], 'adv/update/{id}', 'update');
             Route::post('adv/delete/{id}', 'delete');
+        });
+        /////////////////////////// Start Agency RENT Controller  ///////////
+
+        Route::controller(AgencyRentController::class)->group(function () {
+            Route::get('agency_rent', 'index');
+            Route::match(['post', 'get'], 'agency_rent/add', 'store');
+            Route::match(['post', 'get'], 'agency_rent/update/{id}', 'update');
+            Route::post('agency_rent/delete/{id}', 'delete');
         });
 
     });

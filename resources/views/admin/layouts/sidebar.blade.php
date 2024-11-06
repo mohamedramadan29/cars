@@ -98,7 +98,7 @@
                             <a class="sub-nav-link" href="{{url('admin/agency')}}"> جميع الوكالات  </a>
                         </li>
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{url('admin/agency/add')}}"> اضف منتج جديد </a>
+                            <a class="sub-nav-link" href="{{url('admin/agency/add')}}"> اضف وكالة جديدة </a>
                         </li>
                     </ul>
                 </div>
@@ -119,6 +119,26 @@
                         </li>
                         <li class="sub-nav-item">
                             <a class="sub-nav-link" href="{{url('admin/showroom/add')}}"> اضف معرض جديد </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebaragencyrent" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebaragencyrent">
+                                   <span class="nav-icon">
+                                         <i class="bi bi-building"></i>
+                                   </span>
+                    <span class="nav-text">  وكالات التاجير    </span>
+                </a>
+                <div class="collapse" id="sidebaragencyrent">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/agency_rent')}}"> جميع الوكالات  </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/agency_rent/add')}}"> اضف وكالة جديدة </a>
                         </li>
                     </ul>
                 </div>
