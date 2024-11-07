@@ -92,22 +92,36 @@
                     <li class="nav-item"><a href="new-car.php"><i class="fa fa-car"></i> سيارات جديدة </a></li>
                     <li class="nav-item"><a href="used-car.php"><i class="fa fa-car"></i> سيارات مستعملة</a></li>
                 </ul>
-                <a href="{{url('user/car/add')}}" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
-                        class="fa fa-plus"></i> بيع سيارتك</a>
+                @if(Auth::check())
+                    <a href="{{url('user/car/add')}}" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
+                            class="fa fa-plus"></i> بيع سيارتك</a>
+                @else
+                    <a href="{{url('create-car')}}" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
+                            class="fa fa-plus"></i> بيع سيارتك</a>
+                @endif
+
                 <a href="create-2.html" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
                         class="fa fa-plus"></i> بيع دراجتك </a>
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item login_nav">
-                    <a data-toggle="modal" data-bs-target="#LoginModallarge" data-bs-toggle="modal">
-                        <i class="bi bi-person-circle"></i> تسجيل الدخول <i class="bi bi-text-paragraph"></i> </a>
-                </li>
+                @if(Auth::check())
+                    <li class="nav-item login_nav">
+                        <a href="{{url('user/dashboard')}}">
+                            <i class="bi bi-person-circle"></i> حسابي  <i class="bi bi-text-paragraph"></i> </a>
+                    </li>
+                @else
+                    <li class="nav-item login_nav">
+                        <a data-toggle="modal" data-bs-target="#LoginModallarge" data-bs-toggle="modal">
+                            <i class="bi bi-person-circle"></i> تسجيل الدخول <i class="bi bi-text-paragraph"></i> </a>
+                    </li>
 
 
-                <li class="nav-item login_nav register_nav">
-                    <a href="#" data-toggle="modal" data-target="#LoginModal">
-                        <i class="bi bi-person-fill-add"></i> انشاء حساب جديد <i class="bi bi-text-paragraph"></i> </a>
-                </li>
+                    <li class="nav-item login_nav register_nav">
+                        <a href="#" data-toggle="modal" data-target="#LoginModal">
+                            <i class="bi bi-person-fill-add"></i> انشاء حساب جديد <i class="bi bi-text-paragraph"></i> </a>
+                    </li>
+                @endif
+
                 <li class="nav-item countryflags">
                     <a href="#" data-toggle="modal" data-target="#flagsModal">
                         <img src="{{asset('assets/front/uploads/ma.png')}}" style="width:32px;" />

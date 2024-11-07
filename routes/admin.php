@@ -12,6 +12,7 @@ use \App\Http\Controllers\admin\AutoRepairController;
 use \App\Http\Controllers\admin\TopicCategoryController;
 use \App\Http\Controllers\admin\AdvertismentController;
 use \App\Http\Controllers\admin\AgencyRentController;
+use \App\Http\Controllers\admin\CountryController;
 Route::group(['prefix' => 'admin'], function () {
 // Admin Login
 
@@ -119,6 +120,15 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post', 'get'], 'agency_rent/add', 'store');
             Route::match(['post', 'get'], 'agency_rent/update/{id}', 'update');
             Route::post('agency_rent/delete/{id}', 'delete');
+        });
+
+        ///////////////// Start Country And State /////////////
+        ///
+        Route::controller(CountryController::class)->group(function (){
+            Route::get('countries','index');
+            Route::match(['post', 'get'], 'country/add', 'store');
+            Route::match(['post', 'get'], 'country/update/{id}', 'update');
+            Route::post('country/delete/{id}', 'delete');
         });
 
     });

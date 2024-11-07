@@ -87,4 +87,9 @@ class FrontController extends Controller
         return view('front.forums' ,compact('categories'));
 
     }
+    /////////////////////// Create Car Not Login ////////
+    public function create_car()
+    {
+        return view('front.create_car');
+    }
 }

@@ -205,6 +205,23 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarcountry" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarcountry">
+                                   <span class="nav-icon">
+                                        <i class="bi bi-shop"></i>
+                                   </span>
+                    <span class="nav-text"> الدول والمدن   </span>
+                </a>
+                <div class="collapse" id="sidebarcountry">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/countries')}}">  الدول والمدن   </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="menu-title mt-2"> اعدادات الموقع</li>
 
             <li class="nav-item">
