@@ -4,6 +4,18 @@
 @endsection
 @section('content')
     <div id="HomePage">
+        @if (Session::has('Success_message'))
+            @php
+                toastify()->success(\Illuminate\Support\Facades\Session::get('Success_message'));
+            @endphp
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                @php
+                    toastify()->error($error);
+                @endphp
+            @endforeach
+        @endif
         <center>
             <p class="home-title"><i class="fa fa-car"></i> بيع سيارتك مجانا </p>
         </center>
@@ -27,7 +39,7 @@
                                     </div>
                                     <input type="text" class="form-control" name="c_title"
                                            placeholder="مثال : أودي A3 إصدار 2015 بحالة ممتازة" style="height:50px;"
-                                           required="">
+                                           required value="{{old('c_title')}}">
                                 </div>
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
@@ -35,10 +47,11 @@
                                                 style="color:#c72510;">*</span></div>
                                     </div>
                                     <select class="form-select" style="height:50px;" name="c_brand" id="brand"
-                                            required="">
+                                            required>
                                         <option value="" selected disabled>حدد الماركة</option>
                                         @foreach($marks as $mark)
-                                            <option value="{{$mark['id']}}"> {{$mark['name']}} </option>
+                                            <option
+                                                {{ old('c_brand',request('c_brand')) == $mark['id'] ? 'selected': '' }} value="{{$mark['id']}}"> {{$mark['name']}} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -47,24 +60,35 @@
                                         <div class="input-group-text CreateCadre">الموديل <span
                                                 style="color:#c72510;">*</span></div>
                                     </div>
-                                    <select class="form-select" name="c_model" id="subbrand" style="height:50px;">
+                                    <select required class="form-select" name="c_model" id="subbrand"
+                                            style="height:50px;">
                                         <option value="">حدد الموديل</option>
                                     </select>
                                 </div>
                                 <script>
                                     $(document).ready(function () {
+                                        var oldBrand = "{{ old('c_brand', request('c_brand')) }}";
+                                        var oldModel = "{{ old('c_model') }}";
                                         $('#brand').on('change', function () {
                                             var brandId = $(this).val();
                                             if (brandId) {
-                                                $.ajax({
+                                                var ajaxRequest = $.ajax({
                                                     url: '/getModels/' + brandId, // Update with your route
                                                     type: 'GET',
                                                     success: function (data) {
                                                         $('#subbrand').empty();
                                                         $('#subbrand').append('<option value="">حدد الموديل</option>');
                                                         $.each(data, function (key, model) {
-                                                            $('#subbrand').append('<option value="' + model.id + '">' +  model.name.ar + '</option>');
+                                                            $('#subbrand').append(
+                                                                '<option value="' + model.id + '">' + model.name.ar + '</option>'
+                                                            );
                                                         });
+                                                    }
+                                                });
+                                                // تأكد من تعيين القيمة القديمة فقط بعد انتهاء عملية التحميل
+                                                $.when(ajaxRequest).done(function () {
+                                                    if (oldModel) {
+                                                        $('#subbrand').val(oldModel);
                                                     }
                                                 });
                                             } else {
@@ -72,8 +96,12 @@
                                                 $('#subbrand').append('<option value="">حدد الموديل</option>');
                                             }
                                         });
+                                        if (oldBrand) {
+                                            $('#brand').trigger('change');
+                                        }
                                     });
                                 </script>
+
                                 <small>إذا لم تجد موديل السيارة في التصنيف فقم<a href="{{url('contact_us')}}">بالإتصال
                                         بنا</a></small>
                                 <div class="clr"></div>
@@ -83,54 +111,60 @@
                                         <div class="input-group-text CreateCadre"> ناقل الحركة<span
                                                 style="color:#c72510;">*</span></div>
                                     </div>
-                                    <select class="form-select" name="c_trans" style="height:50px;">
-                                        <option value="غير محدد">حدد</option>
-                                        <option value="مانيوال">مانيوال</option>
-                                        <option value="أتوماتيك">أتوماتيك</option>
+                                    <select required class="form-select" name="c_trans" style="height:50px;">
+                                        <option value="" selected disabled>حدد</option>
+                                        <option
+                                            {{ old('c_trans', request('c_trans')) == 'مانيوال' ? 'selected' : '' }} value="مانيوال">
+                                            مانيوال
+                                        </option>
+                                        <option
+                                            {{ old('c_trans', request('c_trans')) == 'أتوماتيك' ? 'selected':''}} value="أتوماتيك">
+                                            أتوماتيك
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text CreateCadre">الكيلومترات</div>
                                     </div>
-                                    <select class="form-select" name="c_km" style="height:50px;direction:ltr;">
-                                        <option value="1">0 - 4 999</option>
-                                        <option value="2">5 000 - 9 999</option>
-                                        <option value="3">10 000 - 14 999</option>
-                                        <option value="4">15 000 - 19 999</option>
-                                        <option value="5">20 000 - 24 999</option>
-                                        <option value="6">25 000 - 29 999</option>
-                                        <option value="7">30 000 - 34 999</option>
-                                        <option value="8">35 000 - 39 999</option>
-                                        <option value="9">40 000 - 44 999</option>
-                                        <option value="10">45 000 - 49 999</option>
-                                        <option value="11">50 000 - 54 999</option>
-                                        <option value="12">55 000 - 59 999</option>
-                                        <option value="13">60 000 - 64 999</option>
-                                        <option value="14">65 000 - 69 999</option>
-                                        <option value="15">70 000 - 74 999</option>
-                                        <option value="16">75 000 - 79 999</option>
-                                        <option value="17">80 000 - 84 999</option>
-                                        <option value="18">85 000 - 89 999</option>
-                                        <option value="19">90 000 - 94 999</option>
-                                        <option value="20">95 000 - 99 999</option>
-                                        <option value="21">100 000 - 109 999</option>
-                                        <option value="22">110 000 - 119 999</option>
-                                        <option value="23">120 000 - 129 999</option>
-                                        <option value="24">130 000 - 139 999</option>
-                                        <option value="25">140 000 - 149 999</option>
-                                        <option value="26">150 000 - 159 999</option>
-                                        <option value="27">160 000 - 169 999</option>
-                                        <option value="28">170 000 - 179 999</option>
-                                        <option value="29">180 000 - 189 999</option>
-                                        <option value="30">190 000 - 199 999</option>
-                                        <option value="31">200 000 - 249 999</option>
-                                        <option value="32">250 000 - 299 999</option>
-                                        <option value="33">300 000 - 349 999</option>
-                                        <option value="34">350 000 - 399 999</option>
-                                        <option value="35">400 000 - 449 999</option>
-                                        <option value="36">450 000 - 499 999</option>
-                                        <option value="37">أكثر من 500.000</option>
+                                    <select required class="form-select" name="c_km" style="height:50px;direction:ltr;">
+                                        <option value="0 - 4999">0 - 4999</option>
+                                        <option {{old('c_km',request('c_km')) == '5 000 - 9 999' ? 'selected':''}} value="5 000 - 9 999">5 000 - 9 999</option>
+                                        <option value="10 000 - 14 999">10 000 - 14 999</option>
+                                        <option value="15 000 - 19 999">15 000 - 19 999</option>
+                                        <option value="20 000 - 24 999">20 000 - 24 999</option>
+                                        <option value="25 000 - 29 999">25 000 - 29 999</option>
+                                        <option value="30 000 - 34 999">30 000 - 34 999</option>
+                                        <option value="35 000 - 39 999">35 000 - 39 999</option>
+                                        <option value="40 000 - 44 999">40 000 - 44 999</option>
+                                        <option value="45 000 - 49 999">45 000 - 49 999</option>
+                                        <option value="50 000 - 54 999">50 000 - 54 999</option>
+                                        <option value="55 000 - 59 999">55 000 - 59 999</option>
+                                        <option value="60 000 - 64 999">60 000 - 64 999</option>
+                                        <option value="65 000 - 69 999">65 000 - 69 999</option>
+                                        <option value="70 000 - 74 999">70 000 - 74 999</option>
+                                        <option value="75 000 - 79 999">75 000 - 79 999</option>
+                                        <option value="80 000 - 84 999">80 000 - 84 999</option>
+                                        <option value="85 000 - 89 999">85 000 - 89 999</option>
+                                        <option value="90 000 - 94 999">90 000 - 94 999</option>
+                                        <option value="95 000 - 99 999">95 000 - 99 999</option>
+                                        <option value="100 000 - 109 999">100 000 - 109 999</option>
+                                        <option value="110 000 - 119 999">110 000 - 119 999</option>
+                                        <option value="120 000 - 129 999">120 000 - 129 999</option>
+                                        <option value="130 000 - 139 999">130 000 - 139 999</option>
+                                        <option value="140 000 - 149 999">140 000 - 149 999</option>
+                                        <option value="150 000 - 159 999">150 000 - 159 999</option>
+                                        <option value="160 000 - 169 999">160 000 - 169 999</option>
+                                        <option value="170 000 - 179 999">170 000 - 179 999</option>
+                                        <option value="180 000 - 189 999">180 000 - 189 999</option>
+                                        <option value="190 000 - 199 999">190 000 - 199 999</option>
+                                        <option value="200 000 - 249 999">200 000 - 249 999</option>
+                                        <option value="250 000 - 299 999">250 000 - 299 999</option>
+                                        <option value="300 000 - 349 999">300 000 - 349 999</option>
+                                        <option value="350 000 - 399 999">350 000 - 399 999</option>
+                                        <option value="400 000 - 449 999">400 000 - 449 999</option>
+                                        <option value="450 000 - 499 999">450 000 - 499 999</option>
+                                        <option value="أكثر من 500.000">أكثر من 500.000</option>
                                     </select>
                                 </div>
                                 <div class="input-group mb-2 mr-sm-2">
@@ -288,15 +322,9 @@
                                     <select class="form-select" name="c_place" id="place" style="height:50px;"
                                             required="">
                                         <option value="">حدد الدولة</option>
-                                        <option value="43">مصر</option>
-                                        <option value="40">عمان</option>
-                                        <option value="30">البحرين</option>
-                                        <option value="26">الأردن</option>
-                                        <option value="23">الكويت</option>
-                                        <option value="20">قطر</option>
-                                        <option value="16">الإمارات</option>
-                                        <option value="13">المغرب</option>
-                                        <option value="9">السعودية</option>
+                                        @foreach($countries as $country )
+                                            <option value="{{$country['id']}}"> {{$country['name']}} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="input-group mb-2 mr-sm-2">
@@ -308,12 +336,39 @@
                                         <option value="">حدد المدينة</option>
                                     </select>
                                 </div>
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#place").on('change', function () {
+                                            let countryId = $(this).val();
+                                            if (countryId) {
+
+                                                $.ajax({
+
+                                                    method: 'GET',
+                                                    url: '/getcitizen/' + countryId,
+                                                    success: function (data) {
+                                                        $('#subplace').empty();
+                                                        $('#subplace').append('<option> -- حدد المدينة   --  </option>');
+                                                        $.each(data, function (key, city) {
+                                                            $('#subplace').append('<option value="' + city.id + '">' + city.name.ar + '</option>');
+                                                        });
+                                                    }
+
+                                                });
+
+                                            } else {
+                                                $('#subplace').empty();
+                                                $('#subplace').append('<option> -- حدد المدينة   --  </option>')
+                                            }
+                                        });
+                                    });
+                                </script>
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text CreateCadre">الهاتف <span
                                                 style="color:#c72510;">*</span></div>
                                     </div>
-                                    <input type="text" class="form-control" name="c_mobile" placeholder="رقم الهاتف"
+                                    <input type="text" class="form-control" name="c_phone" placeholder="رقم الهاتف"
                                            style="height:50px;" required="">
                                 </div>
                                 <div class="input-group mb-2 mr-sm-2">
@@ -573,7 +628,7 @@
                             <br><br>
                             <p class="CreateTitle"><i class="fa fa-info"></i> بيانات إضافية</p>
                             <div class="form-group">
-                                <textarea class="form-control" name="c_content"
+                                <textarea class="form-control" name="more_info"
                                           placeholder="بعض الملاحظات أو معلومات إضافية عن حالة السيارة"
                                           rows="3"></textarea>
                             </div>
@@ -581,6 +636,8 @@
                             <p class="CreateTitle"><i class="fa fa-picture-o"></i> صور السيارة</p>
                             <div class="clr"></div>
                             <div class="form-group">
+                                <input required type="file" multiple class="form-control" name="images[]"
+                                       accept="image/*">
                                 <div style="background:#F5F6FA;">
                                     <div class="fileuploader fileuploader-theme-thumbnails"><input type="hidden"
                                                                                                    name="fileuploader-list-files"

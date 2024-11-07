@@ -65,8 +65,8 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(UserCarsController::class)->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::match(['post', 'get'], 'user/car/add', 'add_car');
-
         Route::get('getModels/{brandid}', 'getModels');
+        Route::get('getcitizen/{countryid}','getcitizen');
     });
 });
 
