@@ -5,6 +5,7 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
 use App\Models\admin\Advertisment;
+use App\Models\admin\State;
 use App\Models\front\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -290,6 +291,8 @@ class UserController extends Controller
 
     public function update_info(Request $request)
     {
+        $user = User::where('id',Auth::id())->first();
+        $citizen = State::all();
         try {
             if ($request->isMethod('post')) {
                 $data = $request->all();
@@ -298,160 +301,44 @@ class UserController extends Controller
                 $rules = [
                     'name' => 'required',
                     'email' => 'required|email|unique:users,email,' . $id . '|max:150',
-                    'mobile' => 'required|numeric|unique:users,mobile,' . $id . '|digits_between:8,16',
+                    'phone' => 'required|numeric|unique:users,phone,' . $id . '|digits_between:8,16',
                 ];
-                if ($request->hasFile('cv')) {
-                    $rules['cv'] = 'required|mimes:pdf,doc,docx|max:51200';
-                }
-                if ($request->hasFile('logo')) {
-                    $rules['logo'] = 'image|mimes:jpg,png,jpeg|max:4096'; // max:4096 لتحديد حجم الملف بالكيلوبايت (4MB)
-                }
                 $messages = [
                     'name.required' => 'من فضلك ادخل الاسم ',
                     'email.required' => 'من فضلك ادخل البريد الالكتروني ',
                     'email.unique' => 'البريد الالكتروني مستخدم بالفعل ',
                     'email.email' => 'من فضلك ادخل بريد الكتروني بشكل صحيح ',
                     'email.max' => 'من فضلك ادخل بريد الكتروني اقل من 150 حرف ',
-                    'mobile.required' => 'رقم الهاتف مطلوب.',
-                    'mobile.numeric' => 'رقم الهاتف يجب أن يكون أرقام فقط.',
-                    'mobile.unique' => 'رقم الهاتف مسجل بالفعل.',
-                    'mobile.digits_between' => 'يجب أن يكون رقم الهاتف بين 8 و 16 رقمًا.',
-                    'logo.image' => 'الملف يجب أن يكون صورة.',
-                    'logo.mimes' => 'الصورة يجب أن تكون بصيغة:  webp , jpg , jpeg, png.',
-                    'logo.max' => 'حجم الصورة يجب ألا يتجاوز 4 ميجابايت.',
-                    'cv.mimes' => ' من فضلك حدد الملفات بشكل صحيح من نوع : pdf,doc,docx  ',
-                    'cv.max' => ' اقصي حجم للملف  50 ميجا  ',
+                    'phone.required' => 'رقم الهاتف مطلوب.',
+                    'phone.numeric' => 'رقم الهاتف يجب أن يكون أرقام فقط.',
+                    'phone.unique' => 'رقم الهاتف مسجل بالفعل.',
+                    'phone.digits_between' => 'يجب أن يكون رقم الهاتف بين 8 و 16 رقمًا.',
                 ];
                 $validator = Validator::make($data, $rules, $messages);
                 if ($validator->fails()) {
                     return redirect()->back()->withErrors($validator)->withInput();
                 }
-                if ($request->hasFile('cv')) {
-                    try {
-                        $cvfilename = $this->saveImage($request->file('cv'), public_path('assets/uploads/userscv'));
-                        /// Delete old image
-                        if ($user['cv'] != null && $user['cv'] != '') {
-                            // مسار الصورة القديمة
-                            $cvoldFilePath = public_path('assets/uploads/userscv/' . $user['cv']);
-                            if (file_exists($cvoldFilePath)) {
-                                unlink($cvoldFilePath);
-                            }
-                        }
-                        $user->update([
-                            'cv' => $cvfilename,
-                        ]);
-                    } catch (\Exception $e) {
-                        return redirect()->back()->with('error', 'The Cv failed to upload: ' . $e->getMessage())->withInput();
-                    }
-                }
-
-                if ($request->hasFile('logo')) {
-                    try {
-                        $filename = $this->saveImage($request->file('logo'), public_path('assets/uploads/users'));
-                        /// Delete old image
-                        if ($user['logo'] != null && $user['logo'] != '') {
-                            // مسار الصورة القديمة
-                            $oldFilePath = public_path('assets/uploads/users/' . $user['logo']);
-                            if (file_exists($oldFilePath)) {
-                                unlink($oldFilePath);
-                            }
-                        }
-                        $user->update([
-                            'logo' => $filename,
-                        ]);
-                    } catch (\Exception $e) {
-                        return redirect()->back()->with('error', 'The logo failed to upload: ' . $e->getMessage())->withInput();
-                    }
-                }
                 $user->update([
                     'name' => $data['name'],
                     'email' => $data['email'],
-                    'mobile' => $data['mobile'],
+                    'phone' => $data['phone'],
                     'info' => $data['info'],
+                    'city'=>$data['city'],
+                    'website_url'=>$data['website_url'],
+                    'twitter_link'=>$data['twitter_link'],
+                    'insta_link'=>$data['insta_link'],
+                    'facebook_link'=>$data['facebook_link'],
                 ]);
                 return $this->success_message(' تم تعديل البيانات بنجاح !  ');
             }
         } catch (\Exception $e) {
             return $this->exception_message($e);
         }
+
+        return view('front.users.profile_data.update',compact('user','citizen'));
     }
 
-    public function update_data(Request $request)
-    {
-        $citizen = City::all();
-        $specialists = Specialist::all();
-        $nameJobs = Jobsname::all();
-        $nameJobsCategories = JobCategory::all();
-        $specialistsCategories = SpecialCategory::all();
-        $user = User::with('jobs_name', 'specialist')->where('id', Auth::id())->first();
-        try {
-
-            if ($request->isMethod('post')) {
-                $data = $request->all();
-                // dd($data);
-//                $work_type = implode(',', $data['work_type']);
-                $language = implode(',', $data['language']);
-                $rules = [
-                    'nationality' => 'required',
-                    'sex' => 'required',
-                    'city' => 'required',
-                    'can_placed_from_to_another' => 'required',
-                    'job_name' => 'required',
-//                    'work_type' => 'required',
-                    'experience' => 'required',
-                    'language' => 'required',
-                    'language_level' => 'required',
-                    'profession_specialist' => 'required',
-                    'notification_timeslot' => 'required',
-                    'salary' => 'required',
-                    'academy_certificate'=>'required'
-                ];
-                $messages = [
-                    'nationality.required' => ' من فضلك حدد الجنسية  ',
-                ];
-                $validator = Validator::make($data, $rules, $messages);
-                if ($validator->fails()) {
-                    return Redirect::back()->withErrors($validator)->withInput();
-                }
-
-                $user->update([
-                    'nationality' => $data['nationality'],
-                    'sex' => $data['sex'],
-                    'city' => $data['city'],
-                    'can_placed_from_to_another' => $data['can_placed_from_to_another'],
-                    'job_category' => $data['job_category'],
-                    'job_name' => $data['job_name'],
-//                    'work_type' => $work_type,
-                    'experience' => $data['experience'],
-                    'language' => $language,
-                    'language_level' => $data['language_level'],
-                    'special_category' => $data['special_category'],
-                    'profession_specialist' => $data['profession_specialist'],
-                    'notification_timeslot' => $data['notification_timeslot'],
-                    'salary' => $data['salary'],
-                    'academy_certificate'=>$data['academy_certificate']
-                ]);
-                return $this->success_message('  تم تعديل البيانات الخاصة بك بنجاح  !!  ');
-            }
-        } catch (\Exception $e) {
-            return $this->exception_message($e);
-        }
-        return view('website.users.update-data', compact('user', 'citizen', 'nameJobs', 'specialists', 'nameJobsCategories', 'specialistsCategories'));
-    }
-
-    public function getJobsByCategory($categoryId)
-    {
-        $jobs = Jobsname::where('cat_id', $categoryId)->get(['id', 'title']);
-        return response()->json($jobs);
-    }
-
-    public function getSpecialistByCategory($categoryId)
-    {
-        $specialists = Specialist::where('cat_id', $categoryId)->get(['id', 'name']);
-        return response()->json($specialists);
-    }
-
-    public function change_password(Request $request)
+    public function password(Request $request)
     {
         try {
             if ($request->isMethod('post')) {
@@ -470,7 +357,6 @@ class UserController extends Controller
                 if ($validator->fails()) {
                     return Redirect::back()->withInput()->withErrors($validator);
                 }
-
                 if (Hash::check($data['old_password'], Auth::user()->password)) {
                     $user = User::where('id', Auth::user()->id)->first();
                     $user->update([
@@ -485,7 +371,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return $this->exception_message($e);
         }
-        return view('website.users.change-password');
+        return view('front.users.profile_data.password');
     }
 
 

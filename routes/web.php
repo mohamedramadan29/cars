@@ -51,10 +51,9 @@ Route::controller(UserController::class)->group(function () {
     Route::post('user/update_forget_password', 'update_forget_password');
     Route::group(['middleware' => 'auth'], function () {
         Route::get('user/dashboard', 'index');
-
-        Route::match(['get', 'post'], 'user/update', 'update_data');
+        Route::match(['get', 'post'], 'user/update', 'update_info');
         Route::get('user/alerts', 'alerts');
-        Route::match(['post', 'get'], 'user/change-password', 'change_password');
+        Route::match(['post', 'get'], 'user/password', 'password');
         Route::get('user/logout', 'logout');
         Route::get('user/alert/delete/{id}', 'delete_alert');
         Route::get('/user/get-jobs-by-category/{categoryId}', 'getJobsByCategory');
@@ -65,7 +64,6 @@ Route::controller(UserController::class)->group(function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
-
     Route::controller(UserCarsController::class)->group(function () {
         Route::match(['post', 'get'], 'user/car/add', 'add_car');
         Route::match(['post', 'get'], 'user/car/update/{id}', 'update_car');

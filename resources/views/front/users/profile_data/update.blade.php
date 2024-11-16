@@ -1,9 +1,11 @@
 @extends('front.layouts.master')
 @section('title')
-    اضافة رقم جديد
+    تعديل البيانات الشخصية
 @endsection
 @section('content')
     <div id="HomePage">
+        <div class="clr"></div>
+        <br>
         @if (Session::has('Success_message'))
             @php
                 toastify()->success(\Illuminate\Support\Facades\Session::get('Success_message'));
@@ -16,9 +18,6 @@
                 @endphp
             @endforeach
         @endif
-        <div class="clr"></div>
-        <br>
-
         <div>
             <h5 class="card-title CT1"><i class="fas fa-user-shield"></i> بروفايل شخصي</h5>
             <h6 class="card-subtitle mb-2 text-muted" style="padding:20px;">من خلال البروفايل يمكنك تعديل بياناتك
@@ -44,7 +43,6 @@
                             <a href="https://www.chakirdev.com/demo/Cars/notice"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
-
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
@@ -52,83 +50,75 @@
                             <a href="https://www.chakirdev.com/demo/Cars/myposts"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-
-                            <a href="https://www.chakirdev.com/demo/Cars/myinfo"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;">
+                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
+                            <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;">
+                                <i class="fab fa-buffer"></i> تغير كلمة المرور  </a>
                             <a href="https://www.chakirdev.com/demo/Cars/logout"
                                 class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>
-
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-                    <h5 class="p-title"><i class="fas fa-edit"></i> أضف رقم جديد</h5>
+                    <h5 class="p-title"><i class="fas fa-edit"></i> تعديل البيانات الشخصية </h5>
                     <div class="clr"></div><br>
-
-                    <form action="{{ url('user/number/add') }}" method="post" class="p-form" enctype="multipart/form-data">
+                    <form action="{{ url('user/update') }}" method="post" class="p-form">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="car_number" class="form-control form-control-lg input-form"
-                                    placeholder="أدخل رقم السيارة" required="">
+                                <input type="text" name="name" class="form-control form-control-lg input-form"
+                                    value="{{ $user['name'] }}" placeholder="إسم العضوية" required="">
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="file" name="image" id="file" class="input-file" accept="image/*">
-                                    <label for="file" class="btn btn-tertiary js-labelFile">
-                                        <i class="icon fa fa-check"></i>
-                                        <span class="js-fileName">رفع صورة لرقم</span>
-                                    </label>
-                                </div>
-                                <script type="text/javascript">
-                                    (function() {
-
-                                        'use strict';
-
-                                        $('.input-file').each(function() {
-                                            var $input = $(this),
-                                                $label = $input.next('.js-labelFile'),
-                                                labelVal = $label.html();
-
-                                            $input.on('change', function(element) {
-                                                var fileName = '';
-                                                if (element.target.value) fileName = element.target.value.split('\\').pop();
-                                                fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label
-                                                    .removeClass('has-file').html(labelVal);
-                                            });
-                                        });
-
-                                    })();
-                                </script>
+                                <input type="password" name="password" class="form-control form-control-lg input-form"
+                                    placeholder="كلمة السر جديدة">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
                                     id="subplace" style="height:45px;">
                                     <option value="">حدد المدينة</option>
                                     @foreach ($citizen as $city)
-                                        <option value="{{ $city['id'] }}">{{ $city['name'] }}</option>
+                                        <option @if ($city['id'] == $user['city']) selected @endif
+                                            value="{{ $city['id'] }}"> {{ $city['name'] }} </option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" name="owner_name" class="form-control form-control-lg input-form"
-                                    placeholder="إسم المالك" value="{{ Auth::user()->name }}">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="price" class="form-control form-control-lg input-form"
-                                    placeholder="السعر " required="">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="phone" class="form-control form-control-lg input-form"
-                                    placeholder="رقم الهاتف" required="">
-                            </div>
                             <div class="col-12">
+                                <textarea name="info" class="form-control form-control-lg" rows="2"
+                                    placeholder="نبذة عنك (مجال عملك - اهتماماتك) ...">{{ $user['info'] }}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" name="email" class="form-control form-control-lg input-form"
+                                    value="{{ $user['email'] }}" placeholder="البريد الإلكتروني" required="">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" name="phone" class="form-control form-control-lg input-form"
+                                    value="{{ $user['phone'] }}" placeholder="رقم الهاتف">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="website_url" class="form-control form-control-lg input-form"
+                                    value="{{ $user['website_url'] }}" placeholder="الموقع الإلكتروني">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="insta_link" class="form-control form-control-lg input-form"
+                                    value="{{ $user['insta_link'] }}" placeholder="حساب إنستجرام">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="twitter_link" class="form-control form-control-lg input-form"
+                                    value="{{ $user['twitter_link'] }}" placeholder="حساب تويتر">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="facebook_link"
+                                    class="form-control form-control-lg input-form" value="{{ $user['facebook_link'] }}"
+                                    placeholder="صفحة الفيسبوك">
+                            </div>
+                            <div class="col-md-6">
                                 <br>
-                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">أضف
-                                    الرقم</button>
+                                <button type="submit" name="Edit" class="btn btn-success">تعديل البيانات</button>
                             </div>
                         </div>
                     </form>
@@ -136,4 +126,5 @@
             </div>
         </div>
     </div>
+
 @endsection

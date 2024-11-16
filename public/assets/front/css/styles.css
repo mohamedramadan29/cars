@@ -1760,7 +1760,7 @@ form .form-group input {
 .p-title {
     font-weight: 700;
     font-size: 25px;
-    color: #0069d9
+    color: #a20103;
 }
 
 .balon1, .balon2 {
@@ -6498,4 +6498,9 @@ font-weight: bold;
 .dropify-wrapper .dropify-message p{
     font-size: 15px;
     font-weight: bold;
+}
+
+.profileRight .list-group-item.active{
+    background-color: #9a0100;
+    border-color: #9a0100;
 }

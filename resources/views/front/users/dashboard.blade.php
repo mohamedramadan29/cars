@@ -42,7 +42,7 @@
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
 
-                            <a href="https://www.chakirdev.com/demo/Cars/myinfo"
+                            <a href="{{url('user/update')}}"
                                 class="list-group-item list-group-item-action" style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
                             <a href="https://www.chakirdev.com/demo/Cars/logout"
