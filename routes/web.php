@@ -3,6 +3,8 @@
 use App\Http\Controllers\front\UserController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\front\UserCarsController;
+use App\Http\Controllers\front\UserCenterController;
+use App\Http\Controllers\front\UserNumberController;
 
 Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
     Route::get('/', 'index');
@@ -33,7 +35,6 @@ Route::controller(\App\Http\Controllers\front\FrontController::class)->group(fun
     /////////////////
     ///
     Route::get('create-car', 'create_car');
-
 });
 
 /////////////////////////// User Controller //////////////////////
@@ -62,12 +63,27 @@ Route::controller(UserController::class)->group(function () {
     Route::match(['post', 'get'], 'forget-password', 'forget_password');
 });
 
-Route::controller(UserCarsController::class)->group(function () {
-    Route::group(['middleware' => 'auth'], function () {
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::controller(UserCarsController::class)->group(function () {
         Route::match(['post', 'get'], 'user/car/add', 'add_car');
+        Route::match(['post', 'get'], 'user/car/update/{id}', 'update_car');
         Route::get('getModels/{brandid}', 'getModels');
-        Route::get('getcitizen/{countryid}','getcitizen');
+        Route::get('getcitizen/{countryid}', 'getcitizen');
+    });
+    Route::controller(UserNumberController::class)->group(function () {
+        Route::get('user/numbers', 'index');
+        Route::match(['post', 'get'], 'user/number/add', 'store');
+        Route::match(['post', 'get'], 'user/number/update/{id}', 'update');
+    });
+    Route::controller(UserCenterController::class)->group(function () {
+        Route::get('user/centers', 'index');
+        Route::match(['post', 'get'], 'user/center/add', 'store');
+        Route::match(['post', 'get'], 'user/center/update/{id}', 'update');
     });
 });
+
+
 
 include 'admin.php';

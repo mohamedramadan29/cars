@@ -1,40 +1,4 @@
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#brand').on('change', function() {
-            var brandID = $(this).val();
-            if (brandID) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'https://www.chakirdev.com/demo/Cars/ajaxData.php',
-                    data: 'brand_id=' + brandID,
-                    success: function(html) {
-                        $('#subbrand').html(html);
-                    }
-                });
-            } else {
-                $('#subbrand').html('<option value="">حدد الماركة أولا</option>');
-            }
-        });
-    });
 
-    $(document).ready(function() {
-        $('#country').on('change', function() {
-            var placeID = $(this).val();
-            if (placeID) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'https://www.chakirdev.com/demo/Cars/ajaxData.php',
-                    data: 'place_id=' + placeID,
-                    success: function(html) {
-                        $('#subplace').html(html);
-                    }
-                });
-            } else {
-                $('#subplace').html('<option value="">حدد البلد أولا</option>');
-            }
-        });
-    });
-</script>
 <script>
     $(document).ready(function() {
         $('#owl-brand').owlCarousel({
@@ -234,9 +198,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- <script src="../../../cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@yield('js')
 @toastifyJs
 </body>
-
-<!-- Mirrored from www.chakirdev.com/demo/Cars/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Oct 2024 08:13:06 GMT -->
 
 </html>

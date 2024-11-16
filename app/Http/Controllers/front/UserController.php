@@ -4,6 +4,7 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
+use App\Models\admin\Advertisment;
 use App\Models\front\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,10 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('front.users.dashboard');
+        $user_cars = Advertisment::where('user_id',Auth::id())->get();
+        //dd($user_cars);
+        return view('front.users.dashboard',compact('user_cars'));
+
     }
 
     public function register(Request $request)

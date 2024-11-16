@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-    حسابي
+    اضف مركز صيانة جديد
 @endsection
 @section('content')
     <div id="HomePage">
@@ -35,8 +35,7 @@
 
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{url('user/centers')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
                             <a href="https://www.chakirdev.com/demo/Cars/myposts"
                                 class="list-group-item list-group-item-action">
@@ -54,76 +53,44 @@
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-
-                    <div class="card pcard-stats">
-                        <div class="card-body">
-                            <h5 class="card-title pt"><i class="fas fa-car"></i> سياراتي </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">العدد : {{ count($user_cars) }} </h6>
-                            <a href="{{ url('user/car/add') }}" class="card-link">أضف سيارة للبيع </a>
-                        </div>
-                    </div>
-                    <div class="card pcard-stats">
-                        <div class="card-body">
-                            <h5 class="card-title pt"><i class="fas fa-bars"></i> مواضيعي </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">العدد : 0</h6>
-                            <a href="https://www.chakirdev.com/demo/Cars/addpost.php" class="card-link">أضف موضوع</a>
-                        </div>
-                    </div>
-                    <div class="card pcard-stats">
-                        <div class="card-body">
-
-                            <h5 class="card-title pt"><i class="fas fa-shield-alt"></i> نوع العضوية</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">عضوية عادية</h6>
-
-                            <div class="clr"></div>
-                            <a href="https://www.chakirdev.com/demo/Cars/subscription.php" class="card-link">ترقية
-                                العضوية</a>
-                        </div>
-                    </div>
+                    <h5 class="p-title"><i class="fa fa-bars"></i> مراكز صيانة</h5>
+                    <div class="clr"></div><br>
+                    <a href="{{ url('user/center/add') }}" class="lft btn btn-primary btn-form">
+                        <i class="fas fa-edit"></i> أضف مركز صيانة جديد</a>
                     <div class="clr"></div>
-                    <br>
-                    <h5 class="p-title">- سياراتي </h5>
-                    <div class="clr"></div>
-                    <br>
-                    @if (count($user_cars) > 0)
-                        <div class="table-responsive">
-                            <table class="table table-bordered profile-table">
-                                <thead class="thead-light">
+                    @if (count($repairs) > 0)
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered profile-table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col"> الاسم  </th>
+                                    <th scope="col"> عنوان المركز  </th>
+                                    <th scope="col">توقيت العمل  </th>
+                                    <th scope="col">تعديل </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $i = 1; @endphp
+                                @foreach ($repairs as $repair)
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col" style="width:45%;">عنوان السيارة</th>
-                                        <th scope="col">الحالة</th>
-                                        <th scope="col">تعديل</th>
+                                        <td> {{$i++}} </td>
+                                        <td> {{$repair['name']}} </td>
+                                        <td> {{$repair['address']}} </td>
+                                        <td> {{$repair['work_time']}} </td>
+                                        <td> <a href="{{url('user/center/update/'.$repair['id'])}}" class="btn btn-primary btn-sm">  <i class="fa fa-edit"></i> </a> </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @php $i = 1; @endphp
-                                    @foreach ($user_cars as $car)
-                                        <tr>
-                                            <td> {{ $i++ }} </td>
-                                            <td> {{ $car['c_title'] }} </td>
-                                            <td>
-                                                @if ($car['c_type'] == '1')
-                                                    <span class="badge badge-success bg-success"> جديدة </span>
-                                                @else
-                                                    <span class="badge badge-warning bg-warning"> مستعملة </span>
-                                                @endif
-                                            </td>
-                                            <td><a href="{{ url('user/car/update/' . $car['id']) }}"
-                                                    class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     @else
-                        <div class="alert alert-primary">لا توجد بيانات</div>
+                    <div class="alert alert-primary">لا توجد بيانات</div>
                     @endif
 
                 </div>
             </div>
         </div>
     </div>
-
 @endsection

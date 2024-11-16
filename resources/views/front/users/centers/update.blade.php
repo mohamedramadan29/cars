@@ -1,21 +1,22 @@
 @extends('front.layouts.master')
 @section('title')
-    اضافة رقم جديد
+    تعديل مركز الصيانة
 @endsection
 @section('content')
     <div id="HomePage">
+
         @if (Session::has('Success_message'))
-        @php
-            toastify()->success(\Illuminate\Support\Facades\Session::get('Success_message'));
-        @endphp
-    @endif
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
             @php
-                toastify()->error($error);
+                toastify()->success(\Illuminate\Support\Facades\Session::get('Success_message'));
             @endphp
-        @endforeach
-    @endif
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                @php
+                    toastify()->error($error);
+                @endphp
+            @endforeach
+        @endif
         <div class="clr"></div>
         <br>
 
@@ -45,11 +46,9 @@
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
 
-                                <a href="{{url('user/numbers')}}"
-                                class="list-group-item list-group-item-action">
-                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{url('user/centers')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> أضف رقم مميز</a>
+                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
                             <a href="https://www.chakirdev.com/demo/Cars/myposts"
                                 class="list-group-item list-group-item-action">
@@ -63,27 +62,54 @@
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>
-
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-                    <h5 class="p-title"><i class="fas fa-edit"></i> أضف رقم جديد</h5>
+                    <h5 class="p-title"><i class="fas fa-edit"></i> تعديل مركز الصيانة  </h5>
                     <div class="clr"></div><br>
-
-                    <form action="{{url('user/number/add')}}" method="post" class="p-form" enctype="multipart/form-data">
+                    <form action="{{ url('user/center/update/'.$repair['id']) }}" method="post" class="p-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" name="car_number" class="form-control form-control-lg input-form"
-                                    placeholder="أدخل رقم السيارة" required="">
+                            <div class="col-12">
+                                <input type="text" name="name" class="form-control form-control-lg input-form"
+                                    placeholder="أدخل إسم المركز" required="" value="{{$repair['name']}}">
+                            </div>
+                            <div class="col-md-12">
+                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
+                                    id="subplace" style="height:45px;">
+                                    <option value="">حدد المدينة</option>
+                                    @foreach ($citizen as $city)
+                                        <option @if ($city['id'] == $repair['city'])
+                                            selected
+                                        @endif value="{{ $city['id'] }}">{{ $city['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" name="address" class="form-control form-control-lg input-form"
+                                    placeholder="العنوان" value="{{$repair['address']}}">
                             </div>
                             <div class="col-md-6">
+                                <input type="text" name="phone" class="form-control form-control-lg input-form"
+                                    placeholder="رقم التواصل" value="{{$repair['phone']}}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="work_time" class="form-control form-control-lg input-form"
+                                    placeholder="أوقات العمل" value="{{$repair['work_time']}}">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control form-control-lg" name="desc" rows="2" placeholder="نبذة عن المركز">{{$repair['desc']}}</textarea>
+                            </div>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="file" name="image" id="file" class="input-file" accept="image/*">
+                                    <input type="file" name="image" id="file" class="input-file"
+                                        accept="image/*">
                                     <label for="file" class="btn btn-tertiary js-labelFile">
                                         <i class="icon fa fa-check"></i>
                                         <span class="js-fileName">رفع صورة لرقم</span>
                                     </label>
+                                    <br>
+                                    <img src="{{asset('assets/uploads/AutoRepair/'.$repair['logo'])}}" width="100px" height="100px" class="img-thumbnail" alt="">
                                 </div>
                                 <script type="text/javascript">
                                     (function() {
@@ -106,31 +132,10 @@
                                     })();
                                 </script>
                             </div>
-                            <div class="col-md-6">
-                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
-                                    id="subplace" style="height:45px;">
-                                    <option value="">حدد المدينة</option>
-                                    @foreach ($citizen as $city)
-                                        <option value="{{$city['id']}}">{{$city['name']}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="owner_name" class="form-control form-control-lg input-form"
-                                    placeholder="إسم المالك" value="{{Auth::user()->name}}">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="price" class="form-control form-control-lg input-form"
-                                    placeholder="السعر " required="">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="phone" class="form-control form-control-lg input-form"
-                                    placeholder="رقم الهاتف" required="">
-                            </div>
                             <div class="col-12">
                                 <br>
-                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">أضف
-                                    الرقم</button>
+                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">تعديل
+                                    المركز</button>
                             </div>
                         </div>
                     </form>

@@ -2,6 +2,12 @@
 @section('title')
     إضافة سيارة
 @endsection
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
+          integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+@endsection
 @section('content')
     <div id="HomePage">
         @if (Session::has('Success_message'))
@@ -28,7 +34,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">جميع الحقول التي تحمل علامة <span
                             style="color:#c72510;">*</span> إلزامية</h6>
                     <div class="card-text" style="padding-top:20px;">
-                        <form action="{{url('user/car/add')}}" method="post" id="carForm" name="carForm"
+                        <form action="{{url('user/car/add')}}" method="post" id="carAdForm" name="carForm"
                               enctype="multipart/form-data" data-gtm-form-interact-id="0">
                             @csrf
                             <div class="rgt CreateCol1">
@@ -129,7 +135,10 @@
                                     </div>
                                     <select required class="form-select" name="c_km" style="height:50px;direction:ltr;">
                                         <option value="0 - 4999">0 - 4999</option>
-                                        <option {{old('c_km',request('c_km')) == '5 000 - 9 999' ? 'selected':''}} value="5 000 - 9 999">5 000 - 9 999</option>
+                                        <option
+                                            {{old('c_km',request('c_km')) == '5 000 - 9 999' ? 'selected':''}} value="5 000 - 9 999">
+                                            5 000 - 9 999
+                                        </option>
                                         <option value="10 000 - 14 999">10 000 - 14 999</option>
                                         <option value="15 000 - 19 999">15 000 - 19 999</option>
                                         <option value="20 000 - 24 999">20 000 - 24 999</option>
@@ -319,12 +328,16 @@
                                         <div class="input-group-text CreateCadre">الدولة <span
                                                 style="color:#c72510;">*</span></div>
                                     </div>
+                                    {{--                                    <select class="form-select" name="c_place" id="place" style="height:50px;"--}}
+                                    {{--                                            required="">--}}
+                                    {{--                                        <option value="">حدد الدولة</option>--}}
+                                    {{--                                        @foreach($countries as $country )--}}
+                                    {{--                                            <option value="{{$country['id']}}"> {{$country['name']}} </option>--}}
+                                    {{--                                        @endforeach--}}
+                                    {{--                                    </select>--}}
                                     <select class="form-select" name="c_place" id="place" style="height:50px;"
                                             required="">
-                                        <option value="">حدد الدولة</option>
-                                        @foreach($countries as $country )
-                                            <option value="{{$country['id']}}"> {{$country['name']}} </option>
-                                        @endforeach
+                                        <option value="1" selected> العراق</option>
                                     </select>
                                 </div>
                                 <div class="input-group mb-2 mr-sm-2">
@@ -334,6 +347,9 @@
                                     </div>
                                     <select class="form-select" name="c_stats" id="subplace" style="height:50px;">
                                         <option value="">حدد المدينة</option>
+                                        @foreach($citizen as $city)
+                                            <option value="{{$city['id']}}">{{$city['name']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <script>
@@ -341,9 +357,7 @@
                                         $("#place").on('change', function () {
                                             let countryId = $(this).val();
                                             if (countryId) {
-
                                                 $.ajax({
-
                                                     method: 'GET',
                                                     url: '/getcitizen/' + countryId,
                                                     success: function (data) {
@@ -386,15 +400,16 @@
                                 <div class="custom-control custom-checkbox">
                                     <p style="font-weight:bold;color:var(--main-color)">وسائل الراحة</p>
                                     <div class="form-check form-check-inline">
-                                        <label class="custom-control-label" for="1">المكيف</label>
                                         <input class="custom-control-input form-check-input" id="1" name="c_comfort[]"
                                                type="checkbox" value="المكيف">
+                                        <label class="custom-control-label" for="1">المكيف</label>
                                     </div>
                                     <div class="clr"></div>
                                     <div class="form-check form-check-inline">
                                         <input class="custom-control-input form-check-input" id="2" name="c_comfort[]"
-                                               type="checkbox" value="ريموت كنترول"><label class="custom-control-label"
-                                                                                           for="2">ريموت كنترول</label>
+                                               type="checkbox" value="ريموت كنترول">
+                                        <label class="custom-control-label"
+                                               for="2">ريموت كنترول</label>
                                     </div>
                                     <div class="clr"></div>
                                     <div class="form-check form-check-inline">
@@ -528,7 +543,8 @@
                                     <div class="form-check form-check-inline">
                                         <input class="custom-control-input form-check-input" id="23" name="c_safety[]"
                                                type="checkbox" value="نظام توزيع قوة الفرامل EBD"><label
-                                            class="custom-control-label" for="23"> نظام توزيع قوة الفرامل EBD</label>
+                                            class="custom-control-label" for="23"> نظام توزيع قوة الفرامل
+                                            EBD</label>
                                     </div>
                                     <div class="clr"></div>
                                     <div class="form-check form-check-inline">
@@ -634,27 +650,102 @@
                             </div>
                             <div class="clr"></div>
                             <p class="CreateTitle"><i class="fa fa-picture-o"></i> صور السيارة</p>
-                            <div class="clr"></div>
+
                             <div class="form-group">
-                                <input required type="file" multiple class="form-control" name="images[]"
-                                       accept="image/*">
-                                <div style="background:#F5F6FA;">
-                                    <div class="fileuploader fileuploader-theme-thumbnails"><input type="hidden"
-                                                                                                   name="fileuploader-list-files"
-                                                                                                   value="[]"><input
-                                            type="file" name="files[]" accept="image/png, image/jpeg"
-                                            multiple="multiple"
-                                            style="position: absolute; z-index: -9999; height: 0px; width: 0px; padding: 0px; margin: 0px; line-height: 0; outline: 0px; border: 0px; opacity: 0;">
-                                        <div class="fileuploader-items">
-                                            <ul class="fileuploader-items-list">
-                                                <li class="fileuploader-thumbnails-input">
-                                                    <div class="fileuploader-thumbnails-input-inner">+</div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="file" class="form-control" name="images[]" multiple>
+                                <!-- حقل رفع الملفات -->
+{{--                                <input type="file" multiple class="dropify form-control" name="images[]"--}}
+{{--                                       id="imageUpload"--}}
+{{--                                       accept="image/*" data-max-file-size="3M" data-default-file="" data-height="100">--}}
                             </div>
+                            <!-- مكان عرض الصور الجديدة -->
+{{--                            <div id="newImagesPreview" style="display: flex; gap: 10px; flex-wrap: wrap;">--}}
+{{--                                <!-- الصور الجديدة ستُعرض هنا -->--}}
+{{--                            </div>--}}
+
+                            <script>
+                                const imagePreviewContainer = document.getElementById('newImagesPreview');
+                                const imageInput = document.getElementById('imageUpload');
+                                const errorMessage = document.getElementById('errorMessage');
+                                const maxImages = 10; // الحد الأقصى لعدد الصور
+                                let uploadedImages = []; // تخزين الصور المرفوعة مؤقتًا
+
+                                // عند تغيير الملفات
+                                imageInput.addEventListener('change', function (event) {
+                                    const files = Array.from(event.target.files); // أخذ جميع الملفات المختارة
+
+                                    // التحقق من الحد الأقصى
+                                    if (uploadedImages.length + files.length > maxImages) {
+                                        errorMessage.style.display = 'block'; // عرض رسالة خطأ
+                                        setTimeout(() => {
+                                            errorMessage.style.display = 'none';
+                                        }, 3000); // إخفاء الرسالة بعد 3 ثوانٍ
+                                        return;
+                                    }
+
+                                    files.forEach((file) => {
+                                        // التأكد أن الملف صورة
+                                        if (!file.type.startsWith("image/")) return;
+
+                                        // قراءة الصورة باستخدام FileReader
+                                        const reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            // إضافة الصورة إلى المصفوفة
+                                            uploadedImages.push(file);
+
+                                            // إنشاء عنصر للمعاينة
+                                            const previewWrapper = document.createElement('div');
+                                            previewWrapper.style.position = "relative";
+                                            previewWrapper.style.display = "inline-block";
+
+                                            const img = document.createElement('img');
+                                            img.src = e.target.result;
+                                            img.alt = "الصورة المرفوعة";
+                                            img.style.width = "100px";
+                                            img.style.height = "100px";
+                                            img.style.marginTop = "10px";
+                                            img.style.border = '1px solid #ccc';
+                                            img.style.padding = '2px';
+                                            img.style.background = '#f0efef';
+
+                                            // زر حذف
+                                            const deleteButton = document.createElement('button');
+                                            deleteButton.textContent = "×";
+                                            deleteButton.style.position = "absolute";
+                                            deleteButton.style.top = "10px";
+                                            deleteButton.style.left = "0px";
+                                            deleteButton.style.width = '20px';
+                                            deleteButton.style.height = '20px';
+                                            deleteButton.style.background = "red";
+                                            deleteButton.style.color = "white";
+                                            deleteButton.style.border = "none";
+                                            deleteButton.style.borderRadius = "50%";
+                                            deleteButton.style.cursor = "pointer";
+                                            deleteButton.style.lineHeight = '2px';
+
+                                            // عند الضغط على زر الحذف
+                                            deleteButton.addEventListener('click', function () {
+                                                // إزالة الصورة من المصفوفة
+                                                const index = uploadedImages.indexOf(file);
+                                                if (index > -1) uploadedImages.splice(index, 1);
+
+                                                // إزالة العنصر من DOM
+                                                previewWrapper.remove();
+                                            });
+
+                                            // إضافة الصورة وزر الحذف إلى المعاينة
+                                            previewWrapper.appendChild(img);
+                                            previewWrapper.appendChild(deleteButton);
+                                            imagePreviewContainer.appendChild(previewWrapper);
+                                        };
+
+                                        reader.readAsDataURL(file);
+                                    });
+
+                                    // تفريغ الإدخال للسماح بإعادة رفع نفس الملف إذا لزم الأمر
+                                    event.target.value = "";
+                                });
+                            </script>
                             <div class="clr"></div>
                             <small style="font-weight:bold;">ملاحظة : يمكنك إضافة 10 صور كأقصى حد</small>
                             <div class="clr"></div>
@@ -665,6 +756,54 @@
                                 </button>
                             </center>
                         </form>
+                        <div id="errorMessages" style="color: red; display: none;"></div>
+                        <script>
+                            $(document).ready(function () {
+                                $(document).ready(function () {
+                                    $('#carAdForm').submit(function (e) {
+                                        e.preventDefault();
+                                        let formData = new FormData(this);
+
+                                        // تأكد من إضافة الصور إلى FormData بشكل صحيح
+                                        let files = $('#imageUpload')[0].files;
+
+                                        // التحقق من أن الصور تم اختيارها
+                                        if (files.length === 0) {
+                                            $('#errorMessages').text("من فضلك قم بتحميل صور السيارة.").show();
+                                            return;
+                                        }
+
+                                        // إضافة الصور إلى FormData إذا كانت غير موجودة
+                                        for (let i = 0; i < files.length; i++) {
+                                            formData.append('images[]', files[i]);  // إضافة كل صورة إلى FormData
+                                        }
+
+                                        // إرسال البيانات باستخدام AJAX
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '/user/car/add',  // تأكد من أن المسار صحيح
+                                            data: formData,
+                                            processData: false, // لا تعالج البيانات
+                                            contentType: false, // لا تحدد نوع المحتوى
+                                            success: function (response) {
+                                                // عند النجاح، إخفاء رسائل الخطأ
+                                                $('#errorMessages').hide();
+                                                alert('تم إرسال الإعلان بنجاح');
+                                            },
+                                            error: function (xhr, status, error) {
+                                                // في حالة حدوث خطأ
+                                                let errors = xhr.responseJSON.errors;
+                                                let errorMessages = '';
+                                                if (errors.images) {
+                                                    errorMessages = errors.images.join('<br>');
+                                                }
+                                                $('#errorMessages').html(errorMessages).show();
+                                            }
+                                        });
+                                    });
+                                });
+
+                        </script>
                     </div>
                 </div>
             </div>
@@ -684,13 +823,27 @@
             </div>
         </div>
 
-        <link href="imagesfiles/jquery.fileuploader.css" media="all" rel="stylesheet">
-        <link href="imagesfiles/jquery.fileuploader-theme-thumbnails.css" media="all" rel="stylesheet">
-        <script src="imagesfiles/jquery.fileuploader.min.js" type="text/javascript"></script>
-        <script src="imagesfiles/custom.js" type="text/javascript"></script>
-        <div class="clr"></div>
         <br>
     </div>
     <div class="clr"></div><br>
+@endsection
+@section('js')
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+    <script>
+        var max_size = '3 ميجابايت';
+        $('.dropify').dropify({
+
+            messages: {
+                'default': 'اضغط للرفع او اسحب الملف الخاص بك هنا ',
+                'replace': 'اضغط للرفع او اسحب الملف الخاص بك هنا  للاستبدال ',
+                'remove': 'حذف ',
+                'error': '!!! ، حدث خطا اثناء الرفع '
+            },
+            error: {
+                'fileSize': `حجم الملف كبير جدًا (الحد الأقصى: ${max_size}).`
+
+            }
+        });
+    </script>
 @endsection

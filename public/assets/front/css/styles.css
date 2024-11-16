@@ -6489,3 +6489,13 @@ font-weight: bold;
 .modal-header{
     justify-content: space-between;
 }
+.Tajhizat .custom-checkbox .form-check{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.dropify-wrapper .dropify-message p{
+    font-size: 15px;
+    font-weight: bold;
+}
