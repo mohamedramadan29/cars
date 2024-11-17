@@ -279,6 +279,26 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarfaqs" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarfaqs">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:question-circle-bold-duotone"></iconify-icon>
+                                   </span>
+                    <span class="nav-text">الاسئلة الشائعة      </span>
+                </a>
+                <div class="collapse" id="sidebarfaqs">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/faqs')}}"> الاسئلة الشائعة   </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/faq/add')}}"> اضافة سوال جديد </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarbanners" data-bs-toggle="collapse" role="button"

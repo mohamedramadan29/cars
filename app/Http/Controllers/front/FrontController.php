@@ -9,6 +9,7 @@ use App\Models\admin\AgencyRent;
 use App\Models\admin\AutoRepair;
 use App\Models\admin\CarMark;
 use App\Models\admin\CarNumber;
+use App\Models\admin\Faq;
 use App\Models\admin\ShowRoom;
 use App\Models\admin\TopicCategory;
 use Illuminate\Http\Request;
@@ -91,5 +92,35 @@ class FrontController extends Controller
     public function create_car()
     {
         return view('front.create_car');
+    }
+    ////////////////// Start Faq
+
+    public function faq(){
+        $faqs = Faq::all();
+        return view('front.faq',compact('faqs'));
+    }
+
+    /////////// Start About us
+    public function aboutus()
+    {
+        return view('front.aboutus');
+    }
+
+    /////////// اعلن معنا
+    public function pub()
+    {
+        return view('front.pub');
+    }
+    ///////// Terms
+    ///
+    public function terms()
+    {
+        return view('front.terms');
+    }
+    //////// Privacy
+    ///
+    public function privacy()
+    {
+        return view('front.privacy');
     }
 }

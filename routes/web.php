@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\front\UserCarsController;
 use App\Http\Controllers\front\UserCenterController;
 use App\Http\Controllers\front\UserNumberController;
-
+use \App\Http\Controllers\front\ContactController;
 Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
-    Route::get('/', 'index');
+    Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
     Route::get('agency/{slug}', 'agency_details');
     /////////// Show Rooms
@@ -35,6 +35,15 @@ Route::controller(\App\Http\Controllers\front\FrontController::class)->group(fun
     /////////////////
     ///
     Route::get('create-car', 'create_car');
+    ///////////// Start Faqs
+    Route::get('faqs','faq');
+    ///////// About us
+    Route::get('aboutus','aboutus');
+    /// pub // اعلن معنا
+    Route::get('pub','pub');
+    //// Terms & privacy
+    Route::get('terms','terms');
+    Route::get('privacy','privacy');
 });
 
 /////////////////////////// User Controller //////////////////////
@@ -80,6 +89,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['post', 'get'], 'user/center/add', 'store');
         Route::match(['post', 'get'], 'user/center/update/{id}', 'update');
     });
+});
+
+Route::controller(ContactController::class)->group(function (){
+    Route::match(['post','get'],'contactus','contact');
 });
 
 

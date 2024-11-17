@@ -19,8 +19,8 @@
                         role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
                     <div class="collapse show" id="collapseExample">
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action active"
-                                style="border-radius:0px;color:white;font-size:19px;">
+                            <a href="#" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;font-size:19px;">
                                 <i class="fab fa-buffer"></i> القائمة </a>
                             <a href="{{ url('user/dashboard') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
@@ -32,19 +32,20 @@
                             <a href="https://www.chakirdev.com/demo/Cars/notice"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
-
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action active">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
                             <a href="https://www.chakirdev.com/demo/Cars/myposts"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-
-                            <a href="https://www.chakirdev.com/demo/Cars/myinfo"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;">
+                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                            <a href="https://www.chakirdev.com/demo/Cars/logout"
+                            <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;">
+                                <i class="fab fa-buffer"></i> تغير كلمة المرور  </a>
+                            <a href="{{url('user/logout')}}"
                                 class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>

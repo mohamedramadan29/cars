@@ -12,21 +12,25 @@ use \App\Http\Controllers\admin\AutoRepairController;
 use \App\Http\Controllers\admin\TopicCategoryController;
 use \App\Http\Controllers\admin\AdvertismentController;
 use \App\Http\Controllers\admin\AgencyRentController;
+use App\Http\Controllers\admin\BlogCategoryController;
+use App\Http\Controllers\admin\BlogController;
 use \App\Http\Controllers\admin\CountryController;
+use App\Http\Controllers\admin\FaqController;
+
 Route::group(['prefix' => 'admin'], function () {
-// Admin Login
+    // Admin Login
 
     Route::controller(AdminController::class)->group(function () {
         Route::match(['post', 'get'], '/', 'login')->name('admin_login');
         Route::match(['post', 'get'], 'login', 'login')->name('admin_login');
-// Admin Dashboard
+        // Admin Dashboard
         Route::group(['middleware' => 'admin'], function () {
             Route::get('dashboard', 'dashboard');
-// update admin password
+            // update admin password
             Route::match(['post', 'get'], 'update_admin_password', 'update_admin_password');
-// check Admin Password
+            // check Admin Password
             Route::post('check_admin_password', 'check_admin_password');
-// Update Admin Details
+            // Update Admin Details
             Route::match(['post', 'get'], 'update_admin_details', 'update_admin_details');
             Route::get('logout', 'logout')->name('logout');
         });
@@ -104,32 +108,49 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('topic_category/delete/{id}', 'delete');
         });
 
-///////////////// Start  Advertisements /////////////////////////
+        ///////////////// Start  Advertisements /////////////////////////
         Route::controller(AdvertismentController::class)->group(function () {
             Route::get('advertisements', 'index');
-            Route::get('advertisements/under_review','under_review');
-            Route::get('advertisements/active','active');
+            Route::get('advertisements/under_review', 'under_review');
+            Route::get('advertisements/active', 'active');
             Route::match(['post', 'get'], 'adv/add', 'store');
             Route::match(['post', 'get'], 'adv/update/{id}', 'update');
             Route::post('adv/delete/{id}', 'delete');
         });
         /////////////////////////// Start Agency RENT Controller  ///////////
-
         Route::controller(AgencyRentController::class)->group(function () {
             Route::get('agency_rent', 'index');
             Route::match(['post', 'get'], 'agency_rent/add', 'store');
             Route::match(['post', 'get'], 'agency_rent/update/{id}', 'update');
             Route::post('agency_rent/delete/{id}', 'delete');
         });
-
         ///////////////// Start Country And State /////////////
-        ///
-        Route::controller(CountryController::class)->group(function (){
-            Route::get('countries','index');
+        Route::controller(CountryController::class)->group(function () {
+            Route::get('countries', 'index');
             Route::match(['post', 'get'], 'country/add', 'store');
             Route::match(['post', 'get'], 'country/update/{id}', 'update');
             Route::post('country/delete/{id}', 'delete');
         });
-
+        //////////////// Start Faq Controller ////////////////////
+        Route::controller(FaqController::class)->group(function () {
+            Route::get('faqs', 'index');
+            Route::match(['post', 'get'], 'faq/add', 'store');
+            Route::match(['post', 'get'], 'faq/update/{id}', 'update');
+            Route::post('faq/delete/{id}', 'delete');
+        });
+        ///////////////////  Start Blog Category //////////////////
+        Route::controller(BlogCategoryController::class)->group(function () {
+            Route::get('blog_category', 'index');
+            Route::match(['post', 'get'], 'blog_category/add', 'store');
+            Route::match(['post', 'get'], 'blog_category/update/{id}', 'update');
+            Route::post('blog_category/delete/{id}', 'delete');
+        });
+        ///////////////////  Start Blog //////////////////
+        Route::controller(BlogController::class)->group(function () {
+            Route::get('blogs', 'index');
+            Route::match(['post', 'get'], 'blog/add', 'store');
+            Route::match(['post', 'get'], 'blog/update/{id}', 'update');
+            Route::post('blog/delete/{id}', 'delete');
+        });
     });
 });

@@ -143,22 +143,22 @@
                     أرقام مميزة</a>
                 <a href="auto-repair.html" class="list-group-item listitem"><i class="fas fa-wrench"></i> مراكز
                     الصيانة</a>
-                <a href="forums.html" class="list-group-item listitem"><i class="far fa-comments"></i> منتدى
+                <a href="{{url('forums')}}" class="list-group-item listitem"><i class="far fa-comments"></i> منتدى
                     الأراء</a>
-                <a href="blog.html" class="list-group-item listitem"><i class="far fa-newspaper"></i> المدونة</a>
+                <a href="{{url('blog')}}" class="list-group-item listitem"><i class="far fa-newspaper"></i> المدونة</a>
             </div>
             <div class="listgp">
                 <a href="#" class="list-group-item listitem link-foot"><i class="fa fa-globe"></i> الصفحات </a>
-                <a href="contactus.php" class="list-group-item listitem"><i class="fas fa-headset"></i> إتصل
+                <a href="{{url('contactus')}}" class="list-group-item listitem"><i class="fas fa-headset"></i> إتصل
                     بنا</a>
-                <a href="aboutus.php" class="list-group-item listitem"><i class="fas fa-inbox"></i> من نحن</a>
-                <a href="subscription.php" class="list-group-item listitem"><i class="fas fa-star"></i> العضويات
+                <a href="{{url('aboutus')}}" class="list-group-item listitem"><i class="fas fa-inbox"></i> من نحن</a>
+                <a href="{{url('subscription')}}" class="list-group-item listitem"><i class="fas fa-star"></i> العضويات
                     المميزة</a>
-                <a href="terms.php" class="list-group-item listitem"><i class="fas fa-inbox"></i> شروط
+                <a href="{{url('terms')}}" class="list-group-item listitem"><i class="fas fa-inbox"></i> شروط
                     الاستخدام</a>
-                <a href="privacy.php" class="list-group-item listitem"><i class="fas fa-user-secret"></i>
+                <a href="{{url('privacy')}}" class="list-group-item listitem"><i class="fas fa-user-secret"></i>
                     الخصوصية</a>
-                <a href="faq.php" class="list-group-item listitem"><i class="fas fa-comments"></i> أسئلة
+                <a href="{{url('faqs')}}" class="list-group-item listitem"><i class="fas fa-comments"></i> أسئلة
                     وإجابات</a>
             </div>
         </div>

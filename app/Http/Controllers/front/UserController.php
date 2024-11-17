@@ -374,5 +374,10 @@ class UserController extends Controller
         return view('front.users.profile_data.password');
     }
 
+    public function logout(){
+        Auth::logout();
+        return Redirect()->route('index');
+    }
+
 
 }
