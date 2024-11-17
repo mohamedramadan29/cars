@@ -22,4 +22,8 @@ class Advertisment extends Model
     {
         return $this->belongsTo(CarMark::class,'c_brand');
     }
+
+    public function City(){
+        return $this->belongsTo(State::class,'c_stats');
+    }
 }

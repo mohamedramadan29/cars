@@ -7,6 +7,8 @@ use App\Http\Controllers\front\UserCenterController;
 use App\Http\Controllers\front\UserNumberController;
 use \App\Http\Controllers\front\ContactController;
 use \App\Http\Controllers\front\BlogController;
+use App\Http\Controllers\front\CarController;
+
 Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
@@ -37,22 +39,32 @@ Route::controller(\App\Http\Controllers\front\FrontController::class)->group(fun
     ///
     Route::get('create-car', 'create_car');
     ///////////// Start Faqs
-    Route::get('faqs','faq');
+    Route::get('faqs', 'faq');
     ///////// About us
-    Route::get('aboutus','aboutus');
+    Route::get('aboutus', 'aboutus');
     /// pub // اعلن معنا
-    Route::get('pub','pub');
+    Route::get('pub', 'pub');
     //// Terms & privacy
-    Route::get('terms','terms');
-    Route::get('privacy','privacy');
+    Route::get('terms', 'terms');
+    Route::get('privacy', 'privacy');
 });
 ///////////// Blog ///////////
 ///
-Route::controller(BlogController::class)->group(function (){
-    Route::get('blog','blog');
-    Route::get('blog/{slug}','blog_details');
-    Route::get('blog-category/{slug}','category_details');
+Route::controller(BlogController::class)->group(function () {
+    Route::get('blog', 'blog');
+    Route::get('blog/{slug}', 'blog_details');
+    Route::get('blog-category/{slug}', 'category_details');
 });
+////////////////// Start Cars Controller ////////////////
+
+Route::controller(CarController::class)->group(function () {
+    Route::get('car/{id}/{slug}', 'AdvDetails');
+    Route::get('new-cars', 'NewCars');
+    Route::get('used-cars', 'UsedCars');
+    Route::get('getCarModels/{brandid}', 'getCarModels');
+    Route::get('search','search')->name('car.search');
+});
+
 /////////////////////////// User Controller //////////////////////
 ///
 Route::controller(UserController::class)->group(function () {
@@ -98,8 +110,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-Route::controller(ContactController::class)->group(function (){
-    Route::match(['post','get'],'contactus','contact');
+Route::controller(ContactController::class)->group(function () {
+    Route::match(['post', 'get'], 'contactus', 'contact');
 });
 
 

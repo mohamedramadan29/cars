@@ -3,11 +3,11 @@
     <div class="top_navbar">
         <div class="top_bar_links">
             <ul class="list-unstyled">
-                <li> <a href="#"> <i class="bi bi-person-vcard-fill"></i> من نحن </a> </li>
-                <li> <a href="#"> <i class="bi bi-envelope-open-fill"></i> اتصل بنا </a> </li>
-                <li> <a href="#"> <i class="bi bi-shield-fill-check"></i> سياسة الخصوصية </a> </li>
-                <li> <a href="#"> <i class="bi bi-file-earmark-ruled-fill"></i> اتفاقية الاستخدام </a> </li>
-                <li> <a href="#"> <i class="bi bi-file-earmark-zip-fill"></i> الارشيف </a> </li>
+                <li> <a href="{{url('aboutus')}}"> <i class="bi bi-person-vcard-fill"></i> من نحن </a> </li>
+                <li> <a href="{{url('contactus')}}"> <i class="bi bi-envelope-open-fill"></i> اتصل بنا </a> </li>
+                <li> <a href="{{url('privacy')}}"> <i class="bi bi-shield-fill-check"></i> سياسة الخصوصية </a> </li>
+                <li> <a href="{{url('terms')}}"> <i class="bi bi-file-earmark-ruled-fill"></i> اتفاقية الاستخدام </a> </li>
+                {{-- <li> <a href="#"> <i class="bi bi-file-earmark-zip-fill"></i> الارشيف </a> </li> --}}
             </ul>
         </div>
         <div class="top_bar_social">
@@ -38,7 +38,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.php"><i class="fa fa-home"></i> الرئيسية </a>
     <a href="create.html"><i class="fa fa-plus"></i> بيع سيارتك </a>
-    <a href="new-car.html"><i class="fa fa-car"></i> سيارات جديدة</a>
+    <a href="{{url('new-cars')}}"><i class="fa fa-car"></i> سيارات جديدة</a>
     <a href="used-car.html"><i class="fa fa-car"></i> سيارات مستعملة </a>
     <a href="#" data-toggle="modal" data-target="#LoginModal"><i class="fas fa-user-shield"></i> تسجيل الدخول</a>
     <a href="index9ed2.html?lang=en"><i class="fa fa-globe"></i> English </a>
@@ -89,8 +89,8 @@
             <a class="navbar-brand" href="{{url('/')}}"><img width="120px" src="{{asset('assets/front/uploads/logo.png')}}" style /></a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="new-car.php"><i class="fa fa-car"></i> سيارات جديدة </a></li>
-                    <li class="nav-item"><a href="used-car.php"><i class="fa fa-car"></i> سيارات مستعملة</a></li>
+                    <li class="nav-item"><a href="{{url('new-cars')}}"><i class="fa fa-car"></i> سيارات جديدة </a></li>
+                    <li class="nav-item"><a href="{{url('used-cars')}}"><i class="fa fa-car"></i> سيارات مستعملة</a></li>
                 </ul>
                 @if(Auth::check())
                     <a href="{{url('user/car/add')}}" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
@@ -100,8 +100,8 @@
                             class="fa fa-plus"></i> بيع سيارتك</a>
                 @endif
 
-                <a href="create-2.html" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
-                        class="fa fa-plus"></i> بيع دراجتك </a>
+                {{-- <a href="create-2.html" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
+                        class="fa fa-plus"></i> بيع دراجتك </a> --}}
             </div>
             <ul class="navbar-nav">
                 @if(Auth::check())
