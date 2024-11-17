@@ -17,7 +17,15 @@ class CarController extends Controller
         return response()->json($models);
     }
 
-
+    public function AdvDetails($id, $slug)
+    {
+        $car = Advertisment::with('carImages', 'carMark', 'City','carBrand','User')->where('id', $id)->where('slug', $slug)->first();
+        $advs = Advertisment::with('carImages', 'carMark', 'City','carBrand','User')->where('c_brand',$car['c_brand'])->where('id','!=',$car['id'])->latest()->limit(6)->get();
+        if ($car) {
+            return view('front.car_details', compact('car','advs'));
+        }
+        abort(404);
+    }
 
     public function newCars(Request $request)
     {
@@ -33,7 +41,8 @@ class CarController extends Controller
         }
         return view('front.new_car', compact('advs', 'lastadvs', 'marks', 'citizen'));
     }
-    public function UsedCars(Request $request){
+    public function UsedCars(Request $request)
+    {
         $marks = CarMark::all();
         $advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 2)->limit(10)->get();
         $lastadvs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 2)->latest()->paginate(2);
@@ -103,6 +112,6 @@ class CarController extends Controller
         $lastadvs = $query->with('carImages', 'carMark', 'City')->paginate(10);
 
 
-        return view('front.search_results', compact('lastadvs','marks','citizen'));
+        return view('front.search_results', compact('lastadvs', 'marks', 'citizen'));
     }
 }

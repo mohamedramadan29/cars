@@ -556,7 +556,7 @@ hr.style14 {
 }
 
 .car-prix {
-    color: #23cba7;
+    color: #ce0014;
     font-weight: 700;
     font-size: 40px;
     line-height: 40px;
@@ -616,10 +616,21 @@ hr.style14 {
 
 .car-advertiser {
     margin-top: 10px;
-    color: #0c62b7;
-    font-size: 23px
+    color: #525252;
+    font-size: 23px;
+    border: 1px solid #efebeb;
+    padding: 5px;
+    border-radius: 5px;
 }
-
+.car-advertiser a{
+    text-decoration: none;
+    color:#000
+}
+.car-advertiser  p{
+    font-size: 14px;
+    text-align: right;
+    margin-right: 40px;
+}
 .car-viptxt {
     color: #f07d00;
     font-weight: 700;
@@ -6503,4 +6514,26 @@ font-weight: bold;
 .profileRight .list-group-item.active{
     background-color: #9a0100;
     border-color: #9a0100;
+}
+
+.thubnail_car_image{}
+.thubnail_car_image img{
+    width: 100px;
+    height: 100px;
+}
+.car_details_info{
+    display: flex;
+    justify-content: space-between;
+}
+.car_details_info ul{}
+.car_details_info ul li{
+    border-top: 1px solid #cdd3d9;
+    /* border-bottom: 1px solid #ccc; */
+    margin-top: 3px;
+    margin-bottom: 3px;
+    background: #DEE2E6;
+    padding: 4px;
+    min-width: 190px;
+    color: #000;
+    font-size: 14px;
 }
