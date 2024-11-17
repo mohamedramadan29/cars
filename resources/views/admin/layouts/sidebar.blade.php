@@ -299,6 +299,27 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebaradvs" data-bs-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="sidebarBrands">
+                                   <span class="nav-icon">
+                                         <i class="bi bi-car-front-fill"></i>
+                                   </span>
+                    <span class="nav-text">  المدونة   </span>
+                </a>
+                <div class="collapse" id="sidebaradvs">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/blog_category')}}">  اقسام المدونة  </a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{url('admin/blogs')}}">  التدوينات  </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarbanners" data-bs-toggle="collapse" role="button"

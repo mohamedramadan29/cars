@@ -6,6 +6,7 @@ use \App\Http\Controllers\front\UserCarsController;
 use App\Http\Controllers\front\UserCenterController;
 use App\Http\Controllers\front\UserNumberController;
 use \App\Http\Controllers\front\ContactController;
+use \App\Http\Controllers\front\BlogController;
 Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
@@ -45,7 +46,13 @@ Route::controller(\App\Http\Controllers\front\FrontController::class)->group(fun
     Route::get('terms','terms');
     Route::get('privacy','privacy');
 });
-
+///////////// Blog ///////////
+///
+Route::controller(BlogController::class)->group(function (){
+    Route::get('blog','blog');
+    Route::get('blog/{slug}','blog_details');
+    Route::get('blog-category/{slug}','category_details');
+});
 /////////////////////////// User Controller //////////////////////
 ///
 Route::controller(UserController::class)->group(function () {
