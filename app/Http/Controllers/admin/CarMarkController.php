@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
+use App\Http\Traits\Slug_Trait;
 use App\Http\Traits\Upload_Images;
 use App\Models\admin\CarMark;
 use App\Models\admin\CarModels;
@@ -13,6 +14,7 @@ class CarMarkController extends Controller
 {
     use Message_Trait;
     use Upload_Images;
+    use Slug_Trait;
 
     public function index()
     {
@@ -49,6 +51,7 @@ class CarMarkController extends Controller
                 }
                 $mark = new CarMark();
                 $mark->name = ['ar'=>$request['name'],'en'=>$request['name_en']];
+                $mark->slug = $this->CustomeSlug($data['name']);
                 $mark->description = ['ar'=>$request['description'],'en'=>$request['description_en']];
                 $mark->logo = $file_name;
                 $mark->save();
@@ -98,6 +101,7 @@ class CarMarkController extends Controller
                 }
                 $mark->update([
                     'name'=> ['ar'=>$request['name'],'en'=>$request['name_en']],
+                    'slug' => $this->CustomeSlug($data['name']),
                     'description'=> ['ar'=>$request['description'],'en'=>$request['description_en']],
 
                 ]);

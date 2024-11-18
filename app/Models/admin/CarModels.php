@@ -12,4 +12,5 @@ class CarModels extends Model
     use HasFactory;
     public $translatable = ['name'];
     protected $guarded = [];
+
 }

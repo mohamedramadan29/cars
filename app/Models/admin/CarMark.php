@@ -12,4 +12,9 @@ class CarMark extends Model
     public $translatable = ['name','description'];
     protected $guarded = [];
 
+    public function Models()
+    {
+        return $this->hasMany(CarModels::class,'mark_id');
+    }
+
 }

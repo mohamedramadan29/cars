@@ -31,7 +31,7 @@ class CarController extends Controller
     {
         $marks = CarMark::all();
         $advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 1)->limit(10)->get();
-        $lastadvs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 1)->latest()->paginate(2);
+        $lastadvs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 1)->latest()->paginate(10);
         $citizen = State::all();
         if ($request->ajax()) {
             if ($lastadvs->isEmpty()) {
@@ -45,7 +45,7 @@ class CarController extends Controller
     {
         $marks = CarMark::all();
         $advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 2)->limit(10)->get();
-        $lastadvs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 2)->latest()->paginate(2);
+        $lastadvs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 2)->latest()->paginate(10);
         $citizen = State::all();
         if ($request->ajax()) {
             if ($lastadvs->isEmpty()) {
@@ -54,6 +54,19 @@ class CarController extends Controller
             return view('front.partials.ads', compact('lastadvs'))->render();
         }
         return view('front.used_cars', compact('advs', 'lastadvs', 'marks', 'citizen'));
+    }
+    public function BrandCars(Request $request,$slug)
+    {
+
+        $brand = CarMark::with('Models')->where('slug',$slug)->first();
+        if ($brand){
+            $marks = CarMark::all();
+            $advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_brand', $brand['id'])->limit(10)->get();
+            $lastadvs = Advertisment::with('carImages', 'carMark', 'City')->where('c_brand', $brand['id'])->latest()->paginate(10);
+            $citizen = State::all();
+            return view('front.brand',compact('brand','advs', 'lastadvs', 'marks', 'citizen'));
+        }
+        abort(404);
     }
 
     public function search(Request $request)

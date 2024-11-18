@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\Advertisment;
 use App\Models\admin\Agency;
 use App\Models\admin\AgencyBranch;
 use App\Models\admin\AgencyRent;
 use App\Models\admin\AutoRepair;
+use App\Models\admin\Blog;
 use App\Models\admin\CarMark;
 use App\Models\admin\CarNumber;
 use App\Models\admin\Faq;
@@ -19,7 +21,15 @@ class FrontController extends Controller
     public function index()
     {
         $marks = CarMark::all();
-        return view('front.index',compact('marks'));
+        $query = Blog::query();
+        $new_advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 1)->limit(10)->get();
+        $old_advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 2)->limit(10)->get();
+        $random_advs = Advertisment::with('carImages', 'carMark', 'City')->inRandomOrder()->limit(10)->get();
+        $lastblog = $query->latest()->limit(1)->first();
+        $lastblogs = $query->latest()->limit(4)->where('id', '!=', $lastblog['id'])->get();
+        $lastFourPosts = $query->limit(4)->get();
+        $randomposts = $query->inRandomOrder()->limit(4)->get();
+        return view('front.index',compact('marks','new_advs','old_advs','random_advs','lastblog','lastblogs','lastFourPosts','randomposts'));
     }
     public function agencies()
     {

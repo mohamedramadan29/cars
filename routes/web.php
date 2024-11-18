@@ -61,6 +61,7 @@ Route::controller(CarController::class)->group(function () {
     Route::get('car/{id}/{slug}', 'AdvDetails');
     Route::get('new-cars', 'NewCars');
     Route::get('used-cars', 'UsedCars');
+    Route::get('brand/{slug}','BrandCars');
     Route::get('getCarModels/{brandid}', 'getCarModels');
     Route::get('search','search')->name('car.search');
 });
