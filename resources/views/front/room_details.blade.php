@@ -45,13 +45,13 @@
                     @foreach($room['advs'] as $adv)
                         <div class="card CarCard">
                             <div class="row no-gutters">
-                                <div class="col-md-4"><a href="#"><img
+                                <div class="col-md-4"><a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"><img
                                                 src="{{ asset('assets/uploads/CarImages/' . $adv->carImages->first()->c_image) }}"
                                                 class="card-img"
                                                 alt="{{$adv['title']}}"></a></div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title CC2"><a href="#"> {{$adv['c_title']}} </a></h5>
+                                        <h5 class="card-title CC2"><a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"> {{$adv['c_title']}} </a></h5>
                                         <div class="card-text">
                                             <div class="rgt ico-car"><img
                                                         src="{{asset('assets/uploads/Marks/'.$adv['carMark']['logo'])}}"/>

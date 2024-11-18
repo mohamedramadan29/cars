@@ -32,7 +32,10 @@
                             <a href="https://www.chakirdev.com/demo/Cars/notice"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
-
+                            <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
+                            <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف معرض    </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{url('user/centers')}}"

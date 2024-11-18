@@ -19,15 +19,15 @@
                             <div class="grid clearfix">
                                 <div class="col3 first">
                                     <h1><i class="fa fa-building"></i></h1>
-                                    <span> عدد الفروع  : {{count($agency['branches'])}}</span>
+                                    <span>   {{$agency['address']}}</span>
                                 </div>
                                 <div class="col3">
                                     <h1><i class="fas fa-map-marker-alt"></i></h1>
-                                    <span>{{$agency['country']}}  - {{$agency['city']}}  </span>
+                                    <span> {{$agency['City']['name']}}  </span>
                                 </div>
                                 <div class="col3 last">
                                     <h1><i class="fas fa-mobile-alt"></i></h1>
-                                    <span><a href="tel:0601051695" class="btn btn-success btn-sm">
+                                    <span><a href="tel:{{$agency['phone']}}" class="btn btn-success btn-sm">
                                              {{$agency['phone']}}<i class="fas fa-phone-volume"></i></a></span>
                                 </div>
                             </div>
@@ -68,13 +68,17 @@
                     @foreach($agency['advs'] as $adv)
                         <div class="card CarCard">
                             <div class="row no-gutters">
-                                <div class="col-md-4"><a href="#"><img src="{{ asset('assets/uploads/CarImages/' . $adv->carImages->first()->c_image) }}" class="card-img"
+                                <div class="col-md-4"><a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"><img src="{{ asset('assets/uploads/CarImages/' . $adv->carImages->first()->c_image) }}" class="card-img"
                                                                        alt="{{$adv['title']}}"></a></div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title CC2"><a href="#"> {{$adv['c_title']}} </a></h5>
+                                        <h5 class="card-title CC2">
+                                            <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"> {{$adv['c_title']}} </a>
+                                        </h5>
                                         <div class="card-text">
-                                            <div class="rgt ico-car"><img src="{{asset('assets/uploads/Marks/'.$adv['carMark']['logo'])}}"/></div>
+                                            <div class="rgt ico-car">
+                                                <img src="{{asset('assets/uploads/Marks/'.$adv['carMark']['logo'])}}"/>
+                                            </div>
                                             <div class="rgt ico-car kmclass"> {{$adv['c_km']}}
                                                 <i class="fas fa-tachometer-alt"></i>
                                             </div>
@@ -85,12 +89,12 @@
                                         <small class="text-muted"> {{$adv['created_at']}} </small>
                                         <div class="card-text">
                                             <span class="rgt Prix"> {{$adv['c_price']}} $ </span>
-                                            <span class="lft"><button id="phone31_{{$adv['id']}}" type="button"
+                                            <span class="lft"><button id="phone{{$adv['id']}}" type="button"
                                                                       class="btn btn-success btn-sm Phone"
                                                                       data-text-swap="{{$adv['c_phone']}}"
                                                                       data-text-original="{{$adv['c_phone']}}">06xx xxxxxx</button></span>
                                             <script type="text/javascript">
-                                                $("#phone31_{{$adv['id']}}").on("click", function () {
+                                                $("#phone{{$adv['id']}}").on("click", function () {
                                                     var el = $(this);
                                                     el.text() == el.data("text-swap") ?
                                                         el.text(el.data("text-original")) :

@@ -25,6 +25,7 @@
                             بشكل سريع</p>
                         <div class="clr"></div>
                         <form action="{{ route('car.search') }}" method="GET" class="formsrch">
+                            @csrf
                             <div class>
                                 <div class="colum">
                                     <select class="custom-select mr-sm-2" name="c_brand" id="brand">

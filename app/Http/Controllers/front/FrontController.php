@@ -33,12 +33,14 @@ class FrontController extends Controller
     }
     public function agencies()
     {
-        $agencies = Agency::with('branches')->get();
-        return view('front.agency',compact('agencies'));
+        $agencies = Agency::with('branches','City','advs')->get();
+        //dd($agencies);
+        $marks = CarMark::all();
+        return view('front.agency',compact('agencies','marks'));
     }
     public function agency_details($slug)
     {
-        $agency = Agency::where('slug',$slug)->with('branches','advs')->first();
+        $agency = Agency::where('slug',$slug)->with('branches','advs','City')->first();
        // dd($agency);
         return view('front.agency_details',compact('agency'));
     }
@@ -46,7 +48,8 @@ class FrontController extends Controller
     public function showrooms()
     {
         $rooms = ShowRoom::all();
-        return view('front.showrooms',compact('rooms'));
+        $marks = CarMark::all();
+        return view('front.showrooms',compact('rooms','marks'));
     }
 
     public function showroom_details($slug)

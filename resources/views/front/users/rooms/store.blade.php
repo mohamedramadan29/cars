@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-    اضف مركز صيانة جديد
+     اضف معرض جديد
 @endsection
 @section('content')
     <div id="HomePage">
@@ -45,7 +45,10 @@
                             <a href="https://www.chakirdev.com/demo/Cars/notice"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
-
+                            <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action active">
+                                <i class="fab fa-buffer"></i> اضف معرض  </a>
+                            <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action ">
+                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
@@ -65,14 +68,14 @@
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-                    <h5 class="p-title"><i class="fas fa-edit"></i> أضف مركز صيانة جديد</h5>
+                    <h5 class="p-title"><i class="fas fa-edit"></i> اضف معرض جديد  </h5>
                     <div class="clr"></div><br>
-                    <form action="{{ url('user/center/add') }}" method="post" class="p-form" enctype="multipart/form-data">
+                    <form action="{{ url('user/room/add') }}" method="post" class="p-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
                                 <input type="text" name="name" class="form-control form-control-lg input-form"
-                                    placeholder="أدخل إسم المركز" required="">
+                                    placeholder=" اسم المعرض   " required="">
                             </div>
                             <div class="col-md-12">
                                 <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
@@ -88,15 +91,48 @@
                                     placeholder="العنوان">
                             </div>
                             <div class="col-md-6">
+                                <input type="text" name="email" class="form-control form-control-lg input-form"
+                                       placeholder="البريد الاكتروني">
+                            </div>
+                            <div class="col-md-6">
                                 <input type="text" name="phone" class="form-control form-control-lg input-form"
                                     placeholder="رقم التواصل">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="phone2" class="form-control form-control-lg input-form"
+                                       placeholder="رقم تواصل ثاني (اختياري)">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="work_time" class="form-control form-control-lg input-form"
                                     placeholder="أوقات العمل">
                             </div>
+                            <div class="col-md-6">
+                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="car_status">
+                                    <option value="" selected="" disabled=""> حالة السيارات  </option>
+                                    <option value="مستعملة"> مستعملة </option>
+                                    <option value="جديدة"> جديدة   </option>
+                                    <option value="كلاهما"> كلاهما </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="website" class="form-control form-control-lg input-form"
+                                       placeholder="رابط الموقع الالكتروني ">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="facebook_link" class="form-control form-control-lg input-form"
+                                       placeholder=" رابط الفيسبوك">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="twitter_link" class="form-control form-control-lg input-form"
+                                       placeholder="رابط تويتر ">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="instagram_link" class="form-control form-control-lg input-form"
+                                       placeholder="رابط انستجرام">
+
+                            </div>
                             <div class="col-12">
-                                <textarea class="form-control form-control-lg" name="desc" rows="2" placeholder="نبذة عن المركز"></textarea>
+                                <textarea class="form-control form-control-lg" name="desc" rows="2" placeholder="نبذة عن المعرض "></textarea>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -104,7 +140,7 @@
                                         accept="image/*">
                                     <label for="file" class="btn btn-tertiary js-labelFile">
                                         <i class="icon fa fa-check"></i>
-                                        <span class="js-fileName">رفع صورة  </span>
+                                        <span class="js-fileName"> رفع لوجو المعرض  </span>
                                     </label>
                                 </div>
                                 <script type="text/javascript">
@@ -131,7 +167,7 @@
                             <div class="col-12">
                                 <br>
                                 <button type="submit" name="Add" class="rgt btn btn-primary btn-block">أضف
-                                    المركز</button>
+                                    المعرض </button>
                             </div>
                         </div>
                     </form>

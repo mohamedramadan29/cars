@@ -13,4 +13,6 @@ class State extends Model
     use HasFactory;
     protected $guarded = [];
     public $translatable = ['name'];
+
+
 }

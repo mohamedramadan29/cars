@@ -353,29 +353,29 @@
                                     </select>
                                 </div>
                                 <script>
-                                    $(document).ready(function () {
-                                        $("#place").on('change', function () {
-                                            let countryId = $(this).val();
-                                            if (countryId) {
-                                                $.ajax({
-                                                    method: 'GET',
-                                                    url: '/getcitizen/' + countryId,
-                                                    success: function (data) {
-                                                        $('#subplace').empty();
-                                                        $('#subplace').append('<option> -- حدد المدينة   --  </option>');
-                                                        $.each(data, function (key, city) {
-                                                            $('#subplace').append('<option value="' + city.id + '">' + city.name.ar + '</option>');
-                                                        });
-                                                    }
-
-                                                });
-
-                                            } else {
-                                                $('#subplace').empty();
-                                                $('#subplace').append('<option> -- حدد المدينة   --  </option>')
-                                            }
-                                        });
-                                    });
+                                    // $(document).ready(function () {
+                                    //     $("#place").on('change', function () {
+                                    //         let countryId = $(this).val();
+                                    //         if (countryId) {
+                                    //             $.ajax({
+                                    //                 method: 'GET',
+                                    //                 url: '/getcitizen/' + countryId,
+                                    //                 success: function (data) {
+                                    //                     $('#subplace').empty();
+                                    //                     $('#subplace').append('<option> -- حدد المدينة   --  </option>');
+                                    //                     $.each(data, function (key, city) {
+                                    //                         $('#subplace').append('<option value="' + city.id + '">' + city.name.ar + '</option>');
+                                    //                     });
+                                    //                 }
+                                    //
+                                    //             });
+                                    //
+                                    //         } else {
+                                    //             $('#subplace').empty();
+                                    //             $('#subplace').append('<option> -- حدد المدينة   --  </option>')
+                                    //         }
+                                    //     });
+                                    // });
                                 </script>
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
@@ -393,6 +393,39 @@
                                     <input type="text" class="form-control" name="c_email"
                                            placeholder="البريد الإلكتروني " style="height:50px;">
                                 </div>
+                                @if(count($agency) > 0)
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text CreateCadre"> حدد الوكالة   </div>
+                                        </div>
+                                        <select class="form-select" name="agency" id="agency" style="height:50px;">
+                                            <option value=""> حدد الوكالة  </option>
+                                            @foreach($agency as $agc)
+                                                <option value="{{$agc['id']}}">{{$agc['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @else
+                                    <input type="hidden" name="agency" value="null">
+                                @endif
+                                @if(count($rooms) > 0)
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text CreateCadre"> حدد المعرض    </div>
+                                        </div>
+                                        <select class="form-select" name="showroom" id="showroom" style="height:50px;">
+                                            <option value=""> حدد المعرض  </option>
+                                            @foreach($rooms as $room)
+                                                <option value="{{$room['id']}}">{{$room['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @else
+                                    <input type="hidden" name="showroom" value="null">
+                                @endif
+
+
+
                             </div>
                             <div class="clr"></div>
                             <p class="CreateTitle"><i class="fa fa-plus"></i> التجهيزات</p>

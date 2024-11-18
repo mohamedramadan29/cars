@@ -522,6 +522,39 @@
                                            placeholder="البريد الإلكتروني " style="height:50px;"
                                            value="{{$car['c_email']}}">
                                 </div>
+                                @if(count($agency) > 0)
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text CreateCadre"> حدد الوكالة</div>
+                                        </div>
+                                        <select class="form-select" name="agency" id="agency" style="height:50px;">
+                                            <option value="" selected disabled> حدد الوكالة</option>
+                                            @foreach($agency as $agc)
+                                                <option @if($car['agency'] == $agc['id']) selected
+                                                        @endif value="{{$agc['id']}}">{{$agc['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @else
+                                    <input type="hidden" name="agency" value="null">
+                                @endif
+                                @if(count($rooms) > 0)
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text CreateCadre"> حدد المعرض    </div>
+                                        </div>
+                                        <select class="form-select" name="showroom" id="showroom" style="height:50px;">
+                                            <option value=""> حدد المعرض  </option>
+                                            @foreach($rooms as $room)
+                                                <option @if($car['showroom'] == $room['id']) selected
+                                                        @endif  value="{{$room['id']}}">{{$room['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @else
+                                    <input type="hidden" name="showroom" value="null">
+                                @endif
+
                             </div>
                             <div class="clr"></div>
                             <p class="CreateTitle"><i class="fa fa-plus"></i> التجهيزات</p>
@@ -919,7 +952,8 @@
                             <hr>
                             <div id="oldImagesPreview" style="display: flex; gap: 10px; flex-wrap: wrap;">
                                 @foreach($car['carImages'] as $image)
-                                    <img width="100px" height="100px" src="{{asset('assets/uploads/CarImages/'.$image['c_image'])}}" alt="">
+                                    <img width="100px" height="100px"
+                                         src="{{asset('assets/uploads/CarImages/'.$image['c_image'])}}" alt="">
                                 @endforeach
                             </div>
 

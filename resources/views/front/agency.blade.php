@@ -12,43 +12,67 @@
                 <div class="clr"></div>
                 <div class="backgroundSR clearfix2 display-desk">
                     <div class="layerSR">
-                        <form action="#" method="get" class="formsrchSR">
+                        <form action="{{ route('car.search') }}" method="get" class="formsrchSR">
+                            @csrf
                             <div class="form-row">
                                 <div class="colum">
-                                    <select class="custom-select mr-sm-2" name="brand" id="brand">
+                                    <select class="custom-select mr-sm-2" name="c_brand" id="brand">
                                         <option value selected>اختر الماركة</option>
-                                        <option value="1">أودي</option>
-                                        <option value="2">شفروليه</option>
-                                        <option value="3">تويوتا</option>
-                                        <option value="4">فولكس فاجن</option>
-                                        <option value="5">فورد</option>
-                                        <option value="6">كيا</option>
-                                        <option value="7">مرسيدس</option>
-                                        <option value="8">بورش</option>
-                                        <option value="9">لمبورغيني</option>
-                                        <option value="11">نيسان</option>
-                                        <option value="12">سيتروين</option>
-                                        <option value="13">هوندا</option>
-                                        <option value="14">هيونداي</option>
-                                        <option value="15">فيات</option>
-                                        <option value="16">بيجو</option>
-                                        <option value="17">لاند روفر</option>
-                                        <option value="18">رينو</option>
-                                        <option value="19">جاغوار</option>
-                                        <option value="20">ميتسوبيشي</option>
+                                        @foreach ($marks as $mark)
+                                            <option value="{{ $mark['id'] }}"
+                                                {{ request('c_brand') == $mark['id'] ? 'selected' : '' }}>{{ $mark['name'] }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="colum">
-                                    <select class="custom-select mr-sm-2" name="model" id="subbrand">
+                                    <select class="custom-select mr-sm-2" name="c_model" id="subbrand">
                                         <option selected>اختر الموديل</option>
                                     </select>
                                 </div>
+                                <script>
+                                    $(document).ready(function () {
+                                        var oldBrand = "{{ old('c_brand', request('c_brand')) }}";
+                                        var oldModel = "{{ old('c_model', request('c_model')) }}";
+                                        $('#brand').on('change', function () {
+                                            var brandId = $(this).val();
+                                            if (brandId) {
+                                                var ajaxRequest = $.ajax({
+                                                    url: '/getCarModels/' + brandId, // Update with your route
+                                                    type: 'GET',
+                                                    success: function (data) {
+                                                        $('#subbrand').empty();
+                                                        $('#subbrand').append('<option value="">حدد الموديل</option>');
+                                                        $.each(data, function (key, model) {
+                                                            $('#subbrand').append(
+                                                                '<option value="' + model.id + '">' + model.name
+                                                                    .ar + '</option>'
+                                                            );
+                                                        });
+                                                    }
+                                                });
+                                                // تأكد من تعيين القيمة القديمة فقط بعد انتهاء عملية التحميل
+                                                $.when(ajaxRequest).done(function () {
+                                                    if (oldModel) {
+                                                        $('#subbrand').val(oldModel);
+                                                    }
+                                                });
+                                            } else {
+                                                $('#subbrand').empty();
+                                                $('#subbrand').append('<option value="">حدد الموديل</option>');
+                                            }
+                                        });
+                                        if (oldBrand) {
+                                            $('#brand').trigger('change');
+                                        }
+                                    });
+                                </script>
                                 <div class="colum">
                                     <select class="custom-select mr-sm-2" name="typecar">
                                         <option value selected>إختر الحالة</option>
-                                        <option value="2">جديدة</option>
-                                        <option value="1">مستعملة</option>
-                                        <option value="3">كلاهما</option>
+                                        <option value="1">جديدة</option>
+                                        <option value="2">مستعملة</option>
+                                        <option value="0">كلاهما</option>
                                     </select>
                                 </div>
                                 <div>
@@ -58,43 +82,6 @@
                                 </div>
                             </div>
                         </form>
-                        <script type="text/javascript">
-                            $(document).ready(function () {
-                                $('#brand').on('change', function () {
-                                    var brandID = $(this).val();
-                                    if (brandID) {
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'https://www.chakirdev.com/demo/Cars/ajaxData.php',
-                                            data: 'brand_id=' + brandID,
-                                            success: function (html) {
-                                                $('#subbrand').html(html);
-                                            }
-                                        });
-                                    } else {
-                                        $('#subbrand').html('<option value="">حدد الماركة أولا</option>');
-                                    }
-                                });
-                            });
-
-                            $(document).ready(function () {
-                                $('#country').on('change', function () {
-                                    var placeID = $(this).val();
-                                    if (placeID) {
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: '#',
-                                            data: 'place_id=' + placeID,
-                                            success: function (html) {
-                                                $('#subplace').html(html);
-                                            }
-                                        });
-                                    } else {
-                                        $('#subplace').html('<option value="">حدد البلد أولا</option>');
-                                    }
-                                });
-                            });
-                        </script>
                     </div>
                 </div>
                 <div class="clr"></div>
@@ -119,9 +106,9 @@
                                             </a>
                                             <p class="card-text"> {{$agency['address']}} </p>
                                             <p class="card-text">
-                                            <div class="rgt Tag"><i class="fa fa-map-marker-alt"></i>  {{$agency['country']}}  - {{$agency['city']}}
+                                            <div class="rgt Tag"><i class="fa fa-map-marker-alt"></i>  {{ $agency['City']['name']}}
                                             </div>
-                                            <div class="rgt Tag"><i class="fa fa-building"></i> عدد الفروع : {{count($agency['branches'])}}</div>
+                                            <div class="rgt Tag"><i class="fa fa-car"></i>  عدد السيارات : {{count($agency['advs'])}}</div>
                                             </p>
                                         </div>
                                     </div>
@@ -146,12 +133,12 @@
                                     تسجيلها ؟</h5>
                                 <p class="card-text"> يمكنك إضافة وكالتك معنا وعرض سياراتك على موقعنا</p>
                             </div>
-                            <a href="addagency.html" class="btn gradient-btn" style="border-radius:0px;padding:30px;"><i
+                            <a href="{{url('user/agency')}}" class="btn gradient-btn" style="border-radius:0px;padding:30px;"><i
                                     class="fa fa-plus" style="font-size:12px;"></i> سجل وكالتك الآن</a>
                         </div>
                         <div class="clr"></div>
                         <br>
-                        <a href="#"><img src="images/banner.png"/></a>
+                        <a href="#"><img src="{{asset('uploads/banner1.png')}}"/></a>
                         <div class="clr"></div>
                         <br>
                     </div>

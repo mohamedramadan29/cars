@@ -8,7 +8,8 @@ use App\Http\Controllers\front\UserNumberController;
 use \App\Http\Controllers\front\ContactController;
 use \App\Http\Controllers\front\BlogController;
 use App\Http\Controllers\front\CarController;
-
+use \App\Http\Controllers\front\UserAgencyController;
+use \App\Http\Controllers\front\UseRoomsController;
 Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
@@ -108,6 +109,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('user/centers', 'index');
         Route::match(['post', 'get'], 'user/center/add', 'store');
         Route::match(['post', 'get'], 'user/center/update/{id}', 'update');
+    });
+    Route::controller(UserAgencyController::class)->group(function (){
+        Route::get('user/agency', 'index');
+        Route::match(['post', 'get'], 'user/agency/add', 'store');
+        Route::match(['post', 'get'], 'user/agency/update/{id}', 'update');
+    });
+    Route::controller(UseRoomsController::class)->group(function (){
+        Route::get('user/rooms', 'index');
+        Route::match(['post', 'get'], 'user/room/add', 'store');
+        Route::match(['post', 'get'], 'user/room/update/{id}', 'update');
     });
 });
 
