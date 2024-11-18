@@ -8,6 +8,7 @@ use App\Http\Traits\Slug_Trait;
 use App\Http\Traits\Upload_Images;
 use App\Models\admin\Advertisment;
 use App\Models\admin\Agency;
+use App\Models\admin\AgencyRent;
 use App\Models\admin\CarImage;
 use App\Models\admin\CarMark;
 use App\Models\admin\CarModels;
@@ -36,6 +37,7 @@ class UserCarsController extends Controller
         $citizen = State::all();
         $agency = Agency::where('user_id',Auth::id())->get();
         $rooms = ShowRoom::where('user_id',Auth::id())->get();
+        $rents = AgencyRent::where('user_id',Auth::id())->get();
 
         if ($request->isMethod('post')) {
             try {
@@ -118,6 +120,7 @@ class UserCarsController extends Controller
                 $adv->c_email = $data['c_email'];
                 $adv->agency = $data['agency'];
                 $adv->showroom = $data['showroom'];
+                $adv->agency_rent = $data['agency_rent'];
                 $adv->c_comfort = implode(',', $data['c_comfort']);
                 $adv->c_windows = implode(',', $data['c_windows']);
                 $adv->c_sound = implode(',', $data['c_sound']);
@@ -144,7 +147,7 @@ class UserCarsController extends Controller
             }
         }
 
-        return view('front.users.cars.add', compact('marks','rooms', 'countries', 'citizen','agency'));
+        return view('front.users.cars.add', compact('marks','rents','rooms', 'countries', 'citizen','agency'));
     }
 
     public function getModels($brandid)
@@ -164,6 +167,7 @@ class UserCarsController extends Controller
         $car = Advertisment::with('carImages')->where('id', $id)->first();
         $agency = Agency::where('user_id',Auth::id())->get();
         $rooms = ShowRoom::where('user_id',Auth::id())->get();
+        $rents = AgencyRent::where('user_id',Auth::id())->get();
         if ($request->isMethod('post')) {
             try {
                 $data = $request->all();
@@ -244,6 +248,7 @@ class UserCarsController extends Controller
                 "c_email" => $data['c_email'],
                 'agency'=>$data['agency'],
                 'showroom'=>$data['showroom'],
+                'agency_rent'=>$data['agency_rent'],
                 "c_comfort" => implode(',', $data['c_comfort']),
                 "c_windows" => implode(',', $data['c_windows']),
                 "c_sound" => implode(',', $data['c_sound']),
@@ -272,7 +277,7 @@ class UserCarsController extends Controller
         $countries = Country::all();
         $citizen = State::all();
         if ($car) {
-            return view('front.users.cars.update', compact('car','rooms','agency', 'citizen', 'countries', 'marks'));
+            return view('front.users.cars.update', compact('car','rents','rooms','agency', 'citizen', 'countries', 'marks'));
         }
 
     }

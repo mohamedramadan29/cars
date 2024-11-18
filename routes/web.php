@@ -10,6 +10,7 @@ use \App\Http\Controllers\front\BlogController;
 use App\Http\Controllers\front\CarController;
 use \App\Http\Controllers\front\UserAgencyController;
 use \App\Http\Controllers\front\UseRoomsController;
+use \App\Http\Controllers\front\UserRentController;
 Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
@@ -119,6 +120,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('user/rooms', 'index');
         Route::match(['post', 'get'], 'user/room/add', 'store');
         Route::match(['post', 'get'], 'user/room/update/{id}', 'update');
+    });
+    Route::controller(UserRentController::class)->group(function (){
+        Route::get('user/rent', 'index');
+        Route::match(['post', 'get'], 'user/rent/add', 'store');
+        Route::match(['post', 'get'], 'user/rent/update/{id}', 'update');
     });
 });
 

@@ -36,6 +36,8 @@
                                 <i class="fab fa-buffer"></i> اضف وكالة   </a>
                             <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> اضف معرض    </a>
+                            <a href="{{ url('user/rent') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف  مكتب تاجير    </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{url('user/centers')}}"

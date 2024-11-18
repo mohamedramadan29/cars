@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="col3">
                                     <h1><i class="fas fa-map-marker-alt"></i></h1>
-                                    <span> {{$room['country']}} - {{$room['city']}}  </span>
+                                    <span>   {{$room['City']['name']}}  </span>
                                 </div>
                                 <div class="col3 last">
                                     <h1><i class="fas fa-mobile-alt"></i></h1>

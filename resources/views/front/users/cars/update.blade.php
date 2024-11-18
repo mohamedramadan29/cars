@@ -555,6 +555,22 @@
                                     <input type="hidden" name="showroom" value="null">
                                 @endif
 
+                                @if(count($rents) > 0)
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text CreateCadre"> حدد مكتب تاجير     </div>
+                                        </div>
+                                        <select class="form-select" name="agency_rent" id="agency_rent" style="height:50px;">
+                                            <option value=""> حدد مكتب تاجير   </option>
+                                            @foreach($rents as $rent)
+                                                <option @if($car['agency_rent'] == $rent['id']) selected @endif value="{{$rent['id']}}">{{$rent['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @else
+                                    <input type="hidden" name="agency_rent" value="null">
+                                @endif
+
                             </div>
                             <div class="clr"></div>
                             <p class="CreateTitle"><i class="fa fa-plus"></i> التجهيزات</p>

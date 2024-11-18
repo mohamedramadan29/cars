@@ -54,7 +54,7 @@ class FrontController extends Controller
 
     public function showroom_details($slug)
     {
-        $room = ShowRoom::where('slug',$slug)->with('advs')->first();
+        $room = ShowRoom::where('slug',$slug)->with('advs','City')->first();
         return view('front.room_details',compact('room'));
     }
 
@@ -68,7 +68,7 @@ class FrontController extends Controller
 
     public function rent_details($slug)
     {
-        $rent = AgencyRent::where('slug',$slug)->with('advs')->first();
+        $rent = AgencyRent::where('slug',$slug)->with('advs','City')->first();
         return view('front.rent_details',compact('rent'));
     }
 

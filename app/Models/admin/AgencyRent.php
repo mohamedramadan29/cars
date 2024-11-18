@@ -18,4 +18,8 @@ class AgencyRent extends Model
     {
         return $this->hasMany(Advertisment::class,'agency_rent');
     }
+    public function City()
+    {
+        return $this->belongsTo(State::class,'city');
+    }
 }

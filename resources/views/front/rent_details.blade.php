@@ -15,7 +15,7 @@
                     <div class="clr"></div>
                     <p class="text-muted rent-desc display-desk">
                         {{$rent['desc']}}</p>
-                    <div class="rent-info"><i class="fas fa-map-marker-alt"></i>  {{$rent['country']}} - {{$rent['city']}} </div>
+                    <div class="rent-info"><i class="fas fa-map-marker-alt"></i>  {{$rent['City']['name']}} </div>
                     <div class="clr"></div>
                     <div class="rent-info"><i class="fas fa-clock"></i>  {{$rent['work_time']}}</div>
                 </div>
@@ -23,7 +23,7 @@
                     <h4 class="rent-title"> مراسلة المكتب</h4>
                     <div class="clr"></div>
                     <a href="tel:{{$rent['phone']}}" class="Inforent btn btn-info btn-sm"><i class="fas fa-mobile-alt"></i>{{$rent['phone']}}</a>
-                    <a href="https://api.whatsapp.com/send?phone=966052222314" class="Inforent btn btn-success btn-sm"><i class="fab fa-whatsapp"></i> 966052222314</a>
+                    <a href="https://api.whatsapp.com/send?phone={{$rent['phone']}}" class="Inforent btn btn-success btn-sm"><i class="fab fa-whatsapp"></i>{{$rent['phone']}} </a>
                     <div class="Inforent btn btn-danger btn-sm" data-toggle="modal" data-target="#message"><i class="far fa-comments"></i> أرسل رسالة</div>
                     <div class="clr"></div>
                 </div>
@@ -38,10 +38,10 @@
                             <div class="item">
                                 <div class="card car-card">
                                     <div class="ribbon"><span class="ribbon4 ribbonplus">{{number_format($adv['c_price'],2)}} $ </span></div>
-                                    <a href="#"><img
+                                    <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"><img
                                             src="{{ asset('assets/uploads/CarImages/' . $adv->carImages->first()->c_image) }}" class="card-img-top"></a>
                                     <div class="card-body">
-                                        <a href="#">
+                                        <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}">
                                             <h5 class="card-title" style="text-align:center;">{{$adv['c_title']}}</h5>
                                         </a>
                                     </div>
