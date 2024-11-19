@@ -9,6 +9,7 @@ use \App\Http\Controllers\front\ContactController;
 use \App\Http\Controllers\front\BlogController;
 use App\Http\Controllers\front\CarController;
 use App\Http\Controllers\front\ForumsController;
+use App\Http\Controllers\front\SubscriptionController;
 use \App\Http\Controllers\front\UserAgencyController;
 use App\Http\Controllers\Front\UserForumsController;
 use \App\Http\Controllers\front\UseRoomsController;
@@ -145,6 +146,9 @@ Route::controller(ForumsController::class)->group(function () {
    // Route::post('topic/comment','NewComment');
     Route::match(['post','get'],'topic/comment','NewComment');
 });
+Route::controller(SubscriptionController::class)->group(function(){
 
+    Route::get('subscription','index');
+});
 
 include 'admin.php';

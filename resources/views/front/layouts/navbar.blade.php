@@ -143,7 +143,7 @@
             <li><a href="{{url('car_numbers')}}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
             <li><a href="{{url('auto-repair')}}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
             <li><a href="{{url('forums')}}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
-            <li><a href="subscription.php"><i class="fas fa-star"></i> العضويات المميزة</a></li>
+            <li><a href="{{url('subscription')}}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
         </ul>
     </div>
 </div>
