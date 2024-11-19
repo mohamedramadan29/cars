@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-     تعديل المعرض
+    تعديل المعرض
 @endsection
 @section('content')
     <div id="HomePage">
@@ -32,109 +32,115 @@
                         role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
                     <div class="collapse show" id="collapseExample">
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action active"
+                            <a href="#" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;color:white;font-size:19px;">
                                 <i class="fab fa-buffer"></i> القائمة </a>
                             <a href="{{ url('user/dashboard') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
                             <a href="{{ url('user/car/add') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف سيارة للبيع</a>
-                            <a href="https://www.chakirdev.com/demo/Cars/messages"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> الرسائل <span class="lft badge badge-primary">0</span></a>
-                            <a href="https://www.chakirdev.com/demo/Cars/notice"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
-                            <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action active">
-                                <i class="fab fa-buffer"></i> اضف معرض  </a>
                             <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
+                                <i class="fab fa-buffer"></i> اضف وكالة </a>
+                            <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action active">
+                                <i class="fab fa-buffer"></i> اضف معرض </a>
+                            <a href="{{ url('user/rent') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف مكتب تاجير </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
-                            <a href="https://www.chakirdev.com/demo/Cars/myposts"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-
-                            <a href="https://www.chakirdev.com/demo/Cars/myinfo"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;">
+                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                            <a href="https://www.chakirdev.com/demo/Cars/logout"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
+                            <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;">
+                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
+                            <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-                    <h5 class="p-title"><i class="fas fa-edit"></i> تعديل المعرض   </h5>
+                    <h5 class="p-title"><i class="fas fa-edit"></i> تعديل المعرض </h5>
                     <div class="clr"></div><br>
-                    <form action="{{ url('user/room/update/'.$room['id']) }}" method="post" class="p-form" enctype="multipart/form-data">
+                    <form action="{{ url('user/room/update/' . $room['id']) }}" method="post" class="p-form"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
                                 <input type="text" name="name" class="form-control form-control-lg input-form"
-                                    placeholder="أدخل إسم المركز" required="" value="{{$room['name']}}">
+                                    placeholder="أدخل إسم المركز" required="" value="{{ $room['name'] }}">
                             </div>
                             <div class="col-md-12">
                                 <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
                                     id="subplace" style="height:45px;">
                                     <option value="">حدد المدينة</option>
                                     @foreach ($citizen as $city)
-                                        <option @if ($city['id'] == $room['city'])
-                                            selected
-                                        @endif value="{{ $city['id'] }}">{{ $city['name'] }}</option>
+                                        <option @if ($city['id'] == $room['city']) selected @endif
+                                            value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12">
                                 <input type="text" name="address" class="form-control form-control-lg input-form"
-                                    placeholder="العنوان" value="{{$room['address']}}">
+                                    placeholder="العنوان" value="{{ $room['address'] }}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="email" class="form-control form-control-lg input-form"
-                                       placeholder="البريد الاكتروني" value="{{$room['email']}}">
+                                    placeholder="البريد الاكتروني" value="{{ $room['email'] }}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="phone" class="form-control form-control-lg input-form"
-                                    placeholder="رقم التواصل" value="{{$room['phone']}}">
+                                    placeholder="رقم التواصل" value="{{ $room['phone'] }}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="phone2" class="form-control form-control-lg input-form"
-                                       placeholder="رقم تواصل ثاني (اختياري)" value="{{$room['phone2']}}">
+                                    placeholder="رقم تواصل ثاني (اختياري)" value="{{ $room['phone2'] }}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="work_time" class="form-control form-control-lg input-form"
-                                    placeholder="أوقات العمل" value="{{$room['work_time']}}">
+                                    placeholder="أوقات العمل" value="{{ $room['work_time'] }}">
                             </div>
                             <div class="col-md-6">
                                 <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="car_status">
-                                    <option value="" selected="" disabled=""> حالة السيارات  </option>
-                                    <option @if($room['car_status'] == 'مستعملة') selected @endif value="مستعملة"> مستعملة </option>
-                                    <option @if($room['car_status'] == 'جديدة') selected @endif value="جديدة"> جديدة   </option>
-                                    <option @if($room['car_status'] == 'كلاهما') selected @endif value="كلاهما"> كلاهما </option>
+                                    <option value="" selected="" disabled=""> حالة السيارات </option>
+                                    <option @if ($room['car_status'] == 'مستعملة') selected @endif value="مستعملة"> مستعملة
+                                    </option>
+                                    <option @if ($room['car_status'] == 'جديدة') selected @endif value="جديدة"> جديدة
+                                    </option>
+                                    <option @if ($room['car_status'] == 'كلاهما') selected @endif value="كلاهما"> كلاهما
+                                    </option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="website" class="form-control form-control-lg input-form"
-                                       placeholder="رابط الموقع الالكتروني " value="{{$room['website']}}">
+                                    placeholder="رابط الموقع الالكتروني " value="{{ $room['website'] }}">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="facebook_link" class="form-control form-control-lg input-form"
-                                       placeholder=" رابط الفيسبوك" value="{{$room['facebook_link']}}">
+                                <input type="text" name="facebook_link"
+                                    class="form-control form-control-lg input-form" placeholder=" رابط الفيسبوك"
+                                    value="{{ $room['facebook_link'] }}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="twitter_link" class="form-control form-control-lg input-form"
-                                       placeholder="رابط تويتر " value="{{$room['twitter_link']}}">
+                                    placeholder="رابط تويتر " value="{{ $room['twitter_link'] }}">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="instagram_link" class="form-control form-control-lg input-form"
-                                       placeholder="رابط انستجرام" value="{{$room['instagram_link']}}">
+                                <input type="text" name="instagram_link"
+                                    class="form-control form-control-lg input-form" placeholder="رابط انستجرام"
+                                    value="{{ $room['instagram_link'] }}">
 
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control form-control-lg" name="desc" rows="2" placeholder="نبذة عن المعرص">{{$room['desc']}}</textarea>
+                                <textarea class="form-control form-control-lg" name="desc" rows="2" placeholder="نبذة عن المعرص">{{ $room['desc'] }}</textarea>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -145,7 +151,8 @@
                                         <span class="js-fileName">رفع صورة الوكالة </span>
                                     </label>
                                     <br>
-                                    <img src="{{asset('assets/uploads/ShowRooms/'.$room['logo'])}}" width="100px" height="100px" class="img-thumbnail" alt="">
+                                    <img src="{{ asset('assets/uploads/ShowRooms/' . $room['logo']) }}" width="100px"
+                                        height="100px" class="img-thumbnail" alt="">
                                 </div>
                                 <script type="text/javascript">
                                     (function() {

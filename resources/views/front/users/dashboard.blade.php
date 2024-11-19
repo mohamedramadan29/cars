@@ -26,10 +26,10 @@
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
                             <a href="{{ url('user/car/add') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف سيارة للبيع</a>
-                            <a href="https://www.chakirdev.com/demo/Cars/messages"
+                            <a href="#"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> الرسائل <span class="lft badge badge-primary">0</span></a>
-                            <a href="https://www.chakirdev.com/demo/Cars/notice"
+                            <a href="#"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
                             <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action">
@@ -46,11 +46,10 @@
                             <a href="{{url('user/forums')}}"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-
                             <a href="{{url('user/update')}}"
                                 class="list-group-item list-group-item-action" style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                            <a href="https://www.chakirdev.com/demo/Cars/logout"
+                            <a href="{{url('user/logout')}}"
                                 class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
@@ -71,7 +70,7 @@
                         <div class="card-body">
                             <h5 class="card-title pt"><i class="fas fa-bars"></i> مواضيعي </h5>
                             <h6 class="card-subtitle mb-2 text-muted">العدد : 0</h6>
-                            <a href="https://www.chakirdev.com/demo/Cars/addpost.php" class="card-link">أضف موضوع</a>
+                            <a href="{{url('user/forum/add')}}" class="card-link">أضف موضوع</a>
                         </div>
                     </div>
                     <div class="card pcard-stats">
@@ -81,7 +80,7 @@
                             <h6 class="card-subtitle mb-2 text-muted">عضوية عادية</h6>
 
                             <div class="clr"></div>
-                            <a href="https://www.chakirdev.com/demo/Cars/subscription.php" class="card-link">ترقية
+                            <a href="#" class="card-link">ترقية
                                 العضوية</a>
                         </div>
                     </div>
