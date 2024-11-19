@@ -63,8 +63,8 @@
         <center>
             <img src="images/a3.png" />
             <div class="clr"></div>
-            <div class="copy"><a href="https://www.chakirdev.com/" target="_blank" style="font-size:12px;">POWERED
-                    BY CHAKIRDEV</a></div>
+            {{-- <div class="copy"><a href="https://www.chakirdev.com/" target="_blank" style="font-size:12px;">POWERED
+                    BY CHAKIRDEV</a></div> --}}
         </center>
     </div>
 </div>
@@ -163,8 +163,8 @@
             <div class="modal-body">
                 <div id="logreg-forms">
                     <form id="logform" method="post" autocomplete="off" class="form-signin">
-                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> دخول عبر</h1>
-                        <div class="social-login">
+                        {{-- <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> دخول عبر</h1> --}}
+                        {{-- <div class="social-login">
                             <a href="https://www.facebook.com/v3.2/dialog/oauth?client_id=1691520907771284&amp;state=2b5c16521c44b86f6a9fdd4116efbd72&amp;response_type=code&amp;sdk=php-sdk-5.7.0&amp;redirect_uri=https%3A%2F%2Fwww.chakirdev.com%2Fdemo%2FCars%2F&amp;scope=email"
                                class="btn facebook-btn social-btn"><span><i class="fab fa-facebook-f"></i> تسجيل عن
                                     طريق الفيسبوك</span> </a>
@@ -173,8 +173,8 @@
                             <a href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;access_type=online&amp;client_id=165397382251-uhk4o60603v4l0h5sitevnn7sr0pngks.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fwww.chakirdev.com%2Fdemo%2FCars%2Fg-callback.php&amp;state&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;approval_prompt=auto"
                                class="btn google-btn social-btn"><span><i class="fab fa-google-plus-g"></i> تسجيل
                                     عن طريق جوجل</span> </a>
-                        </div>
-                        <p style="text-align:center">أو</p>
+                        </div> --}}
+                        {{-- <p style="text-align:center">أو</p> --}}
                         <div id="result2" class="mt-2"></div>
                         <div class="clr"></div>
                         <input type="email" name="email" class="form-control" placeholder="البريد الإلكتروني"
@@ -191,7 +191,7 @@
                     </form>
                     <form id="regform" method="post" autocomplete="off" class="form-signup">
                         @csrf
-                        <div class="social-login">
+                        {{-- <div class="social-login">
                             <a href="https://www.facebook.com/v3.2/dialog/oauth?client_id=1691520907771284&amp;state=2b5c16521c44b86f6a9fdd4116efbd72&amp;response_type=code&amp;sdk=php-sdk-5.7.0&amp;redirect_uri=https%3A%2F%2Fwww.chakirdev.com%2Fdemo%2FCars%2F&amp;scope=email"
                                class="btn facebook-btn social-btn"><span><i class="fab fa-facebook-f"></i> تسجيل عن
                                     طريق الفيسبوك</span> </a>
@@ -200,8 +200,8 @@
                             <a href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;access_type=online&amp;client_id=165397382251-uhk4o60603v4l0h5sitevnn7sr0pngks.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fwww.chakirdev.com%2Fdemo%2FCars%2Fg-callback.php&amp;state&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;approval_prompt=auto"
                                class="btn google-btn social-btn"><span><i class="fab fa-google-plus-g"></i> تسجيل
                                     عن طريق جوجل</span> </a>
-                        </div>
-                        <p style="text-align:center">أو</p>
+                        </div> --}}
+                        {{-- <p style="text-align:center">أو</p> --}}
                         <div id="result" class="mt-2"></div>
                         <div class="clr"></div>
                         <input type="text" name="name" id="name" class="form-control"
