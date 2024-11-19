@@ -8,9 +8,12 @@ use App\Http\Controllers\front\UserNumberController;
 use \App\Http\Controllers\front\ContactController;
 use \App\Http\Controllers\front\BlogController;
 use App\Http\Controllers\front\CarController;
+use App\Http\Controllers\front\ForumsController;
 use \App\Http\Controllers\front\UserAgencyController;
+use App\Http\Controllers\Front\UserForumsController;
 use \App\Http\Controllers\front\UseRoomsController;
 use \App\Http\Controllers\front\UserRentController;
+
 Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
@@ -63,9 +66,9 @@ Route::controller(CarController::class)->group(function () {
     Route::get('car/{id}/{slug}', 'AdvDetails');
     Route::get('new-cars', 'NewCars');
     Route::get('used-cars', 'UsedCars');
-    Route::get('brand/{slug}','BrandCars');
+    Route::get('brand/{slug}', 'BrandCars');
     Route::get('getCarModels/{brandid}', 'getCarModels');
-    Route::get('search','search')->name('car.search');
+    Route::get('search', 'search')->name('car.search');
 });
 
 /////////////////////////// User Controller //////////////////////
@@ -111,27 +114,37 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['post', 'get'], 'user/center/add', 'store');
         Route::match(['post', 'get'], 'user/center/update/{id}', 'update');
     });
-    Route::controller(UserAgencyController::class)->group(function (){
+    Route::controller(UserAgencyController::class)->group(function () {
         Route::get('user/agency', 'index');
         Route::match(['post', 'get'], 'user/agency/add', 'store');
         Route::match(['post', 'get'], 'user/agency/update/{id}', 'update');
     });
-    Route::controller(UseRoomsController::class)->group(function (){
+    Route::controller(UseRoomsController::class)->group(function () {
         Route::get('user/rooms', 'index');
         Route::match(['post', 'get'], 'user/room/add', 'store');
         Route::match(['post', 'get'], 'user/room/update/{id}', 'update');
     });
-    Route::controller(UserRentController::class)->group(function (){
+    Route::controller(UserRentController::class)->group(function () {
         Route::get('user/rent', 'index');
         Route::match(['post', 'get'], 'user/rent/add', 'store');
         Route::match(['post', 'get'], 'user/rent/update/{id}', 'update');
+    });
+    Route::controller(UserForumsController::class)->group(function () {
+        Route::get('user/forums', 'index')->name('forums');
+        Route::match(['post', 'get'], 'user/forum/add', 'store');
+        Route::match(['post', 'get'], 'user/forum/update/{id}/{slug}', 'update');
     });
 });
 
 Route::controller(ContactController::class)->group(function () {
     Route::match(['post', 'get'], 'contactus', 'contact');
 });
-
+Route::controller(ForumsController::class)->group(function () {
+    Route::get('forum/{slug}', 'CategoryDetails');
+    Route::get('topic/{id}/{slug}', 'TopicDetails');
+   // Route::post('topic/comment','NewComment');
+    Route::match(['post','get'],'topic/comment','NewComment');
+});
 
 
 include 'admin.php';

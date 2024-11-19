@@ -21,22 +21,8 @@
                 <div class="lft forum-img"><img src="{{ asset('assets/front/uploads/hangout.png') }}" /></div>
                 <div class="clr"></div>
                 <div class="card-text" style="padding:20px;">
-                    <div class="display-desk">
-                        @foreach ($categories as $category)
-                            <div class="rgt card Forumcat">
-                                <div class="card-body">
-                                    <h5 class="card-title"> {{ $category['name'] }} </h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">عدد المساهمات : {{ count($category['Topics'])}}</h6>
-                                    <a href="{{ url('forum/' . $category['slug']) }}" class="btn gradient-btn btn-sm"> زيارة
-                                        القسم </a>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="clr"></div>
-                        <hr>
-                        <div class="clr"></div><br>
-                    </div>
-                    <a href="{{url('user/forum/add')}}" class="rgt btn gradient-btn"><i class="fa fa-plus"></i> اضافة موضوع جديد </a>
+
+                    <a href="addpost.html" class="rgt btn gradient-btn"><i class="fa fa-plus"></i> اضافة موضوع جديد </a>
                     <div class="clr"></div><br>
                     <div class="table-responsive">
                         <table class="table">
@@ -49,13 +35,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($lasttopics as  $topic)
+                                @foreach ($topics  as $topic)
                                 <tr>
                                     <th style="color:#0069D9;"> <button class="btn btn-sm"
                                             style="background-color: #00B82A; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 10px;margin-right: 10px;">
                                             <i class="bi bi-lightbulb-fill"></i> نصيحة </button> <a href="{{url('topic/'.$topic['id'].'/'.$topic['slug'])}}"><i
-                                                class="fa fa-align-center" style="font-size:12px;"></i>  {{$topic['title']}} </a></th>
-                                    <td><a href class="btn btn-light btn-sm"> {{$topic["User"]['name']}} </a></td>
+                                                class="fa fa-align-center" style="font-size:12px;"></i> {{$topic['title']}} </a></th>
+                                    <td><a href class="btn btn-light btn-sm">{{$topic['User']['name']}}</a></td>
                                     <td class="display-desk"> {{$topic['created_at']}} </td>
                                     <td>{{count($topic['Comments'])}}</td>
                                 </tr>
@@ -105,6 +91,21 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="display-desk">
+                        @foreach ($categories as $category)
+                            <div class="rgt card Forumcat">
+                                <div class="card-body">
+                                    <h5 class="card-title"> {{ $category['name'] }} </h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">عدد المساهمات : 2</h6>
+                                    <a href="{{ url('forum/' . $category['slug']) }}" class="btn gradient-btn btn-sm"> زيارة
+                                        القسم </a>
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="clr"></div>
+                        <hr>
+                        <div class="clr"></div><br>
                     </div>
                 </div>
             </div>

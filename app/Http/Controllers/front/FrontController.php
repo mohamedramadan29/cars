@@ -14,6 +14,7 @@ use App\Models\admin\CarNumber;
 use App\Models\admin\Faq;
 use App\Models\admin\ShowRoom;
 use App\Models\admin\TopicCategory;
+use App\Models\front\Topic;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -97,9 +98,10 @@ class FrontController extends Controller
     ///
     public function forums()
     {
-        $categories = TopicCategory::all();
-        return view('front.forums' ,compact('categories'));
-
+        $categories = TopicCategory::with('Topics')->get();
+      //  dd($categories);
+        $lasttopics = Topic::with('Comments','User')->latest()->limit(5)->get();
+        return view('front.forums' ,compact('categories','lasttopics'));
     }
     /////////////////////// Create Car Not Login ////////
     public function create_car()

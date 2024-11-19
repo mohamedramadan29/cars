@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
+use App\Http\Traits\Slug_Trait;
 use App\Models\admin\CarMark;
 use App\Models\admin\TopicCategory;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class TopicCategoryController extends Controller
 {
     use Message_Trait;
+    use Slug_Trait;
 
     public function index()
     {
@@ -38,7 +40,8 @@ class TopicCategoryController extends Controller
             }
             $category = new TopicCategory();
             $category->create([
-                'name'=>['ar'=>$data['name'],'en'=>$data['name_en']]
+                'name'=>['ar'=>$data['name'],'en'=>$data['name_en']],
+                'slug'=>$this->CustomeSlug($data['name']),
             ]);
             return $this->success_message(' تم اضافة القسم بنجاح  ');
         }catch (\Exception $e){
@@ -64,7 +67,8 @@ class TopicCategoryController extends Controller
                 return Redirect::back()->withInput()->withErrors($validator);
             }
             $category->update([
-                'name'=>['ar'=>$data['name'],'en'=>$data['name_en']]
+                'name'=>['ar'=>$data['name'],'en'=>$data['name_en']],
+                'slug'=>$this->CustomeSlug($data['name']),
             ]);
             return $this->success_message(' تم تعديل  القسم بنجاح  ');
         }catch (\Exception $e){
