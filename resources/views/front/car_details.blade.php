@@ -81,7 +81,7 @@
                             </a>
                         </li>
                     </ul>
-
+                    
                     <div class="tab-content" id="pills-tabContent">
                         <!-- قسم تفاصيل السيارة -->
                         <div class="tab-pane fade show active" id="pills-one" role="tabpanel">

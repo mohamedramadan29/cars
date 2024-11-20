@@ -64,7 +64,8 @@ class FrontController extends Controller
     public function rent()
     {
         $agencies = AgencyRent::all();
-        return view('front.rent',compact('agencies'));
+        $marks = CarMark::all();
+        return view('front.rent',compact('agencies','marks'));
     }
 
     public function rent_details($slug)
@@ -78,14 +79,16 @@ class FrontController extends Controller
     public function car_numbers()
     {
         $numbers = CarNumber::all();
-        return view('front.car_numbers',compact('numbers'));
+        $marks = CarMark::all();
+        return view('front.car_numbers',compact('numbers','marks'));
     }
     ///////////////// Start Auto Repairs
     ///
     public function auto_repair()
     {
         $repairs = AutoRepair::all();
-        return view('front.auto_repairs',compact('repairs'));
+        $marks = CarMark::all();
+        return view('front.auto_repairs',compact('repairs','marks'));
     }
     public function repair_details($slug)
     {
