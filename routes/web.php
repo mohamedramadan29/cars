@@ -14,8 +14,10 @@ use \App\Http\Controllers\front\UserAgencyController;
 use App\Http\Controllers\Front\UserForumsController;
 use \App\Http\Controllers\front\UseRoomsController;
 use \App\Http\Controllers\front\UserRentController;
-
-Route::controller(\App\Http\Controllers\front\FrontController::class)->group(function () {
+use \App\Http\Controllers\front\WashCarController;
+use \App\Http\Controllers\front\FrontController;
+use \App\Http\Controllers\front\AuctionController;
+Route::controller(FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
     Route::get('agency/{slug}', 'agency_details');
@@ -28,6 +30,12 @@ Route::controller(\App\Http\Controllers\front\FrontController::class)->group(fun
     Route::get('rent', 'rent');
     Route::get('rent/details/{slug}', 'rent_details');
 
+    ////////// Show Auctions شركات المزاد
+    ///
+    Route::get('auctions', 'auction');
+    Route::get('auction/details/{slug}', 'auction_details');
+
+
     ///////////// Start Car Numbers //////
     ///
     Route::get('car_numbers', 'car_numbers');
@@ -36,6 +44,10 @@ Route::controller(\App\Http\Controllers\front\FrontController::class)->group(fun
     ///
     Route::get('auto-repair', 'auto_repair');
     Route::get('auto_repair/{slug}', 'repair_details');
+    /////////// Start Car Wash /////////
+    ///
+    Route::get('car-wash', 'car_wash');
+    Route::get('car-wash/{slug}', 'car_wash_details');
 
     //////////////// Start Forums ///////
     ///
@@ -115,6 +127,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['post', 'get'], 'user/center/add', 'store');
         Route::match(['post', 'get'], 'user/center/update/{id}', 'update');
     });
+    Route::controller(WashCarController::class)->group(function () {
+        Route::get('user/washs', 'index');
+        Route::match(['post', 'get'], 'user/wash/add', 'store');
+        Route::match(['post', 'get'], 'user/wash/update/{id}', 'update');
+    });
     Route::controller(UserAgencyController::class)->group(function () {
         Route::get('user/agency', 'index');
         Route::match(['post', 'get'], 'user/agency/add', 'store');
@@ -129,6 +146,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('user/rent', 'index');
         Route::match(['post', 'get'], 'user/rent/add', 'store');
         Route::match(['post', 'get'], 'user/rent/update/{id}', 'update');
+    });
+    //////////////// مكاتتب شركات المزاد
+    Route::controller(AuctionController::class)->group(function () {
+        Route::get('user/auctions', 'index');
+        Route::match(['post', 'get'], 'user/auction/add', 'store');
+        Route::match(['post', 'get'], 'user/auction/update/{id}', 'update');
     });
     Route::controller(UserForumsController::class)->group(function () {
         Route::get('user/forums', 'index')->name('forums');

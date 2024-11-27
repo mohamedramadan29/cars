@@ -142,6 +142,8 @@
             <li><a href="{{url('rent')}}"><i class="fas fa-handshake"></i> تأجير </a></li>
             <li><a href="{{url('car_numbers')}}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
             <li><a href="{{url('auto-repair')}}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
+            <li><a href="{{url('car-wash')}}"><i class="fas fa-wrench"></i>  غسيل السيارات  </a></li>
+            <li><a href="{{url('auctions')}}"><i class="fas fa-wrench"></i>  شركات المزاد </a></li>
             <li><a href="{{url('forums')}}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
             <li><a href="{{url('subscription')}}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
         </ul>

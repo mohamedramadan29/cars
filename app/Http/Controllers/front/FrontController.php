@@ -14,7 +14,9 @@ use App\Models\admin\CarNumber;
 use App\Models\admin\Faq;
 use App\Models\admin\ShowRoom;
 use App\Models\admin\TopicCategory;
+use App\Models\front\Auction;
 use App\Models\front\Topic;
+use App\Models\front\WashCar;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -73,6 +75,19 @@ class FrontController extends Controller
         $rent = AgencyRent::where('slug',$slug)->with('advs','City')->first();
         return view('front.rent_details',compact('rent'));
     }
+///////////////////// Auctions
+    public function auction()
+    {
+        $auctions = Auction::all();
+        $marks = CarMark::all();
+        return view('front.auctions',compact('auctions','marks'));
+    }
+
+    public function auction_details($slug)
+    {
+        $auction = Auction::where('slug',$slug)->with('advs','City')->first();
+        return view('front.auction_details',compact('auction'));
+    }
 
     ///////////////// Start Car Numbers
     ///
@@ -94,6 +109,21 @@ class FrontController extends Controller
     {
         $repair = AutoRepair::where('slug',$slug)->first();
         return view('front.repair_details',compact('repair'));
+    }
+
+
+    ///////////////// Start Car Wash
+    ///
+    public function car_wash()
+    {
+        $washs = WashCar::all();
+        $marks = CarMark::all();
+        return view('front.car-wash',compact('washs','marks'));
+    }
+    public function car_wash_details($slug)
+    {
+        $wash = WashCar::where('slug',$slug)->first();
+        return view('front.car-wash-details',compact('wash'));
     }
 
 
