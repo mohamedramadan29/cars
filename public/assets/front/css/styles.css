@@ -7003,3 +7003,79 @@ span.right {
 .feature_ads .info_contact .phone {
     background: linear-gradient(135deg, #2771FF, #184499);
 }
+
+/********************** Start Login Page ***********************/
+
+.login_page{
+    background-color: #fff;
+    max-width: 50%;
+    margin: auto;
+    padding: 20px;
+    padding-top: 40px;
+    border: 1px solid #eceaea;
+}
+.login_page .social_media{
+text-align: center;
+margin-bottom: 30px;
+}
+.login_page .social_media h4,
+.login_page h5{
+    text-align: center;
+    font-size: 17px;
+    color: #494545;
+    margin-bottom: 20px;
+}
+
+.login_page .social_media .bi-facebook{
+    width: 50px;
+    height: 50px;
+    background: #197ece;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 23px;
+
+}
+.login_page .social_media .bi-google{
+    width: 50px;
+    height: 50px;
+    background: #dd4b39;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 23px;
+}
+.login_page form{}
+.login_page form input {
+    outline: none;
+    box-shadow: none;
+}
+.login_page form label{
+    right: 0;
+    left: auto;
+}
+.login_page .form-control:focus{
+    box-shadow: none;
+}
+
+
+.login_page h5{
+    text-align: right;
+}
+.login_page ul{
+    list-style: disc;
+    padding-right: 15px;
+}
+.login_page ul li{
+    padding-bottom: 10px;
+}
+.login_page ul li::marker{
+    color: #0d6efd;
+}
+.login_page ul li a{
+    text-decoration: none;
+}

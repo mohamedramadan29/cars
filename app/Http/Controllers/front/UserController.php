@@ -21,135 +21,66 @@ class UserController extends Controller
 
     public function index()
     {
-        $user_cars = Advertisment::where('user_id',Auth::id())->get();
+        $user_cars = Advertisment::where('user_id', Auth::id())->get();
         //dd($user_cars);
-        return view('front.users.dashboard',compact('user_cars'));
-
+        return view('front.users.dashboard', compact('user_cars'));
     }
 
-    public function register(Request $request)
+    function register(Request $request)
     {
         if ($request->isMethod('post')) {
-            $data = $request->all();
-            $rules = [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email|max:150',
-                'phone' => 'required|numeric|unique:users,phone|digits_between:8,16',
-                'password' => 'required|min:8',
 
-            ];
-            $messages = [
-                'name.required' => 'من فضلك ادخل الاسم',
-                'email.required' => 'من فضلك ادخل البريد الالكتروني ',
-                'email.unique' => 'البريد الالكتروني مستخدم بالفعل ',
-                'email.email' => 'من فضلك ادخل بريد الكتروني بشكل صحيح ',
-                'email.max' => 'من فضلك ادخل بريد الكتروني اقل من 150 حرف ',
-                'phone.required' => 'رقم الهاتف مطلوب.',
-                'phone.numeric' => 'رقم الهاتف يجب أن يكون أرقام فقط.',
-                'phone.unique' => 'رقم الهاتف مسجل بالفعل.',
-                'phone.digits_between' => 'يجب أن يكون رقم الهاتف بين 8 و 16 رقمًا.',
-                'password.required' => 'من فضلك ادخل كلمة المرور ',
-                'password.min' => 'من فضلك ادخل كلمة مرور قوية اكثر من 8 احرف وارقام ',
-
-            ];
-
-            $validator = Validator::make($data, $rules, $messages);
-
-            if ($validator->fails()) {
-                // Return JSON for AJAX request
-                if ($request->ajax()) {
-                    return response()->json(['errors' => $validator->errors()], 422);
-                }
-                // Regular redirect for non-AJAX request
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
             try {
                 DB::beginTransaction();
+                $data = $request->all();
+                $rules = [
+                    'name' => 'required',
+                    'email' => 'required|email|unique:users,email|max:150',
+                    'password' => 'required|min:8',
+                    'confirm_password' => 'required|same:password'
+                ];
+                $messages = [
+                    'name.required' => 'من فضلك ادخل  الاسم',
+                    'email.required' => 'من فضلك ادخل البريد الالكتروني ',
+                    'email.unique' => 'البريد الالكتروني مستخدم بالفعل ',
+                    'email.email' => 'من فضلك ادخل بريد الكتروني بشكل صحيح ',
+                    'email.max' => 'من فضلك ادخل بريد الكتروني اقل من 150 حرف ',
+                    'password.required' => 'من فضلك ادخل كلمة المرور ',
+                    'password.min' => ' من فضلك ادخل كلمة مرور قوية اكثر من 8 احرف وارقام ',
+                    'confirm_password.same' => 'من فضلك اكد كلمة المرور بشكل صحيح ',
+                ];
+
+                $validator = Validator::make($data, $rules, $messages);
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator)->withInput();
+                }
+
                 $user = User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
-                    'phone' => $data['phone'],
                     'password' => Hash::make($data['password']),
                 ]);
+                ////////////////////// Send Confirmation Email ///////////////////////////////
+                ///
+                $email = $data['email'];
+
+                $MessageDate = [
+                    'name' => $data['name'],
+                    "email" => $data['email'],
+                    'code' => base64_encode($email)
+                ];
+                Mail::send('front.mails.UserActivationEmail', $MessageDate, function ($message) use ($email) {
+                    $message->to($email)->subject(' تفعيل الحساب الخاص بك  ');
+                });
+
                 DB::commit();
-                if ($request->ajax()) {
-                    return response()->json(['message' => ' تم انشاء الحساب الخاص بك بنجاح  '], 200);
-                }
-                return redirect()->route('login')->with('success', ' تم انشاء الحساب الخاص بك بنجاح  ');
+                return $this->success_message('تم انشاء الحساب بنجاح من فضلك فعل حسابك من خلال البريد المرسل  ⚡️');
             } catch (\Exception $e) {
-                DB::rollBack();
-                if ($request->ajax()) {
-                    return response()->json(['error' => 'Failed to register user'], 500);
-                }
-                return redirect()->back()->with('error', 'Failed to register user');
+                return $this->exception_message($e);
             }
         }
+        return view('front.register');
     }
-
-
-//    function register(Request $request)
-//    {
-//        if ($request->isMethod('post')) {
-//
-//            try {
-//                DB::beginTransaction();
-//                $data = $request->all();
-//                $rules = [
-//                    'name' => 'required',
-//                    'email' => 'required|email|unique:users,email|max:150',
-//                    'phone' => 'required|numeric|unique:users,mobile|digits_between:8,16',
-//                    'password' => 'required|min:8',
-//                    'confirm_password' => 'required|same:password'
-//                ];
-//                $messages = [
-//                    'name.required' => 'من فضلك ادخل  الاسم',
-//                    'email.required' => 'من فضلك ادخل البريد الالكتروني ',
-//                    'email.unique' => 'البريد الالكتروني مستخدم بالفعل ',
-//                    'email.email' => 'من فضلك ادخل بريد الكتروني بشكل صحيح ',
-//                    'email.max' => 'من فضلك ادخل بريد الكتروني اقل من 150 حرف ',
-//                    'mobile.required' => 'رقم الهاتف مطلوب.',
-//                    'mobile.numeric' => 'رقم الهاتف يجب أن يكون أرقام فقط.',
-//                    'mobile.unique' => 'رقم الهاتف مسجل بالفعل.',
-//                    'mobile.digits_between' => 'يجب أن يكون رقم الهاتف بين 8 و 16 رقمًا.',
-//                    'password.required' => 'من فضلك ادخل كلمة المرور ',
-//                    'password.min' => ' من فضلك ادخل كلمة مرور قوية اكثر من 8 احرف وارقام ',
-//                    'confirm_password.same' => 'من فضلك اكد كلمة المرور بشكل صحيح ',
-//                ];
-//
-//                $validator = Validator::make($data, $rules, $messages);
-//                if ($validator->fails()) {
-//                    return redirect()->back()->withErrors($validator)->withInput();
-//                }
-//
-//                $user = User::create([
-//                    'name' => $data['name'],
-//                    'email' => $data['email'],
-//                    'phone' => $data['phone'],
-//                    'password' => Hash::make($data['password']),
-//                ]);
-//                ////////////////////// Send Confirmation Email ///////////////////////////////
-//                ///
-//                $email = $data['email'];
-//
-//                $MessageDate = [
-//                    'name' => $data['name'],
-//                    "email" => $data['email'],
-//                    'phone' => $data['phone'],
-//                    'code' => base64_encode($email)
-//                ];
-//                Mail::send('front.mails.UserActivationEmail', $MessageDate, function ($message) use ($email) {
-//                    $message->to($email)->subject(' تفعيل الحساب الخاص بك  ');
-//                });
-//
-//                DB::commit();
-//                return $this->success_message('تم انشاء الحساب بنجاح من فضلك فعل حسابك من خلال البريد المرسل  ⚡️');
-//
-//            } catch (\Exception $e) {
-//                return $this->exception_message($e);
-//            }
-//        }
-//    //  return view('website.register');
-//    }
 
 
     // Active User Email
@@ -174,7 +105,6 @@ class UserController extends Controller
         } else {
             abort(404);
         }
-
     }
     public function login(Request $request)
     {
@@ -193,37 +123,41 @@ class UserController extends Controller
                 $validator = Validator::make($data, $rules, $messages);
 
                 if ($validator->fails()) {
-                    return response()->json(['errors' => $validator->errors()], 422);
+                    return Redirect::back()->withErrors($validator)->withInput();
+                  //  return response()->json(['errors' => $validator->errors()], 422);
                 }
 
                 if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
                     // يمكنك التحقق من حالة تفعيل البريد إذا لزم
-                    // if (Auth::user()->email_confirm == 0) {
-                    //     Auth::logout();
-                    //     return response()->json(['error' => 'من فضلك يجب تفعيل الحساب الخاص بك أولاً'], 403);
-                    // }
-
-                    return response()->json(['redirect' => url('user/dashboard')]);
+                    if (Auth::user()->email_confirm == 0) {
+                        Auth::logout();
+                       // return response()->json(['error' => 'من فضلك يجب تفعيل الحساب الخاص بك أولاً'], 403);
+                        return Redirect()->back()->withInput()->withErrors(['من فضلك يجب تفعيل الحساب الخاص بك أولاً']);
+                    }
+                    return Redirect()->route('user.dashboard');
+                    //return response()->json(['redirect' => url('user/dashboard')]);
                 } else {
-                    return response()->json(['error' => 'لا يوجد حساب بهذه البيانات'], 401);
+                    return Redirect()->back()->withInput()->withErrors(['لا يوجد حساب بهذه البيانات']);
+                   // return response()->json(['error' => 'لا يوجد حساب بهذه البيانات'], 401);
                 }
             } catch (\Exception $e) {
-                return response()->json(['error' => 'حدث خطأ غير متوقع، حاول مرة أخرى'], 500);
+                return Redirect()->back()->withInput()->withErrors(['حدث خطأ غير متوقع، حاول مرة أخرى']);
+            //    return response()->json(['error' => 'حدث خطأ غير متوقع، حاول مرة أخرى'], 500);
             }
         }
 
+        return view('front.login');
         if (Auth::check()) {
             return redirect('user/dashboard');
         }
 
-      //  return view('website.login');
+        //  return view('website.login');
     }
 
 
     public function forget_password(Request $request)
     {
-        if
-        ($request->isMethod('post')) {
+        if ($request->isMethod('post')) {
             $data = $request->all();
             // dd($data);
             $email = $data['email'];
@@ -236,7 +170,7 @@ class UserController extends Controller
                 $MessageDate = [
                     'code' => base64_encode($email)
                 ];
-                Mail::send('website.mails.UserChangePasswordMail', $MessageDate, function ($message) use ($email) {
+                Mail::send('front.mails.UserChangePasswordMail', $MessageDate, function ($message) use ($email) {
                     $message->to($email)->subject(' رابط تغير كلمة المرور ');
                 });
                 DB::commit();
@@ -246,13 +180,13 @@ class UserController extends Controller
                 // return $this->Error_message(' للاسف لا يوجد حساب بهذة البيانات  ');
             }
         }
-        return view('website.forget-password');
+        return view('front.forget-password');
     }
 
     public function change_forget_password(Request $request, $email)
     {
         $email = base64_decode($email);
-        return view('website.change-password', compact('email'));
+        return view('front.change-password', compact('email'));
     }
 
     public function update_forget_password(Request $request)
@@ -291,7 +225,7 @@ class UserController extends Controller
 
     public function update_info(Request $request)
     {
-        $user = User::where('id',Auth::id())->first();
+        $user = User::where('id', Auth::id())->first();
         $citizen = State::all();
         try {
             if ($request->isMethod('post')) {
@@ -323,11 +257,11 @@ class UserController extends Controller
                     'email' => $data['email'],
                     'phone' => $data['phone'],
                     'info' => $data['info'],
-                    'city'=>$data['city'],
-                    'website_url'=>$data['website_url'],
-                    'twitter_link'=>$data['twitter_link'],
-                    'insta_link'=>$data['insta_link'],
-                    'facebook_link'=>$data['facebook_link'],
+                    'city' => $data['city'],
+                    'website_url' => $data['website_url'],
+                    'twitter_link' => $data['twitter_link'],
+                    'insta_link' => $data['insta_link'],
+                    'facebook_link' => $data['facebook_link'],
                 ]);
                 return $this->success_message(' تم تعديل البيانات بنجاح !  ');
             }
@@ -335,7 +269,7 @@ class UserController extends Controller
             return $this->exception_message($e);
         }
 
-        return view('front.users.profile_data.update',compact('user','citizen'));
+        return view('front.users.profile_data.update', compact('user', 'citizen'));
     }
 
     public function password(Request $request)
@@ -366,7 +300,6 @@ class UserController extends Controller
                 } else {
                     return Redirect::back()->withInput()->withErrors(['  كلمة المرور القديمة غير صحيحة !!!!!  ']);
                 }
-
             }
         } catch (\Exception $e) {
             return $this->exception_message($e);
@@ -374,10 +307,9 @@ class UserController extends Controller
         return view('front.users.profile_data.password');
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return Redirect()->route('index');
     }
-
-
 }

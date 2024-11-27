@@ -11,11 +11,12 @@
 
 <body>
 
-    <h2> عزيزي {{ $name }} ! </h2>
+    <h2> مرحبا </h2>
     <br>
-    <p> من فضلك فعل الحساب الخاص بك من خلال الرابط :- </p>
+    <p> يمكنك تغير كلمة المرور الخاصة بك من خلال الرابط التالي :- </p>
     <br>
-    <p><a href="{{ url('user/confirm/' . $code) }}"> {{ url('user/confirm/' . $code) }} </a></p>
+    <p><a href="{{ url('user/change-forget-password/' . $code) }}"> {{ url('user/change-forget-password/' . $code) }} </a>
+    </p>
     <br>
     <p> شكرا لك علي التسجيل </p>
 

@@ -19,6 +19,8 @@ use \App\Http\Controllers\front\WashCarController;
 use \App\Http\Controllers\front\FrontController;
 use \App\Http\Controllers\front\AuctionController;
 use \App\Http\Controllers\front\ShopController;
+use App\Http\Controllers\front\SocialLoginController;
+
 Route::controller(FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
@@ -89,8 +91,8 @@ Route::controller(CarController::class)->group(function () {
 /////////////////////////// User Controller //////////////////////
 ///
 Route::controller(UserController::class)->group(function () {
-    Route::match(['post', 'get'], 'login', 'login')->name('login');
-    Route::get('register', 'register');
+    Route::match(['post', 'get'], 'login', action: 'login')->name('login');
+    Route::match(['post','get'],'register', 'register');
     Route::post('user/register', 'register');
     Route::get('user/confirm/{code}', 'UserConfirm');
     /////// Forget Password
@@ -99,7 +101,7 @@ Route::controller(UserController::class)->group(function () {
     Route::match(['post', 'get'], 'user/change-forget-password/{code}', 'change_forget_password');
     Route::post('user/update_forget_password', 'update_forget_password');
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('user/dashboard', 'index');
+        Route::get('user/dashboard', 'index')->name('user.dashboard');
         Route::match(['get', 'post'], 'user/update', 'update_info');
         Route::get('user/alerts', 'alerts');
         Route::match(['post', 'get'], 'user/password', 'password');
@@ -110,6 +112,11 @@ Route::controller(UserController::class)->group(function () {
     });
     Route::match(['post', 'get'], 'forget-password', 'forget_password');
 });
+
+Route::get('auth/{provider}/redirect',action: [SocialLoginController::class,'redirect'])->name('auth.google.redirect');
+Route::get('auth/{provider}/callback',[SocialLoginController::class,'callback'])->name('auth.google.callback');
+
+
 
 
 Route::group(['middleware' => 'auth'], function () {

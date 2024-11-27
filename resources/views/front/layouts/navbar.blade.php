@@ -41,7 +41,7 @@
     <a href="create.html"><i class="fa fa-plus"></i> بيع سيارتك </a>
     <a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> سيارات جديدة</a>
     <a href="used-car.html"><i class="fa fa-car"></i> سيارات مستعملة </a>
-    <a href="#" data-toggle="modal" data-target="#LoginModal"><i class="fas fa-user-shield"></i> تسجيل الدخول</a>
+    <a href="{{ url('login') }}"><i class="fas fa-user-shield"></i> تسجيل الدخول</a>
     <a href="index9ed2.html?lang=en"><i class="fa fa-globe"></i> English </a>
     <a href="#" data-toggle="modal" data-target="#flagsModal">
         <img src="images/ma.png" style="width:32px;" />
@@ -115,13 +115,11 @@
                     </li>
                 @else
                     <li class="nav-item login_nav">
-                        <a data-toggle="modal" data-bs-target="#LoginModallarge" data-bs-toggle="modal">
+                        <a href="{{ url('login') }}">
                             <i class="bi bi-person-circle"></i> تسجيل الدخول <i class="bi bi-text-paragraph"></i> </a>
                     </li>
-
-
                     <li class="nav-item login_nav register_nav">
-                        <a href="#" data-toggle="modal" data-target="#LoginModal">
+                        <a href="{{ url('register') }}">
                             <i class="bi bi-person-fill-add"></i> انشاء حساب جديد <i class="bi bi-text-paragraph"></i>
                         </a>
                     </li>
