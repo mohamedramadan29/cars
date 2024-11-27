@@ -49,6 +49,9 @@
                             <a href="{{url('user/auctions')}}"
                                class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i>  مكتب لشركة مزاد </a>
+                            <a href="{{url('user/products')}}"
+                               class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i>  اضافة منتج   </a>
                             <a href="{{url('user/forums')}}"
                                 class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>

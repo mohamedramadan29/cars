@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-    تعديل الرقم المميز
+    تعديل المنتج
 @endsection
 @section('content')
     <div id="HomePage">
@@ -28,40 +28,44 @@
             <div class="card-body" style="padding:0px;">
                 <div class="rgt profileRight">
                     <a class="btn btn-primary display-btnprofile" data-toggle="collapse" href="#collapseExample"
-                        role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
+                       role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
                     <div class="collapse show" id="collapseExample">
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action"
-                                style="border-radius:0px;color:white;font-size:19px;">
+                               style="border-radius:0px;color:white;font-size:19px;">
                                 <i class="fab fa-buffer"></i> القائمة </a>
                             <a href="{{ url('user/dashboard') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
                             <a href="{{ url('user/car/add') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف سيارة للبيع</a>
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="#"
+                               class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> الرسائل <span class="lft badge badge-primary">0</span></a>
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="#"
+                               class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
                             <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف وكالة </a>
+                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
                             <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف معرض </a>
+                                <i class="fab fa-buffer"></i> اضف معرض    </a>
                             <a href="{{ url('user/rent') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف مكتب تاجير </a>
+                                <i class="fab fa-buffer"></i> اضف  مكتب تاجير    </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action active">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
+                            <a href="{{url('user/centers')}}"
+                               class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
-                            <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
+                            <a href="{{url('user/forums')}}"
+                               class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
-                                style="border-radius:0px;">
+                            <a href="{{url('user/update')}}"
+                               class="list-group-item list-group-item-action" style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
                             <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
-                                style="border-radius:0px;">
+                               style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
-                            <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
-                                style="border-radius:0px;color:#C82333;">
+                            <a href="{{url('user/logout')}}"
+                               class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>
@@ -69,28 +73,27 @@
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-                    <h5 class="p-title"><i class="fas fa-edit"></i> تعديل الرقم </h5>
+                    <h5 class="p-title"><i class="fas fa-edit"></i>  تعديل المنتج  </h5>
                     <div class="clr"></div><br>
 
-                    <form action="{{ url('user/number/update/' . $number['id']) }}" method="post" class="p-form"
-                        enctype="multipart/form-data">
+                    <form action="{{ url('user/product/update/'.$product['id']) }}" method="post" class="p-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="car_number" class="form-control form-control-lg input-form"
-                                    placeholder="أدخل رقم السيارة" required="" value={{ $number['car_number'] }}>
+                                <input type="text" name="name" class="form-control form-control-lg input-form"
+                                       placeholder="اسم المنتج " required="" value="{{$product['name']}}">
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="file" name="image" id="file" class="input-file" accept="image/*">
                                     <label for="file" class="btn btn-tertiary js-labelFile">
                                         <i class="icon fa fa-check"></i>
-                                        <span class="js-fileName">تعديل صورة لرقم</span>
+                                        <span class="js-fileName">رفع صورة للمنتج </span>
                                     </label>
-                                    <br>
-                                    <img width="100px" height="100px" class="img-thumbnail"
-                                        src="{{ asset('assets/uploads/CarNumbers/' . $number['logo']) }}" alt="">
                                 </div>
+
+                                <img width="100px" height="100px" class="img-thumbnail"
+                                     src="{{ asset('assets/uploads/Products/' . $product['main_image']) }}" alt="">
                                 <script type="text/javascript">
                                     (function() {
 
@@ -114,30 +117,38 @@
                             </div>
                             <div class="col-md-6">
                                 <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
-                                    id="subplace" style="height:45px;">
+                                        id="subplace" style="height:45px;">
                                     <option value="">حدد المدينة</option>
                                     @foreach ($citizen as $city)
-                                        <option @if ($city['id'] == $number['city']) selected @endif
-                                            value="{{ $city['id'] }}">{{ $city['name'] }}</option>
+                                        <option @if ($city['id'] == $product['city_id']) selected @endif
+                                        value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" name="owner_name" class="form-control form-control-lg input-form"
-                                    placeholder="إسم المالك" value="{{ $number['owner_name'] }}">
-                            </div>
+
                             <div class="col-md-6">
                                 <input type="text" name="price" class="form-control form-control-lg input-form"
-                                    placeholder="السعر " required="" value="{{ $number['price'] }}">
+                                       placeholder="السعر " required="" value="{{$product['price']}}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="phone" class="form-control form-control-lg input-form"
-                                    placeholder="رقم الهاتف" required="" value="{{ $number['phone'] }}">
+                                       placeholder="رقم الهاتف" required="" value = '{{$product['phone']}}'>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="whatsapp" class="form-control form-control-lg input-form"
+                                       placeholder="رقم الواتساب" required="" value="{{$product['whatsapp']}}">
+                            </div>
+                            <div class="col-md-12">
+                                <textarea class="form-control" placeholder="وصف المنتج " name="desc">{{$product['desc']}}</textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <label for=""> اضافة صور الي المعرض  </label>
+                                <input type="file" name="gallary[]" multiple class="form-control form-control-lg input-form">
                             </div>
                             <div class="col-12">
                                 <br>
-                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">تعديل
-                                    الرقم</button>
+                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block"> تعديل
+                                    المنتج </button>
                             </div>
                         </div>
                     </form>

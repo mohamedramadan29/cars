@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\front\FeatureAdsController;
 use App\Http\Controllers\front\UserController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\front\UserCarsController;
@@ -17,6 +18,7 @@ use \App\Http\Controllers\front\UserRentController;
 use \App\Http\Controllers\front\WashCarController;
 use \App\Http\Controllers\front\FrontController;
 use \App\Http\Controllers\front\AuctionController;
+use \App\Http\Controllers\front\ShopController;
 Route::controller(FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
@@ -172,6 +174,19 @@ Route::controller(ForumsController::class)->group(function () {
 Route::controller(SubscriptionController::class)->group(function(){
 
     Route::get('subscription','index');
+});
+
+Route::controller(ShopController::class)->group(function (){
+    Route::get('products','products');
+    Route::get('product/{user_id}/{slug}','product_details');
+    Route::get('user/products','index');
+    Route::match(['post','get'],'user/product/add','store');
+    Route::match(['post','get'],'user/product/update/{id}','update');
+});
+
+Route::controller(FeatureAdsController::class)->group(function (){
+    Route::get('feature-advs','index');
+
 });
 
 include 'admin.php';

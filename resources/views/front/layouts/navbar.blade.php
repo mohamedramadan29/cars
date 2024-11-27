@@ -3,10 +3,11 @@
     <div class="top_navbar">
         <div class="top_bar_links">
             <ul class="list-unstyled">
-                <li> <a href="{{url('aboutus')}}"> <i class="bi bi-person-vcard-fill"></i> من نحن </a> </li>
-                <li> <a href="{{url('contactus')}}"> <i class="bi bi-envelope-open-fill"></i> اتصل بنا </a> </li>
-                <li> <a href="{{url('privacy')}}"> <i class="bi bi-shield-fill-check"></i> سياسة الخصوصية </a> </li>
-                <li> <a href="{{url('terms')}}"> <i class="bi bi-file-earmark-ruled-fill"></i> اتفاقية الاستخدام </a> </li>
+                <li> <a href="{{ url('aboutus') }}"> <i class="bi bi-person-vcard-fill"></i> من نحن </a> </li>
+                <li> <a href="{{ url('contactus') }}"> <i class="bi bi-envelope-open-fill"></i> اتصل بنا </a> </li>
+                <li> <a href="{{ url('privacy') }}"> <i class="bi bi-shield-fill-check"></i> سياسة الخصوصية </a> </li>
+                <li> <a href="{{ url('terms') }}"> <i class="bi bi-file-earmark-ruled-fill"></i> اتفاقية الاستخدام </a>
+                </li>
                 {{-- <li> <a href="#"> <i class="bi bi-file-earmark-zip-fill"></i> الارشيف </a> </li> --}}
             </ul>
         </div>
@@ -25,7 +26,7 @@
 <div class="display-mobile">
     <div class="clearfix2 mobileNav">
         <div class="rgt">
-            <a href="index.php"><img src="{{asset('assets/front/uploads/logo.png')}}" style="width:130px;" /> </a>
+            <a href="index.php"><img src="{{ asset('assets/front/uploads/logo.png') }}" style="width:130px;" /> </a>
         </div>
         <div class="lft iconPart">
             <a href="#" data-toggle="modal" data-target="#LoginModalmain"><i class="fa fa-users"></i></a>
@@ -38,7 +39,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.php"><i class="fa fa-home"></i> الرئيسية </a>
     <a href="create.html"><i class="fa fa-plus"></i> بيع سيارتك </a>
-    <a href="{{url('new-cars')}}"><i class="fa fa-car"></i> سيارات جديدة</a>
+    <a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> سيارات جديدة</a>
     <a href="used-car.html"><i class="fa fa-car"></i> سيارات مستعملة </a>
     <a href="#" data-toggle="modal" data-target="#LoginModal"><i class="fas fa-user-shield"></i> تسجيل الدخول</a>
     <a href="index9ed2.html?lang=en"><i class="fa fa-globe"></i> English </a>
@@ -86,28 +87,31 @@
     <div id="HomePage" class="display-desk">
 
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{{url('/')}}"><img width="120px" src="{{asset('assets/front/uploads/logo.png')}}" style /></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img width="120px"
+                    src="{{ asset('assets/front/uploads/logo.png') }}" style /></a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{url('new-cars')}}"><i class="fa fa-car"></i> سيارات جديدة </a></li>
-                    <li class="nav-item"><a href="{{url('used-cars')}}"><i class="fa fa-car"></i> سيارات مستعملة</a></li>
+                    <li class="nav-item"><a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> سيارات جديدة </a>
+                    </li>
+                    <li class="nav-item"><a href="{{ url('used-cars') }}"><i class="fa fa-car"></i> سيارات
+                            مستعملة</a></li>
                 </ul>
-                @if(Auth::check())
-                    <a href="{{url('user/car/add')}}" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
-                            class="fa fa-plus"></i> بيع سيارتك</a>
+                @if (Auth::check())
+                    <a href="{{ url('user/car/add') }}" class="rgt btn gradient-btn btn-sm"
+                        style="margin-right:10px;"><i class="fa fa-plus"></i> بيع سيارتك</a>
                 @else
-                    <a href="{{url('create-car')}}" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
-                            class="fa fa-plus"></i> بيع سيارتك</a>
+                    <a href="{{ url('create-car') }}" class="rgt btn gradient-btn btn-sm"
+                        style="margin-right:10px;"><i class="fa fa-plus"></i> بيع سيارتك</a>
                 @endif
 
                 {{-- <a href="create-2.html" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
                         class="fa fa-plus"></i> بيع دراجتك </a> --}}
             </div>
             <ul class="navbar-nav">
-                @if(Auth::check())
+                @if (Auth::check())
                     <li class="nav-item login_nav">
-                        <a href="{{url('user/dashboard')}}">
-                            <i class="bi bi-person-circle"></i> حسابي  <i class="bi bi-text-paragraph"></i> </a>
+                        <a href="{{ url('user/dashboard') }}">
+                            <i class="bi bi-person-circle"></i> حسابي <i class="bi bi-text-paragraph"></i> </a>
                     </li>
                 @else
                     <li class="nav-item login_nav">
@@ -118,13 +122,14 @@
 
                     <li class="nav-item login_nav register_nav">
                         <a href="#" data-toggle="modal" data-target="#LoginModal">
-                            <i class="bi bi-person-fill-add"></i> انشاء حساب جديد <i class="bi bi-text-paragraph"></i> </a>
+                            <i class="bi bi-person-fill-add"></i> انشاء حساب جديد <i class="bi bi-text-paragraph"></i>
+                        </a>
                     </li>
                 @endif
 
                 <li class="nav-item countryflags">
                     <a href="#" data-toggle="modal" data-target="#flagsModal">
-                        <img src="{{asset('assets/front/uploads/ma.png')}}" style="width:32px;" />
+                        <img src="{{ asset('assets/front/uploads/ma.png') }}" style="width:32px;" />
                     </a>
                 </li>
                 <li class="nav-item" style="margin-top:10px;">
@@ -137,22 +142,25 @@
 <div class="shadow display-desk">
     <div class="navbar navbar-expand-lg" id="HomePage">
         <ul class="navbar-nav navbtm">
-            <li><a href="{{url('agency')}}"><i class="fas fa-building"></i> الوكالات</a></li>
-            <li><a href="{{url('showrooms')}}"><i class="fas fa-car"></i> المعارض</a></li>
-            <li><a href="{{url('rent')}}"><i class="fas fa-handshake"></i> تأجير </a></li>
-            <li><a href="{{url('car_numbers')}}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
-            <li><a href="{{url('auto-repair')}}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
-            <li><a href="{{url('car-wash')}}"><i class="fas fa-wrench"></i>  غسيل السيارات  </a></li>
-            <li><a href="{{url('auctions')}}"><i class="fas fa-wrench"></i>  شركات المزاد </a></li>
-            <li><a href="{{url('forums')}}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
-            <li><a href="{{url('subscription')}}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
+            <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i> الوكالات</a></li>
+            <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> المعارض</a></li>
+            <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i> تأجير </a></li>
+            <li><a href="{{ url('car_numbers') }}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
+            <li><a href="{{ url('auto-repair') }}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
+            <li><a href="{{ url('car-wash') }}"><i class="fas fa-wrench"></i> غسيل السيارات </a></li>
+            <li><a href="{{ url('auctions') }}"><i class="fas fa-wrench"></i> شركات المزاد </a></li>
+            <li><a href="{{ url('products') }}"><i class="fas fa-wrench"></i> معرض الاداوات الاحتياطية </a></li>
+            <li><a href="{{ url('forums') }}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
+            <li><a href="{{ url('feature-advs') }}"><i class="far fa-comments"></i> ميز اعلانك  </a></li>
+            <li><a href="{{ url('subscription') }}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
+            <li><a href="{{ url('pub') }}"><i class="fas fa-star"></i>  اعلن معنا  </a></li>
         </ul>
     </div>
 </div>
 
 
 <div class="modal fade" id="LoginModallarge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -180,16 +188,16 @@
                         <div id="result2" class="mt-2"></div>
                         <div class="clr"></div>
                         <input type="email" name="email" class="form-control" placeholder="البريد الإلكتروني"
-                               required autofocus>
+                            required autofocus>
                         <input type="password" name="password" class="form-control" placeholder="كلمة السر"
-                               required>
-                        <button style="width: 100%; margin-top:15px" class="btn btn-success btn-block" type="button" id="loginBtn" name="submit"><i
-                                class="fas fa-sign-in-alt"></i> دخول</button>
+                            required>
+                        <button style="width: 100%; margin-top:15px" class="btn btn-success btn-block" type="button"
+                            id="loginBtn" name="submit"><i class="fas fa-sign-in-alt"></i> دخول</button>
                         <a href="resetpass.html">نسيت كلمة السر ؟</a>
                         <hr>
 
-                        <button style="width: 100%;" class="btn btn-primary btn-block" type="button" id="btn-signup"><i
-                                class="fas fa-user-plus"></i> تسجيل حساب جديد</button>
+                        <button style="width: 100%;" class="btn btn-primary btn-block" type="button"
+                            id="btn-signup"><i class="fas fa-user-plus"></i> تسجيل حساب جديد</button>
                     </form>
                     <form id="regform" method="post" autocomplete="off" class="form-signup">
                         @csrf
@@ -207,13 +215,13 @@
                         <div id="result" class="mt-2"></div>
                         <div class="clr"></div>
                         <input type="text" name="name" id="name" class="form-control"
-                               placeholder="الإسم كامل" autofocus>
+                            placeholder="الإسم كامل" autofocus>
                         <input type="email" name="email" id="user-email" class="form-control"
-                               placeholder="البريد الإلكتروني" autofocus>
+                            placeholder="البريد الإلكتروني" autofocus>
                         <input type="number" name="phone" id="user-mobile" class="form-control"
-                               placeholder="رقم الهاتف" autofocus>
+                            placeholder="رقم الهاتف" autofocus>
                         <input type="password" name="password" id="user-pass" class="form-control"
-                               placeholder="كلمة السر" autofocus>
+                            placeholder="كلمة السر" autofocus>
                         <button class="btn btn-primary btn-block" type="button" id="registerBtn" name="submit"><i
                                 class="fas fa-user-plus"></i> تسجيل </button>
                         <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> رجوع</a>
@@ -225,7 +233,7 @@
     </div>
 </div>
 <div class="modal fade" id="flagsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
