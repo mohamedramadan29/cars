@@ -86,6 +86,36 @@
                     </div>
                 </div>
                 <div class="clr"></div>
+                <div class="hero_slider">
+                    <div class="container-fluid">
+                        <div id="carouselExampleIndicators" class="carousel slide carousel-fade">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('assets/front/uploads/hero_image.jpeg') }}" class="d-block w-100"
+                                        alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('assets/front/uploads/hero1.jpeg') }}" class="d-block w-100"
+                                        alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('assets/front/uploads/hero_image.jpeg') }}" class="d-block w-100"
+                                        alt="...">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clr"></div>
                 <div class="card-text postList" style="padding:20px;">
                     @foreach ($repairs as $repair)
                         <div class="rgt card cardrepair">
@@ -113,7 +143,8 @@
                                         <div class="clr"></div>
                                         <a href="tel:{{ $repair['phone'] }}" class="rgt btn btn-success btn-sm"><i
                                                 class="fas fa-phone"></i> اتصل </a>
-                                        <a href="{{ url('auto_repair/' . $repair['slug']) }}" class="rgt btn btn-danger btn-sm"><i class="fas fa-bars"></i>
+                                        <a href="{{ url('auto_repair/' . $repair['slug']) }}"
+                                            class="rgt btn btn-danger btn-sm"><i class="fas fa-bars"></i>
                                             تفاصيل اكثر </a>
                                         <div class="clr"></div>
                                         <p class="card-text"><small class="text-muted"> تاريخ الإضافة :

@@ -26,46 +26,63 @@
 <div class="display-mobile">
     <div class="clearfix2 mobileNav">
         <div class="rgt">
-            <a href="index.php"><img src="{{ asset('assets/front/uploads/logo.png') }}" style="width:130px;" /> </a>
+            <a href="{{ url('/') }}"><img src="{{ asset('assets/front/uploads/logo.png') }}" style="width:75px;" /> </a>
         </div>
         <div class="lft iconPart">
-            <a href="#" data-toggle="modal" data-target="#LoginModalmain"><i class="fa fa-users"></i></a>
-            <a href="adv-search.html"><i class="fa fa-search"></i></a>
+            <ul class="navbar-nav">
+                @if (Auth::check())
+                    <li class="nav-item login_nav">
+                        <a href="{{ url('user/dashboard') }}">
+                            <i class="bi bi-person-circle"></i> حسابي <i class="bi bi-text-paragraph"></i> </a>
+                    </li>
+                @else
+                    <li class="nav-item login_nav">
+                        <a href="{{ url('login') }}">
+                            <i class="bi bi-person-circle"></i> تسجيل الدخول <i class="bi bi-text-paragraph"></i> </a>
+                    </li>
+                @endif
+            </ul>
             <a href="#" onclick="openNav()"><i class="fa fa-bars"></i></a>
         </div>
     </div>
 </div>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="index.php"><i class="fa fa-home"></i> الرئيسية </a>
-    <a href="create.html"><i class="fa fa-plus"></i> بيع سيارتك </a>
+    <a href="{{ url('/') }}"><i class="fa fa-home"></i> الرئيسية </a>
+    <a href="{{ url('user/car/add') }}"><i class="fa fa-plus"></i> بيع سيارتك </a>
     <a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> سيارات جديدة</a>
-    <a href="used-car.html"><i class="fa fa-car"></i> سيارات مستعملة </a>
+    <a href="{{ url('used-cars') }}"><i class="fa fa-car"></i> سيارات مستعملة </a>
     <a href="{{ url('login') }}"><i class="fas fa-user-shield"></i> تسجيل الدخول</a>
-    <a href="index9ed2.html?lang=en"><i class="fa fa-globe"></i> English </a>
-    <a href="#" data-toggle="modal" data-target="#flagsModal">
-        <img src="images/ma.png" style="width:32px;" />
-    </a>
+    <a href="#"><i class="fa fa-globe"></i> English </a>
     <div class="clr"></div>
     <hr style="color:#333333;" />
     <div class="navink-mobile">
-        <a href="cars-agencies.html"><i class="fas fa-building"></i> الوكالات</a>
-        <a href="showrooms.php"><i class="fas fa-car"></i> المعارض</a>
-        <a href="rent.html"><i class="fas fa-handshake"></i> تأجير</a>
-        <a href="car-numbers.php"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a>
-        <a href="auto-repair.html"><i class="fas fa-wrench"></i> مراكز الصيانة</a>
-        <a href="brands.html"><i class="fas fa-ring"></i> الماركات</a>
-        <a href="forums.php"><i class="far fa-comments"></i> منتدى الأراء</a>
-        <a href="blog.html"><i class="far fa-newspaper"></i> المدونة</a>
-        <a href="subscription.html"><i class="fas fa-star"></i> العضويات المميزة</a>
-        <a href="contactus.html"><i class="fas fa-headset"></i> إتصل بنا</a>
+        <ul class="list-unstyled">
+            <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i> الوكالات</a></li>
+            <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> المعارض</a></li>
+            <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i> تأجير </a></li>
+            <li><a href="{{ url('car_numbers') }}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
+            <li><a href="{{ url('auto-repair') }}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
+            <li><a href="{{ url('car-wash') }}"> <img src="{{ asset('assets/icons/wash.svg') }}" alt="">
+                    غسيل السيارات </a></li>
+            <li><a href="{{ url('auctions') }}"> <img src="{{ asset('assets/icons/auction.svg') }}" alt="">
+                    شركات المزاد </a></li>
+            <li><a href="{{ url('products') }}"><img src="{{ asset('assets/icons/products.svg') }}" alt="">
+                    معرض الاداوات الاحتياطية </a></li>
+            <li><a href="{{ url('forums') }}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
+            <li><a href="{{ url('feature-advs') }}"> <img src="{{ asset('assets/icons/adv.svg') }}" alt="">
+                    ميز اعلانك </a></li>
+            <li><a href="{{ url('subscription') }}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
+            <li><a href="{{ url('pub') }}"> <img src="{{ asset('assets/icons/adv2.svg') }}" alt=""> اعلن
+                    معنا </a></li>
+        </ul>
+
         <div class="clr"></div>
         <hr style="color:#333333;" />
         <center>
-            <img src="images/a3.png" />
+            <img style="max-width: 120px" src="{{ asset('assets/front/uploads/logo.png') }}" />
             <div class="clr"></div>
-            {{-- <div class="copy"><a href="https://www.chakirdev.com/" target="_blank" style="font-size:12px;">POWERED
-                    BY CHAKIRDEV</a></div> --}}
+
         </center>
     </div>
 </div>
@@ -138,20 +155,25 @@
     </div>
 </div>
 <div class="shadow display-desk">
-    <div class="navbar navbar-expand-lg" id="HomePage">
+    <div class="navbar navbar-expand-lg" id="HomePage2">
         <ul class="navbar-nav navbtm">
             <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i> الوكالات</a></li>
             <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> المعارض</a></li>
             <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i> تأجير </a></li>
             <li><a href="{{ url('car_numbers') }}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
             <li><a href="{{ url('auto-repair') }}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
-            <li><a href="{{ url('car-wash') }}"><i class="fas fa-wrench"></i> غسيل السيارات </a></li>
-            <li><a href="{{ url('auctions') }}"><i class="fas fa-wrench"></i> شركات المزاد </a></li>
-            <li><a href="{{ url('products') }}"><i class="fas fa-wrench"></i> معرض الاداوات الاحتياطية </a></li>
+            <li><a href="{{ url('car-wash') }}"> <img src="{{ asset('assets/icons/wash.svg') }}" alt="">
+                    غسيل السيارات </a></li>
+            <li><a href="{{ url('auctions') }}"> <img src="{{ asset('assets/icons/auction.svg') }}" alt="">
+                    شركات المزاد </a></li>
+            <li><a href="{{ url('products') }}"><img src="{{ asset('assets/icons/products.svg') }}" alt="">
+                    معرض الاداوات الاحتياطية </a></li>
             <li><a href="{{ url('forums') }}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
-            <li><a href="{{ url('feature-advs') }}"><i class="far fa-comments"></i> ميز اعلانك  </a></li>
+            <li><a href="{{ url('feature-advs') }}"> <img src="{{ asset('assets/icons/adv.svg') }}" alt="">
+                    ميز اعلانك </a></li>
             <li><a href="{{ url('subscription') }}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
-            <li><a href="{{ url('pub') }}"><i class="fas fa-star"></i>  اعلن معنا  </a></li>
+            <li><a href="{{ url('pub') }}"> <img src="{{ asset('assets/icons/adv2.svg') }}" alt=""> اعلن
+                    معنا </a></li>
         </ul>
     </div>
 </div>

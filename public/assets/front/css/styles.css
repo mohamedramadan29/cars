@@ -70,6 +70,11 @@ h1, h2, h3, h4, h5, h6 {
     margin: auto
 }
 
+#HomePage2 {
+    width: 100%;
+    margin: auto;
+}
+
 .clearfix2:after, .clearfix2:before {
     content: "\0020";
     display: block;
@@ -161,15 +166,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbtm li a {
-    font-size: 13px;
-    padding: 7px;
+    font-size: 12px;
+    padding: 0px;
     margin: 0px 10px;
     color: #282828
 }
 
 .navbtm li a:hover {
     background: #eaeaea;
-    color: #282828
+    color: #282828;
+    padding: 0;
 }
 
 .navbtm li a i {
@@ -6320,7 +6326,8 @@ span.right {
 }
 
 .hero_slider .carousel-inner {
-    height: 350px;
+    height: 320px;
+    margin-bottom: 30px;
 }
 
 
@@ -6722,13 +6729,14 @@ span.right {
     height: 15px;
 }
 
-.car_description{
-    border:1px solid #f3f0f0;
+.car_description {
+    border: 1px solid #f3f0f0;
     background-color: #fdfdfd;
     margin-top: 40px;
     margin-bottom: 40px;
 }
-.car_description .desc_button{
+
+.car_description .desc_button {
     background-color: #c70303;
     display: inline-block;
     color: #fff;
@@ -6740,17 +6748,21 @@ span.right {
     text-align: center;
     margin-bottom: 30px;
 }
-.car_description p{
+
+.car_description p {
     line-height: 2;
     padding: 10px;
 }
+
 .car_description ul li {
     margin-bottom: 10px;
     color: #59688E;
 }
-.car_description ul li i{
+
+.car_description ul li i {
     color: #09BA50;
 }
+
 /********************* Starr Feature Ads ******************/
 
 .feature_ads {
@@ -7265,4 +7277,132 @@ span.right {
 .btn-danger:hover {
     background-color: #BA0012;
     border-color: #BA0012;
+}
+
+
+@media(max-width:991px) {
+    .top_navbar {
+        flex-direction: column;
+        padding: 5px 0;
+        width: 100%;
+    }
+
+    .top_navbar .top_bar_links ul li a, .top_navbar .top_bar_social ul li a {
+        font-size: 11px;
+    }
+
+    .top_navbar .top_bar_links ul li i {
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .top_navbar .top_bar_links ul li {
+        margin: 0 8px;
+    }
+
+    .display-mobile .iconPart {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .display-mobile .fa-bars {
+        position: relative;
+        top: -8px;
+    }
+
+    .display-mobile a {
+        text-decoration: none;
+    }
+
+    .navbar-nav .login_nav a i {
+        color: #ce0014;
+    }
+
+    .sidenav a {
+        padding: 10px 10px 8px 8px;
+        text-decoration: none;
+        font-size: 17px;
+        color: #3d3d3e;
+        display: block;
+        transition: .3s;
+        margin-right: 0px;
+        border-bottom: 1px solid #efeeee;
+    }
+
+    #mySidenav a i {
+        color: #ce0014;
+        ;
+    }
+
+    .hero_slider .carousel-inner {
+        height: auto;
+    }
+
+    .bottom_footer .data {
+        flex-direction: column-reverse;
+    }
+
+    .bottom_footer .data .left-bottom p {
+        margin-left: 10px;
+    }
+
+    .bottom_footer .data .page_links ul li {
+        margin: 0 5px;
+    }
+
+    .bottom_footer .data .page_links ul li a {
+        font-size: 11px;
+    }
+
+    .login_page {
+        max-width: 95%;
+    }
+
+    .showRight {
+        max-width: 100%;
+    }
+
+    .new_car .more_details {
+        flex-wrap: wrap;
+    }
+
+    .new_car .car_price {
+        font-size: 15px;
+        width: 37%;
+    }
+
+    .CarCard .card-img {
+        width: 95%;
+    }
+
+    .new_car .car_price:after {
+        border-left: 30px solid #00000000;
+        border-bottom: 68px solid #f8f7f700;
+    }
+
+    .ribbon4, .ribbon5, .ribbon6 {
+        position: absolute;
+        top: -10px;
+        padding: 3px 4px;
+        right: 7px;
+    }
+    .card-img-agency {
+        width: 88px;
+        height: 70px;
+        margin-right: 10px;
+    }
+    .rent-img{
+        width: 160px;
+        height: 160px;
+    }
+    .card-img2{
+        margin-right: 10px;
+    }
+    .car-info-section{
+        flex-wrap: wrap;
+    }
+    .car_details_info{
+        flex-direction: column;
+    }
 }
