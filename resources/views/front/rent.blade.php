@@ -91,11 +91,12 @@
                         <div class="rgt cardrent">
                             <div class="card-body">
                                 <center><a href="{{ url('rent/details/' . $agency['slug']) }}">
-                                        <img class="rounded-circle rent-img"
+                                        <img class="rent-img"
                                             src="{{ asset('assets/uploads/AgencyRent/' . $agency['logo']) }}"
                                             alt="{{ $agency['name'] }}" /></a>
                                     <h4 class="card-title titlerent"><a href="{{ url('rent/details/' . $agency['slug']) }}"
                                             style=""> {{ $agency['name'] }} </a></h4>
+                                    <p> <i class="fas fa-map-marker-alt" style="color: #b00000"></i> {{ $agency['City']['name'] }}</p>
                                     <a href="{{ url('rent/details/' . $agency['slug']) }}" class="card-link  gradient-btn">
                                         <i class="bi bi-buildings-fill"></i> زيارة المكتب </a>
                                 </center>
@@ -104,7 +105,7 @@
                     @endforeach
 
 
-                    <div class="clr"></div>
+                    {{-- <div class="clr"></div>
                     <center>
                         <div class="show_more_main" id="show_more_main3">
                             <span id="3" class="show_more btn gradient-btn" title="Load more posts"> مشاهدة المزيد
@@ -113,7 +114,7 @@
                         </div>
                     </center>
                     <div class="clr"></div>
-                    <div class="clr"></div>
+                    <div class="clr"></div> --}}
                 </div>
             </div>
         </div>

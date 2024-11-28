@@ -18,8 +18,11 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0 price1">
+                                <div class="plan_name">
+                                    <h3> الباقة المجانية </h3>
+                                    <p> <span> Free </span> Package </p>
+                                </div>
                                 <div class="card-header">
-                                    <h5 class="card-title text-muted text-uppercase text-center"> مجاني </h5>
                                     <h6 class="card-price text-center">0$<span class="period">/شهريا </span></h6>
                                 </div>
                                 <div class="card-body">
@@ -39,15 +42,20 @@
                                                     class="fas fa-times text-muted"></i></span> لا يمكن إضافة مكاتب التأجير
                                         </li>
                                     </ul>
-                                    <a href="#order" class="btn btn-block btn-info"> اشترك </a>
+                                    <a href="#order" class="btn btn-block btn-danger"> اشترك </a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0 price2">
+                                <div class="plan_name">
+                                    <h3>  الباقة الفضية </h3>
+                                    <p> <span> Silver </span> Package </p>
+                                </div>
+
                                 <div class="card-header">
-                                    <h5 class="card-title text-muted text-uppercase text-center"> الفضي </h5>
+
                                     <h6 class="card-price text-center">9$<span class="period">/شهريا </span></h6>
                                 </div>
                                 <div class="card-body">
@@ -81,8 +89,11 @@
 
                         <div class="col-lg-4">
                             <div class="card price3">
+                                <div class="plan_name">
+                                    <h3>  الباقة الذهبية  </h3>
+                                    <p> <span> Gold </span> Package </p>
+                                </div>
                                 <div class="card-header">
-                                    <h5 class="card-title text-muted text-uppercase text-center"> الذهبي </h5>
                                     <h6 class="card-price text-center">49$<span class="period">/شهريا </span></h6>
                                 </div>
                                 <div class="card-body">
@@ -129,23 +140,18 @@
                     </center>
                     <div class="clr"></div>
                     <form action method="post" class="form-rent-req">
-                        <div class="alert alert-info" role="alert"> يجب أن تكون عضو في الموقع قبل إرسال طلب الإشتراك
-                            <div class="clr"></div>
-                            <a href="#" data-toggle="modal" data-target="#LoginModal"> إضغط هنا لتسجيل </a>
-                        </div>
+                        @if(Auth::check())
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputAddress2"> حدد نوع الإشتراك </label>
-                                <select class="form-control form-control-lg" name="subject"
-                                    style="border-color: #007EE4;height:55px;border-radius:0px;" disabled>
+                                <select class="form-control form-control-lg" name="subject">
                                     <option value="الفضي"> الفضي </option>
                                     <option value="الذهبي"> الذهبي </option>
                                 </select>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="inputAddress2"> وسيلة الدفع </label>
-                                <select class="form-control form-control-lg" name="msg"
-                                    style="border-color: #007EE4;height:55px;border-radius:0px;" disabled>
+                                <select class="form-control form-control-lg" name="msg">
                                     <option value="Bank Transfer"> تحويل بنكي </option>
                                 </select>
                             </div>
@@ -153,17 +159,17 @@
                         <div class="form-group">
                             <label for="inputAddress2"> الاسم كامل </label>
                             <input type="text" name="fullname" class="form-control form-control-lg"
-                                placeholder="الاسم كامل " style="border-color: #007EE4;" required disabled>
+                                placeholder="الاسم كامل" required>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress2"> البريد الالكتروني </label>
                             <input type="text" name="email" class="form-control form-control-lg"
-                                placeholder="البريد الالكتروني" style="border-color: #007EE4;" required disabled>
+                                placeholder="البريد الالكتروني"required >
                         </div>
                         <div class="form-group">
                             <label for="inputAddress2"> رقم الهاتف </label>
                             <input type="number" name="mobile" class="form-control form-control-lg"
-                                placeholder="رقم الهاتف " style="border-color: #007EE4;">
+                                placeholder="رقم الهاتف ">
                         </div>
                         <div class="form-group">
                             <div class="g-recaptcha" data-theme="light"
@@ -171,6 +177,13 @@
                         </div>
                         <br>
                         <button type="submit" name="sendorder" class="lft btn btn-success"> ارسل الطلب </button>
+                            @else
+                            <div class="alert alert-info" role="alert"> يجب أن تكون عضو في الموقع قبل إرسال طلب الإشتراك
+                                <div class="clr"></div>
+                                <a href="{{ url('login') }}"> إضغط هنا لتسجيل </a>
+                            </div>
+                        @endif
+
                     </form>
                 </div>
                 <center>
@@ -186,9 +199,9 @@
                     <h2 class="subs-title"><i class="far fa-comments"></i> تواصل معنا </h2>
                     <div class="clr"></div>
                     <p class="subs-text">
-                        <a href="https://api.whatsapp.com/send?phone=212632551533" class="btn btn-success"
-                            style="margin:10px;"><i class="fab fa-whatsapp"></i> عبر الواتساب : 212632551533</a> or
-                        <a href="contactus-2.html" class="btn btn-danger" style="margin:10px;"><i
+                        <a href="#" class="btn btn-success"
+                            style="margin:10px;"><i class="fab fa-whatsapp"></i> عبر الواتساب : 000000000</a> or
+                        <a href="{{ url('contactus') }}" class="btn btn-danger" style="margin:10px;"><i
                                 class="fa fa-envelope"></i> ارسل رسالة لبريد الموقع </a>
                     </p>
                 </center>

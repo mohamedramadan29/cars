@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-    الرئيسية
+    عراق اوتو كار
 @endsection
 @section('content')
     @if (Session::has('Success_message'))
@@ -101,7 +101,7 @@
     </div>
     <div class="clr"></div>
     <div class="hero_slider">
-        <div class="container">
+        <div class="container-fluid">
             <div id="carouselExampleIndicators" class="carousel slide carousel-fade">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -209,7 +209,7 @@
             @foreach($old_advs as $adv)
                 <div class="item">
                     <div class="card car-card">
-                        <div class="ribbon"><span class="ribbon4 ribbonplus"> {{ number_format($adv['c_price'], 2) }} $
+                        <div class="ribbon"><span class="ribbon5 ribbonplus"> {{ number_format($adv['c_price'], 2) }} $
                                 </span></div>
                         <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"><img
                                 src="{{ asset('assets/uploads/CarImages/' . $adv->carImages->first()->c_image) }}"
@@ -258,7 +258,7 @@
             @foreach($random_advs as $adv)
                 <div class="item">
                     <div class="card car-card">
-                        <div class="ribbon"><span class="ribbon4 ribbonplus"> {{ number_format($adv['c_price'], 2) }} $
+                        <div class="ribbon"><span class="ribbon6 ribbonplus"> {{ number_format($adv['c_price'], 2) }} $
                                 </span></div>
                         <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"><img
                                 src="{{ asset('assets/uploads/CarImages/' . $adv->carImages->first()->c_image) }}"

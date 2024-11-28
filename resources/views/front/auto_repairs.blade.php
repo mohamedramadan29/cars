@@ -90,9 +90,16 @@
                     @foreach ($repairs as $repair)
                         <div class="rgt card cardrepair">
                             <div class="row no-gutters">
-                                <div class="col-md-3"><a href="{{ url('auto_repair/' . $repair['slug']) }}"><img
-                                            src="{{ asset('assets/uploads/AutoRepair/' . $repair['logo']) }}"
-                                            class="repair-img"></a></div>
+                                <div class="col-md-3">
+                                    <a href="{{ url('auto_repair/' . $repair['slug']) }}">
+                                        <div class="ribbon" style="top: -15px"><span class="ribbon5 ribbonplus"><i
+                                                    class="fab fa-free-code-camp" style="font-size:12px;"></i> عرض مميز
+                                            </span>
+                                        </div>
+                                        <img src="{{ asset('assets/uploads/AutoRepair/' . $repair['logo']) }}"
+                                            class="repair-img">
+                                    </a>
+                                </div>
                                 <div class="col-md-9">
                                     <div class="card-body">
                                         <h5 class="card-title"><a href="{{ url('auto_repair/' . $repair['slug']) }}">
@@ -106,7 +113,7 @@
                                         <div class="clr"></div>
                                         <a href="tel:{{ $repair['phone'] }}" class="rgt btn btn-success btn-sm"><i
                                                 class="fas fa-phone"></i> اتصل </a>
-                                        <a href="#" class="rgt btn btn-danger btn-sm"><i class="fas fa-bars"></i>
+                                        <a href="{{ url('auto_repair/' . $repair['slug']) }}" class="rgt btn btn-danger btn-sm"><i class="fas fa-bars"></i>
                                             تفاصيل اكثر </a>
                                         <div class="clr"></div>
                                         <p class="card-text"><small class="text-muted"> تاريخ الإضافة :

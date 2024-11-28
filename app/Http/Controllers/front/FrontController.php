@@ -50,7 +50,7 @@ class FrontController extends Controller
 
     public function showrooms()
     {
-        $rooms = ShowRoom::all();
+        $rooms = ShowRoom::with('advs','City')->get();
         $marks = CarMark::all();
         return view('front.showrooms',compact('rooms','marks'));
     }

@@ -91,7 +91,7 @@
                             <div class="rgt card showroomsCard">
                                 <div class="row no-gutters">
                                     <div class="ImgPart">
-                                        <div class="ribbon"><span class="ribbon4 ribbonplus"><i
+                                        <div class="ribbon"><span class="ribbon5 ribbonplus"><i
                                                     class="fab fa-free-code-camp" style="font-size:12px;"></i> وكالة مميزة</span>
                                         </div>
                                         <center><a

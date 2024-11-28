@@ -8,12 +8,12 @@
             <div class="card-body">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb">
-                        <li class="breadcrumb-item active"><a href="../../index.html"> سيارات للبيع </a></li>
+                        <li class="breadcrumb-item active"><a href="{{ url('/') }}"> سيارات للبيع </a></li>
                         <li class="breadcrumb-item active">
-                            <a href="../../used-car.html"> / سيارات جديدة </a>
+                            <a href="{{ url('new-cars') }}"> / سيارات جديدة </a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <a href="../../brand/1/%d8%a3%d9%88%d8%af%d9%8a.html"> {{ $car['carMark']->name }} </a>
+                            <a href="{{ url('brand/' . $car['carMark']->slug) }}"> {{ $car['carMark']->name }} </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             <a> {{ $car['c_title'] }} </a>
@@ -80,31 +80,94 @@
                                 اضف الي المفضلة
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="text-decoration: none;color:#000"> <i
+                                    style="color:red" class="fas fa-share"></i>
+                                شارك الإعلان
+                            </a>
+                        </li>
                     </ul>
-                    
+
                     <div class="tab-content" id="pills-tabContent">
                         <!-- قسم تفاصيل السيارة -->
                         <div class="tab-pane fade show active" id="pills-one" role="tabpanel">
+                            <div class="car-info-section">
+                                <div class="car-info-box">
+                                    <img src="{{ asset('assets/icons/car16.svg') }}" alt="المسافة">
+                                    <div class="car-info-title">المسافة</div>
+                                    <div class="car-info-value">1350 كم</div>
+                                </div>
+                                <div class="car-info-box">
+                                    <img src="{{ asset('assets/icons/car15.svg') }}" alt="سيارة">
+                                    <div class="car-info-title">الهيكل</div>
+                                    <div class="car-info-value">صغير</div>
+                                </div>
+                                <div class="car-info-box">
+                                    <img src="{{ asset('assets/icons/car14.svg') }}" alt="وقود">
+                                    <div class="car-info-title">نوع الوقود</div>
+                                    <div class="car-info-value">بنزين</div>
+                                </div>
+                                <div class="car-info-box">
+                                    <img src="{{ asset('assets/icons/car13.svg') }}" alt="محرك">
+                                    <div class="car-info-title">المحرك</div>
+                                    <div class="car-info-value">2.0 لتر</div>
+                                </div>
+                                <div class="car-info-box">
+                                    <img src="{{ asset('assets/icons/car12.svg') }}" alt="ناقل">
+                                    <div class="car-info-title">ناقل الحركة</div>
+                                    <div class="car-info-value">أتوماتيك</div>
+                                </div>
+                                <div class="car-info-box">
+                                    <img src="{{ asset('assets/icons/car11.svg') }}" alt="الدفع">
+                                    <div class="car-info-title">الدفع</div>
+                                    <div class="car-info-value">4WD</div>
+                                </div>
+                            </div>
                             <div class="car_details_info">
                                 <ul>
-                                    <li> <strong> كم : </strong> {{ $car->c_km }} كم</li>
-                                    <li> <strong> الماركة : </strong> {{ $car->carMark->name }} </li>
-                                    <li> <strong> الموديل : </strong> {{ $car['carBrand']->name }} </li>
-                                    <li> <strong> سنة الصنع : </strong> {{ $car->c_year }} </li>
-                                    <li> <strong> المحافظة : </strong> {{ $car['City']->name }} </li>
+                                    <li> <strong> كم : </strong> <span> {{ $car->c_km }} كم </span> <img
+                                            src="{{ asset('assets/icons/car1.png') }}" alt=""> </li>
+                                    <li> <strong> الماركة : </strong> <span> {{ $car->carMark->name }} </span> <img
+                                            src="{{ asset('assets/uploads/Marks/' . $car->carMark->logo) }}"
+                                            alt=""> </li>
+                                    <li> <strong> الموديل : </strong> <span> {{ $car['carBrand']->name }} </span> <img
+                                            src="{{ asset('assets/icons/car2.svg') }}" alt=""> </li>
+                                    <li> <strong> سنة الصنع : </strong> <span> {{ $car->c_year }} </span> <img
+                                            src="{{ asset('assets/icons/car3.svg') }}" alt=""> </li>
+                                    <li> <strong> المحافظة : </strong> <span> {{ $car['City']->name }} </span> <img
+                                            src="{{ asset('assets/icons/car4.png') }}" alt=""> </li>
 
                                 </ul>
                                 <ul>
-                                    <li> <strong> اللون : </strong> {{ $car['c_color'] }} </li>
-                                    <li> <strong> نمط السيارة : </strong> {{ $car['c_style'] }} </li>
-                                    <li> <strong> ناقل الحركة : </strong> {{ $car['c_trans'] }} </li>
-                                    <li> <strong> الوقود : </strong> {{ $car['c_fuel'] }} </li>
-                                    <li> <strong> حالة السيارة : </strong> {{ $car['c_type'] }} </li>
+                                    <li> <strong> اللون : </strong> <span
+                                            style="border: 5px solid {{ $car['c_color'] }};width:40px "></span> <img
+                                            src="{{ asset('assets/icons/car5.svg') }}" alt=""> </li>
+                                    <li> <strong> نمط السيارة : </strong> <span> {{ $car['c_style'] }} </span> <img
+                                            src="{{ asset('assets/icons/car6.svg') }}" alt=""> </li>
+                                    <li> <strong> ناقل الحركة : </strong> <span> {{ $car['c_trans'] }} </span> <img
+                                            src="{{ asset('assets/icons/car7.svg') }}" alt=""> </li>
+                                    <li> <strong> الوقود : </strong> <span> {{ $car['c_fuel'] }} </span> <img
+                                            src="{{ asset('assets/icons/car8.svg') }}" alt=""> </li>
+                                    <li> <strong> حالة السيارة : </strong> <span>
+                                            @if ($car['c_type'] == 1)
+                                                جديدة
+                                            @else
+                                                مستعلمة
+                                            @endif
+                                        </span> <img src="{{ asset('assets/icons/car9.svg') }}" alt=""> </li>
                                 </ul>
                                 <ul>
-                                    <li> <strong> الوقود : </strong> {{ $car->c_fuel }} </li>
-                                    <li> <strong> ناقل الحركة: </strong> {{ $car->c_trans }} </li>
-                                    <li> <strong> الموقع : </strong> {{ $car->City->name }} </li>
+                                    <li> <strong> كم : </strong> <span> {{ $car->c_km }} كم </span> <img
+                                            src="{{ asset('assets/icons/car1.png') }}" alt=""> </li>
+                                    <li> <strong> الماركة : </strong> <span> {{ $car->carMark->name }} </span> <img
+                                            src="{{ asset('assets/uploads/Marks/' . $car->carMark->logo) }}"
+                                            alt=""> </li>
+                                    <li> <strong> الموديل : </strong> <span> {{ $car['carBrand']->name }} </span> <img
+                                            src="{{ asset('assets/icons/car2.svg') }}" alt=""> </li>
+                                    <li> <strong> سنة الصنع : </strong> <span> {{ $car->c_year }} </span> <img
+                                            src="{{ asset('assets/icons/car3.svg') }}" alt=""> </li>
+                                    <li> <strong> المحافظة : </strong> <span> {{ $car['City']->name }} </span> <img
+                                            src="{{ asset('assets/icons/car4.png') }}" alt=""> </li>
 
                                 </ul>
                             </div>
@@ -115,10 +178,12 @@
                         <div class="tab-pane fade" id="pills-three" role="tabpanel">
                             <div class="card car-tajhizat">
                                 <div class="card-body">
-                                    <h5 class="card-title tajhi-tit"><i class="fas fa-circle-notch"></i> وسائل الراحة </h5>
+                                    <h5 class="card-title tajhi-tit"><i class="fas fa-circle-notch"></i> وسائل الراحة
+                                    </h5>
                                     <div class="card-text">
                                         <?php foreach (explode(',', $car->c_comfort) as $comfort): ?>
-                                        <span class="text-muted"><i class="fas fa-check-double"></i> <?= $comfort ?></span>
+                                        <span class="text-muted"><i class="fas fa-check-double"></i>
+                                            <?= $comfort ?></span>
                                         <div class="clr"></div>
                                         <?php endforeach; ?>
                                     </div>
@@ -126,7 +191,8 @@
                             </div>
                             <div class="card car-tajhizat">
                                 <div class="card-body">
-                                    <h5 class="card-title tajhi-tit"><i class="fas fa-circle-notch"></i> وسائل الامان </h5>
+                                    <h5 class="card-title tajhi-tit"><i class="fas fa-circle-notch"></i> وسائل الامان
+                                    </h5>
                                     <div class="card-text">
                                         <?php foreach (explode(',', $car->c_safety) as $safety): ?>
                                         <span class="text-muted"><i class="fas fa-check-double"></i> <?= $safety ?></span>
@@ -140,7 +206,8 @@
                                     <h5 class="card-title tajhi-tit"><i class="fas fa-circle-notch"></i> نوافذ </h5>
                                     <div class="card-text">
                                         <?php foreach (explode(',', $car->c_windows) as $windows): ?>
-                                        <span class="text-muted"><i class="fas fa-check-double"></i> <?= $windows ?></span>
+                                        <span class="text-muted"><i class="fas fa-check-double"></i>
+                                            <?= $windows ?></span>
                                         <div class="clr"></div>
                                         <?php endforeach; ?>
                                     </div>
@@ -172,6 +239,22 @@
 
                         </div>
                     </div>
+                    <div class="car_description">
+                        <h3 class="desc_button"> الوصف   </h3>
+                        <p> {{ $car['more_info'] }} </p>
+                    </div>
+                    <div class="car_description">
+                        <h3 class="desc_button"> ارشادات الامان    </h3>
+                         <ul>
+                            <li> <i class="bi bi-check"></i> الحرص علي مقابلة البائع شخصيا والتأكد من هويته ( يفضل
+                                مقابلته بمكان عام بحضور أحد الأصدقاء ). </li>
+                                <li> <i class="bi bi-check"></i> التأكد من معاينة المنتج وفحصه من قبل مختصين.  </li>
+                                <li> <i class="bi bi-check"></i> توثيق عملية البيع/الشراء مع ذكر تفاصيل كاملة للمنتج.  </li>
+                                <li> <i class="bi bi-check"></i> عدم تحويل أي أموال إلا بعد التأكد من ( هوية البائع و توثيق
+                                    عملية البيع وإستلام المنتج ).  </li>
+                                <li> <i class="bi bi-check"></i>  الحرص علي الحصول علي سند قبض موقع من البائع. </li>
+                         </ul>
+                    </div>
                 </div>
                 <div class="LeftShowrom">
                     <div class>
@@ -186,11 +269,17 @@
                         </div>
                         <div class="clr"></div><br>
                         <div class="car-advertiser-info"> السعر </div>
-                        <div class="car-prix"> {{ $car['c_price'] }} $</div>
+                        <div class="car-prix"> {{ number_format($car['c_price'],2) }} $</div>
                         <div class="clr"></div>
                         <div style="font-size:14px;"></div>
-                        <button id="phone" type="button" class="btn btn-danger btn-block w-100" style="padding:10px; margin-bottom:10px"
-                            data-text-swap="0600000000" data-text-original="Show Number 06xxxx" style="font-size:25px;">
+                        <button id="phone" type="button" class="btn btn-success btn-block w-100"
+                            style="padding:10px; margin-bottom:10px" data-text-swap="0600000000"
+                            data-text-original="Show Number 06xxxx" style="font-size:25px;">
+                            <i class="bi bi-whatsapp" aria-hidden="true"></i> واتساب
+                        </button>
+                        <button id="phone" type="button" class="btn btn-danger btn-block w-100"
+                            style="padding:10px; margin-bottom:10px" data-text-swap="0600000000"
+                            data-text-original="Show Number 06xxxx" style="font-size:25px;">
                             <i class="fa fa-phone" aria-hidden="true"></i> هاتف
                         </button>
 

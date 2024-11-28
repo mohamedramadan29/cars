@@ -105,9 +105,9 @@
                                                 </a>
                                                 <p class="card-text"> {{ \Illuminate\Support\Str::words($room['desc'],10,'...') }} </p>
                                                 <p class="card-text">
-                                                <div class="rgt Tag"><i class="fa fa-map-marker-alt"></i>  {{$room['country']}} - {{$room['city']}}
+                                                <div class="rgt Tag"><i class="fa fa-map-marker-alt"></i>  {{ $room['City']['name']}}
                                                 </div>
-                                                <div class="rgt Tag"><i class="fa fa-car"></i> عدد السيارات : 4 </div>
+                                                <div class="rgt Tag"><i class="fa fa-car"></i> عدد السيارات : {{count($room['advs'])}} </div>
                                                 </p>
                                             </div>
                                         </div>
@@ -135,12 +135,12 @@
                                 <p class="card-text"> هل أنت من أصحاب المعارض ؟ يمكنك إضافة
                                     معرضك معنا وعرض سياراتك على الموقع </p>
                             </div>
-                            <a href="addshowroom.html" class="btn gradient-btn"
+                            <a href="{{ url('user/rooms') }}" class="btn gradient-btn"
                                style="border-radius:0px;padding:30px;"><i class="fa fa-plus"
                                                                           style="font-size:12px;"></i> سجل معرضك الان </a>
                         </div>
                         <div class="clr"></div><br>
-                        <a href="#"><img src="images/banner.png" /></a>
+                        <a href="#"><img src="{{ asset('assets/icons/banner.png') }}" /></a>
                         <div class="clr"></div><br>
                     </div>
                 </div>
