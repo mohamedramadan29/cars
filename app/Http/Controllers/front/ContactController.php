@@ -16,6 +16,10 @@ class ContactController extends Controller
 {
     use Message_Trait;
 
+
+
+
+
     public function contact(Request $request)
     {
         if ($request->isMethod('post')) {
