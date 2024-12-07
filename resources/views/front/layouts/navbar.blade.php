@@ -156,7 +156,8 @@
 </div>
 <div class="shadow display-desk">
     <div class="navbar navbar-expand-lg" id="HomePage2">
-        <ul class="navbar-nav navbtm">
+        <ul class="navbar-nav navbtm"> 
+            <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> الرئيسية </a></li>
             <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i> الوكالات</a></li>
             <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> المعارض</a></li>
             <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i> تأجير </a></li>

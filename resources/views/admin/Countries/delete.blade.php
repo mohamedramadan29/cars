@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> هل انت متاكد من حذف الدولة والمدن بداخلها    </h5>
+                <h5 class="modal-title" id="exampleModalLabel"> هل انت متاكد من حذف المحافظة  والمنطقة  بداخلها    </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{url('admin/country/delete/'.$country['id'])}}" method="post">

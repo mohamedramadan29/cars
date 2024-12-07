@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    اضافة مقال  جديد
+    اضافة مقال جديد
 @endsection
 @section('css')
 @endsection
@@ -10,7 +10,7 @@
 
         <!-- Start Container Fluid -->
         <div class="container-xxl">
-            <form method="post" action="{{url('admin/blog/add')}}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('admin/blog/add') }}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
@@ -36,21 +36,20 @@
                                     <div class="col-lg-6 col-12 ">
                                         <div class="mb-3">
                                             <label for="name" class="form-label"> العنوان <span class="star"
-                                                                                                style="color: red"> * </span>
+                                                    style="color: red"> * </span>
                                             </label>
-                                            <input required type="text" id="name" class="form-control" name="name"
-                                                   value="{{old('name')}}">
+                                            <input required type="text" id="name" class="form-control"
+                                                name="name" value="{{ old('name') }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="mb-3">
                                             <label for="category_id" class="form-label"> حدد القسم </label>
                                             <select required class="form-control" id="category_id" data-choices
-                                                    data-choices-groups data-placeholder="Select Categories"
-                                                    name="category_id">
+                                                data-choices-groups data-placeholder="Select Categories" name="category_id">
                                                 <option value=""> -- حدد القسم --</option>
-                                                @foreach($categories as $category)
-                                                    <option value="{{$category['id']}}">{{$category['name']}}</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -58,15 +57,14 @@
                                     <div class="col-lg-12 col-12 ">
                                         <div class="mb-3">
                                             <label for="short_desc" class="form-label"> الوصف المختصر <span class="star"
-                                                                                                            style="color: red"> * </span>
+                                                    style="color: red"> * </span>
                                             </label>
-                                            <textarea class="form-control"
-                                                      name="short_desc">{{old('short_desc')}}</textarea>
+                                            <textarea class="form-control" name="short_desc">{{ old('short_desc') }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <label for="short_desc" class="form-label"> محتوي المقال <span class="star"
-                                                                                                       style="color: red"> * </span></label>
+                                                style="color: red"> * </span></label>
                                         <input type="hidden" name="content" id="content">
                                         <!-- Quill Editors -->
                                         <div id="snow-editor" style="height: 300px;">
@@ -75,11 +73,10 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="name" class="form-label"> الصورة <span class="star"
-                                                                                               style="color: red"> * </span>
+                                                    style="color: red"> * </span>
                                             </label>
-                                            <input required type="file" accept="image/*" id="image" class="form-control"
-                                                   name="image"
-                                                   value="{{old('image')}}">
+                                            <input required type="file" accept="image/*" id="image"
+                                                class="form-control" name="image" value="{{ old('image') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -95,25 +92,22 @@
                                         <div class="mb-3">
                                             <label for="meta_title" class="form-label"> العنوان </label>
                                             <input type="text" id="meta_title" name="meta_title" class="form-control"
-                                                   placeholder="" value="{{old('meta_title')}}">
+                                                placeholder="" value="{{ old('meta_title') }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="meta_keywords" class="form-label"> الكلمات المفتاحية </label>
                                             <input type="text" id="meta_keywords" name="meta_keywords"
-                                                   class="form-control"
-                                                   placeholder="" value="{{old('meta_keywords')}}">
+                                                class="form-control" placeholder="" value="{{ old('meta_keywords') }}">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="meta_description" class="form-label"> الوصف </label>
-                                            <textarea class="form-control bg-light-subtle" id="meta_description"
-                                                      rows="7"
-                                                      placeholder=""
-                                                      name="meta_description">{{old('meta_description')}}</textarea>
+                                            <textarea class="form-control bg-light-subtle" id="meta_description" rows="7" placeholder=""
+                                                name="meta_description">{{ old('meta_description') }}</textarea>
                                         </div>
                                     </div>
 
@@ -138,25 +132,25 @@
         <!-- ==================================================== -->
         <!-- End Page Content -->
         <!-- ==================================================== -->
-        @endsection
+    @endsection
 
-        @section('js')
-            <!-- Quill Editor js -->
-            <script src="{{asset('assets/admin/js/components/form-quilljs.js')}}"></script>
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    // الحصول على كائن المحرر Quill الموجود بالفعل
-                    var quill = Quill.find(document.getElementById('snow-editor'));
+    @section('js')
+        <!-- Quill Editor js -->
+        <script src="{{ asset('assets/admin/js/components/form-quilljs.js') }}"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // الحصول على كائن المحرر Quill الموجود بالفعل
+                var quill = Quill.find(document.getElementById('snow-editor'));
 
-                    // تعبئة محتوى Quill editor بالمحتوى السابق (إن وجد)
-                    var oldContent = `{!! old('content') !!}`;
-                    quill.root.innerHTML = oldContent;
+                // تعبئة محتوى Quill editor بالمحتوى السابق (إن وجد)
+                var oldContent = `{!! old('content') !!}`;
+                quill.root.innerHTML = oldContent;
 
-                    // تحديث الحقل المخفي بالمحتوى قبل إرسال النموذج
-                    var form = document.querySelector('form');
-                    form.onsubmit = function () {
-                        document.querySelector('input[name=content]').value = quill.root.innerHTML;
-                    };
-                });
-            </script>
-@endsection
+                // تحديث الحقل المخفي بالمحتوى قبل إرسال النموذج
+                var form = document.querySelector('form');
+                form.onsubmit = function() {
+                    document.querySelector('input[name=content]').value = quill.root.innerHTML;
+                };
+            });
+        </script>
+    @endsection

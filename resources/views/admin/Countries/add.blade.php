@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">  اضافة دولة جديدة   </h5>
+                <h5 class="modal-title" id="exampleModalLabel">  اضافة محافظة  جديدة   </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{url('admin/country/add')}}" method="post">
@@ -18,11 +18,11 @@
                         <input type="text" name="name_en" class="form-control">
                     </div>
                     <div>
-                        <label for=""> المدن   <span class="badge badge-soft-danger">  افصل بين كل مدينة والاخري ب ( - ) </span>  </label>
+                        <label for=""> المناطق    <span class="badge badge-soft-danger">  افصل بين كل منطقة والاخري ب ( - ) </span>  </label>
                         <textarea name="citizen_ar" class="form-control" id=""></textarea>
                     </div>
                     <div>
-                        <label for=""> المدن باللغة الانجليزية   <span class="badge badge-soft-danger">  افصل بين كل مدينة والاخري ب ( - ) ويكون نفس ترتيب اللغة العربية  </span>  </label>
+                        <label for=""> المناطق باللغة الانجليزية   <span class="badge badge-soft-danger">  افصل بين كل منطقة  والاخري ب ( - ) ويكون نفس ترتيب اللغة العربية  </span>  </label>
                         <textarea name="citizen_en" class="form-control" id=""></textarea>
                     </div>
                 </div>

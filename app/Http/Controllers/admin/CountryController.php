@@ -47,8 +47,8 @@ class CountryController extends Controller
             $country->name = ['ar'=>$data['name_ar'],'en'=>$data['name_en']];
             $country->status = 1;
             $country->save();
-            $citizen_ar = explode('-', $data['citizen_ar']);
-            $citizen_en = explode('-', $data['citizen_en']);
+            $citizen_ar = explode(',', $data['citizen_ar']);
+            $citizen_en = explode(',', $data['citizen_en']);
             // Ensure both arrays have the same length
             if (count($citizen_ar) !== count($citizen_en)) {
                 return Redirect::back()->withInput()->withErrors(['citizen_mismatch' => 'عدد المدن في اللغتين يجب أن يكون متساويًا.']);
@@ -100,9 +100,8 @@ class CountryController extends Controller
             State::where('country_id', $id)->delete();
 
             // Process the new states
-            $citizen_ar = array_filter(array_map('trim', explode('-', $data['citizen_ar'])));
-            $citizen_en = array_filter(array_map('trim', explode('-', $data['citizen_en'])));
-
+            $citizen_ar = explode(',', $data['citizen_ar']);
+            $citizen_en = explode(',', $data['citizen_en']);
             // Ensure both arrays have the same length
             if (count($citizen_ar) !== count($citizen_en)) {
                 return Redirect::back()->withInput()->withErrors(['citizen_mismatch' => 'عدد المدن في اللغتين يجب أن يكون متساويًا.']);
@@ -116,7 +115,6 @@ class CountryController extends Controller
                 $state->setTranslation('name', 'en', $citizen_en[$index]);
                 $state->save();
             }
-
             return $this->success_message('تم تعديل الدولة والمدن بنجاح');
         } catch (\Exception $e) {
             return $this->exception_message($e);

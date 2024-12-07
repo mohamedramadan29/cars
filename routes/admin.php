@@ -16,6 +16,8 @@ use App\Http\Controllers\admin\BlogCategoryController;
 use App\Http\Controllers\admin\BlogController;
 use \App\Http\Controllers\admin\CountryController;
 use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\admin\HeroBannerController;
+use App\Http\Controllers\admin\SliderController;
 
 Route::group(['prefix' => 'admin'], function () {
     // Admin Login
@@ -151,6 +153,21 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post', 'get'], 'blog/add', 'store');
             Route::match(['post', 'get'], 'blog/update/{id}', 'update');
             Route::post('blog/delete/{id}', 'delete');
+        });
+
+        Route::controller(SliderController::class)->group(function () {
+            Route::get('sliders', 'index');
+            Route::match(['post', 'get'], 'slider/add', 'store');
+            Route::match(['post', 'get'], 'slider/update/{id}', 'update');
+            Route::post('slider/delete/{id}', 'delete');
+        });
+
+        #################### Start Hero Banners ###################
+        Route::controller(HeroBannerController::class)->group(function () {
+            Route::get('banners', 'index');
+            Route::match(['post', 'get'], 'banner/add', 'store');
+            Route::match(['post', 'get'], 'banner/update/{id}', 'update');
+            Route::post('banner/delete/{id}', 'delete');
         });
     });
 });

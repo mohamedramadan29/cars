@@ -166,19 +166,20 @@
 </footer>
 <div class="bottom_footer">
     <div class="data">
-        <div class="right-bottom" style="margin-top: 50px;">
+        <div class="right-bottom">
             <p> جميع الحقوق محفوظة لـ موقع "عراق أوتو كار" @ 2024 </p>
         </div>
+        <div class="follow_us">
+            {{-- <p> تابعونا علي </p> --}}
+            <ul class="list-unstyle">
+                <li> <a href="#"> <i class="bi bi-facebook"></i> </a> </li>
+                <li> <a href="#"> <i class="bi bi-twitter-x"></i> </a> </li>
+                <li> <a href="#"> <i class="bi bi-instagram"></i> </a> </li>
+                <li> <a href="#"> <i class="bi bi-pinterest"></i> </a> </li>
+            </ul>
+        </div>
         <div class="left-bottom">
-            <div class="follow_us">
-                <p> تابعونا علي </p>
-                <ul class="list-unstyle">
-                    <li> <a href="#"> <i class="bi bi-facebook"></i> </a> </li>
-                    <li> <a href="#"> <i class="bi bi-twitter-x"></i> </a> </li>
-                    <li> <a href="#"> <i class="bi bi-instagram"></i> </a> </li>
-                    <li> <a href="#"> <i class="bi bi-pinterest"></i> </a> </li>
-                </ul>
-            </div>
+
             <div class="page_links">
                 <ul class="list-unstyled">
                     <li> <a href="#"> الشروط والاحكام  </a> </li>

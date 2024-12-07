@@ -11,7 +11,7 @@
     text-decoration: none;
     font-family: Cairo, sans-serif;
     text-rendering: optimizeLegibility;
-    --main-color: #CE0014;
+    --main-color: #B00000;
     --second-color: #9A0101;
 }
 
@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .shadow {
-    padding: 10px;
+    padding: 0px;
     background: #f8f8f8;
     -webkit-box-shadow: 0 9px 5px -4px #d4d4d4;
     -moz-box-shadow: 0 9px 5px -4px #d4d4d4;
@@ -584,7 +584,7 @@ hr.style14 {
     text-align: center;
     background: #ececec;
     color: #2e3131;
-    border-bottom: 2px solid #0069d9;
+    border-bottom: 2px solid var(--main-color);
     font-weight: 700;
     font-size: 13px
 }
@@ -1870,11 +1870,11 @@ form .form-group input {
 }
 
 .btn-tertiary {
-    color: #0069d9;
+    color: var(--main-color);
     padding: 0;
     line-height: 40px;
     display: block;
-    border: 2px solid #0069d9
+    border: 2px solid var(--main-color)
 }
 
 .btn-tertiary:focus, .btn-tertiary:hover {
@@ -1922,7 +1922,7 @@ form .form-group input {
 }
 
 .pages-card i:hover {
-    color: #0069d9
+    color: var(--main-color)
 }
 
 .pages-card .card-title {
@@ -1932,7 +1932,7 @@ form .form-group input {
 }
 
 .pages-card .card-title:hover {
-    color: #0069d9
+    color: var(--main-color)
 }
 
 .pages-text {
@@ -2636,7 +2636,7 @@ span.right {
     .likecar {
         font-weight: 700;
         font-size: 20px;
-        color: #0069d9;
+        color: var(--main-color);
         padding: 0 10px 20px 0
     }
 
@@ -2927,7 +2927,7 @@ span.right {
         width: 100px;
         height: auto;
         margin-bottom: 10px;
-        border: 1px solid #0069d9
+        border: 1px solid var(--main-color)
     }
 
     .re-img {
@@ -3211,7 +3211,7 @@ span.right {
     }
 
     .faq-icon {
-        background: #0069d9;
+        background: var(--main-color);
         padding: 10px;
         width: 10%
     }
@@ -3284,7 +3284,7 @@ span.right {
     .p-title {
         font-weight: 700;
         font-size: 25px;
-        color: #0069d9
+        color: var(--main-color)
     }
 
     .balon1, .balon2 {
@@ -3360,11 +3360,11 @@ span.right {
     }
 
     .btn-tertiary {
-        color: #0069d9;
+        color: var(--main-color);
         padding: 0;
         line-height: 40px;
         display: block;
-        border: 2px solid #0069d9
+        border: 2px solid var(--main-color)
     }
 
     .btn-tertiary:focus, .btn-tertiary:hover {
@@ -3637,7 +3637,7 @@ span.right {
     .likecar {
         font-weight: 700;
         font-size: 20px;
-        color: #0069d9;
+        color: var(--main-color);
         padding: 0 10px 20px 0
     }
 
@@ -3923,7 +3923,7 @@ span.right {
         width: 99%;
         height: auto;
         margin-bottom: 10px;
-        border: 1px solid #0069d9
+        border: 1px solid var(--main-color)
     }
 
     .re-img {
@@ -4232,7 +4232,7 @@ span.right {
     }
 
     .faq-icon {
-        background: #0069d9;
+        background: var(--main-color);
         padding: 10px;
         width: 10%
     }
@@ -4305,7 +4305,7 @@ span.right {
     .p-title {
         font-weight: 700;
         font-size: 25px;
-        color: #0069d9
+        color: var(--main-color)
     }
 
     .p-form .col-md-6 {
@@ -4832,7 +4832,7 @@ span.right {
         width: 99%;
         height: auto;
         margin-bottom: 10px;
-        border: 1px solid #0069d9
+        border: 1px solid var(--main-color)
     }
 
     .re-img {
@@ -5185,7 +5185,7 @@ span.right {
     .p-title {
         font-weight: 700;
         font-size: 25px;
-        color: #0069d9
+        color: var(--main-color)
     }
 
     .balon1, .balon2 {
@@ -5684,7 +5684,7 @@ span.right {
         width: 99%;
         height: auto;
         margin-bottom: 10px;
-        border: 1px solid #0069d9
+        border: 1px solid var(--main-color)
     }
 
     .re-img {
@@ -6037,7 +6037,7 @@ span.right {
     .p-title {
         font-weight: 700;
         font-size: 25px;
-        color: #0069d9
+        color: var(--main-color)
     }
 
     .balon1, .balon2 {
@@ -6366,7 +6366,7 @@ span.right {
 .bottom_footer .data {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
 }
 
 .bottom_footer .data .left-bottom {}
@@ -6376,7 +6376,10 @@ span.right {
     margin-left: 100px;
 }
 
-.bottom_footer .data .follow_us ul {}
+.bottom_footer .data .follow_us ul {
+    margin: 0;
+    padding: 0;
+}
 
 .bottom_footer .data .follow_us ul li {
     display: inline-block;
@@ -7341,6 +7344,9 @@ span.right {
 
     .bottom_footer .data {
         flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
     }
 
     .bottom_footer .data .left-bottom p {

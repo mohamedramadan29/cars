@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-   الدول والمدن
+المحافظات والمناطق
 @endsection
 @section('css')
 
@@ -29,11 +29,11 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center gap-1">
-                            <h4 class="card-title flex-grow-1"> الدول والمدن   </h4>
+                            <h4 class="card-title flex-grow-1"> المحافظات والمناطق  </h4>
                             <button type="button" class="btn btn-sm btn-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#add_country">
-                                 اضافة دولة جديدة   <i class="ti ti-plus"></i>
+                                 اضافة محافظة جديدة   <i class="ti ti-plus"></i>
                             </button>
                             @include('admin.Countries.add')
                         </div>
@@ -49,8 +49,8 @@
                                         </th>
                                         <th>  الاسم     </th>
                                         <th> الاسم باللغة الانجليزية   </th>
-                                        <th> المدن  </th>
-                                        <th> المدن باللغة الانجليزية  </th>
+                                        <th> المناطق  </th>
+                                        <th> المناطق باللغة الانجليزية  </th>
                                         <th> العمليات</th>
                                     </tr>
                                     </thead>
