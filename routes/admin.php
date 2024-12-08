@@ -1,24 +1,26 @@
 <?php
 
-use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\admin\PublicSettingController;
+use App\Http\Controllers\front\SubscriptionController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\admin\CarMarkController;
-use \App\Http\Controllers\admin\AgencyController;
-use \App\Http\Controllers\admin\AgencyBranchController;
-use \App\Http\Controllers\admin\ShowRoomController;
-use \App\Http\Controllers\admin\CarNumbersController;
-use \App\Http\Controllers\admin\AutoRepairController;
-use \App\Http\Controllers\admin\TopicCategoryController;
-use \App\Http\Controllers\admin\AdvertismentController;
-use \App\Http\Controllers\admin\AgencyRentController;
-use App\Http\Controllers\admin\BlogCategoryController;
-use App\Http\Controllers\admin\BlogController;
-use \App\Http\Controllers\admin\CountryController;
 use App\Http\Controllers\admin\FaqController;
-use App\Http\Controllers\admin\HeroBannerController;
+use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\SliderController;
-
+use \App\Http\Controllers\admin\AgencyController;
+use \App\Http\Controllers\admin\CarMarkController;
+use \App\Http\Controllers\admin\CountryController;
+use \App\Http\Controllers\admin\ShowRoomController;
+use App\Http\Controllers\admin\HeroBannerController;
+use \App\Http\Controllers\admin\AgencyRentController;
+use \App\Http\Controllers\admin\AutoRepairController;
+use \App\Http\Controllers\admin\CarNumbersController;
+use App\Http\Controllers\admin\BlogCategoryController;
+use \App\Http\Controllers\admin\AdvertismentController;
+use \App\Http\Controllers\admin\AgencyBranchController;
+use App\Http\Controllers\admin\PlansController;
+use App\Http\Controllers\admin\PublicSettingController;
+use \App\Http\Controllers\admin\TopicCategoryController;
+use \App\Http\Controllers\admin\SubscribtionController;
 Route::group(['prefix' => 'admin'], function () {
     // Admin Login
 
@@ -169,5 +171,15 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post', 'get'], 'banner/update/{id}', 'update');
             Route::post('banner/delete/{id}', 'delete');
         });
+        ################## Start Subscriptions #########################
+
+        Route::controller(PlansController::class)->group(function () {
+
+            Route::get('plans', 'index');
+            Route::match(['post', 'get'], 'plan/add', 'store');
+            Route::match(['post', 'get'], 'plan/update/{id}', 'update');
+            Route::post('plan/delete/{id}', 'delete');
+
+         });
     });
 });

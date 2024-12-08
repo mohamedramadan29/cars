@@ -16,41 +16,43 @@
                 <div class="clr"></div>
                 <section class="pricing py-4" id="navbar-example2">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card mb-5 mb-lg-0 price1">
-                                <div class="plan_name">
-                                    <h3> الباقة المجانية </h3>
-                                    <p> <span> Free </span> Package </p>
-                                </div>
-                                <div class="card-header">
-                                    <h6 class="card-price text-center">0$<span class="period">/شهريا </span></h6>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="fa-ul">
-                                        <li><span class="fa-li"><i class="fas fa-check"></i></span> إضافات 10 إعلانات فقط
-                                        </li>
-                                        <li><span class="fa-li"><i class="fas fa-check"></i></span> إمكانية إضافة 1 أرقام
-                                            سيارات</li>
-                                        <li><span class="fa-li"><i class="fas fa-check"></i></span> إمكانية إضافة 1 مراكز
-                                            الصيانة</li>
-                                        <li><span class="fa-li"><i class="fas fa-check"></i></span> رابط خاص لحسابك</li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fas fa-times text-muted"></i></span> لا يمكن إضافة معارض </li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fas fa-times text-muted"></i></span> لا يمكن إضافة وكالات </li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fas fa-times text-muted"></i></span> لا يمكن إضافة مكاتب التأجير
-                                        </li>
-                                    </ul>
-                                    <a href="#order" class="btn btn-block btn-danger"> اشترك </a>
+                        @foreach ($subscriptions as $plan)
+                            <div class="col-lg-4">
+                                <div class="card mb-5 mb-lg-0 price1">
+                                    <div class="plan_name">
+                                        <h3> {{ $plan['title'] }} </h3>
+                                        <p> <span> Free </span> Package </p>
+                                    </div>
+                                    <div class="card-header">
+                                        <h6 class="card-price text-center">{{ $plan['price'] }}$<span class="period">/شهريا
+                                            </span></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        @php
+                                            $advantages = explode(',', $plan['advantages']);
+                                            $disadvantage = explode(',', $plan['dis_advantages']);
+                                        @endphp
+                                        <ul class="fa-ul">
+                                            @foreach ($advantages as $adv)
+                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>
+                                                    {{ $adv }}
+                                                </li>
+                                            @endforeach
+                                            @foreach ($disadvantage as $disadv)
+                                                <li class="text-muted"><span class="fa-li"><i
+                                                            class="fas fa-times text-muted"></i></span> {{ $disadv }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                        <a href="#order" class="btn btn-block btn-danger"> اشترك </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
+                        @endforeach
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0 price2">
                                 <div class="plan_name">
-                                    <h3>  الباقة الفضية </h3>
+                                    <h3> الباقة الفضية </h3>
                                     <p> <span> Silver </span> Package </p>
                                 </div>
 
@@ -90,7 +92,7 @@
                         <div class="col-lg-4">
                             <div class="card price3">
                                 <div class="plan_name">
-                                    <h3>  الباقة الذهبية  </h3>
+                                    <h3> الباقة الذهبية </h3>
                                     <p> <span> Gold </span> Package </p>
                                 </div>
                                 <div class="card-header">
@@ -140,44 +142,44 @@
                     </center>
                     <div class="clr"></div>
                     <form action method="post" class="form-rent-req">
-                        @if(Auth::check())
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputAddress2"> حدد نوع الإشتراك </label>
-                                <select class="form-control form-control-lg" name="subject">
-                                    <option value="الفضي"> الفضي </option>
-                                    <option value="الذهبي"> الذهبي </option>
-                                </select>
+                        @if (Auth::check())
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputAddress2"> حدد نوع الإشتراك </label>
+                                    <select class="form-control form-control-lg" name="subject">
+                                        <option value="الفضي"> الفضي </option>
+                                        <option value="الذهبي"> الذهبي </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="inputAddress2"> وسيلة الدفع </label>
+                                    <select class="form-control form-control-lg" name="msg">
+                                        <option value="Bank Transfer"> تحويل بنكي </option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputAddress2"> وسيلة الدفع </label>
-                                <select class="form-control form-control-lg" name="msg">
-                                    <option value="Bank Transfer"> تحويل بنكي </option>
-                                </select>
+                            <div class="form-group">
+                                <label for="inputAddress2"> الاسم كامل </label>
+                                <input type="text" name="fullname" class="form-control form-control-lg"
+                                    placeholder="الاسم كامل" required>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2"> الاسم كامل </label>
-                            <input type="text" name="fullname" class="form-control form-control-lg"
-                                placeholder="الاسم كامل" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2"> البريد الالكتروني </label>
-                            <input type="text" name="email" class="form-control form-control-lg"
-                                placeholder="البريد الالكتروني"required >
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2"> رقم الهاتف </label>
-                            <input type="number" name="mobile" class="form-control form-control-lg"
-                                placeholder="رقم الهاتف ">
-                        </div>
-                        <div class="form-group">
-                            <div class="g-recaptcha" data-theme="light"
-                                data-sitekey="6LetnQATAAAAAF0iiOBKpJcLHZQRnRyaqhxXlVxg"></div>
-                        </div>
-                        <br>
-                        <button type="submit" name="sendorder" class="lft btn btn-success"> ارسل الطلب </button>
-                            @else
+                            <div class="form-group">
+                                <label for="inputAddress2"> البريد الالكتروني </label>
+                                <input type="text" name="email" class="form-control form-control-lg"
+                                    placeholder="البريد الالكتروني"required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2"> رقم الهاتف </label>
+                                <input type="number" name="mobile" class="form-control form-control-lg"
+                                    placeholder="رقم الهاتف ">
+                            </div>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-theme="light"
+                                    data-sitekey="6LetnQATAAAAAF0iiOBKpJcLHZQRnRyaqhxXlVxg"></div>
+                            </div>
+                            <br>
+                            <button type="submit" name="sendorder" class="lft btn btn-success"> ارسل الطلب </button>
+                        @else
                             <div class="alert alert-info" role="alert"> يجب أن تكون عضو في الموقع قبل إرسال طلب الإشتراك
                                 <div class="clr"></div>
                                 <a href="{{ url('login') }}"> إضغط هنا لتسجيل </a>
@@ -199,8 +201,8 @@
                     <h2 class="subs-title"><i class="far fa-comments"></i> تواصل معنا </h2>
                     <div class="clr"></div>
                     <p class="subs-text">
-                        <a href="#" class="btn btn-success"
-                            style="margin:10px;"><i class="fab fa-whatsapp"></i> عبر الواتساب : 000000000</a> or
+                        <a href="#" class="btn btn-success" style="margin:10px;"><i class="fab fa-whatsapp"></i>
+                            عبر الواتساب : 000000000</a> or
                         <a href="{{ url('contactus') }}" class="btn btn-danger" style="margin:10px;"><i
                                 class="fa fa-envelope"></i> ارسل رسالة لبريد الموقع </a>
                     </p>
