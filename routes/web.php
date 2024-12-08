@@ -25,6 +25,7 @@ Route::controller(FrontController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('agency', 'agencies');
     Route::get('agency/{slug}', 'agency_details');
+    Route::get('getcitizen/{countryid}', 'getcitizen');
     /////////// Show Rooms
     ///
     Route::get('showrooms', 'showrooms');

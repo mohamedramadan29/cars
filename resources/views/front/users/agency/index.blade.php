@@ -16,7 +16,7 @@
             <div class="card-body" style="padding:0px;">
                 <div class="rgt profileRight">
                     <a class="btn btn-primary display-btnprofile" data-toggle="collapse" href="#collapseExample"
-                       role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
+                        role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
                     <div class="collapse show" id="collapseExample">
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action"
@@ -26,34 +26,33 @@
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
                             <a href="{{ url('user/car/add') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف سيارة للبيع</a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> الرسائل <span class="lft badge badge-primary">0</span></a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
                             <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action active">
-                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
+                                <i class="fab fa-buffer"></i> اضف وكالة </a>
                             <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف معرض    </a>
+                                <i class="fab fa-buffer"></i> اضف معرض </a>
                             <a href="{{ url('user/rent') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف  مكتب تاجير    </a>
+                                <i class="fab fa-buffer"></i> اضف مكتب تاجير </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{url('user/centers')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
-                            <a href="{{url('user/forums')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/washs') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف محطة غسيل </a>
+                            <a href="{{ url('user/auctions') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/products') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضافة منتج </a>
+                            <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-                            <a href="{{url('user/update')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                                <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
+                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
-                            <a href="{{url('user/logout')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
+                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
+                            <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>
@@ -72,30 +71,30 @@
 
                             <table class="table table-bordered profile-table">
                                 <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col"> الاسم</th>
-                                    <th scope="col"> عنوان الوكالة</th>
-                                    <th scope="col">توقيت العمل</th>
-                                    <th scope="col">تعديل</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col"> الاسم</th>
+                                        <th scope="col"> عنوان الوكالة</th>
+                                        <th scope="col">توقيت العمل</th>
+                                        <th scope="col">تعديل</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @php $i = 1; @endphp
-                                @foreach ($agency as $agc)
-                                    <tr>
-                                        <td> {{$i++}} </td>
-                                        <td> {{$agc['name']}} </td>
-                                        <td> {{$agc['address']}} </td>
-                                        <td> {{$agc['work_time']}} </td>
-                                        <td>
-                                            <a href="{{url('user/car/add/')}}"
-                                               class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> اضف سيارة  </a>
-                                            <a href="{{url('user/agency/update/'.$agc['id'])}}"
-                                               class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @php $i = 1; @endphp
+                                    @foreach ($agency as $agc)
+                                        <tr>
+                                            <td> {{ $i++ }} </td>
+                                            <td> {{ $agc['name'] }} </td>
+                                            <td> {{ $agc['address'] }} </td>
+                                            <td> {{ $agc['work_time'] }} </td>
+                                            <td>
+                                                <a href="{{ url('user/car/add/') }}" class="btn btn-success btn-sm"> <i
+                                                        class="fa fa-plus"></i> اضف سيارة </a>
+                                                <a href="{{ url('user/agency/update/' . $agc['id']) }}"
+                                                    class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

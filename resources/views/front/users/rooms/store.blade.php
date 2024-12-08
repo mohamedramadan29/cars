@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-     اضف معرض جديد
+    اضف معرض جديد
 @endsection
 @section('content')
     <div id="HomePage">
@@ -53,14 +53,17 @@
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
+                            <a href="{{ url('user/washs') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف محطة غسيل </a>
+                            <a href="{{ url('user/auctions') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/products') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضافة منتج </a>
                             <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
                             <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                            <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
-                                style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
                             <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
@@ -69,9 +72,10 @@
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-                    <h5 class="p-title"><i class="fas fa-edit"></i> اضف معرض جديد  </h5>
+                    <h5 class="p-title"><i class="fas fa-edit"></i> اضف معرض جديد </h5>
                     <div class="clr"></div><br>
-                    <form action="{{ url('user/room/add') }}" method="post" class="p-form" enctype="multipart/form-data">
+                    <form id="uploadForm" action="{{ url('user/room/add') }}" method="post" class="p-form"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -79,21 +83,54 @@
                                     placeholder=" اسم المعرض   " required="">
                             </div>
                             <div class="col-md-12">
-                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
-                                    id="subplace" style="height:45px;">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="country" id="place" style="height:45px;">
                                     <option value="">حدد المدينة</option>
-                                    @foreach ($citizen as $city)
+                                    @foreach ($countries as $city)
                                         <option value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-12">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="city" id="subplace" style="height:50px;">
+                                    <option value="">حدد المنطقة </option>
+                                </select>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#place").on('change', function() {
+                                        let countryId = $(this).val();
+                                        if (countryId) {
+                                            $.ajax({
+                                                method: 'GET',
+                                                url: '/getcitizen/' + countryId,
+                                                success: function(data) {
+                                                    $('#subplace').empty();
+                                                    $('#subplace').append('<option> -- حدد المنطقة   --  </option>');
+                                                    $.each(data, function(key, city) {
+                                                        $('#subplace').append('<option value="' + city.id +
+                                                            '">' + city.name.ar + '</option>');
+                                                    });
+                                                }
+
+                                            });
+
+                                        } else {
+                                            $('#subplace').empty();
+                                            $('#subplace').append('<option> -- حدد المدينة   --  </option>')
+                                        }
+                                    });
+                                });
+                            </script>
+
                             <div class="col-12">
                                 <input type="text" name="address" class="form-control form-control-lg input-form"
                                     placeholder="العنوان">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="email" class="form-control form-control-lg input-form"
-                                       placeholder="البريد الاكتروني">
+                                    placeholder="البريد الاكتروني">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="phone" class="form-control form-control-lg input-form"
@@ -101,7 +138,7 @@
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="phone2" class="form-control form-control-lg input-form"
-                                       placeholder="رقم تواصل ثاني (اختياري)">
+                                    placeholder="رقم تواصل ثاني (اختياري)">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="work_time" class="form-control form-control-lg input-form"
@@ -109,27 +146,27 @@
                             </div>
                             <div class="col-md-6">
                                 <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="car_status">
-                                    <option value="" selected="" disabled=""> حالة السيارات  </option>
+                                    <option value="" selected="" disabled=""> حالة السيارات </option>
                                     <option value="مستعملة"> مستعملة </option>
-                                    <option value="جديدة"> جديدة   </option>
+                                    <option value="جديدة"> جديدة </option>
                                     <option value="كلاهما"> كلاهما </option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="website" class="form-control form-control-lg input-form"
-                                       placeholder="رابط الموقع الالكتروني ">
+                                    placeholder="رابط الموقع الالكتروني ">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="facebook_link" class="form-control form-control-lg input-form"
-                                       placeholder=" رابط الفيسبوك">
+                                <input type="text" name="facebook_link"
+                                    class="form-control form-control-lg input-form" placeholder=" رابط الفيسبوك">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="twitter_link" class="form-control form-control-lg input-form"
-                                       placeholder="رابط تويتر ">
+                                    placeholder="رابط تويتر ">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="instagram_link" class="form-control form-control-lg input-form"
-                                       placeholder="رابط انستجرام">
+                                <input type="text" name="instagram_link"
+                                    class="form-control form-control-lg input-form" placeholder="رابط انستجرام">
 
                             </div>
                             <div class="col-12">
@@ -141,8 +178,13 @@
                                         accept="image/*">
                                     <label for="file" class="btn btn-tertiary js-labelFile">
                                         <i class="icon fa fa-check"></i>
-                                        <span class="js-fileName"> رفع لوجو المعرض  </span>
+                                        <span class="js-fileName"> رفع لوجو المعرض </span>
                                     </label>
+                                    <p style="font-size: 12px;color: #747171;margin-top:5px">
+                                        حجم الصورة المناسب : <span class="text-danger">
+                                            <strong> 165 px </strong>
+                                        </span>
+                                    </p>
                                 </div>
                                 <script type="text/javascript">
                                     (function() {
@@ -167,11 +209,26 @@
                             </div>
                             <div class="col-12">
                                 <br>
-                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">أضف
-                                    المعرض </button>
+                                <button id="submitBtn" type="submit" name="Add"
+                                    class="rgt btn btn-primary btn-block">أضف
+                                    المعرض <i class="fa fa-plus"></i> </button>
+                                <p id="uploadingText"
+                                    style="display: none; font-size: 16px; color: green; text-align: center;">
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                        aria-hidden="true"></span>
+                                    جاري رفع البيانات، يرجى الانتظار...
+                                </p>
                             </div>
                         </div>
                     </form>
+                    <script>
+                        document.getElementById('uploadForm').addEventListener('submit', function() {
+                            // إخفاء زر الإرسال
+                            document.getElementById('submitBtn').style.display = 'none';
+                            // عرض رسالة جاري الرفع
+                            document.getElementById('uploadingText').style.display = 'block';
+                        });
+                    </script>
                 </div>
             </div>
         </div>

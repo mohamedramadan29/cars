@@ -8,6 +8,7 @@ use App\Http\Traits\Slug_Trait;
 use App\Http\Traits\Upload_Images;
 use App\Models\admin\Agency;
 use App\Models\admin\AutoRepair;
+use App\Models\admin\Country;
 use App\Models\admin\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +23,12 @@ class UserAgencyController extends Controller
 
     public function index()
     {
-        $agency = Agency::where('user_id',Auth::id())->get();
-        return view('front.users.agency.index',compact('agency'));
+        $agency = Agency::where('user_id', Auth::id())->get();
+        return view('front.users.agency.index', compact('agency'));
     }
     public function store(Request $request)
     {
+        $countries = Country::all();
         $citizen = State::all();
 
         if ($request->isMethod('post')) {
@@ -36,11 +38,11 @@ class UserAgencyController extends Controller
 
                 $rules = [
                     'name' => 'required',
-                   // 'name_en' => 'required',
-                   // 'country' => 'required',
+                    // 'name_en' => 'required',
+                    'country' => 'required',
                     'city' => 'required',
                     'address' => 'required',
-                   // 'address_en' => 'required',
+                    // 'address_en' => 'required',
                     'car_status' => 'required',
                     'work_time' => 'required',
                     //'work_time_en' => 'required',
@@ -52,13 +54,13 @@ class UserAgencyController extends Controller
                 }
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
-                   // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
-                   // 'country.required' => ' من فضلك حدد الدولة  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                    // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
+                    'country.required' => ' من فضلك حدد المدينة   ',
+                    'city.required' => ' من فضلك حدد المنطقة    ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
                     //'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
-                   // 'work_time_en.required' => ' من فضلك ادخل توقيت العمل باللعة الانجليزية  ',
+                    // 'work_time_en.required' => ' من فضلك ادخل توقيت العمل باللعة الانجليزية  ',
                     'phone.required' => ' من فضلك ادخل رقم الهاتف  ',
                     'email.required' => ' من فضلك ادخل البريد الالكتروني  ',
                     'image.image' => ' من فضلك ادخل صورة فقط ',
@@ -75,11 +77,11 @@ class UserAgencyController extends Controller
 
                 $agency = new Agency();
                 $agency->create([
-                    'user_id'=>Auth::id(),
+                    'user_id' => Auth::id(),
                     'name' => ['ar' => $data['name'], 'en' => $data['name']],
-                    'slug'=>$this->CustomeSlug($data['name']),
+                    'slug' => $this->CustomeSlug($data['name']),
                     'logo' => $file_name,
-                   // 'country' => $data['country'],
+                    'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address']],
                     'desc' => ['ar' => $data['desc'], 'en' => $data['desc']],
@@ -99,15 +101,15 @@ class UserAgencyController extends Controller
                 return $this->exception_message($e);
             }
         }
-        return view('front.users.agency.store', compact('citizen'));
+        return view('front.users.agency.store', compact('citizen', 'countries'));
     }
 
     public function update(Request $request, $id)
     {
-
         $agency = Agency::findOrFail($id);
 
         $citizen = State::all();
+        $countries = Country::all();
         if ($request->isMethod('post')) {
             try {
 
@@ -116,13 +118,13 @@ class UserAgencyController extends Controller
                 $rules = [
                     'name' => 'required',
                     //'name_en' => 'required',
-                   // 'country' => 'required',
+                    'country' => 'required',
                     'city' => 'required',
                     'address' => 'required',
-                  //  'address_en' => 'required',
+                    //  'address_en' => 'required',
                     'car_status' => 'required',
                     'work_time' => 'required',
-                   // 'work_time_en' => 'required',
+                    // 'work_time_en' => 'required',
                     'phone' => 'required',
                     'email' => 'required'
                 ];
@@ -131,13 +133,13 @@ class UserAgencyController extends Controller
                 }
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
-                   // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
-                   // 'country.required' => ' من فضلك حدد الدولة  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                    // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
+                    'country.required' => ' من فضلك حدد المدينة   ',
+                    'city.required' => ' من فضلك حدد المنطقة    ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
-                   // 'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
+                    // 'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
-                   // 'work_time_en.required' => ' من فضلك ادخل توقيت العمل باللعة الانجليزية  ',
+                    // 'work_time_en.required' => ' من فضلك ادخل توقيت العمل باللعة الانجليزية  ',
                     'phone.required' => ' من فضلك ادخل رقم الهاتف  ',
                     'email.required' => ' من فضلك ادخل البريد الالكتروني  ',
                     'image.image' => ' من فضلك ادخل صورة فقط ',
@@ -161,8 +163,8 @@ class UserAgencyController extends Controller
 
                 $agency->update([
                     'name' => ['ar' => $data['name'], 'en' => $data['name']],
-                    'slug'=>$this->CustomeSlug($data['name']),
-                  //  'country' => $data['country'],
+                    'slug' => $this->CustomeSlug($data['name']),
+                    'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address']],
                     'desc' => ['ar' => $data['desc'], 'en' => $data['desc']],
@@ -182,6 +184,6 @@ class UserAgencyController extends Controller
             }
         }
 
-        return view('front.users.agency.update',compact('agency','citizen'));
+        return view('front.users.agency.update', compact('agency', 'citizen','countries'));
     }
 }

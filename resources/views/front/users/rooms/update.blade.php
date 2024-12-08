@@ -53,14 +53,17 @@
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
+                            <a href="{{ url('user/washs') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف محطة غسيل </a>
+                            <a href="{{ url('user/auctions') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/products') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضافة منتج </a>
                             <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
                             <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                            <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
-                                style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
                             <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
@@ -71,8 +74,8 @@
                 <div class="lft profileLeft">
                     <h5 class="p-title"><i class="fas fa-edit"></i> تعديل المعرض </h5>
                     <div class="clr"></div><br>
-                    <form action="{{ url('user/room/update/' . $room['id']) }}" method="post" class="p-form"
-                        enctype="multipart/form-data">
+                    <form id="uploadForm" action="{{ url('user/room/update/' . $room['id']) }}" method="post"
+                        class="p-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -80,15 +83,48 @@
                                     placeholder="أدخل إسم المركز" required="" value="{{ $room['name'] }}">
                             </div>
                             <div class="col-md-12">
-                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
-                                    id="subplace" style="height:45px;">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="country" id="place" style="height:45px;">
                                     <option value="">حدد المدينة</option>
-                                    @foreach ($citizen as $city)
-                                        <option @if ($city['id'] == $room['city']) selected @endif
+                                    @foreach ($countries as $city)
+                                        <option @if ($city['id'] == $room['country']) selected @endif
                                             value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-12">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="city" id="subplace" style="height:50px;">
+                                    <option selected value="{{ $room['city'] }}">{{ $room['City']['name'] }}</option>
+                                </select>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+
+                                    $("#place").on('change', function() {
+                                        let countryId = $(this).val();
+                                        if (countryId) {
+                                            $.ajax({
+                                                method: 'GET',
+                                                url: '/getcitizen/' + countryId,
+                                                success: function(data) {
+                                                    $('#subplace').empty();
+                                                    $('#subplace').append('<option> -- حدد المنطقة   --  </option>');
+                                                    $.each(data, function(key, city) {
+                                                        $('#subplace').append('<option value="' + city.id +
+                                                            '">' + city.name.ar + '</option>');
+                                                    });
+                                                }
+
+                                            });
+
+                                        } else {
+                                            $('#subplace').empty();
+                                            $('#subplace').append('<option> -- حدد المدينة   --  </option>')
+                                        }
+                                    });
+                                });
+                            </script>
                             <div class="col-12">
                                 <input type="text" name="address" class="form-control form-control-lg input-form"
                                     placeholder="العنوان" value="{{ $room['address'] }}">
@@ -148,7 +184,7 @@
                                         accept="image/*">
                                     <label for="file" class="btn btn-tertiary js-labelFile">
                                         <i class="icon fa fa-check"></i>
-                                        <span class="js-fileName">رفع صورة الوكالة </span>
+                                        <span class="js-fileName">رفع صورة المعرض </span>
                                     </label>
                                     <br>
                                     <img src="{{ asset('assets/uploads/ShowRooms/' . $room['logo']) }}" width="100px"
@@ -177,11 +213,26 @@
                             </div>
                             <div class="col-12">
                                 <br>
-                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">تعديل
-                                    المعرض </button>
+                                <button id="submitBtn" type="submit" name="Add"
+                                    class="rgt btn btn-primary btn-block">تعديل
+                                    المعرض <i class="fa fa-edit"></i></button>
+                                <p id="uploadingText"
+                                    style="display: none; font-size: 16px; color: green; text-align: center;">
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                        aria-hidden="true"></span>
+                                    جاري رفع البيانات، يرجى الانتظار...
+                                </p>
                             </div>
                         </div>
                     </form>
+                    <script>
+                        document.getElementById('uploadForm').addEventListener('submit', function() {
+                            // إخفاء زر الإرسال
+                            document.getElementById('submitBtn').style.display = 'none';
+                            // عرض رسالة جاري الرفع
+                            document.getElementById('uploadingText').style.display = 'block';
+                        });
+                    </script>
                 </div>
             </div>
         </div>

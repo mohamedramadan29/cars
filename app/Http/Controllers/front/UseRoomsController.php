@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
 use App\Http\Traits\Slug_Trait;
 use App\Http\Traits\Upload_Images;
+use App\Models\admin\Country;
 use App\Models\admin\ShowRoom;
 use App\Models\admin\State;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class UseRoomsController extends Controller
     public function store(Request $request)
     {
         $citizen = State::all();
-
+        $countries = Country::all();
         if ($request->isMethod('post')) {
             try {
 
@@ -52,8 +53,8 @@ class UseRoomsController extends Controller
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
                     // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
-                    // 'country.required' => ' من فضلك حدد الدولة  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                    'country.required' => ' من فضلك حدد المدينة    ',
+                    'city.required' => ' من فضلك حدد المنطقة   ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
                     //'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
@@ -78,7 +79,7 @@ class UseRoomsController extends Controller
                     'name' => ['ar' => $data['name'], 'en' => $data['name']],
                     'slug'=>$this->CustomeSlug($data['name']),
                     'logo' => $file_name,
-                    // 'country' => $data['country'],
+                    'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address']],
                     'desc' => ['ar' => $data['desc'], 'en' => $data['desc']],
@@ -98,13 +99,13 @@ class UseRoomsController extends Controller
                 return $this->exception_message($e);
             }
         }
-        return view('front.users.rooms.store', compact('citizen'));
+        return view('front.users.rooms.store', compact('citizen','countries'));
     }
     public function update(Request $request, $id)
     {
 
         $room = ShowRoom::findOrFail($id);
-
+        $countries = Country::all();
         $citizen = State::all();
         if ($request->isMethod('post')) {
             try {
@@ -114,7 +115,7 @@ class UseRoomsController extends Controller
                 $rules = [
                     'name' => 'required',
                     //'name_en' => 'required',
-                    // 'country' => 'required',
+                    'country' => 'required',
                     'city' => 'required',
                     'address' => 'required',
                     //  'address_en' => 'required',
@@ -130,8 +131,8 @@ class UseRoomsController extends Controller
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
                     // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
-                    // 'country.required' => ' من فضلك حدد الدولة  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                    'country.required' => ' من فضلك حدد المدينة   ',
+                    'city.required' => ' من فضلك حدد المنطقة    ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
                     // 'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
@@ -180,6 +181,6 @@ class UseRoomsController extends Controller
             }
         }
 
-        return view('front.users.rooms.update',compact('room','citizen'));
+        return view('front.users.rooms.update',compact('room','citizen','countries'));
     }
 }

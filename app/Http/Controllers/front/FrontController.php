@@ -12,7 +12,10 @@ use App\Models\admin\Blog;
 use App\Models\admin\CarMark;
 use App\Models\admin\CarNumber;
 use App\Models\admin\Faq;
+use App\Models\admin\HeroBanner;
 use App\Models\admin\ShowRoom;
+use App\Models\admin\Slider;
+use App\Models\admin\State;
 use App\Models\admin\TopicCategory;
 use App\Models\front\Auction;
 use App\Models\front\Topic;
@@ -21,6 +24,13 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+
+    public function getcitizen($countryid)
+    {
+        $citizen = State::where('country_id', $countryid)->get();
+        return response()->json($citizen);
+    }
+
     public function index()
     {
         $marks = CarMark::all();
@@ -32,33 +42,41 @@ class FrontController extends Controller
         $lastblogs = $query->latest()->limit(4)->where('id', '!=', $lastblog['id'])->get();
         $lastFourPosts = $query->limit(4)->get();
         $randomposts = $query->inRandomOrder()->limit(4)->get();
-        return view('front.index',compact('marks','new_advs','old_advs','random_advs','lastblog','lastblogs','lastFourPosts','randomposts'));
+        return view('front.index', compact('marks', 'new_advs', 'old_advs', 'random_advs', 'lastblog', 'lastblogs', 'lastFourPosts', 'randomposts'));
     }
     public function agencies()
     {
-        $agencies = Agency::with('branches','City','advs')->get();
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', 'الوكالات')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'الوكالات')->get();
+        $agencies = Agency::with('branches', 'City', 'advs', 'Country')->get();
         //dd($agencies);
         $marks = CarMark::all();
-        return view('front.agency',compact('agencies','marks'));
+        return view('front.agency', compact('agencies', 'marks', 'main_banner', 'sliders'));
     }
     public function agency_details($slug)
     {
-        $agency = Agency::where('slug',$slug)->with('branches','advs','City')->first();
-       // dd($agency);
-        return view('front.agency_details',compact('agency'));
+        $agency = Agency::where('slug', $slug)->with('branches', 'advs', 'City')->first();
+        // dd($agency);
+        return view('front.agency_details', compact('agency'));
     }
 
     public function showrooms()
     {
-        $rooms = ShowRoom::with('advs','City')->get();
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', 'المعارض')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'المعارض')->get();
+        $rooms = ShowRoom::with('advs', 'City','Country')->get();
         $marks = CarMark::all();
-        return view('front.showrooms',compact('rooms','marks'));
+        return view('front.showrooms', compact('rooms', 'marks', 'main_banner', 'sliders'));
     }
 
     public function showroom_details($slug)
     {
-        $room = ShowRoom::where('slug',$slug)->with('advs','City')->first();
-        return view('front.room_details',compact('room'));
+        $room = ShowRoom::where('slug', $slug)->with('advs', 'City')->first();
+        return view('front.room_details', compact('room'));
     }
 
     //////////// Start Rent
@@ -67,26 +85,26 @@ class FrontController extends Controller
     {
         $agencies = AgencyRent::all();
         $marks = CarMark::all();
-        return view('front.rent',compact('agencies','marks'));
+        return view('front.rent', compact('agencies', 'marks'));
     }
 
     public function rent_details($slug)
     {
-        $rent = AgencyRent::where('slug',$slug)->with('advs','City')->first();
-        return view('front.rent_details',compact('rent'));
+        $rent = AgencyRent::where('slug', $slug)->with('advs', 'City')->first();
+        return view('front.rent_details', compact('rent'));
     }
-///////////////////// Auctions
+    ///////////////////// Auctions
     public function auction()
     {
         $auctions = Auction::all();
         $marks = CarMark::all();
-        return view('front.auctions',compact('auctions','marks'));
+        return view('front.auctions', compact('auctions', 'marks'));
     }
 
     public function auction_details($slug)
     {
-        $auction = Auction::where('slug',$slug)->with('advs','City')->first();
-        return view('front.auction_details',compact('auction'));
+        $auction = Auction::where('slug', $slug)->with('advs', 'City')->first();
+        return view('front.auction_details', compact('auction'));
     }
 
     ///////////////// Start Car Numbers
@@ -95,7 +113,7 @@ class FrontController extends Controller
     {
         $numbers = CarNumber::all();
         $marks = CarMark::all();
-        return view('front.car_numbers',compact('numbers','marks'));
+        return view('front.car_numbers', compact('numbers', 'marks'));
     }
     ///////////////// Start Auto Repairs
     ///
@@ -103,12 +121,12 @@ class FrontController extends Controller
     {
         $repairs = AutoRepair::all();
         $marks = CarMark::all();
-        return view('front.auto_repairs',compact('repairs','marks'));
+        return view('front.auto_repairs', compact('repairs', 'marks'));
     }
     public function repair_details($slug)
     {
-        $repair = AutoRepair::where('slug',$slug)->first();
-        return view('front.repair_details',compact('repair'));
+        $repair = AutoRepair::where('slug', $slug)->first();
+        return view('front.repair_details', compact('repair'));
     }
 
 
@@ -118,12 +136,12 @@ class FrontController extends Controller
     {
         $washs = WashCar::all();
         $marks = CarMark::all();
-        return view('front.car-wash',compact('washs','marks'));
+        return view('front.car-wash', compact('washs', 'marks'));
     }
     public function car_wash_details($slug)
     {
-        $wash = WashCar::where('slug',$slug)->first();
-        return view('front.car-wash-details',compact('wash'));
+        $wash = WashCar::where('slug', $slug)->first();
+        return view('front.car-wash-details', compact('wash'));
     }
 
 
@@ -132,9 +150,9 @@ class FrontController extends Controller
     public function forums()
     {
         $categories = TopicCategory::with('Topics')->get();
-      //  dd($categories);
-        $lasttopics = Topic::with('Comments','User')->latest()->limit(5)->get();
-        return view('front.forums' ,compact('categories','lasttopics'));
+        //  dd($categories);
+        $lasttopics = Topic::with('Comments', 'User')->latest()->limit(5)->get();
+        return view('front.forums', compact('categories', 'lasttopics'));
     }
     /////////////////////// Create Car Not Login ////////
     public function create_car()
@@ -143,9 +161,10 @@ class FrontController extends Controller
     }
     ////////////////// Start Faq
 
-    public function faq(){
+    public function faq()
+    {
         $faqs = Faq::all();
-        return view('front.faq',compact('faqs'));
+        return view('front.faq', compact('faqs'));
     }
 
     /////////// Start About us

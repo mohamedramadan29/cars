@@ -944,8 +944,10 @@ form .form-group input {
 }
 
 .card-img-agency {
-    width: 150px;
-    max-height: 120px
+    width: 165px;
+    max-height: 120px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 
 .card-img2 {
@@ -1015,7 +1017,7 @@ form .form-group input {
 }
 
 .CarCard .CC2 a:hover {
-    color: #377fe5
+    color: var(--main-color);
 }
 
 .CarCard .card-img {
@@ -1305,8 +1307,9 @@ form .form-group input {
 }
 
 .section1 .col2.last .col3 span {
-    color: #a2a2a2;
-    font-size: 14px
+    color: #5e5c5c;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .section1 .col2.last .col3 h1 {
@@ -6302,12 +6305,9 @@ span.right {
     -moz-appearance: none;
     appearance: none;
 }
-
-
 /******************* Start Hero Slider *********************/
-
 .hero_slider {
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .hero_slider .carousel-indicators [data-bs-target] {

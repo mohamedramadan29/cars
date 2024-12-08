@@ -22,6 +22,9 @@ class Agency extends Model
     {
         return $this->hasMany(Advertisment::class,'agency');
     }
+    public function Country(){
+        return $this->belongsTo(Country::class,'country');
+    }
     public function City()
     {
         return $this->belongsTo(State::class,'city');

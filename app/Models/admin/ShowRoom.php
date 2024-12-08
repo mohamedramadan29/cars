@@ -17,6 +17,9 @@ class ShowRoom extends Model
     {
         return $this->hasMany(Advertisment::class,'showroom');
     }
+    public function Country(){
+        return $this->belongsTo(Country::class,'country');
+    }
     public function City()
     {
         return $this->belongsTo(State::class,'city');

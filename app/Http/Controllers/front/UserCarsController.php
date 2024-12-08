@@ -35,14 +35,14 @@ class UserCarsController extends Controller
         $marks = CarMark::all();
         $countries = Country::all();
         $citizen = State::all();
-        $agency = Agency::where('user_id',Auth::id())->get();
-        $rooms = ShowRoom::where('user_id',Auth::id())->get();
-        $rents = AgencyRent::where('user_id',Auth::id())->get();
+        $agency = Agency::where('user_id', Auth::id())->get();
+        $rooms = ShowRoom::where('user_id', Auth::id())->get();
+        $rents = AgencyRent::where('user_id', Auth::id())->get();
 
         if ($request->isMethod('post')) {
             try {
                 $data = $request->all();
-               // dd($data);
+                // dd($data);
                 $rules = [
                     'c_title' => 'required',
                     'c_years' => 'required',
@@ -99,6 +99,11 @@ class UserCarsController extends Controller
                 if ($validator->fails()) {
                     return Redirect::back()->withInput()->withErrors($validator);
                 }
+                $agency = $data['agency'] ?? null;
+                $showroom = $data['showroom'] ?? null;
+                $agency_rent = $data['agency_rent'] ?? null;
+
+
                 $adv = new Advertisment();
                 DB::beginTransaction();
                 $adv->user_id = Auth::id();
@@ -118,9 +123,9 @@ class UserCarsController extends Controller
                 $adv->c_color = $data['c_color'];
                 $adv->c_phone = $data['c_phone'];
                 $adv->c_email = $data['c_email'];
-                $adv->agency = $data['agency'];
-                $adv->showroom = $data['showroom'];
-                $adv->agency_rent = $data['agency_rent'];
+                $adv->agency = $agency;
+                $adv->showroom = $showroom;
+                $adv->agency_rent = $agency_rent;
                 $adv->c_comfort = implode(',', $data['c_comfort']);
                 $adv->c_windows = implode(',', $data['c_windows']);
                 $adv->c_sound = implode(',', $data['c_sound']);
@@ -147,7 +152,7 @@ class UserCarsController extends Controller
             }
         }
 
-        return view('front.users.cars.add', compact('marks','rents','rooms', 'countries', 'citizen','agency'));
+        return view('front.users.cars.add', compact('marks', 'rents', 'rooms', 'countries', 'citizen', 'agency'));
     }
 
     public function getModels($brandid)
@@ -165,9 +170,9 @@ class UserCarsController extends Controller
     public function update_car(Request $request, $id)
     {
         $car = Advertisment::with('carImages')->where('id', $id)->first();
-        $agency = Agency::where('user_id',Auth::id())->get();
-        $rooms = ShowRoom::where('user_id',Auth::id())->get();
-        $rents = AgencyRent::where('user_id',Auth::id())->get();
+        $agency = Agency::where('user_id', Auth::id())->get();
+        $rooms = ShowRoom::where('user_id', Auth::id())->get();
+        $rents = AgencyRent::where('user_id', Auth::id())->get();
         if ($request->isMethod('post')) {
             try {
                 $data = $request->all();
@@ -193,8 +198,8 @@ class UserCarsController extends Controller
                     'c_safety' => 'required',
                     'c_other' => 'required',
                     'more_info' => 'required',
-                  //  'images' => 'required', // التأكد من وجود الصور كمصفوفة
-                   // 'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // التحقق من نوع كل صورة وحجمها
+                    //  'images' => 'required', // التأكد من وجود الصور كمصفوفة
+                    // 'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // التحقق من نوع كل صورة وحجمها
                 ];
                 $messages = [
                     'c_title.required' => 'من فضلك حدد ::  العنوان ',
@@ -217,11 +222,11 @@ class UserCarsController extends Controller
                     'c_sound.required' => 'من فضلك حدد ::نظام الصوت ',
                     'c_safety.required' => 'من فضلك حدد ::وسائل الامان ',
                     'c_other.required' => 'من فضلك حدد ::آخرى ',
-//                    'images.required' => 'من فضلك حدد :: صور السيارة',
-//                    'images.array' => 'من فضلك ارفع صور السيارة بشكل صحيح',
-//                    'images.*.image' => 'كل الملفات يجب أن تكون صوراً فقط',
-//                    'images.*.mimes' => 'يجب أن تكون الصور بصيغة: jpeg, png, jpg, gif',
-//                    'images.*.max' => 'حجم كل صورة يجب ألا يتجاوز 2 ميجابايت',
+                    //                    'images.required' => 'من فضلك حدد :: صور السيارة',
+                    //                    'images.array' => 'من فضلك ارفع صور السيارة بشكل صحيح',
+                    //                    'images.*.image' => 'كل الملفات يجب أن تكون صوراً فقط',
+                    //                    'images.*.mimes' => 'يجب أن تكون الصور بصيغة: jpeg, png, jpg, gif',
+                    //                    'images.*.max' => 'حجم كل صورة يجب ألا يتجاوز 2 ميجابايت',
                 ];
                 $validator = Validator::make($data, $rules, $messages);
                 if ($validator->fails()) {
@@ -230,31 +235,31 @@ class UserCarsController extends Controller
 
                 DB::beginTransaction();
                 $car->update([
-                "c_title" => ['ar' => $data['c_title'], 'en' => $data['c_title']],
-                "slug" => $this->CustomeSlug($data['c_title']),
-                "c_years" => $data['c_years'],
-                "c_brand" => $data['c_brand'],
-                "c_model" => $data['c_model'],
-                "c_style" => $data['c_style'],
-                "c_price" => $data['c_price'],
-                "c_trans" => $data['c_trans'],
-                "c_place" => $data['c_place'],
-                "c_stats" => $data['c_stats'],
-                "c_km" => $data['c_km'],
-                "c_fuel" => $data['c_fuel'],
-                "c_type" => $data['c_type'],
-                "c_color" => $data['c_color'],
-                "c_phone" => $data['c_phone'],
-                "c_email" => $data['c_email'],
-                'agency'=>$data['agency'],
-                'showroom'=>$data['showroom'],
-                'agency_rent'=>$data['agency_rent'],
-                "c_comfort" => implode(',', $data['c_comfort']),
-                "c_windows" => implode(',', $data['c_windows']),
-                "c_sound" => implode(',', $data['c_sound']),
-                "c_safety" => implode(',', $data['c_safety']),
-                "c_other" => implode(',', $data['c_other']),
-                "more_info" => ['ar' => $data['more_info'], 'en' => $data['more_info']],
+                    "c_title" => ['ar' => $data['c_title'], 'en' => $data['c_title']],
+                    "slug" => $this->CustomeSlug($data['c_title']),
+                    "c_years" => $data['c_years'],
+                    "c_brand" => $data['c_brand'],
+                    "c_model" => $data['c_model'],
+                    "c_style" => $data['c_style'],
+                    "c_price" => $data['c_price'],
+                    "c_trans" => $data['c_trans'],
+                    "c_place" => $data['c_place'],
+                    "c_stats" => $data['c_stats'],
+                    "c_km" => $data['c_km'],
+                    "c_fuel" => $data['c_fuel'],
+                    "c_type" => $data['c_type'],
+                    "c_color" => $data['c_color'],
+                    "c_phone" => $data['c_phone'],
+                    "c_email" => $data['c_email'],
+                    'agency' => $data['agency'],
+                    'showroom' => $data['showroom'],
+                    'agency_rent' => $data['agency_rent'],
+                    "c_comfort" => implode(',', $data['c_comfort']),
+                    "c_windows" => implode(',', $data['c_windows']),
+                    "c_sound" => implode(',', $data['c_sound']),
+                    "c_safety" => implode(',', $data['c_safety']),
+                    "c_other" => implode(',', $data['c_other']),
+                    "more_info" => ['ar' => $data['more_info'], 'en' => $data['more_info']],
                 ]);
                 if ($request->hasFile('images')) {
                     foreach ($request->file('images') as $image) {
@@ -277,8 +282,7 @@ class UserCarsController extends Controller
         $countries = Country::all();
         $citizen = State::all();
         if ($car) {
-            return view('front.users.cars.update', compact('car','rents','rooms','agency', 'citizen', 'countries', 'marks'));
+            return view('front.users.cars.update', compact('car', 'rents', 'rooms', 'agency', 'citizen', 'countries', 'marks'));
         }
-
     }
 }
