@@ -38,34 +38,33 @@
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
                             <a href="{{ url('user/car/add') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف سيارة للبيع</a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> الرسائل <span class="lft badge badge-primary">0</span></a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
                             <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
+                                <i class="fab fa-buffer"></i> اضف وكالة </a>
                             <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف معرض    </a>
+                                <i class="fab fa-buffer"></i> اضف معرض </a>
                             <a href="{{ url('user/rent') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف  مكتب تاجير    </a>
+                                <i class="fab fa-buffer"></i> اضف مكتب تاجير </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action active">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{url('user/centers')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
-                            <a href="{{url('user/forums')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/washs') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف محطة غسيل </a>
+                            <a href="{{ url('user/auctions') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/products') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضافة منتج </a>
+                            <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-                            <a href="{{url('user/update')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                                <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
+                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
-                            <a href="{{url('user/logout')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
+                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
+                            <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>
@@ -76,7 +75,8 @@
                     <h5 class="p-title"><i class="fas fa-edit"></i> أضف رقم جديد</h5>
                     <div class="clr"></div><br>
 
-                    <form action="{{ url('user/number/add') }}" method="post" class="p-form" enctype="multipart/form-data">
+                    <form  id="uploadForm" action="{{ url('user/number/add') }}" method="post" class="p-form"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -112,15 +112,47 @@
                                     })();
                                 </script>
                             </div>
-                            <div class="col-md-6">
-                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
-                                    id="subplace" style="height:45px;">
+                            <div class="col-md-12">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="country" id="place" style="height:45px;">
                                     <option value="">حدد المدينة</option>
-                                    @foreach ($citizen as $city)
+                                    @foreach ($countries as $city)
                                         <option value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-12">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="city" id="subplace" style="height:50px;">
+                                    <option value="">حدد المنطقة </option>
+                                </select>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#place").on('change', function() {
+                                        let countryId = $(this).val();
+                                        if (countryId) {
+                                            $.ajax({
+                                                method: 'GET',
+                                                url: '/getcitizen/' + countryId,
+                                                success: function(data) {
+                                                    $('#subplace').empty();
+                                                    $('#subplace').append('<option> -- حدد المنطقة   --  </option>');
+                                                    $.each(data, function(key, city) {
+                                                        $('#subplace').append('<option value="' + city.id +
+                                                            '">' + city.name.ar + '</option>');
+                                                    });
+                                                }
+
+                                            });
+
+                                        } else {
+                                            $('#subplace').empty();
+                                            $('#subplace').append('<option> -- حدد المدينة   --  </option>')
+                                        }
+                                    });
+                                });
+                            </script>
                             <div class="col-md-6">
                                 <input type="text" name="owner_name" class="form-control form-control-lg input-form"
                                     placeholder="إسم المالك" value="{{ Auth::user()->name }}">
@@ -136,10 +168,24 @@
                             <div class="col-12">
                                 <br>
                                 <button type="submit" name="Add" class="rgt btn btn-primary btn-block">أضف
-                                    الرقم</button>
+                                    الرقم <i class="fa fa-plus"></i></button>
+                                    <p id="uploadingText"
+                                    style="display: none; font-size: 16px; color: green; text-align: center;">
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                        aria-hidden="true"></span>
+                                    جاري رفع البيانات، يرجى الانتظار...
+                                </p>
                             </div>
                         </div>
                     </form>
+                    <script>
+                        document.getElementById('uploadForm').addEventListener('submit', function() {
+                            // إخفاء زر الإرسال
+                            document.getElementById('submitBtn').style.display = 'none';
+                            // عرض رسالة جاري الرفع
+                            document.getElementById('uploadingText').style.display = 'block';
+                        });
+                    </script>
                 </div>
             </div>
         </div>

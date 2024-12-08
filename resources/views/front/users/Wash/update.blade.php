@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-   تعديل محطة غسيل السيارات
+    تعديل محطة غسيل السيارات
 @endsection
 @section('content')
     <div id="HomePage">
@@ -32,87 +32,132 @@
                         role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
                     <div class="collapse show" id="collapseExample">
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action active"
+                            <a href="#" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;color:white;font-size:19px;">
                                 <i class="fab fa-buffer"></i> القائمة </a>
                             <a href="{{ url('user/dashboard') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
                             <a href="{{ url('user/car/add') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف سيارة للبيع</a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> الرسائل <span class="lft badge badge-primary">0</span></a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
                             <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
+                                <i class="fab fa-buffer"></i> اضف وكالة </a>
                             <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف معرض    </a>
+                                <i class="fab fa-buffer"></i> اضف معرض </a>
                             <a href="{{ url('user/rent') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف  مكتب تاجير    </a>
+                                <i class="fab fa-buffer"></i> اضف مكتب تاجير </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{url('user/centers')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
-                            <a href="{{url('user/washs')}}"
-                               class="list-group-item list-group-item-action active">
-                                <i class="fab fa-buffer"></i> اضف محطة غسيل  </a>
-                            <a href="{{url('user/auctions')}}"
-                               class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i>  مكتب لشركة مزاد </a>
-                            <a href="{{url('user/forums')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/washs') }}" class="list-group-item list-group-item-action active">
+                                <i class="fab fa-buffer"></i> اضف محطة غسيل </a>
+                            <a href="{{ url('user/auctions') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/products') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضافة منتج </a>
+                            <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-                            <a href="{{url('user/update')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                                <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
+                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
-                            <a href="{{url('user/logout')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
+                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
+                            <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>
                     <div class="clr"></div>
                 </div>
                 <div class="lft profileLeft">
-                    <h5 class="p-title"><i class="fas fa-edit"></i>  تعديل محطة الغسيل   </h5>
+                    <h5 class="p-title"><i class="fas fa-edit"></i> تعديل محطة الغسيل </h5>
                     <div class="clr"></div><br>
-                    <form action="{{ url('user/wash/update/'.$wash['id']) }}" method="post" class="p-form" enctype="multipart/form-data">
+                    <form id="uploadForm" action="{{ url('user/wash/update/' . $wash['id']) }}" method="post"
+                        class="p-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
                                 <input type="text" name="name" class="form-control form-control-lg input-form"
-                                    placeholder="أدخل إسم المحطة " required="" value="{{$wash['name']}}">
+                                    placeholder="أدخل إسم المحطة " required="" value="{{ $wash['name'] }}">
                             </div>
                             <div class="col-md-12">
-                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="city"
-                                    id="subplace" style="height:45px;">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="country" id="place" style="height:45px;">
                                     <option value="">حدد المدينة</option>
-                                    @foreach ($citizen as $city)
-                                        <option @if ($city['id'] == $wash['city'])
-                                            selected
-                                        @endif value="{{ $city['id'] }}">{{ $city['name'] }}</option>
+                                    @foreach ($countries as $city)
+                                        <option @if ($city['id'] == $wash['country']) selected @endif
+                                            value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-12">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form"
+                                    name="city" id="subplace" style="height:50px;">
+                                    <option selected value="{{ $wash['city'] }}">{{ $wash['City']['name'] }}</option>
+                                </select>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+
+                                    $("#place").on('change', function() {
+                                        let countryId = $(this).val();
+                                        if (countryId) {
+                                            $.ajax({
+                                                method: 'GET',
+                                                url: '/getcitizen/' + countryId,
+                                                success: function(data) {
+                                                    $('#subplace').empty();
+                                                    $('#subplace').append('<option> -- حدد المنطقة   --  </option>');
+                                                    $.each(data, function(key, city) {
+                                                        $('#subplace').append('<option value="' + city.id +
+                                                            '">' + city.name.ar + '</option>');
+                                                    });
+                                                }
+
+                                            });
+
+                                        } else {
+                                            $('#subplace').empty();
+                                            $('#subplace').append('<option> -- حدد المدينة   --  </option>')
+                                        }
+                                    });
+                                });
+                            </script>
                             <div class="col-12">
                                 <input type="text" name="address" class="form-control form-control-lg input-form"
-                                    placeholder="العنوان" value="{{$wash['address']}}">
+                                    placeholder="العنوان" value="{{ $wash['address'] }}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="phone" class="form-control form-control-lg input-form"
-                                    placeholder="رقم التواصل" value="{{$wash['phone']}}">
+                                    placeholder="رقم التواصل" value="{{ $wash['phone'] }}">
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="work_time" class="form-control form-control-lg input-form"
-                                    placeholder="أوقات العمل" value="{{$wash['work_time']}}">
+                                    placeholder="أوقات العمل" value="{{ $wash['work_time'] }}">
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control form-control-lg" name="desc" rows="2" placeholder="نبذة عن المحطة ">{{$wash['desc']}}</textarea>
+                                <textarea class="form-control form-control-lg" name="desc" rows="2" placeholder="نبذة عن المحطة ">{{ $wash['desc'] }}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="website" class="form-control form-control-lg input-form"
+                                    placeholder="رابط الموقع الالكتروني " value="{{ $wash['website'] }}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="facebook_link"
+                                    class="form-control form-control-lg input-form" placeholder=" رابط الفيسبوك"
+                                    value="{{ $wash['facebook_link'] }}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="twitter_link" class="form-control form-control-lg input-form"
+                                    placeholder="رابط تويتر " value="{{ $wash['twitter_link'] }}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="instagram_link"
+                                    class="form-control form-control-lg input-form" placeholder="رابط انستجرام"
+                                    value="{{ $wash['instagram_link'] }}">
+
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -123,7 +168,8 @@
                                         <span class="js-fileName">رفع صورة لرقم</span>
                                     </label>
                                     <br>
-                                    <img src="{{asset('assets/uploads/WashCars/'.$wash['logo'])}}" width="100px" height="100px" class="img-thumbnail" alt="">
+                                    <img src="{{ asset('assets/uploads/WashCars/' . $wash['logo']) }}" width="100px"
+                                        height="100px" class="img-thumbnail" alt="">
                                 </div>
                                 <script type="text/javascript">
                                     (function() {
@@ -148,11 +194,25 @@
                             </div>
                             <div class="col-12">
                                 <br>
-                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">تعديل
+                                <button id="submitBtn" type="submit" name="Add"
+                                    class="rgt btn btn-primary btn-block">تعديل
                                     المحطة </button>
+                                <p id="uploadingText"
+                                    style="display: none; font-size: 16px; color: green; text-align: center;">
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                        aria-hidden="true"></span>
+                                    جاري رفع البيانات، يرجى الانتظار...
                             </div>
                         </div>
                     </form>
+                    <script>
+                        document.getElementById('uploadForm').addEventListener('submit', function() {
+                            // إخفاء زر الإرسال
+                            document.getElementById('submitBtn').style.display = 'none';
+                            // عرض رسالة جاري الرفع
+                            document.getElementById('uploadingText').style.display = 'block';
+                        });
+                    </script>
                 </div>
             </div>
         </div>

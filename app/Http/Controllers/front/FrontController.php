@@ -68,7 +68,7 @@ class FrontController extends Controller
         $main_banner = HeroBanner::where('page', 'المعارض')->first();
         ############ Get Sliders #########
         $sliders = Slider::where('page_name', 'المعارض')->get();
-        $rooms = ShowRoom::with('advs', 'City','Country')->get();
+        $rooms = ShowRoom::with('advs', 'City', 'Country')->get();
         $marks = CarMark::all();
         return view('front.showrooms', compact('rooms', 'marks', 'main_banner', 'sliders'));
     }
@@ -85,12 +85,17 @@ class FrontController extends Controller
     {
         $agencies = AgencyRent::all();
         $marks = CarMark::all();
-        return view('front.rent', compact('agencies', 'marks'));
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', 'تاجير')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'تاجير')->get();
+        $agencies = AgencyRent::with('branches', 'City', 'advs', 'Country')->get();
+        return view('front.rent', compact('agencies', 'marks', 'main_banner', 'sliders'));
     }
 
     public function rent_details($slug)
     {
-        $rent = AgencyRent::where('slug', $slug)->with('advs', 'City')->first();
+        $rent = AgencyRent::where('slug', $slug)->with('advs', 'City', 'Country')->first();
         return view('front.rent_details', compact('rent'));
     }
     ///////////////////// Auctions
@@ -98,7 +103,11 @@ class FrontController extends Controller
     {
         $auctions = Auction::all();
         $marks = CarMark::all();
-        return view('front.auctions', compact('auctions', 'marks'));
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', operator: 'شركات المزاد')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'شركات المزاد')->get();
+        return view('front.auctions', compact('auctions', 'marks','main_banner','sliders'));
     }
 
     public function auction_details($slug)
@@ -111,21 +120,30 @@ class FrontController extends Controller
     ///
     public function car_numbers()
     {
-        $numbers = CarNumber::all();
+        $numbers = CarNumber::with('Country', 'City', 'User')->get();
+
         $marks = CarMark::all();
-        return view('front.car_numbers', compact('numbers', 'marks'));
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', 'ارقام مميزة')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'ارقام مميزة')->get();
+        return view('front.car_numbers', compact('numbers', 'marks', 'main_banner', 'sliders'));
     }
     ///////////////// Start Auto Repairs
     ///
     public function auto_repair()
     {
-        $repairs = AutoRepair::all();
+        $repairs = AutoRepair::with('City', 'Country')->get();
         $marks = CarMark::all();
-        return view('front.auto_repairs', compact('repairs', 'marks'));
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', 'مركز صيانة')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'مركز صيانة')->get();
+        return view('front.auto_repairs', compact('repairs', 'marks', 'main_banner', 'sliders'));
     }
     public function repair_details($slug)
     {
-        $repair = AutoRepair::where('slug', $slug)->first();
+        $repair = AutoRepair::with('City', 'Country')->where('slug', $slug)->first();
         return view('front.repair_details', compact('repair'));
     }
 
@@ -134,13 +152,17 @@ class FrontController extends Controller
     ///
     public function car_wash()
     {
-        $washs = WashCar::all();
+        $washs = WashCar::with('Country', 'City')->get();
         $marks = CarMark::all();
-        return view('front.car-wash', compact('washs', 'marks'));
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', 'غسيل السيارات')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'غسيل السيارات')->get();
+        return view('front.car-wash', compact('washs', 'marks', 'main_banner', 'sliders'));
     }
     public function car_wash_details($slug)
     {
-        $wash = WashCar::where('slug', $slug)->first();
+        $wash = WashCar::with('City', 'Country')->where('slug', $slug)->first();
         return view('front.car-wash-details', compact('wash'));
     }
 

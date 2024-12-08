@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\front;
 
-use App\Http\Controllers\Controller;
-use App\Http\Traits\Message_Trait;
-use App\Http\Traits\Slug_Trait;
-use App\Http\Traits\Upload_Images;
 use App\Models\admin\State;
+use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\admin\Country;
+use App\Http\Traits\Slug_Trait;
 use App\Models\admin\AutoRepair;
+use App\Http\Traits\Message_Trait;
+use App\Http\Traits\Upload_Images;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-use function Ramsey\Uuid\v1;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class UserCenterController extends Controller
 {
@@ -30,7 +31,7 @@ class UserCenterController extends Controller
     public function store(Request $request)
     {
         $citizen = State::all();
-
+        $countries = Country::all();
         if ($request->isMethod('post')) {
             try {
 
@@ -39,6 +40,7 @@ class UserCenterController extends Controller
                 $rules = [
                     'name' => 'required',
                     'city' => 'required',
+                    'country'=>'required',
                     'address' => 'required',
                     'work_time' => 'required',
                     'phone' => 'required',
@@ -48,7 +50,8 @@ class UserCenterController extends Controller
                 }
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                    'city.required' => ' من فضلك حدد المنطقة    ',
+                    'country.required'=>' من فضلك حدد المدينة  ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
                     'phone.required' => ' من فضلك ادخل رقم الهاتف  ',
@@ -70,12 +73,16 @@ class UserCenterController extends Controller
                     'name' => ['ar' => $data['name'], 'en' => $data['name']],
                     'slug' => $this->CustomeSlug($data['name']),
                     'logo' => $file_name,
-                   // 'country' => $data['country'],
+                   'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address']],
                     'desc' => ['ar' => $data['desc'], 'en' => $data['desc']],
                     'work_time' => ['ar' => $data['work_time'], 'en' => $data['work_time']],
                     'phone' => $data['phone'],
+                    'website' => $data['website'],
+                    'facebook_link' => $data['facebook_link'],
+                    'twitter_link' => $data['twitter_link'],
+                    'instagram_link' => $data['instagram_link'],
                 ]);
 
                 return $this->success_message(' تم اضافة المركز بنجاح  ');
@@ -83,7 +90,7 @@ class UserCenterController extends Controller
                 return $this->exception_message($e);
             }
         }
-        return view('front.users.centers.store', compact('citizen'));
+        return view('front.users.centers.store', compact('citizen','countries'));
     }
 
 
@@ -93,6 +100,7 @@ class UserCenterController extends Controller
         $repair = AutoRepair::findOrFail($id);
 
         $citizen = State::all();
+        $countries = Country::all();
         if ($request->isMethod('post')) {
             try {
 
@@ -101,7 +109,7 @@ class UserCenterController extends Controller
                 $rules = [
                     'name' => 'required',
                   //  'name_en' => 'required',
-                    //'country' => 'required',
+                    'country' => 'required',
                     'city' => 'required',
                     'address' => 'required',
                    // 'address_en' => 'required',
@@ -115,8 +123,8 @@ class UserCenterController extends Controller
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
                   //  'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
-                  //  'country.required' => ' من فضلك حدد الدولة  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                   'country.required' => ' من فضلك حدد المدينة  ',
+                    'city.required' => ' من فضلك حدد المنطقة    ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
                  //   'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
@@ -145,19 +153,22 @@ class UserCenterController extends Controller
                 $repair->update([
                     'name' => ['ar' => $data['name'], 'en' => $data['name']],
                     'slug'=>$this->CustomeSlug($data['name']),
-                  //  'country' => $data['country'],
+                   'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address']],
                     'desc' => ['ar' => $data['desc'], 'en' => $data['desc']],
                     'work_time' => ['ar' => $data['work_time'], 'en' => $data['work_time']],
                     'phone' => $data['phone'],
+                    'website' => $data['website'],
+                    'facebook_link' => $data['facebook_link'],
+                    'twitter_link' => $data['twitter_link'],
+                    'instagram_link' => $data['instagram_link'],
                 ]);
                 return $this->success_message(' تم تعديل المركز بنجاح  ');
             } catch (\Exception $e) {
                 return $this->exception_message($e);
             }
         }
-
-        return view('front.users.centers.update',compact('repair','citizen'));
+        return view('front.users.centers.update',compact('repair','citizen','countries'));
     }
 }

@@ -1095,7 +1095,7 @@ form .form-group input {
     width: 200px
 }
 
-.rent .card {
+.rent .car-card {
     float: right;
     width: 250px;
     margin: 5px;
@@ -1429,13 +1429,25 @@ form .form-group input {
     background: #28A745;
     color: #fff;
     border-color: #28A745;
+    width: 100%;
 }
 
 .cardnumber a:hover {
 
     background: #28A745;
 }
-
+.cardnumber button{
+    margin: 10px 0 10px 10px;
+    display: block;
+    background: var(--main-color);
+    color: #fff;
+    border-color: var(--main-color);
+    width: 100%;
+}
+.cardnumber button:hover{
+    background: var(--main-color); 
+    border-color: var(--main-color);
+}
 .cardnumber i {
     font-size: 12px
 }

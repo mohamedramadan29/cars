@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-     مكاتب شركات المزاد
+    مكاتب شركات المزاد
 @endsection
 @section('content')
     <div id="HomePage">
@@ -16,7 +16,7 @@
             <div class="card-body" style="padding:0px;">
                 <div class="rgt profileRight">
                     <a class="btn btn-primary display-btnprofile" data-toggle="collapse" href="#collapseExample"
-                       role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
+                        role="button" aria-expanded="false" aria-controls="collapseExample">عرض القائمة</a>
                     <div class="collapse show" id="collapseExample">
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action"
@@ -40,20 +40,17 @@
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
                             <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
-                            <a href="{{url('user/washs')}}"
-                               class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف محطة غسيل  </a>
-                            <a href="{{url('user/auctions')}}"
-                               class="list-group-item list-group-item-action active">
-                                <i class="fab fa-buffer"></i>  مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/washs') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف محطة غسيل </a>
+                            <a href="{{ url('user/auctions') }}" class="list-group-item list-group-item-action active">
+                                <i class="fab fa-buffer"></i> مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/products') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضافة منتج </a>
                             <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
                             <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;">
                                 <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                            <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
-                                style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
                             <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
@@ -74,30 +71,30 @@
 
                             <table class="table table-bordered profile-table">
                                 <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col"> الاسم</th>
-                                    <th scope="col"> عنوان المكتب</th>
-                                    <th scope="col">توقيت العمل</th>
-                                    <th scope="col">تعديل</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col"> الاسم</th>
+                                        <th scope="col"> عنوان المكتب</th>
+                                        <th scope="col">توقيت العمل</th>
+                                        <th scope="col">تعديل</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @php $i = 1; @endphp
-                                @foreach ($auctions as $auction)
-                                    <tr>
-                                        <td> {{$i++}} </td>
-                                        <td> {{$auction['name']}} </td>
-                                        <td> {{$auction['address']}} </td>
-                                        <td> {{$auction['work_time']}} </td>
-                                        <td>
-                                            <a href="{{url('user/car/add/')}}"
-                                               class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> اضف سيارة  </a>
-                                            <a href="{{url('user/auction/update/'.$auction['id'])}}"
-                                               class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @php $i = 1; @endphp
+                                    @foreach ($auctions as $auction)
+                                        <tr>
+                                            <td> {{ $i++ }} </td>
+                                            <td> {{ $auction['name'] }} </td>
+                                            <td> {{ $auction['address'] }} </td>
+                                            <td> {{ $auction['work_time'] }} </td>
+                                            <td>
+                                                <a href="{{ url('user/car/add/') }}" class="btn btn-success btn-sm"> <i
+                                                        class="fa fa-plus"></i> اضف سيارة </a>
+                                                <a href="{{ url('user/auction/update/' . $auction['id']) }}"
+                                                    class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

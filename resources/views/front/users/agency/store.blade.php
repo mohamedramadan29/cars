@@ -154,7 +154,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <input required type="text" name="website"
+                                <input type="text" name="website"
                                     class="form-control form-control-lg input-form" placeholder="رابط الموقع الالكتروني ">
                             </div>
                             <div class="col-md-6">

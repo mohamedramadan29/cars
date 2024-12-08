@@ -12,5 +12,12 @@ class AutoRepair extends Model
     use HasFactory;
     protected $guarded = [];
     public $translatable = ['name','address','desc','work_time'];
+    public function Country(){
+        return $this->belongsTo(Country::class,'country');
+    }
+    public function City()
+    {
+        return $this->belongsTo(State::class,'city');
+    }
 
 }

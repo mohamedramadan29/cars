@@ -26,34 +26,33 @@
                                 <i class="fab fa-buffer"></i> رئيسية البروفايل</a>
                             <a href="{{ url('user/car/add') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف سيارة للبيع</a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> الرسائل <span class="lft badge badge-primary">0</span></a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action">
+                            <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> التنبيهات <span class="lft badge badge-danger">0</span></a>
                             <a href="{{ url('user/agency') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف وكالة   </a>
+                                <i class="fab fa-buffer"></i> اضف وكالة </a>
                             <a href="{{ url('user/rooms') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف معرض    </a>
+                                <i class="fab fa-buffer"></i> اضف معرض </a>
                             <a href="{{ url('user/rent') }}" class="list-group-item list-group-item-action">
-                                <i class="fab fa-buffer"></i> اضف  مكتب تاجير    </a>
+                                <i class="fab fa-buffer"></i> اضف مكتب تاجير </a>
                             <a href="{{ url('user/numbers') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف رقم مميز</a>
-                            <a href="{{url('user/centers')}}"
-                                class="list-group-item list-group-item-action active">
+                            <a href="{{ url('user/centers') }}" class="list-group-item list-group-item-action active">
                                 <i class="fab fa-buffer"></i> أضف مركز صيانة </a>
-                            <a href="{{url('user/forums')}}"
-                                class="list-group-item list-group-item-action">
+                            <a href="{{ url('user/washs') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضف محطة غسيل </a>
+                            <a href="{{ url('user/auctions') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> مكتب لشركة مزاد </a>
+                            <a href="{{ url('user/products') }}" class="list-group-item list-group-item-action">
+                                <i class="fab fa-buffer"></i> اضافة منتج </a>
+                            <a href="{{ url('user/forums') }}" class="list-group-item list-group-item-action">
                                 <i class="fab fa-buffer"></i> أضف موضوع في المنتدى </a>
-                            <a href="{{url('user/update')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
-                                <a href="{{ url('user/password') }}" class="list-group-item list-group-item-action"
+                            <a href="{{ url('user/update') }}" class="list-group-item list-group-item-action"
                                 style="border-radius:0px;">
-                                <i class="fab fa-buffer"></i> تغير كلمة المرور </a>
-                            <a href="{{url('user/logout')}}"
-                                class="list-group-item list-group-item-action" style="border-radius:0px;color:#C82333;">
+                                <i class="fab fa-buffer"></i> البيانات الشخصية </a>
+                            <a href="{{ url('user/logout') }}" class="list-group-item list-group-item-action"
+                                style="border-radius:0px;color:#C82333;">
                                 <i class="fa fa-power-off"></i> تسجيل الخروج </a>
                         </div>
                     </div>

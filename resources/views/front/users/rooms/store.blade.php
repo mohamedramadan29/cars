@@ -79,7 +79,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-12">
-                                <input type="text" name="name" class="form-control form-control-lg input-form"
+                                <input required type="text" name="name" class="form-control form-control-lg input-form"
                                     placeholder=" اسم المعرض   " required="">
                             </div>
                             <div class="col-md-12">
@@ -125,7 +125,7 @@
                             </script>
 
                             <div class="col-12">
-                                <input type="text" name="address" class="form-control form-control-lg input-form"
+                                <input required type="text" name="address" class="form-control form-control-lg input-form"
                                     placeholder="العنوان">
                             </div>
                             <div class="col-md-6">
@@ -133,7 +133,7 @@
                                     placeholder="البريد الاكتروني">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="phone" class="form-control form-control-lg input-form"
+                                <input required type="text" name="phone" class="form-control form-control-lg input-form"
                                     placeholder="رقم التواصل">
                             </div>
                             <div class="col-md-6">
@@ -141,11 +141,11 @@
                                     placeholder="رقم تواصل ثاني (اختياري)">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="work_time" class="form-control form-control-lg input-form"
+                                <input required type="text" name="work_time" class="form-control form-control-lg input-form"
                                     placeholder="أوقات العمل">
                             </div>
                             <div class="col-md-6">
-                                <select class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="car_status">
+                                <select required class="custom-select my-1 mr-sm-2 form-control-lg select-form" name="car_status">
                                     <option value="" selected="" disabled=""> حالة السيارات </option>
                                     <option value="مستعملة"> مستعملة </option>
                                     <option value="جديدة"> جديدة </option>
@@ -174,7 +174,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="file" name="image" id="file" class="input-file"
+                                    <input required type="file" name="image" id="file" class="input-file"
                                         accept="image/*">
                                     <label for="file" class="btn btn-tertiary js-labelFile">
                                         <i class="icon fa fa-check"></i>

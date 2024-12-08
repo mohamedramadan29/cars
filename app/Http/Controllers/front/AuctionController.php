@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\front;
 
-use App\Http\Controllers\Controller;
-use App\Http\Traits\Message_Trait;
-use App\Http\Traits\Slug_Trait;
-use App\Http\Traits\Upload_Images;
 use App\Models\admin\State;
-use App\Models\front\Auction;
 use Illuminate\Http\Request;
+use App\Models\admin\Country;
+use App\Models\front\Auction;
+use App\Http\Traits\Slug_Trait;
+use App\Http\Traits\Message_Trait;
+use App\Http\Traits\Upload_Images;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -27,6 +28,7 @@ class AuctionController extends Controller
     public function store(Request $request)
     {
         $citizen = State::all();
+        $countries = Country::all();
 
         if ($request->isMethod('post')) {
             try {
@@ -36,7 +38,7 @@ class AuctionController extends Controller
                 $rules = [
                     'name' => 'required',
                     // 'name_en' => 'required',
-                    // 'country' => 'required',
+                    'country' => 'required',
                     'city' => 'required',
                     'address' => 'required',
                     // 'address_en' => 'required',
@@ -52,8 +54,8 @@ class AuctionController extends Controller
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
                     // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
-                    // 'country.required' => ' من فضلك حدد الدولة  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                    'country.required' => ' من فضلك حدد المدينة   ',
+                    'city.required' => ' من فضلك حدد المنطقة    ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
                     //'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
@@ -78,7 +80,7 @@ class AuctionController extends Controller
                     'name' => ['ar' => $data['name'], 'en' => $data['name']],
                     'slug'=>$this->CustomeSlug($data['name']),
                     'logo' => $file_name,
-                    // 'country' => $data['country'],
+                    'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address']],
                     'desc' => ['ar' => $data['desc'], 'en' => $data['desc']],
@@ -98,24 +100,22 @@ class AuctionController extends Controller
                 return $this->exception_message($e);
             }
         }
-        return view('front.users.auctions.store', compact('citizen'));
+        return view('front.users.auctions.store', compact('citizen','countries'));
     }
 
     public function update(Request $request, $id)
     {
 
         $auction = Auction::findOrFail($id);
-
         $citizen = State::all();
+        $countries = Country::all();
         if ($request->isMethod('post')) {
             try {
-
                 $data = $request->all();
-
                 $rules = [
                     'name' => 'required',
                     //'name_en' => 'required',
-                    // 'country' => 'required',
+                    'country' => 'required',
                     'city' => 'required',
                     'address' => 'required',
                     //  'address_en' => 'required',
@@ -131,8 +131,8 @@ class AuctionController extends Controller
                 $messages = [
                     'name.required' => ' من فضلك ادخل الاسم  ',
                     // 'name_en.required' => ' من فضلك ادخل الاسم  باللغة الانجليزية  ',
-                    // 'country.required' => ' من فضلك حدد الدولة  ',
-                    'city.required' => ' من فضلك حدد المدينة   ',
+                    'country.required' => ' من فضلك حدد المدينة   ',
+                    'city.required' => ' من فضلك حدد المنطقة    ',
                     'address.required' => ' من فضلك ادخل العنوان   ',
                     // 'address_en.required' => ' من فضلك  ادخل العنوان باللغة الانجليزية  ',
                     'work_time.required' => ' من فضلك ادخل توقيت العمل  ',
@@ -161,7 +161,7 @@ class AuctionController extends Controller
                 $auction->update([
                     'name' => ['ar' => $data['name'], 'en' => $data['name']],
                     'slug'=>$this->CustomeSlug($data['name']),
-                    //  'country' => $data['country'],
+                     'country' => $data['country'],
                     'city' => $data['city'],
                     'address' => ['ar' => $data['address'], 'en' => $data['address']],
                     'desc' => ['ar' => $data['desc'], 'en' => $data['desc']],
@@ -181,6 +181,6 @@ class AuctionController extends Controller
             }
         }
 
-        return view('front.users.auctions.update',compact('auction','citizen'));
+        return view('front.users.auctions.update',compact('auction','citizen','countries'));
     }
 }

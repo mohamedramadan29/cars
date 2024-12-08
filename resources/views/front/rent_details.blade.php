@@ -16,7 +16,7 @@
                         <div class="clr"></div>
                         <p class="text-muted rent-desc display-desk">
                             {{ $rent['desc'] }}</p>
-                        <div class="rent-info"><i class="fas fa-map-marker-alt"></i> {{ $rent['City']['name'] }} </div>
+                        <div class="rent-info"><i class="fas fa-map-marker-alt"></i> {{ $rent['Country']['name'] }} - {{ $rent['City']['name'] }} </div>
                         <div class="clr"></div>
                         <div class="rent-info"><i class="fas fa-clock"></i> {{ $rent['work_time'] }}</div>
                     </div>
@@ -31,9 +31,8 @@
                             data-target="#message"><i class="far fa-comments"></i> أرسل رسالة</div>
                         <div class="clr"></div>
                     </div>
-                    <div class="clr"></div><br>
-                    <hr class="style14">
-                    <div class="rent-car">
+                    <div class="clr"></div>
+                    <div class="rent-car rgt card-text showRight">
                         <h5 class="card-title CT1"><i class="fa fa-car"></i> السيارات المتوفرة</h5>
                         <hr class="style14">
                         <div class="clr"></div>
@@ -124,6 +123,72 @@
 
                                 </form>
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lft card-text showLeft" style="padding: 20px;text-align:center">
+                        <div class="rgt card">
+                            <div class="card-body">
+                                <h5 class="card-title CC3"><i class="fas fa-warehouse"></i> معلومات الوكالة </h5>
+                                <br>
+                                <h5 class="card-title CC3"><i class="fas fa-clock"></i> ساعات العمل </h5>
+                                <br>
+                                <div class="clr"></div>
+                                <div class="card-text ico-SRinfo">
+                                    <div class="SRINFO" style="font-weight: bold">
+                                        {{ $rent['work_time'] }}
+                                    </div>
+                                    <div class="clr"></div>
+                                    <br />
+                                    <div class="SRINFO">
+                                        <a href="tel:{{ $rent['phone'] }}" class="btn btn-info btn-sm">
+                                            {{ $rent['phone'] }}
+                                            <i class="fas fa-phone-volume" style="color: white"></i></a>
+                                    </div>
+                                    <div class="SRINFO">
+                                        <a href="#" class="btn btn-info btn-sm">
+                                            <span class="__cf_email__"> {{ $rent['email'] }} </span><i
+                                                class="fas fa-envelope" style="color: white"></i></a>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <h5 class="card-title CC3"><i class="fas fa-hashtag"></i>روابط التواصل </h5>
+                                <br>
+                                <div>
+                                    @if (!empty($rent['website']))
+                                        <div class="SRINFO"><a href="{{ $rent['website'] }}" class="btn btn-primary btn-sm"
+                                                style="background-color:#f57500;border-color:#f57500;" target="_blank"><i
+                                                    class="fas fa-globe"></i> زيارة الموقع  </a></div>
+                                    @endif
+                                    @if (!empty($rent['facebook_link']))
+                                        <div class="SRINFO"><a href="{{ $rent['facebook_link'] }}" class="btn btn-light btn-sm"
+                                                target="_blank"><i class="fab fa-facebook" style="color:#0b70ea;"></i> رابط
+                                                الصفحة </a>
+                                        </div>
+                                    @endif
+                                    @if (!empty($rent['twitter_link']))
+                                        <div class="SRINFO"><a href="{{ $rent['twitter_link'] }}" class="btn btn-light btn-sm"
+                                                target="_blank"><i class="fab fa-twitter" style="color:#4fdbf7;"></i> رابط
+                                                الصفحة
+                                            </a></div>
+                                    @endif
+                                    @if (!empty($rent['instagram_link']))
+                                        <div class="SRINFO"><a href="{{ $rent['instagram_link'] }}"
+                                                class="btn btn-light btn-sm" target="_blank"><i class="fab fa-instagram"
+                                                    style="color:#E73E53;"></i> رابط الصفحة </a></div>
+                                    @endif
+                                </div>
+                                <br />
+                                <h5 class="card-title CC3">
+                                    <i class="fas fa-hashtag"></i>  الموقع على الخريطة
+                                </h5>
+                                <br>
+                                <iframe
+                                {{-- src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_API_KEY&q={{ urlencode($rent->address) }}"  --}}
+                                    src="https://www.google.com/maps/embed?pb={{ urlencode($rent->address) }}"
+                                 width="" height="450" frameborder="0" style="border: 0"
+                                    allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
