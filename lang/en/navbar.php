@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'home' => 'Home',
+    'agency' => 'Agencies',
+    'rooms' => 'Showrooms',
+    'rent' => 'Rent',
+    'numbers' => 'Special Numbers',
+    'repair' => 'Repair Centers',
+    'wash' => 'Car Wash',
+    'auctions' => 'Auction Companies',
+    'products' => 'Spare Parts Showroom',
+    'forums' => 'Opinions Forum',
+    'feature_advs' => 'Feature Your Ad',
+    'subscription' => 'Premium Memberships',
+    'pub' => 'Advertise With Us',
+    'new_cars' => 'New Cars',
+    'used_cars' => 'Used Cars',
+    'buy_car' => 'Sell Your Car',
+    'account' => 'My Account',
+    'login' => 'Login',
+    'register' => 'Register',
+    'about_us' => 'About Us',
+    'contact_us' => 'Contact Us',
+    'privacy' => 'Privacy Policy',
+    'terms' => 'Terms of Use',
+];

@@ -97,8 +97,8 @@
                                 <img src="{{ asset('assets/front/uploads/logo.png') }}" style="width:32px;"
                                     title="Premium Membership" /> {{ $product['User']['name'] }} </a>
                             <p> عضو {{ \Carbon\Carbon::parse($product['User']['created_at'])->diffForHumans() }} </p>
-                            <p> <i style="color: red" class="fas fa-location"></i> <strong> المحافظة : </strong>
-                                {{ $product['User']['City']['name'] }} </p>
+                            <p> <i style="color: red" class="fas fa-location"></i> <strong> المنطقة  : </strong>
+                                {{ $product['Country']['name'] }} - {{ $product['City']['name'] }} </p>
                         </div>
                         <div class="clr"></div><br>
                         <div class="car-advertiser-info"> السعر </div>
@@ -115,6 +115,10 @@
                             class="btn btn-primary btn-block w-100" data-toggle="modal" data-target="#message"
                             style="padding:10px;"> <i class="fa fa-comments" aria-hidden="true"></i> الطلب عبر الواتساب
                         </button>
+                        <button style="margin-top:10px" type="button"
+                        class="btn btn-info btn-block w-100" data-toggle="modal" data-target="#message"
+                        style="padding:10px;"> <i class="fa fa-comments" aria-hidden="true"></i> ارسال رسالة
+                    </button>
                         <div class="clr"></div>
 
                         <div class="clr"></div><br>

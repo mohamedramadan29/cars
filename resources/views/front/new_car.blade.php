@@ -347,8 +347,9 @@
                                     <label class="custom-control-label" for="3">كلاهما</label>
                                 </div>
                                 <div class="clr"></div><br>
-                                <button type="submit" name="search" class="btn btn-primary btn-block main_seach_button"><i
-                                        class="fas fa-search"></i> البحث </button>
+                                <button type="submit" name="search"
+                                    class="btn btn-primary btn-block main_seach_button"><i class="fas fa-search"></i>
+                                    البحث </button>
                             </form>
                         </div>
                     </div>

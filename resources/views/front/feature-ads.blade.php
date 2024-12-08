@@ -10,6 +10,7 @@
                 <div class="row">
                     <div class="col-lg-9 col-12">
                         <div class="info">
+                            <img class="website_logo" src="{{ asset('assets/front/uploads/logo.png') }}">
                             <div class="first_section">
                                 <h2> <img src="{{ asset('assets/icons/user.png') }}"> احصـــل علــــى زبائـن
                                     أكثـر
@@ -280,9 +281,9 @@
                             </section>
                             <hr>
 
-                            <div class="pricing-container pricing-container3">
-                                <h2 class="title"> إعـــادة نشـــر
-                                     <img src="{{ asset('assets/icons/arrows.png') }}" alt=""></h2>
+                            <div class="pricing-container pricing-container3  premium-service3">
+                                <h2 class="title" style="color:#141414"> أعــــــلان عــــــادي
+                                    <img src="{{ asset('assets/icons/normal.png') }}" alt=""></h2>
                                 <p class="subtitle"> قم بالتحديث تلقائياً إلى أعلى نتائج البحث كما لو قمت بالنشر مرة أخرى للحصول على المزيد
                                     من المشاهدات والزبائن.
                                 </p>

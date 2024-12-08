@@ -35,6 +35,10 @@ class FrontController extends Controller
     {
         $marks = CarMark::all();
         $query = Blog::query();
+        ########### Get Main Banner ###############
+        $main_banner = HeroBanner::where('page', 'الرئيسية')->first();
+        ############ Get Sliders #########
+        $sliders = Slider::where('page_name', 'الرئيسية')->get();
         $new_advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 1)->limit(10)->get();
         $old_advs = Advertisment::with('carImages', 'carMark', 'City')->where('c_type', 2)->limit(10)->get();
         $random_advs = Advertisment::with('carImages', 'carMark', 'City')->inRandomOrder()->limit(10)->get();
@@ -42,7 +46,7 @@ class FrontController extends Controller
         $lastblogs = $query->latest()->limit(4)->where('id', '!=', $lastblog['id'])->get();
         $lastFourPosts = $query->limit(4)->get();
         $randomposts = $query->inRandomOrder()->limit(4)->get();
-        return view('front.index', compact('marks', 'new_advs', 'old_advs', 'random_advs', 'lastblog', 'lastblogs', 'lastFourPosts', 'randomposts'));
+        return view('front.index', compact('marks', 'new_advs', 'old_advs', 'random_advs', 'lastblog', 'lastblogs', 'lastFourPosts', 'randomposts','main_banner','sliders'));
     }
     public function agencies()
     {
@@ -107,7 +111,7 @@ class FrontController extends Controller
         $main_banner = HeroBanner::where('page', operator: 'شركات المزاد')->first();
         ############ Get Sliders #########
         $sliders = Slider::where('page_name', 'شركات المزاد')->get();
-        return view('front.auctions', compact('auctions', 'marks','main_banner','sliders'));
+        return view('front.auctions', compact('auctions', 'marks', 'main_banner', 'sliders'));
     }
 
     public function auction_details($slug)

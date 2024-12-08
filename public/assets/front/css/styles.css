@@ -1445,7 +1445,7 @@ form .form-group input {
     width: 100%;
 }
 .cardnumber button:hover{
-    background: var(--main-color); 
+    background: var(--main-color);
     border-color: var(--main-color);
 }
 .cardnumber i {
@@ -6590,6 +6590,23 @@ span.right {
     display: flex;
     flex-direction: column;
 }
+.new_car .car_banner span{
+    position: absolute;
+    right: -37px;
+    background: #1BC741;
+    min-width: 130px;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    transform: rotate(45deg);
+    top: 20px; 
+    border-radius: 4px;
+    word-spacing: 5px;
+    font-size: 13px;
+    padding: 1px;
+    font-weight: bold;
+}
 
 .new_car .car_more_info .adv_user {
     display: flex;
@@ -6785,7 +6802,13 @@ span.right {
 }
 
 .feature_ads .info {}
-
+.feature_ads .info .website_logo{
+    width: 120px;
+    margin: auto;
+    text-align: center;
+    display: block;
+    margin-bottom: 40px;
+}
 .feature_ads .info .first_section {}
 
 .feature_ads .info .first_section h2 {
@@ -6835,7 +6858,7 @@ span.right {
 .feature_ads .info .second_section .advs_shap {}
 
 .feature_ads .info .second_section .advs_shap img {
-    max-width: 100%;
+    max-width: 70%;
     margin-bottom: 20px;
 }
 
@@ -6963,6 +6986,7 @@ span.right {
 .feature_ads .pricing-container .features li {
     margin-bottom: 10px;
     font-size: 14px;
+    font-weight: 600;
 }
 
 .feature_ads .pricing-container .features li img {
@@ -7002,6 +7026,7 @@ span.right {
 
 .feature_ads .pricing-container .btn:hover {
     background-color: #d35400;
+    color:#fff;
 }
 
 .feature_ads .pricing-container2 .btn:hover {
@@ -7423,4 +7448,35 @@ span.right {
     .car_details_info{
         flex-direction: column;
     }
+}
+
+
+.forum_posts{
+
+}
+
+
+
+@media(max-width:991px){
+    .forum_posts  th a{
+        font-size: 12px ;
+    }
+    .forum_posts th button{
+        font-size: 12px;
+    }
+    .feature_ads .info .second_section .advs_shap img {
+        max-width: 100%;
+    }
+
+}
+
+
+.whatsapp_footer{
+    position: fixed;
+    bottom: 35px;
+    right: 14px;
+    z-index: 9999;
+}
+.whatsapp_footer img{
+    width: 60px;
 }

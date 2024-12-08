@@ -15,63 +15,66 @@
             @endphp
         @endforeach
     @endif
-    <div class="background clearfix2">
+    <div class="clearfix2 background"
+        style="background-image: url({{ asset('assets/uploads/Banners/' . $main_banner['image']) }})">
         <div class="layer">
             <div id="HomePage">
                 <center>
                     <div class="uk-margin">
-                        <p class="txt01">هل تريد بيع سيارتك؟ </p>
-                        <p class="txt02">قم ببيع سيارتك مجاناً . لدينا كل ما يلزم لجعل عملية بيع سيارتك سهلة على منصتنا
-                            بشكل سريع</p>
+                        <p class="txt01"> {{ $main_banner['title'] }} </p>
+                        <p class="txt02">
+                            <strong> {{ $main_banner['desc'] }} </strong>
+                        </p>
                         <div class="clr"></div>
                         <form action="{{ route('car.search') }}" method="GET" class="formsrch">
                             @csrf
                             <div class>
                                 <div class="colum">
                                     <select class="custom-select mr-sm-2" name="c_brand" id="brand">
-                                        <option value selected>اختر الماركة</option>
+                                        <option value selected> {{ __('public.select_mark') }} </option>
                                         @foreach ($marks as $mark)
                                             <option value="{{ $mark['id'] }}"
-                                                {{ request('c_brand') == $mark['id'] ? 'selected' : '' }}>{{ $mark['name'] }}
+                                                {{ request('c_brand') == $mark['id'] ? 'selected' : '' }}>
+                                                {{ $mark['name'] }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="colum">
                                     <select class="custom-select mr-sm-2" name="c_model" id="subbrand">
-                                        <option selected>اختر الموديل</option>
+                                        <option selected> {{ __('public.select_model') }} </option>
                                     </select>
                                 </div>
                                 <script>
-                                    $(document).ready(function () {
+                                    $(document).ready(function() {
                                         var oldBrand = "{{ old('c_brand', request('c_brand')) }}";
                                         var oldModel = "{{ old('c_model', request('c_model')) }}";
-                                        $('#brand').on('change', function () {
+                                        $('#brand').on('change', function() {
                                             var brandId = $(this).val();
                                             if (brandId) {
                                                 var ajaxRequest = $.ajax({
                                                     url: '/getCarModels/' + brandId, // Update with your route
                                                     type: 'GET',
-                                                    success: function (data) {
+                                                    success: function(data) {
                                                         $('#subbrand').empty();
-                                                        $('#subbrand').append('<option value="">حدد الموديل</option>');
-                                                        $.each(data, function (key, model) {
+                                                        $('#subbrand').append('<option value=""> {{ __('public.select_model') }} </option>');
+                                                        $.each(data, function(key, model) {
                                                             $('#subbrand').append(
                                                                 '<option value="' + model.id + '">' + model.name
-                                                                    .ar + '</option>'
+                                                                .ar + '</option>'
                                                             );
                                                         });
                                                     }
                                                 });
                                                 // تأكد من تعيين القيمة القديمة فقط بعد انتهاء عملية التحميل
-                                                $.when(ajaxRequest).done(function () {
+                                                $.when(ajaxRequest).done(function() {
                                                     if (oldModel) {
                                                         $('#subbrand').val(oldModel);
                                                     }
                                                 });
                                             } else {
                                                 $('#subbrand').empty();
-                                                $('#subbrand').append('<option value="">حدد الموديل</option>');
+                                                $('#subbrand').append('<option value=""> {{ __('public.select_model') }} </option>');
                                             }
                                         });
                                         if (oldBrand) {
@@ -81,7 +84,7 @@
                                 </script>
                                 <div class="colum">
                                     <select class="custom-select mr-sm-2" name="typecar">
-                                        <option value selected>إختر الحالة</option>
+                                        <option value selected> {{ __('public.select_status') }} </option>
                                         <option value="1">جديدة</option>
                                         <option value="2">مستعملة</option>
                                         <option value="0">كلاهما</option>
@@ -89,7 +92,7 @@
                                 </div>
                                 <div class="btnsearch">
                                     <button type="submit" name="search" class="btn btn-primary"><i
-                                            class="fa fa-search"></i> بحث
+                                            class="fa fa-search"></i> {{ __('public.search') }}
                                     </button>
                                 </div>
                             </div>
@@ -100,32 +103,40 @@
         </div>
     </div>
     <div class="clr"></div>
-    <div class="hero_slider">
-        <div class="container-fluid">
-            <div id="carouselExampleIndicators" class="carousel slide carousel-fade">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{asset('assets/front/uploads/hero_image.jpeg')}}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{asset('assets/front/uploads/hero1.jpeg')}}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{asset('assets/front/uploads/hero_image.jpeg')}}" class="d-block w-100" alt="...">
-                    </div>
-                </div>
+    @if(count($sliders) > 0)
 
+    <div class="hero_slider">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                @foreach ($sliders as $index => $slider)
+                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
+                        aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                        aria-label="Slide {{ $index + 1 }}"></button>
+                @endforeach
             </div>
+            <div class="carousel-inner">
+                @foreach ($sliders as $index => $slider)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <img src="{{ asset('assets/uploads/Slider/' . $slider->image) }}" class="d-block w-100"
+                            alt="...">
+                    </div>
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
+
+    @endif
     <div class="clr"></div>
     <div id="HomePage">
         <div class="clr"></div>

@@ -240,20 +240,20 @@
                         </div>
                     </div>
                     <div class="car_description">
-                        <h3 class="desc_button"> الوصف   </h3>
+                        <h3 class="desc_button"> الوصف </h3>
                         <p> {{ $car['more_info'] }} </p>
                     </div>
                     <div class="car_description">
-                        <h3 class="desc_button"> ارشادات الامان    </h3>
-                         <ul>
+                        <h3 class="desc_button"> ارشادات الامان </h3>
+                        <ul>
                             <li> <i class="bi bi-check"></i> الحرص علي مقابلة البائع شخصيا والتأكد من هويته ( يفضل
                                 مقابلته بمكان عام بحضور أحد الأصدقاء ). </li>
-                                <li> <i class="bi bi-check"></i> التأكد من معاينة المنتج وفحصه من قبل مختصين.  </li>
-                                <li> <i class="bi bi-check"></i> توثيق عملية البيع/الشراء مع ذكر تفاصيل كاملة للمنتج.  </li>
-                                <li> <i class="bi bi-check"></i> عدم تحويل أي أموال إلا بعد التأكد من ( هوية البائع و توثيق
-                                    عملية البيع وإستلام المنتج ).  </li>
-                                <li> <i class="bi bi-check"></i>  الحرص علي الحصول علي سند قبض موقع من البائع. </li>
-                         </ul>
+                            <li> <i class="bi bi-check"></i> التأكد من معاينة المنتج وفحصه من قبل مختصين. </li>
+                            <li> <i class="bi bi-check"></i> توثيق عملية البيع/الشراء مع ذكر تفاصيل كاملة للمنتج. </li>
+                            <li> <i class="bi bi-check"></i> عدم تحويل أي أموال إلا بعد التأكد من ( هوية البائع و توثيق
+                                عملية البيع وإستلام المنتج ). </li>
+                            <li> <i class="bi bi-check"></i> الحرص علي الحصول علي سند قبض موقع من البائع. </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="LeftShowrom">
@@ -264,12 +264,12 @@
                                 <img src="{{ asset('assets/front/uploads/logo.png') }}" style="width:32px;"
                                     title="Premium Membership" /> {{ $car['User']['name'] }} </a>
                             <p> عضو {{ \Carbon\Carbon::parse($car['User']['created_at'])->diffForHumans() }} </p>
-                            <p> <i style="color: red" class="fas fa-location"></i> <strong> المحافظة : </strong>
-                                {{ $car['User']['City']['name'] }} </p>
+                            <p> <i style="color: red" class="fas fa-location"></i> <strong> المنطقة : </strong>
+                                {{ $car['Country']['name'] }} -{{ $car['City']['name'] }} </p>
                         </div>
                         <div class="clr"></div><br>
                         <div class="car-advertiser-info"> السعر </div>
-                        <div class="car-prix"> {{ number_format($car['c_price'],2) }} $</div>
+                        <div class="car-prix"> {{ number_format($car['c_price'], 2) }} $</div>
                         <div class="clr"></div>
                         <div style="font-size:14px;"></div>
                         <button id="phone" type="button" class="btn btn-success btn-block w-100"

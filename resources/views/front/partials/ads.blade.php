@@ -9,6 +9,9 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
+                    <div class="car_banner">
+                        <span> تم البيع  </span>
+                    </div>
                     <div class="car_price">{{ number_format($adv['c_price'], 2) }} $</div>
                     <h5 class="card-title CC2">
                         <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}">{{ $adv['c_title'] }}</a>
@@ -27,7 +30,7 @@
                         {{-- <small class="text-muted">{{ $adv['created_at'] }}</small> --}}
                         <div class="more_details">
                             <div class="address"><i class="bi bi-geo-alt-fill"></i>
-                                <h6> العراق - {{ $adv->City->name }}</h6>
+                                <h6> {{ $adv->Country->name }} - {{ $adv->City->name }}</h6>
                             </div>
                             <div class="details">
                                 <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}"
@@ -47,10 +50,10 @@
                                 </script>
                             </div>
                             <div class="details adv_user">
-                                <div>
+                                {{-- <div>
                                     <i class="bi bi-person-fill"></i>
                                     <p> البائـــع </p>
-                                </div>
+                                </div> --}}
                                 <div>
                                     <img src="{{ asset('assets/icons/person.png')}}">
                                 </div>

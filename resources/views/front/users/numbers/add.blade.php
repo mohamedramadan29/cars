@@ -167,7 +167,7 @@
                             </div>
                             <div class="col-12">
                                 <br>
-                                <button type="submit" name="Add" class="rgt btn btn-primary btn-block">أضف
+                                <button id="submitBtn" type="submit" name="Add" class="rgt btn btn-primary btn-block">أضف
                                     الرقم <i class="fa fa-plus"></i></button>
                                     <p id="uploadingText"
                                     style="display: none; font-size: 16px; color: green; text-align: center;">

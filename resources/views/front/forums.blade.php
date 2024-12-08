@@ -26,7 +26,8 @@
                             <div class="rgt card Forumcat">
                                 <div class="card-body">
                                     <h5 class="card-title"> {{ $category['name'] }} </h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">عدد المساهمات : {{ count($category['Topics'])}}</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">عدد المساهمات :
+                                        {{ count($category['Topics']) }}</h6>
                                     <a href="{{ url('forum/' . $category['slug']) }}" class="btn gradient-btn btn-sm"> زيارة
                                         القسم </a>
                                 </div>
@@ -36,9 +37,10 @@
                         <hr>
                         <div class="clr"></div><br>
                     </div>
-                    <a href="{{url('user/forum/add')}}" class="rgt btn gradient-btn"><i class="fa fa-plus"></i> اضافة موضوع جديد </a>
+                    <a href="{{ url('user/forum/add') }}" class="rgt btn gradient-btn"><i class="fa fa-plus"></i> اضافة
+                        موضوع جديد </a>
                     <div class="clr"></div><br>
-                    <div class="table-responsive">
+                    <div class="table-responsive forum_posts">
                         <table class="table">
                             <thead class="thead-light" style="width:100%;">
                                 <tr>
@@ -49,21 +51,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($lasttopics as  $topic)
-                                <tr>
-                                    <th style="color:#0069D9;"> <button class="btn btn-sm"
-                                            style="background-color: #00B82A; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 10px;margin-right: 10px;">
-                                            <i class="bi bi-lightbulb-fill"></i> نصيحة </button> <a href="{{url('topic/'.$topic['id'].'/'.$topic['slug'])}}"><i
-                                                class="fa fa-align-center" style="font-size:12px;"></i>  {{$topic['title']}} </a></th>
-                                    <td><a href class="btn btn-light btn-sm"> {{$topic["User"]['name']}} </a></td>
-                                    <td class="display-desk"> {{$topic['created_at']}} </td>
-                                    <td>{{count($topic['Comments'])}}</td>
-                                </tr>
+                                @foreach ($lasttopics as $topic)
+                                    <tr>
+                                        <th style="color:#0069D9;">
+                                             <button class="btn btn-sm"
+                                                style="background-color: #00B82A; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 0px;margin-right: 0px;">
+                                                <i class="bi bi-lightbulb-fill"></i> نصيحة </button>
+                                                 <a
+                                                href="{{ url('topic/' . $topic['id'] . '/' . $topic['slug']) }}"><i
+                                                    class="fa fa-align-center" style="font-size:12px;"></i>
+                                                {{ $topic['title'] }} </a></th>
+                                        <td><a href class="btn btn-light btn-sm"> {{ $topic['User']['name'] }} </a></td>
+                                        <td class="display-desk"> {{ $topic['created_at'] }} </td>
+                                        <td>{{ count($topic['Comments']) }}</td>
+                                    </tr>
                                 @endforeach
 
-                                {{-- <tr>
+                                 <tr>
                                     <th style="color:#0069D9;"> <button class="btn btn-sm"
-                                            style="background-color: #E8731E; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 10px;margin-right: 10px;">
+                                            style="background-color: #E8731E; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 0px;margin-right: 0px;">
                                             <i class="bi bi-person-raised-hand"></i> استفسار </button> <a href="#"><i
                                                 class="fa fa-align-center" style="font-size:12px;"></i> اريد سيارة بمبلغ
                                             80000 الى 90000</a></th>
@@ -73,7 +79,7 @@
                                 </tr>
                                 <tr>
                                     <th style="color:#0069D9;"> <button class="btn btn-sm"
-                                            style="background-color: #6100FF; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 10px;margin-right: 10px;">
+                                            style="background-color: #6100FF; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 0px;margin-right: 0px;">
                                             <i class="bi bi-question-square-fill"></i> سؤال </button> <a href="#"><i
                                                 class="fa fa-align-center" style="font-size:12px;"></i> نصيحة</a></th>
                                     <td><a href class="btn btn-light btn-sm">Admin@</a></td>
@@ -82,14 +88,14 @@
                                 </tr>
                                 <tr>
                                     <th style="color:#0069D9;"> <button class="btn btn-sm"
-                                            style="background-color:  #C70505; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 10px;margin-right: 10px;">
+                                            style="background-color:  #C70505; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 0px;margin-right: 0px;">
                                             <i class="bi bi-exclamation-triangle-fill"></i> تحذير </button> <a
                                             href="#"><i class="fa fa-align-center" style="font-size:12px;"></i>
                                             استفسار عن السيارة ام جى</a></th>
                                     <td><a href class="btn btn-light btn-sm">chakirdev@</a></td>
                                     <td class="display-desk">2024-10-05 22:34:24</td>
                                     <td>1</td>
-                                </tr> --}}
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -100,7 +106,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title"> {{ $category['name'] }} </h5>
                                     <h6 class="card-subtitle mb-2 text-muted"> عدد المساهمات : 2 </h6>
-                                    <a href="{{ url('forum/' . $category['slug']) }}" class="btn gradient-btn btn-sm"> زيارة
+                                    <a href="{{ url('forum/' . $category['slug']) }}" class="btn gradient-btn btn-sm">
+                                        زيارة
                                         القسم </a>
                                 </div>
                             </div>

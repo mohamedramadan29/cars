@@ -11,6 +11,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.8",
+        "mcamara/laravel-localization": "^2.2",
         "redot/laravel-toastify": "^1.0",
         "spatie/laravel-translatable": "^6.8"
     },

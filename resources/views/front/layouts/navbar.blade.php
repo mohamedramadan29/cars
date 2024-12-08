@@ -3,10 +3,10 @@
     <div class="top_navbar">
         <div class="top_bar_links">
             <ul class="list-unstyled">
-                <li> <a href="{{ url('aboutus') }}"> <i class="bi bi-person-vcard-fill"></i> من نحن </a> </li>
-                <li> <a href="{{ url('contactus') }}"> <i class="bi bi-envelope-open-fill"></i> اتصل بنا </a> </li>
-                <li> <a href="{{ url('privacy') }}"> <i class="bi bi-shield-fill-check"></i> سياسة الخصوصية </a> </li>
-                <li> <a href="{{ url('terms') }}"> <i class="bi bi-file-earmark-ruled-fill"></i> اتفاقية الاستخدام </a>
+                <li> <a href="{{ url('aboutus') }}"> <i class="bi bi-person-vcard-fill"></i> {{ __('navbar.about_us') }} </a> </li>
+                <li> <a href="{{ url('contactus') }}"> <i class="bi bi-envelope-open-fill"></i> {{ __('navbar.contact_us') }} </a> </li>
+                <li> <a href="{{ url('privacy') }}"> <i class="bi bi-shield-fill-check"></i>  {{ __('navbar.privacy') }} </a> </li>
+                <li> <a href="{{ url('terms') }}"> <i class="bi bi-file-earmark-ruled-fill"></i> {{ __('navbar.terms') }} </a>
                 </li>
                 {{-- <li> <a href="#"> <i class="bi bi-file-earmark-zip-fill"></i> الارشيف </a> </li> --}}
             </ul>
@@ -26,19 +26,20 @@
 <div class="display-mobile">
     <div class="clearfix2 mobileNav">
         <div class="rgt">
-            <a href="{{ url('/') }}"><img src="{{ asset('assets/front/uploads/logo.png') }}" style="width:75px;" /> </a>
+            <a href="{{ url('/') }}"><img src="{{ asset('assets/front/uploads/logo.png') }}" style="width:75px;" />
+            </a>
         </div>
         <div class="lft iconPart">
             <ul class="navbar-nav">
                 @if (Auth::check())
                     <li class="nav-item login_nav">
                         <a href="{{ url('user/dashboard') }}">
-                            <i class="bi bi-person-circle"></i> حسابي <i class="bi bi-text-paragraph"></i> </a>
+                            <i class="bi bi-person-circle"></i> {{ __('navbar.account') }} <i class="bi bi-text-paragraph"></i> </a>
                     </li>
                 @else
                     <li class="nav-item login_nav">
                         <a href="{{ url('login') }}">
-                            <i class="bi bi-person-circle"></i> تسجيل الدخول <i class="bi bi-text-paragraph"></i> </a>
+                            <i class="bi bi-person-circle"></i>{{ __('navbar.login') }} <i class="bi bi-text-paragraph"></i> </a>
                     </li>
                 @endif
             </ul>
@@ -48,33 +49,32 @@
 </div>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="{{ url('/') }}"><i class="fa fa-home"></i> الرئيسية </a>
-    <a href="{{ url('user/car/add') }}"><i class="fa fa-plus"></i> بيع سيارتك </a>
-    <a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> سيارات جديدة</a>
-    <a href="{{ url('used-cars') }}"><i class="fa fa-car"></i> سيارات مستعملة </a>
-    <a href="{{ url('login') }}"><i class="fas fa-user-shield"></i> تسجيل الدخول</a>
-    <a href="#"><i class="fa fa-globe"></i> English </a>
+    <a href="{{ url('/') }}"><i class="fa fa-home"></i> {{ __('navbar.home') }} </a>
+    <a href="{{ url('user/car/add') }}"><i class="fa fa-plus"></i> {{ __('navbar.buy_car') }}</a>
+    <a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> {{ __('navbar.new_cars') }} </a>
+    <a href="{{ url('used-cars') }}"><i class="fa fa-car"></i> {{ __('navbar.used_cars') }} </a>
+    <a href="{{ url('login') }}"><i class="fas fa-user-shield"></i> {{ __('navbar.login') }} </a>
+    {{-- <a href="#"><i class="fa fa-globe"></i> English </a> --}}
     <div class="clr"></div>
     <hr style="color:#333333;" />
     <div class="navink-mobile">
         <ul class="list-unstyled">
-            <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i> الوكالات</a></li>
-            <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> المعارض</a></li>
-            <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i> تأجير </a></li>
-            <li><a href="{{ url('car_numbers') }}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
-            <li><a href="{{ url('auto-repair') }}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
+            <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i> {{ __('navbar.agency') }}</a></li>
+            <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> {{ __('navbar.rooms') }} </a></li>
+            <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i> {{ __('navbar.rent') }} </a></li>
+            <li><a href="{{ url('car_numbers') }}"><i class="fas fa-sort-numeric-up"></i> {{ __('navbar.numbers') }} </a></li>
+            <li><a href="{{ url('auto-repair') }}"><i class="fas fa-wrench"></i> {{ __('navbar.repair') }} </a></li>
             <li><a href="{{ url('car-wash') }}"> <img src="{{ asset('assets/icons/wash.svg') }}" alt="">
-                    غسيل السيارات </a></li>
+                   {{ __('navbar.wash') }} </a></li>
             <li><a href="{{ url('auctions') }}"> <img src="{{ asset('assets/icons/auction.svg') }}" alt="">
-                    شركات المزاد </a></li>
+                     {{ __('navbar.auctions') }} </a></li>
             <li><a href="{{ url('products') }}"><img src="{{ asset('assets/icons/products.svg') }}" alt="">
-                    معرض الاداوات الاحتياطية </a></li>
-            <li><a href="{{ url('forums') }}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
+                    {{ __('navbar.products') }} </a></li>
+            <li><a href="{{ url('forums') }}"><i class="far fa-comments"></i> {{ __('navbar.forums') }} </a></li>
             <li><a href="{{ url('feature-advs') }}"> <img src="{{ asset('assets/icons/adv.svg') }}" alt="">
-                    ميز اعلانك </a></li>
-            <li><a href="{{ url('subscription') }}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
-            <li><a href="{{ url('pub') }}"> <img src="{{ asset('assets/icons/adv2.svg') }}" alt=""> اعلن
-                    معنا </a></li>
+                     {{ __('navbar.feature_advs') }} </a></li>
+            <li><a href="{{ url('subscription') }}"><i class="fas fa-star"></i> {{ __('navbar.subscription') }} </a></li>
+            <li><a href="{{ url('pub') }}"> <img src="{{ asset('assets/icons/adv2.svg') }}" alt="">  {{ __('navbar.pub') }} </a></li>
         </ul>
 
         <div class="clr"></div>
@@ -108,17 +108,17 @@
                     src="{{ asset('assets/front/uploads/logo.png') }}" style /></a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> سيارات جديدة </a>
+                    <li class="nav-item"><a href="{{ url('new-cars') }}"><i class="fa fa-car"></i> {{ __('navbar.new_cars') }} </a>
                     </li>
-                    <li class="nav-item"><a href="{{ url('used-cars') }}"><i class="fa fa-car"></i> سيارات
-                            مستعملة</a></li>
+                    <li class="nav-item"><a href="{{ url('used-cars') }}"><i class="fa fa-car"></i> {{ __('navbar.used_cars') }}
+                             </a></li>
                 </ul>
                 @if (Auth::check())
                     <a href="{{ url('user/car/add') }}" class="rgt btn gradient-btn btn-sm"
-                        style="margin-right:10px;"><i class="fa fa-plus"></i> بيع سيارتك</a>
+                        style="margin-right:10px;font-size:17px"><i class="fa fa-plus"></i> {{ __('navbar.buy_car') }} </a>
                 @else
                     <a href="{{ url('create-car') }}" class="rgt btn gradient-btn btn-sm"
-                        style="margin-right:10px;"><i class="fa fa-plus"></i> بيع سيارتك</a>
+                        style="margin-right:10px;font-size:17px"><i class="fa fa-plus"></i>  {{ __('navbar.buy_car') }} </a>
                 @endif
 
                 {{-- <a href="create-2.html" class="rgt btn gradient-btn btn-sm" style="margin-right:10px;"><i
@@ -128,16 +128,16 @@
                 @if (Auth::check())
                     <li class="nav-item login_nav">
                         <a href="{{ url('user/dashboard') }}">
-                            <i class="bi bi-person-circle"></i> حسابي <i class="bi bi-text-paragraph"></i> </a>
+                            <i class="bi bi-person-circle"></i> {{ __('navbar.account') }} <i class="bi bi-text-paragraph"></i> </a>
                     </li>
                 @else
                     <li class="nav-item login_nav">
                         <a href="{{ url('login') }}">
-                            <i class="bi bi-person-circle"></i> تسجيل الدخول <i class="bi bi-text-paragraph"></i> </a>
+                            <i class="bi bi-person-circle"></i> {{ __('navbar.login') }}<i class="bi bi-text-paragraph"></i> </a>
                     </li>
                     <li class="nav-item login_nav register_nav">
                         <a href="{{ url('register') }}">
-                            <i class="bi bi-person-fill-add"></i> انشاء حساب جديد <i class="bi bi-text-paragraph"></i>
+                            <i class="bi bi-person-fill-add"></i> {{ __('navbar.register') }} <i class="bi bi-text-paragraph"></i>
                         </a>
                     </li>
                 @endif
@@ -147,34 +147,48 @@
                         <img src="{{ asset('assets/front/uploads/ma.png') }}" style="width:32px;" />
                     </a>
                 </li>
-                <li class="nav-item" style="margin-top:10px;">
-                    <a href="index9ed2.html?lang=en"><i class="fas fa-globe"></i> EN</a>
-                </li>
+                <div class="dropdown">
+                    <button style="background: transparent;color: var(--main-color);border: none;font-weight:bold"
+                        class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{ Config::get('app.locale') }} <i class="fas fa-globe"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li>
+                                <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ $properties['native'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
             </ul>
         </nav>
     </div>
 </div>
 <div class="shadow display-desk">
     <div class="navbar navbar-expand-lg" id="HomePage2">
-        <ul class="navbar-nav navbtm"> 
-            <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> الرئيسية </a></li>
-            <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i> الوكالات</a></li>
-            <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> المعارض</a></li>
-            <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i> تأجير </a></li>
-            <li><a href="{{ url('car_numbers') }}"><i class="fas fa-sort-numeric-up"></i> أرقام مميزة</a></li>
-            <li><a href="{{ url('auto-repair') }}"><i class="fas fa-wrench"></i> مراكز الصيانة</a></li>
+        <ul class="navbar-nav navbtm">
+            <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> {{ __('navbar.home') }} </a></li>
+            <li><a href="{{ url('agency') }}"><i class="fas fa-building"></i>  {{ __('navbar.agency') }} </a></li>
+            <li><a href="{{ url('showrooms') }}"><i class="fas fa-car"></i> {{ __('navbar.rooms') }} </a></li>
+            <li><a href="{{ url('rent') }}"><i class="fas fa-handshake"></i>  {{ __('navbar.rent') }} </a></li>
+            <li><a href="{{ url('car_numbers') }}"><i class="fas fa-sort-numeric-up"></i>  {{ __('navbar.numbers') }} </a></li>
+            <li><a href="{{ url('auto-repair') }}"><i class="fas fa-wrench"></i>  {{ __('navbar.repair') }} </a></li>
             <li><a href="{{ url('car-wash') }}"> <img src="{{ asset('assets/icons/wash.svg') }}" alt="">
-                    غسيل السيارات </a></li>
+                {{ __('navbar.wash') }} </a></li>
             <li><a href="{{ url('auctions') }}"> <img src="{{ asset('assets/icons/auction.svg') }}" alt="">
-                    شركات المزاد </a></li>
+                {{ __('navbar.auctions') }} </a></li>
             <li><a href="{{ url('products') }}"><img src="{{ asset('assets/icons/products.svg') }}" alt="">
-                    معرض الاداوات الاحتياطية </a></li>
-            <li><a href="{{ url('forums') }}"><i class="far fa-comments"></i> منتدى الأراء</a></li>
+                    {{ __('nav.products') }} </a></li>
+            <li><a href="{{ url('forums') }}"><i class="far fa-comments"></i>  {{ __('navbar.forums') }} </a></li>
             <li><a href="{{ url('feature-advs') }}"> <img src="{{ asset('assets/icons/adv.svg') }}" alt="">
-                    ميز اعلانك </a></li>
-            <li><a href="{{ url('subscription') }}"><i class="fas fa-star"></i> العضويات المميزة</a></li>
-            <li><a href="{{ url('pub') }}"> <img src="{{ asset('assets/icons/adv2.svg') }}" alt=""> اعلن
-                    معنا </a></li>
+                   {{ __('navbar.feature_advs') }} </a></li>
+            <li><a href="{{ url('subscription') }}"><i class="fas fa-star"></i> {{ __('navbar.subscription') }} </a></li>
+            <li><a href="{{ url('pub') }}"> <img src="{{ asset('assets/icons/adv2.svg') }}" alt="">  {{ __('navbar.pub') }} </a></li>
         </ul>
     </div>
 </div>
