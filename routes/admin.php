@@ -17,10 +17,13 @@ use \App\Http\Controllers\admin\CarNumbersController;
 use App\Http\Controllers\admin\BlogCategoryController;
 use \App\Http\Controllers\admin\AdvertismentController;
 use \App\Http\Controllers\admin\AgencyBranchController;
+use App\Http\Controllers\admin\FeatureMainCategoryController;
+use App\Http\Controllers\admin\FeatureSubCategoryController;
 use App\Http\Controllers\admin\PlansController;
 use App\Http\Controllers\admin\PublicSettingController;
 use \App\Http\Controllers\admin\TopicCategoryController;
 use \App\Http\Controllers\admin\SubscribtionController;
+
 Route::group(['prefix' => 'admin'], function () {
     // Admin Login
 
@@ -179,7 +182,22 @@ Route::group(['prefix' => 'admin'], function () {
             Route::match(['post', 'get'], 'plan/add', 'store');
             Route::match(['post', 'get'], 'plan/update/{id}', 'update');
             Route::post('plan/delete/{id}', 'delete');
+        });
+        ####################### Start Feature Categories ################
 
-         });
+        Route::controller(FeatureMainCategoryController::class)->group(function () {
+            Route::get('feature-categories', 'index');
+            Route::match(['post', 'get'], 'feature-category/add', 'store');
+            Route::match(['post', 'get'], 'feature-category/update/{id}', 'update');
+            Route::post('feature-category/delete/{id}', 'delete');
+        });
+
+        ######################## Start Feature Category Plans ######################
+        Route::controller(FeatureSubCategoryController::class)->group(function () {
+            Route::get('feature-categories/plans/{id}', 'index');
+            Route::match(['post', 'get'], 'feature-categories/plans/add/{id}', 'store');
+            Route::match(['post', 'get'], 'feature-categories/plans/update/{id}', 'update');
+            Route::post('feature-categories/plans/delete/{id}', 'delete');
+        });
     });
 });

@@ -99,12 +99,6 @@ class PlansController extends Controller
 
         return view('admin.Plans.update',compact('subscription'));
     }
-
-
-
-
-
-
     public function delete($id){
         $subscription = Subscribtion::find($id);
         $subscription->delete();

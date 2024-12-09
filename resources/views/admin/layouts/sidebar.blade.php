@@ -265,6 +265,14 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('admin/feature-categories') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:settings-bold-duotone"></iconify-icon>
+                    </span>
+                    <span class="nav-text">  ميز اعلانك   </span>
+                </a>
+            </li>
 
 
 
