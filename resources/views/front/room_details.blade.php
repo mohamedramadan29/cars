@@ -7,28 +7,30 @@
         <div class="clr"></div>
         <br>
         <div>
-            <section class="section1 clearfix">
-                <div>
-                    <div class="grid clearfix">
-                        <div class="col2 first">
-                            <img src="{{ asset('assets/uploads/ShowRooms/' . $room['logo']) }}" alt>
-                            <h1> {{ $room['name'] }} </h1>
-                            <p> {{ $room['desc'] }} </p>
-                        </div>
-                        <div class="col2 last">
-                            <div class="grid clearfix">
-                                <div class="col3 first">
-                                    <h1><i class="fa fa-car"></i></h1>
-                                    <span> عدد السيارات : {{ count($room['advs']) }} </span>
-                                </div>
-                                <div class="col3">
-                                    <h1><i class="fas fa-map-marker-alt"></i></h1>
-                                    <span> {{ $room['City']['name'] }} </span>
-                                </div>
-                                <div class="col3 last">
-                                    <h1><i class="fas fa-mobile-alt"></i></h1>
-                                    <span><a href="tel:{{ $room['phone'] }}" class="btn btn-success btn-sm">
-                                            {{ $room['phone'] }} <i class="fas fa-phone-volume"></i></a></span>
+            <section class="section1 clearfix agency_background background">
+                <div class="layer">
+                    <div>
+                        <div class="grid clearfix">
+                            <div class="col2 first">
+                                <img src="{{ asset('assets/uploads/ShowRooms/' . $room['logo']) }}" alt>
+                                <h1> {{ $room['name'] }} </h1>
+                                <p> {{ $room['desc'] }} </p>
+                            </div>
+                            <div class="col2 last">
+                                <div class="grid clearfix">
+                                    <div class="col3 first">
+                                        <h1><i class="fa fa-car"></i></h1>
+                                        <span> عدد السيارات : {{ count($room['advs']) }} </span>
+                                    </div>
+                                    <div class="col3">
+                                        <h1><i class="fas fa-map-marker-alt"></i></h1>
+                                        <span> {{ $room['City']['name'] }} </span>
+                                    </div>
+                                    <div class="col3 last">
+                                        <h1><i class="fas fa-mobile-alt"></i></h1>
+                                        <span><a href="tel:{{ $room['phone'] }}" class="btn btn-success btn-sm">
+                                                {{ $room['phone'] }} <i class="fas fa-phone-volume"></i></a></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

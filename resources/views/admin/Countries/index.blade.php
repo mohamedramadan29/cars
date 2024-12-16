@@ -63,7 +63,7 @@
                                             <td>
                                                 {{$i++}}
                                             </td>
-                                            <td> {{$country['name']}} </td>
+                                            <td> {{$country->getTranslation('name','ar')}} </td>
                                             <td> {{$country->getTranslation('name','en')}} </td>
                                             <td>
                                             @foreach($country['states'] as $state)

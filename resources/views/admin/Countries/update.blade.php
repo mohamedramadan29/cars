@@ -23,19 +23,19 @@
                         <label for=""> المناطق <span class="badge badge-soft-danger"> افصل بين كل منطقة والاخري
                                 ب ( - ) </span> </label>
                         <textarea name="citizen_ar" class="form-control" id="">
-@foreach ($country['states'] as $state)
-{{ $state['name'] }} ,
+                            @foreach ($country['states'] as $state)
+{{ $state->getTranslation('name', 'ar') }} ,
 @endforeach
-</textarea>
+                        </textarea>
                     </div>
                     <div>
                         <label for=""> المناطق باللغة الانجليزية <span class="badge badge-soft-danger"> افصل بين
                                 كل منطقة والاخري ب ( - ) ويكون نفس ترتيب اللغة العربية </span> </label>
                         <textarea name="citizen_en" class="form-control" id="">
-@foreach ($country['states'] as $state)
+                            @foreach ($country['states'] as $state)
 {{ $state->getTranslation('name', 'en') }} ,
 @endforeach
-</textarea>
+                            </textarea>
                     </div>
 
                 </div>

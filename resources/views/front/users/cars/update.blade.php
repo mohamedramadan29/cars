@@ -34,7 +34,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">جميع الحقول التي تحمل علامة <span
                             style="color:#c72510;">*</span> إلزامية</h6>
                     <div class="card-text" style="padding-top:20px;">
-                        <form action="{{url('user/car/update/'.$car['id'])}}" method="post"
+                        <form id="uploadForm" action="{{url('user/car/update/'.$car['id'])}}" method="post"
                               enctype="multipart/form-data" data-gtm-form-interact-id="0">
                             @csrf
                             <div class="rgt CreateCol1">
@@ -1062,11 +1062,25 @@
                             <div class="clr"></div>
                             <br><br>
                             <center>
-                                <button type="submit" name="Add" class="btn btn-success"
+                                <button id="submitBtn" type="submit" name="Add" class="btn btn-success"
                                         style="width:40%; background-color:#28A745;border-color:#28A745;"> تعديل الاعلان
                                 </button>
+                                <p id="uploadingText"
+                                style="display: none; font-size: 16px; color: green; text-align: center;">
+                                <span class="spinner-border spinner-border-sm" role="status"
+                                    aria-hidden="true"></span>
+                                جاري رفع البيانات، يرجى الانتظار...
+                            </p>
                             </center>
                         </form>
+                        <script>
+                            document.getElementById('uploadForm').addEventListener('submit', function() {
+                                // إخفاء زر الإرسال
+                                document.getElementById('submitBtn').style.display = 'none';
+                                // عرض رسالة جاري الرفع
+                                document.getElementById('uploadingText').style.display = 'block';
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -1082,7 +1096,7 @@
                 <div class="clr"></div>
                 <br>
                 <div class="alert alert-info"><i class="fab fa-whatsapp"></i> للمساعدة المباشرة، تواصل معنا عبر الواتس
-                    أب التالي : <span style="font-weight:bold;">212632551533</span></div>
+                    أب التالي : <span style="font-weight:bold;">  7738000166 <span> 964+ </span>  </span> </div>
             </div>
         </div>
 

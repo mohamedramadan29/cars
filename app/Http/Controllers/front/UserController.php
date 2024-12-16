@@ -59,22 +59,24 @@ class UserController extends Controller
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
+                    'email_confirm'=>1,
                 ]);
                 ////////////////////// Send Confirmation Email ///////////////////////////////
                 ///
-                $email = $data['email'];
+                //$email = $data['email'];
 
-                $MessageDate = [
-                    'name' => $data['name'],
-                    "email" => $data['email'],
-                    'code' => base64_encode($email)
-                ];
-                Mail::send('front.mails.UserActivationEmail', $MessageDate, function ($message) use ($email) {
-                    $message->to($email)->subject(' تفعيل الحساب الخاص بك  ');
-                });
-
+                // $MessageDate = [
+                //     'name' => $data['name'],
+                //     "email" => $data['email'],
+                //     'code' => base64_encode($email)
+                // ];
+                // Mail::send('front.mails.UserActivationEmail', $MessageDate, function ($message) use ($email) {
+                //     $message->to($email)->subject(' تفعيل الحساب الخاص بك  ');
+                // });
                 DB::commit();
-                return $this->success_message('تم انشاء الحساب بنجاح من فضلك فعل حسابك من خلال البريد المرسل  ⚡️');
+                Auth::login($user);
+                return redirect()->route('user.dashboard')->with('success', 'تم انشاء الحساب الخاص بك بنجاح');
+                // return $this->success_message('تم انشاء الحساب بنجاح من فضلك فعل حسابك من خلال البريد المرسل  ⚡️');
             } catch (\Exception $e) {
                 return $this->exception_message($e);
             }
@@ -124,25 +126,25 @@ class UserController extends Controller
 
                 if ($validator->fails()) {
                     return Redirect::back()->withErrors($validator)->withInput();
-                  //  return response()->json(['errors' => $validator->errors()], 422);
+                    //  return response()->json(['errors' => $validator->errors()], 422);
                 }
 
                 if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
                     // يمكنك التحقق من حالة تفعيل البريد إذا لزم
                     if (Auth::user()->email_confirm == 0) {
                         Auth::logout();
-                       // return response()->json(['error' => 'من فضلك يجب تفعيل الحساب الخاص بك أولاً'], 403);
+                        // return response()->json(['error' => 'من فضلك يجب تفعيل الحساب الخاص بك أولاً'], 403);
                         return Redirect()->back()->withInput()->withErrors(['من فضلك يجب تفعيل الحساب الخاص بك أولاً']);
                     }
                     return Redirect()->route('user.dashboard');
                     //return response()->json(['redirect' => url('user/dashboard')]);
                 } else {
                     return Redirect()->back()->withInput()->withErrors(['لا يوجد حساب بهذه البيانات']);
-                   // return response()->json(['error' => 'لا يوجد حساب بهذه البيانات'], 401);
+                    // return response()->json(['error' => 'لا يوجد حساب بهذه البيانات'], 401);
                 }
             } catch (\Exception $e) {
                 return Redirect()->back()->withInput()->withErrors(['حدث خطأ غير متوقع، حاول مرة أخرى']);
-            //    return response()->json(['error' => 'حدث خطأ غير متوقع، حاول مرة أخرى'], 500);
+                //    return response()->json(['error' => 'حدث خطأ غير متوقع، حاول مرة أخرى'], 500);
             }
         }
 

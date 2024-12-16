@@ -3,7 +3,7 @@
     الوكالات
 @endsection
 @section('content')
-    <div class="clearfix2 background"
+    <div class="clearfix2 background section_background"
         style="background-image: url({{ asset('assets/uploads/Banners/' . $main_banner['image']) }})">
         <div class="layer">
             <div id="HomePage">
@@ -11,7 +11,7 @@
                     <div class="uk-margin">
                         <p class="txt01"> {{ $main_banner['title'] }} </p>
                         <p class="txt02">
-                            <strong> {{ $main_banner['desc'] }} </strong>
+                            {{ $main_banner['desc'] }}
                         </p>
                         <div class="clr"></div>
                         <form action="{{ route('car.search') }}" method="GET" class="formsrch">
@@ -90,40 +90,6 @@
             </div>
         </div>
     </div>
-    @if(count($sliders) > 0)
-
-    <div class="hero_slider">
-        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                @foreach ($sliders as $index => $slider)
-                    <button type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
-                        aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                        aria-label="Slide {{ $index + 1 }}"></button>
-                @endforeach
-            </div>
-            <div class="carousel-inner">
-                @foreach ($sliders as $index => $slider)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <img src="{{ asset('assets/uploads/Slider/' . $slider->image) }}" class="d-block w-100"
-                            alt="...">
-                    </div>
-                @endforeach
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-
-    @endif
 
     <div id="HomePage">
         <div class="card PageCard">
@@ -243,11 +209,10 @@
                         @foreach ($agencies as $agency)
                             <div class="rgt card showroomsCard">
                                 <div class="row no-gutters">
-                                    <div class="ImgPart">
-                                        <div class="ribbon"><span class="ribbon5 ribbonplus"><i
-                                                    class="fab fa-free-code-camp" style="font-size:12px;"></i> وكالة
+                                    <div class="ImgPart"> 
+                                            <span class="ribbon5 ribbonplus"><i class="fab fa-free-code-camp"
+                                                    style="font-size:12px;"></i> وكالة
                                                 مميزة</span>
-                                        </div>
                                         <center><a href="{{ url('agency/' . $agency['slug']) }}"><img
                                                     src="{{ asset('assets/uploads/Agency/' . $agency['logo']) }}"
                                                     class="card-img-agency" alt="{{ $agency['name'] }}"></a></center>
@@ -260,7 +225,7 @@
                                             <p class="card-text"> {{ $agency['address'] }} </p>
                                             <p class="card-text">
                                             <div class="rgt Tag"><i class="fa fa-map-marker-alt"></i>
-                                                {{ $agency['Country']['name'] }} -   {{ $agency['City']['name'] }}
+                                                {{ $agency['Country']['name'] }} - {{ $agency['City']['name'] }}
                                             </div>
                                             <div class="rgt Tag"><i class="fa fa-car"></i> عدد السيارات :
                                                 {{ count($agency['advs']) }}</div>
@@ -289,8 +254,8 @@
                                 <p class="card-text"> يمكنك إضافة وكالتك معنا وعرض سياراتك على موقعنا</p>
                             </div>
                             <a href="{{ url('user/agency') }}" class="btn gradient-btn"
-                                style="border-radius:0px;padding:30px;"><i class="fa fa-plus"
-                                    style="font-size:12px;"></i> سجل وكالتك الآن</a>
+                                style="border-radius:0px;padding:30px;"><i class="fa fa-plus" style="font-size:12px;"></i>
+                                سجل وكالتك الآن</a>
                         </div>
                         <div class="clr"></div>
                         <br>

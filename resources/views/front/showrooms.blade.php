@@ -3,8 +3,7 @@
     معارض السيارات
 @endsection
 @section('content')
-
-    <div class="clearfix2 background"
+    <div class="clearfix2 background section_background"
         style="background-image: url({{ asset('assets/uploads/Banners/' . $main_banner['image']) }})">
         <div class="layer">
             <div id="HomePage">
@@ -12,7 +11,7 @@
                     <div class="uk-margin">
                         <p class="txt01"> {{ $main_banner['title'] }} </p>
                         <p class="txt02">
-                            <strong> {{ $main_banner['desc'] }} </strong>
+                            {{ $main_banner['desc'] }}
                         </p>
                         <div class="clr"></div>
                         <form action="{{ route('car.search') }}" method="GET" class="formsrch">
@@ -91,38 +90,7 @@
             </div>
         </div>
     </div>
-    @if (count($sliders) > 0)
-        <div class="hero_slider">
-            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    @foreach ($sliders as $index => $slider)
-                        <button type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
-                            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                            aria-label="Slide {{ $index + 1 }}"></button>
-                    @endforeach
-                </div>
-                <div class="carousel-inner">
-                    @foreach ($sliders as $index => $slider)
-                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <img src="{{ asset('assets/uploads/Slider/' . $slider->image) }}" class="d-block w-100"
-                                alt="...">
-                        </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    @endif
+
 
     <div id="HomePage">
         <div class="card PageCard">
@@ -253,7 +221,7 @@
                                                     {{ \Illuminate\Support\Str::words($room['desc'], 10, '...') }} </p>
                                                 <p class="card-text">
                                                 <div class="rgt Tag"><i class="fa fa-map-marker-alt"></i>
-                                                    {{ $room['Country']['name'] }} -   {{ $room['City']['name'] }}
+                                                    {{ $room['Country']['name'] }} - {{ $room['City']['name'] }}
                                                 </div>
                                                 <div class="rgt Tag"><i class="fa fa-car"></i> عدد السيارات :
                                                     {{ count($room['advs']) }} </div>
@@ -318,6 +286,4 @@
         });
     </script>
     <div class="clr"></div><br>
-
-
 @endsection

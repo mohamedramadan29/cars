@@ -27,7 +27,6 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
-
     Route::controller(FrontController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('agency', 'agencies');
@@ -50,7 +49,7 @@ Route::group([
 
         ///////////// Start Car Numbers //////
         ///
-        Route::get('car_numbers', 'car_numbers');
+        Route::get('car-numbers', 'car_numbers');
 
         /////////// Start Auto Repairs /////////
         ///
@@ -92,6 +91,7 @@ Route::group([
         Route::get('new-cars', 'NewCars');
         Route::get('used-cars', 'UsedCars');
         Route::get('brand/{slug}', 'BrandCars');
+        Route::get('brands','brands');
         Route::get('getCarModels/{brandid}', 'getCarModels');
         Route::get('search', 'search')->name('car.search');
     });

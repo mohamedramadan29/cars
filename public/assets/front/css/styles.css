@@ -104,7 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    padding: 10px
+    padding: 10px 2px
 }
 
 .navbar-nav li a {
@@ -167,15 +167,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbtm li a {
     font-size: 12px;
-    padding: 0px;
+    padding: 10px 2px;
     margin: 0px 10px;
     color: #282828
 }
-
+.navbtm li a img{
+    width: 12px;
+}
 .navbtm li a:hover {
     background: #eaeaea;
     color: #282828;
-    padding: 0;
+    padding: 10px 2px;
 }
 
 .navbtm li a i {
@@ -220,6 +222,10 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
     height: 300px;
     position: relative
+}
+
+.section_background{
+    height: 500px;
 }
 
 .layer {
@@ -328,7 +334,8 @@ h1, h2, h3, h4, h5, h6 {
 .brands-page h5 {
     margin-top: 15px;
     color: #3160a5;
-    font-weight: 700
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .brands-page img {
@@ -474,7 +481,8 @@ hr.style14 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%
+    height: 100%;
+    padding: 10px;
 }
 
 .footer-right {
@@ -936,7 +944,7 @@ form .form-group input {
 }
 
 .showroomsCard .ImgPart {
-    width: 30%
+    width: 24%
 }
 
 .showroomsCard .ContentPart {
@@ -1009,9 +1017,12 @@ form .form-group input {
     line-height: 28px;
     font-weight: 700;
     color: #1b1c1b;
-    margin-top: -10px
-}
+    margin-top: -10px;
 
+}
+.new_car .CC2{
+    margin-right: 10px;
+}
 .CarCard .CC2 a {
     color: #1b1c1b
 }
@@ -1042,9 +1053,9 @@ form .form-group input {
 }
 
 .CarCard .ico-car {
-    padding: 2px;
-    height: 40px;
-    margin-left: 10px;
+    padding: 5px 10px;
+    /* height: 40px; */
+    margin-left: 0px;
     background-image: linear-gradient(120deg, #ebedee 0, #fdfbfb 100%);
     border-radius: 25px;
     font-size: 14px;
@@ -1064,7 +1075,12 @@ form .form-group input {
     padding-top: 8px;
     color: #eb2323;
 }
-
+.new_car .ico-car i{
+    padding-top: 0;
+}
+.new_car .ico-car img{
+    width: 35px;
+}
 .showRight {
     max-width: 70%;
     padding: 20px;
@@ -1461,7 +1477,8 @@ form .form-group input {
 }
 
 .forum-img img {
-    width: 350px
+    width: 400px;
+    margin-top: 30px;
 }
 
 .Forumcat {
@@ -2554,7 +2571,7 @@ span.right {
     }
 
     .footer-left .listgp .link-foot {
-        color: #2eb1e5;
+        color: #fff;
         font-size: 17px;
         margin-top: 20px
     }
@@ -6192,7 +6209,7 @@ span.right {
     padding: 0;
     margin: 0;
     border-radius: 0px 0 0 35px;
-    padding: 5px 15px;
+    padding: 0px 15px;
 }
 
 .top_navbar .top_bar_links,
@@ -6232,7 +6249,7 @@ span.right {
 }
 
 .top_navbar .top_bar_social ul li i {
-    font-size: 16px;
+    font-size: 19px;
     margin: 0 6px;
 }
 
@@ -6264,7 +6281,7 @@ span.right {
 
 .navbar-nav .login_nav {
     background-color: #FFEBEB;
-    padding: 7px 20px;
+    padding: 7px;
     border-radius: 32px;
     margin: 0 10px;
 }
@@ -6367,10 +6384,13 @@ span.right {
     color: #000;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin:10px;
 }
 
 .footer-right .center p {
     line-height: 2;
+    margin: 10px;
+    font-size: 15px;
 }
 
 .bottom_footer {}
@@ -6380,7 +6400,9 @@ span.right {
     justify-content: space-between;
     align-items: end;
 }
-
+.bottom_footer .data .right-bottom p{
+    font-size: 14px;
+}
 .bottom_footer .data .left-bottom {}
 
 .bottom_footer .data .left-bottom p {
@@ -6569,8 +6591,7 @@ span.right {
     padding: 10px 30px;
     top: 0;
     font-weight: bold;
-    font-size: 25px;
-    width: 22%;
+    font-size: 20px;
     border-radius: 6px 0;
     text-align: center;
 }
@@ -6589,22 +6610,23 @@ span.right {
 .new_car .car_more_info {
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
 }
 .new_car .car_banner span{
     position: absolute;
-    right: -37px;
+    right: -7px;
     background: #1BC741;
-    min-width: 130px;
+    min-width: 77px;
     text-align: center;
     color: #fff;
     font-size: 13px;
     font-weight: 500;
     transform: rotate(45deg);
-    top: 20px; 
+    top: 22px;
     border-radius: 4px;
     word-spacing: 5px;
-    font-size: 13px;
-    padding: 1px;
+    font-size: 12px;
+    padding: 2px;
     font-weight: bold;
 }
 
@@ -6615,6 +6637,15 @@ span.right {
 
 .new_car .car_more_info .adv_user i {
     color: var(--main-color);
+}
+.new_car .car_more_info .disel_class{}
+.new_car .car_more_info .disel_class img{
+    width: 18px;
+    margin-left: 10px;
+}
+.new_car .car_more_info .trans_class img{
+    width: 18px;
+    margin-left: 10px;
 }
 
 .new_car .car_more_info .adv_user p {}
@@ -6741,11 +6772,11 @@ span.right {
 }
 
 .car_details_info ul li {
-    border-top: 1px solid #cdd3d9;
+    /* border-top: 1px solid #DEE2E6; */
     /* border-bottom: 1px solid #ccc; */
     margin-top: 3px;
     margin-bottom: 3px;
-    background: #f1f1f2;
+    background: #F7F7F7;
     padding: 6px;
     min-width: 190px;
     color: #000;
@@ -6755,7 +6786,10 @@ span.right {
     justify-content: space-between;
     text-align: right;
 }
-
+.car_details_info ul hr{
+    margin: 2px 0;
+    color: #DEE2E6;
+}
 .car_details_info ul li img {
     width: 15px;
     height: 15px;
@@ -7323,7 +7357,7 @@ span.right {
 @media(max-width:991px) {
     .top_navbar {
         flex-direction: column;
-        padding: 5px 0;
+        padding: 0px 0;
         width: 100%;
     }
 
@@ -7334,6 +7368,9 @@ span.right {
     .top_navbar .top_bar_links ul li i {
         font-size: 12px;
         margin: 0;
+    }
+    .top_navbar .top_bar_social ul li i{
+        font-size: 14px;
     }
 
     .top_navbar .top_bar_links ul li {
@@ -7383,7 +7420,7 @@ span.right {
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 0px;
     }
 
     .bottom_footer .data .left-bottom p {
@@ -7468,6 +7505,9 @@ span.right {
         max-width: 100%;
     }
 
+    .bottom_footer .data .left-bottom{
+        width: 100%;
+    }
 }
 
 
@@ -7479,4 +7519,68 @@ span.right {
 }
 .whatsapp_footer img{
     width: 60px;
+}
+
+
+.buy_car {
+    display: inline-block;
+    animation: pulse-animation 1.5s infinite !important; /* تغيير animation حسب التأثير */
+}
+
+/* تأثير النبض (Pulse) */
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.07);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.showroomsCard .ribbon5{
+    left: 0;
+    right: auto;
+    color: #fff;
+    background: linear-gradient(45deg, #D00000, #a40606);
+    border-radius: 5px 0px 5px 0;
+    top: 0px;
+    padding: 5px 11px;
+}
+
+
+.agency_background{
+    background-color: transparent;
+    height: 180px;
+    position: relative;
+    border-radius: 2px;
+    background:url('/assets/front/uploads/hero_image.jpeg');
+    color: #fff;
+}
+
+.agency_background .layer{
+    border-radius: 5px;
+}
+
+.agency_background .col2.last .col3 span{
+    color: #fff;;
+}
+.agency_background .col2.last .col3 i{
+    color: #fff;
+}
+
+.agency_background .col2.first{
+    margin-top: 15px;
+}
+
+.LeftShowrom  .nav-link{
+    background-color:#353b48 !important;
+    color: #fff;
+}
+.LeftShowrom  .nav-link:focus, .nav-link:hover{
+    background-color: var(--main-color) !important;
+    color: #fff;
 }

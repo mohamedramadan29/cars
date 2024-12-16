@@ -38,7 +38,7 @@ store
                                         <div class="mb-3">
                                             <label for="title" class="form-label"> العنوان </label>
                                             <input required type="text" id="title" class="form-control"
-                                                name="title" value="{{ $banner['title'] }}">
+                                                name="title" value="{{ $banner->getTranslation('title','ar') }}">
                                         </div>
 
                                     </div>

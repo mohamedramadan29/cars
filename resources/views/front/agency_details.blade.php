@@ -7,33 +7,36 @@
         <div class="clr"></div>
         <br>
         <div>
-            <section class="section1 clearfix">
-                <div>
-                    <div class="grid clearfix">
-                        <div class="col2 first">
-                            <img src="{{ asset('assets/uploads/Agency/' . $agency['logo']) }}" alt>
-                            <h1> {{ $agency['name'] }} </h1>
-                            <p> {{ $agency['desc'] }} </p>
-                        </div>
-                        <div class="col2 last">
-                            <div class="grid clearfix">
-                                <div class="col3 first">
-                                    <h1><i class="fa fa-building"></i></h1>
-                                    <span> {{ $agency['address'] }}</span>
-                                </div>
-                                <div class="col3">
-                                    <h1><i class="fas fa-map-marker-alt"></i></h1>
-                                    <span> {{ $agency['Country']['name'] }} -   {{ $agency['City']['name'] }} </span>
-                                </div>
-                                <div class="col3 last">
-                                    <h1><i class="fas fa-mobile-alt"></i></h1>
-                                    <span><a href="tel:{{ $agency['phone'] }}" class="btn btn-success btn-sm">
-                                            {{ $agency['phone'] }}<i class="fas fa-phone-volume"></i></a></span>
+            <section class="section1 clearfix agency_background background" style="">
+                <div class="layer">
+                    <div>
+                        <div class="grid clearfix">
+                            <div class="col2 first">
+                                <img src="{{ asset('assets/uploads/Agency/' . $agency['logo']) }}" alt>
+                                <h1> {{ $agency['name'] }} </h1>
+                                <p> {{ $agency['desc'] }} </p>
+                            </div>
+                            <div class="col2 last">
+                                <div class="grid clearfix">
+                                    <div class="col3 first">
+                                        <h1><i class="fa fa-building"></i></h1>
+                                        <span> {{ $agency['address'] }}</span>
+                                    </div>
+                                    <div class="col3">
+                                        <h1><i class="fas fa-map-marker-alt"></i></h1>
+                                        <span> {{ $agency['Country']['name'] }} - {{ $agency['City']['name'] }} </span>
+                                    </div>
+                                    <div class="col3 last">
+                                        <h1><i class="fas fa-mobile-alt"></i></h1>
+                                        <span><a href="tel:{{ $agency['phone'] }}" class="btn btn-success btn-sm">
+                                                {{ $agency['phone'] }}<i class="fas fa-phone-volume"></i></a></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </section>
         </div>
         <div class="card PageCard">
@@ -145,17 +148,19 @@
                                 @if (!empty($agency['website']))
                                     <div class="SRINFO"><a href="{{ $agency['website'] }}" class="btn btn-primary btn-sm"
                                             style="background-color:#f57500;border-color:#f57500;" target="_blank"><i
-                                                class="fas fa-globe"></i> زيارة الموقع  </a></div>
+                                                class="fas fa-globe"></i> زيارة الموقع </a></div>
                                 @endif
                                 @if (!empty($agency['facebook_link']))
-                                    <div class="SRINFO"><a href="{{ $agency['facebook_link'] }}" class="btn btn-light btn-sm"
-                                            target="_blank"><i class="fab fa-facebook" style="color:#0b70ea;"></i> رابط
+                                    <div class="SRINFO"><a href="{{ $agency['facebook_link'] }}"
+                                            class="btn btn-light btn-sm" target="_blank"><i class="fab fa-facebook"
+                                                style="color:#0b70ea;"></i> رابط
                                             الصفحة </a>
                                     </div>
                                 @endif
                                 @if (!empty($agency['twitter_link']))
-                                    <div class="SRINFO"><a href="{{ $agency['twitter_link'] }}" class="btn btn-light btn-sm"
-                                            target="_blank"><i class="fab fa-twitter" style="color:#4fdbf7;"></i> رابط
+                                    <div class="SRINFO"><a href="{{ $agency['twitter_link'] }}"
+                                            class="btn btn-light btn-sm" target="_blank"><i class="fab fa-twitter"
+                                                style="color:#4fdbf7;"></i> رابط
                                             الصفحة
                                         </a></div>
                                 @endif
@@ -167,13 +172,12 @@
                             </div>
                             <br />
                             <h5 class="card-title CC3">
-                                <i class="fas fa-hashtag"></i>  الموقع على الخريطة
+                                <i class="fas fa-hashtag"></i> الموقع على الخريطة
                             </h5>
                             <br>
-                            <iframe
-                            {{-- src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_API_KEY&q={{ urlencode($agency->address) }}"  --}}
+                            <iframe {{-- src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_API_KEY&q={{ urlencode($agency->address) }}"  --}}
                                 src="https://www.google.com/maps/embed?pb={{ urlencode($agency->address) }}"
-                             width="" height="450" frameborder="0" style="border: 0"
+                                width="" height="450" frameborder="0" style="border: 0"
                                 allowfullscreen></iframe>
                         </div>
                     </div>

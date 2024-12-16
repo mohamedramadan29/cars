@@ -134,21 +134,21 @@
         <div class="layerfooter">
             <div class="listgp display-footer">
                 <a href="#" class="list-group-item listitem link-foot"><i class="fa fa-link"></i> روابط سريعة</a>
-                <a href="new-car.html" class="list-group-item listitem"><i class="fa fa-car"></i> سيارات جديدة</a>
-                <a href="used-car.html" class="list-group-item listitem"><i class="fa fa-car"></i> سيارات
+                <a href="{{ url('new-cars') }}" class="list-group-item listitem"><i class="fa fa-car"></i> سيارات جديدة</a>
+                <a href="{{ url('used-cars') }}" class="list-group-item listitem"><i class="fa fa-car"></i> سيارات
                     مستعملة</a>
-                <a href="cars-agencies.html" class="list-group-item listitem"><i class="fas fa-building"></i>
+                <a href="{{ url('agency') }}" class="list-group-item listitem"><i class="fas fa-building"></i>
                     الوكالات</a>
-                <a href="showrooms.html" class="list-group-item listitem"><i class="fas fa-building"></i>
+                <a href="{{ url('showrooms') }}" class="list-group-item listitem"><i class="fas fa-building"></i>
                     المعارض</a>
-                <a href="brands.html" class="list-group-item listitem"><i class="fas fa-ring"></i> الماركات</a>
+                <a href="{{ url('brands') }}" class="list-group-item listitem"><i class="fas fa-ring"></i> الماركات</a>
             </div>
             <div class="listgp display-footer">
                 <a href="#" class="list-group-item listitem link-foot"><i class="fa fa-link"></i> روابط سريعة</a>
-                <a href="rent.html" class="list-group-item listitem"><i class="fas fa-handshake"></i> تأجير</a>
-                <a href="car-numbers.html" class="list-group-item listitem"><i class="fas fa-sort-numeric-up"></i>
+                <a href="{{ url('rent') }}" class="list-group-item listitem"><i class="fas fa-handshake"></i> تأجير</a>
+                <a href="{{ url('car-numbers') }}" class="list-group-item listitem"><i class="fas fa-sort-numeric-up"></i>
                     أرقام مميزة</a>
-                <a href="auto-repair.html" class="list-group-item listitem"><i class="fas fa-wrench"></i> مراكز
+                <a href="{{ url('auto-repair') }}" class="list-group-item listitem"><i class="fas fa-wrench"></i> مراكز
                     الصيانة</a>
                 <a href="{{ url('forums') }}" class="list-group-item listitem"><i class="far fa-comments"></i> منتدى
                     الأراء</a>
@@ -191,10 +191,9 @@
 
             <div class="page_links">
                 <ul class="list-unstyled">
-                    <li> <a href="#"> الشروط والاحكام </a> </li>
-                    <li> <a href="#"> سياسة الخصوصية </a> </li>
-                    <li> <a href="#"> اتصل بنا </a> </li>
-                    <li> <a href="#"> خريطة الموقع </a> </li>
+                    <li> <a href="{{ url('privacy') }}">   {{ __('navbar.privacy') }} <i class="bi bi-shield-fill-check"></i></a> </li>
+                    <li> <a href="{{ url('terms') }}">  {{ __('navbar.terms') }} <i class="bi bi-file-earmark-ruled-fill"></i> </a> </li>
+                    <li> <a href="{{ url('contactus') }}">  {{ __('navbar.contact_us') }} <i class="bi bi-envelope-open-fill"></i> </a> </li>
                 </ul>
             </div>
         </div>

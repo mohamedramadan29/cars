@@ -69,6 +69,12 @@ class CarController extends Controller
         abort(404);
     }
 
+
+    public function brands(){
+        $brands = CarMark::all();
+        return view('front.brands',compact('brands'));
+    }
+
     public function search(Request $request)
     {
         // استقبال بيانات البحث

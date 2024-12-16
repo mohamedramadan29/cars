@@ -1,13 +1,13 @@
 @foreach ($lastadvs as $adv)
     <div class="card CarCard new_car">
         <div class="row no-gutters" style="align-items: center;">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="{{ url('car/' . $adv['id'] . '/' . $adv['slug']) }}">
                     <img src="{{ asset('assets/uploads/CarImages/' . $adv->carImages->first()->c_image) }}"
                         class="card-img" alt="{{ $adv['c_title'] }}">
                 </a>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card-body">
                     <div class="car_banner">
                         <span> تم البيع  </span>
@@ -24,7 +24,8 @@
                             <div class="rgt ico-car kmclass">{{ $adv['c_km'] }}
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
-                            <div class="rgt ico-car"><i class="fas fa-dumbbell"></i> {{ $adv['c_trans'] }}</div>
+                            <div class="rgt ico-car disel_class"> <img src="{{ asset('assets/icons/desiel.svg') }}" alt=""> {{ $adv['c_style'] }}</div>
+                            <div class="rgt ico-car trans_class"> <img src="{{ asset('assets/icons/automatic.svg') }}" alt=""> {{ $adv['c_trans'] }}</div>
                             <div class="rgt ico-car"><i class="fas fa-calendar-alt"></i> {{ $adv['c_years'] }}</div>
                         </div>
                         {{-- <small class="text-muted">{{ $adv['created_at'] }}</small> --}}

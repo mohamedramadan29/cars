@@ -34,7 +34,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">جميع الحقول التي تحمل علامة <span
                             style="color:#c72510;">*</span> إلزامية</h6>
                     <div class="card-text" style="padding-top:20px;">
-                        <form action="{{ url('user/car/add') }}" method="post" id="carAdForm" name="carForm"
+                        <form action="{{ url('user/car/add') }}" method="post" id="uploadForm" name="carForm"
                             enctype="multipart/form-data" data-gtm-form-interact-id="0">
                             @csrf
                             <div class="rgt CreateCol1">
@@ -782,7 +782,7 @@
                             <p class="CreateTitle"><i class="fa fa-picture-o"></i> صور السيارة</p>
 
                             <div class="form-group">
-                                <input type="file" class="form-control" name="images[]" multiple>
+                                <input type="file" class="form-control" name="images[]" multiple accept="image/*">
                                 <!-- حقل رفع الملفات -->
                                 {{--                                <input type="file" multiple class="dropify form-control" name="images[]" --}}
                                 {{--                                       id="imageUpload" --}}
@@ -792,147 +792,31 @@
                             {{--                            <div id="newImagesPreview" style="display: flex; gap: 10px; flex-wrap: wrap;"> --}}
                             {{--                                <!-- الصور الجديدة ستُعرض هنا --> --}}
                             {{--                            </div> --}}
-
-                            <script>
-                                const imagePreviewContainer = document.getElementById('newImagesPreview');
-                                const imageInput = document.getElementById('imageUpload');
-                                const errorMessage = document.getElementById('errorMessage');
-                                const maxImages = 10; // الحد الأقصى لعدد الصور
-                                let uploadedImages = []; // تخزين الصور المرفوعة مؤقتًا
-
-                                // عند تغيير الملفات
-                                imageInput.addEventListener('change', function(event) {
-                                    const files = Array.from(event.target.files); // أخذ جميع الملفات المختارة
-
-                                    // التحقق من الحد الأقصى
-                                    if (uploadedImages.length + files.length > maxImages) {
-                                        errorMessage.style.display = 'block'; // عرض رسالة خطأ
-                                        setTimeout(() => {
-                                            errorMessage.style.display = 'none';
-                                        }, 3000); // إخفاء الرسالة بعد 3 ثوانٍ
-                                        return;
-                                    }
-
-                                    files.forEach((file) => {
-                                        // التأكد أن الملف صورة
-                                        if (!file.type.startsWith("image/")) return;
-
-                                        // قراءة الصورة باستخدام FileReader
-                                        const reader = new FileReader();
-                                        reader.onload = function(e) {
-                                            // إضافة الصورة إلى المصفوفة
-                                            uploadedImages.push(file);
-
-                                            // إنشاء عنصر للمعاينة
-                                            const previewWrapper = document.createElement('div');
-                                            previewWrapper.style.position = "relative";
-                                            previewWrapper.style.display = "inline-block";
-
-                                            const img = document.createElement('img');
-                                            img.src = e.target.result;
-                                            img.alt = "الصورة المرفوعة";
-                                            img.style.width = "100px";
-                                            img.style.height = "100px";
-                                            img.style.marginTop = "10px";
-                                            img.style.border = '1px solid #ccc';
-                                            img.style.padding = '2px';
-                                            img.style.background = '#f0efef';
-
-                                            // زر حذف
-                                            const deleteButton = document.createElement('button');
-                                            deleteButton.textContent = "×";
-                                            deleteButton.style.position = "absolute";
-                                            deleteButton.style.top = "10px";
-                                            deleteButton.style.left = "0px";
-                                            deleteButton.style.width = '20px';
-                                            deleteButton.style.height = '20px';
-                                            deleteButton.style.background = "red";
-                                            deleteButton.style.color = "white";
-                                            deleteButton.style.border = "none";
-                                            deleteButton.style.borderRadius = "50%";
-                                            deleteButton.style.cursor = "pointer";
-                                            deleteButton.style.lineHeight = '2px';
-
-                                            // عند الضغط على زر الحذف
-                                            deleteButton.addEventListener('click', function() {
-                                                // إزالة الصورة من المصفوفة
-                                                const index = uploadedImages.indexOf(file);
-                                                if (index > -1) uploadedImages.splice(index, 1);
-
-                                                // إزالة العنصر من DOM
-                                                previewWrapper.remove();
-                                            });
-
-                                            // إضافة الصورة وزر الحذف إلى المعاينة
-                                            previewWrapper.appendChild(img);
-                                            previewWrapper.appendChild(deleteButton);
-                                            imagePreviewContainer.appendChild(previewWrapper);
-                                        };
-
-                                        reader.readAsDataURL(file);
-                                    });
-
-                                    // تفريغ الإدخال للسماح بإعادة رفع نفس الملف إذا لزم الأمر
-                                    event.target.value = "";
-                                });
-                            </script>
                             <div class="clr"></div>
                             <small style="font-weight:bold;">ملاحظة : يمكنك إضافة 10 صور كأقصى حد</small>
                             <div class="clr"></div>
                             <br><br>
                             <center>
-                                <button type="submit" name="Add" class="btn btn-success" onclick="setValue();"
+                                <button id="submitBtn" type="submit" name="Add" class="btn btn-success" onclick="setValue();"
                                     style="width:40%; background-color:#28A745;border-color:#28A745;">أضف اعلانك
                                 </button>
+                                <p id="uploadingText"
+                                style="display: none; font-size: 16px; color: green; text-align: center;">
+                                <span class="spinner-border spinner-border-sm" role="status"
+                                    aria-hidden="true"></span>
+                                جاري رفع البيانات، يرجى الانتظار...
+                            </p>
                             </center>
                         </form>
-                        <div id="errorMessages" style="color: red; display: none;"></div>
                         <script>
-                            $(document).ready(function() {
-                                        $(document).ready(function() {
-                                            $('#carAdForm').submit(function(e) {
-                                                e.preventDefault();
-                                                let formData = new FormData(this);
-
-                                                // تأكد من إضافة الصور إلى FormData بشكل صحيح
-                                                let files = $('#imageUpload')[0].files;
-
-                                                // التحقق من أن الصور تم اختيارها
-                                                if (files.length === 0) {
-                                                    $('#errorMessages').text("من فضلك قم بتحميل صور السيارة.").show();
-                                                    return;
-                                                }
-
-                                                // إضافة الصور إلى FormData إذا كانت غير موجودة
-                                                for (let i = 0; i < files.length; i++) {
-                                                    formData.append('images[]', files[i]); // إضافة كل صورة إلى FormData
-                                                }
-
-                                                // إرسال البيانات باستخدام AJAX
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: '/user/car/add', // تأكد من أن المسار صحيح
-                                                    data: formData,
-                                                    processData: false, // لا تعالج البيانات
-                                                    contentType: false, // لا تحدد نوع المحتوى
-                                                    success: function(response) {
-                                                        // عند النجاح، إخفاء رسائل الخطأ
-                                                        $('#errorMessages').hide();
-                                                        alert('تم إرسال الإعلان بنجاح');
-                                                    },
-                                                    error: function(xhr, status, error) {
-                                                        // في حالة حدوث خطأ
-                                                        let errors = xhr.responseJSON.errors;
-                                                        let errorMessages = '';
-                                                        if (errors.images) {
-                                                            errorMessages = errors.images.join('<br>');
-                                                        }
-                                                        $('#errorMessages').html(errorMessages).show();
-                                                    }
-                                                });
-                                            });
-                                        });
+                            document.getElementById('uploadForm').addEventListener('submit', function() {
+                                // إخفاء زر الإرسال
+                                document.getElementById('submitBtn').style.display = 'none';
+                                // عرض رسالة جاري الرفع
+                                document.getElementById('uploadingText').style.display = 'block';
+                            });
                         </script>
+
                     </div>
                 </div>
             </div>
@@ -948,30 +832,11 @@
                 <div class="clr"></div>
                 <br>
                 <div class="alert alert-info"><i class="fab fa-whatsapp"></i> للمساعدة المباشرة، تواصل معنا عبر الواتس
-                    أب التالي : <span style="font-weight:bold;">212632551533</span></div>
+                    أب التالي : <span style="font-weight:bold;">  7738000166 <span> 964+ </span> </span></div>
             </div>
         </div>
 
         <br>
     </div>
     <div class="clr"></div><br>
-@endsection
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-    <script>
-        var max_size = '3 ميجابايت';
-        $('.dropify').dropify({
-
-            messages: {
-                'default': 'اضغط للرفع او اسحب الملف الخاص بك هنا ',
-                'replace': 'اضغط للرفع او اسحب الملف الخاص بك هنا  للاستبدال ',
-                'remove': 'حذف ',
-                'error': '!!! ، حدث خطا اثناء الرفع '
-            },
-            error: {
-                'fileSize': `حجم الملف كبير جدًا (الحد الأقصى: ${max_size}).`
-
-            }
-        });
-    </script>
 @endsection

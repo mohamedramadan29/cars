@@ -18,7 +18,7 @@
                         <div class="blockquote-footer"> شروط المنتدى 3</div>
                     </div>
                 </div>
-                <div class="lft forum-img"><img src="{{ asset('assets/front/uploads/hangout.png') }}" /></div>
+                <div class="lft forum-img"><img src="{{ asset('assets/front/uploads/peaple.svg') }}" /></div>
                 <div class="clr"></div>
                 <div class="card-text" style="padding:20px;">
                     <div class="display-desk">
@@ -54,20 +54,20 @@
                                 @foreach ($lasttopics as $topic)
                                     <tr>
                                         <th style="color:#0069D9;">
-                                             <button class="btn btn-sm"
+                                            <button class="btn btn-sm"
                                                 style="background-color: #00B82A; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 0px;margin-right: 0px;">
                                                 <i class="bi bi-lightbulb-fill"></i> نصيحة </button>
-                                                 <a
-                                                href="{{ url('topic/' . $topic['id'] . '/' . $topic['slug']) }}"><i
+                                            <a href="{{ url('topic/' . $topic['id'] . '/' . $topic['slug']) }}"><i
                                                     class="fa fa-align-center" style="font-size:12px;"></i>
-                                                {{ $topic['title'] }} </a></th>
+                                                {{ $topic['title'] }} </a>
+                                        </th>
                                         <td><a href class="btn btn-light btn-sm"> {{ $topic['User']['name'] }} </a></td>
                                         <td class="display-desk"> {{ $topic['created_at'] }} </td>
                                         <td>{{ count($topic['Comments']) }}</td>
                                     </tr>
                                 @endforeach
 
-                                 <tr>
+                                <tr>
                                     <th style="color:#0069D9;"> <button class="btn btn-sm"
                                             style="background-color: #E8731E; color:#fff;box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);font-weight: bold;margin-left: 0px;margin-right: 0px;">
                                             <i class="bi bi-person-raised-hand"></i> استفسار </button> <a href="#"><i

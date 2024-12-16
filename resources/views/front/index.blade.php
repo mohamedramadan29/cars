@@ -23,7 +23,7 @@
                     <div class="uk-margin">
                         <p class="txt01"> {{ $main_banner['title'] }} </p>
                         <p class="txt02">
-                            <strong> {{ $main_banner['desc'] }} </strong>
+                             {{ $main_banner['desc'] }}  
                         </p>
                         <div class="clr"></div>
                         <form action="{{ route('car.search') }}" method="GET" class="formsrch">
