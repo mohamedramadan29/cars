@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <div class="clr"></div><br>
+
 <div id="HomePage">
     <a href="{{url('pub')}}" class="rgt card pages-card">
         <div class="card-body">
