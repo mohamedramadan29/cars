@@ -30,7 +30,7 @@
                                 <?php foreach ($car->carImages as $index => $image): ?>
                                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>"
                                     data-slide-number="<?= $index ?>">
-                                    <img src="<?= asset('assets/uploads/carImages/' . $image->c_image) ?>"
+                                    <img src="<?= asset('assets/uploads/CarImages/' . $image->c_image) ?>"
                                         class="img-fluid">
                                 </div>
                                 <?php endforeach; ?>
@@ -125,31 +125,40 @@
                                 </div>
                             </div>
                             <div class="car_details_info">
-                                <ul> <hr>
+                                <ul>
+                                    <hr>
                                     <li> <strong> كم : </strong> <span> {{ $car->c_km }} كم </span> <img
                                             src="{{ asset('assets/icons/car1.png') }}" alt=""> </li>
-                                            <hr>
+                                    <hr>
                                     <li> <strong> الماركة : </strong> <span> {{ $car->carMark->name }} </span> <img
                                             src="{{ asset('assets/uploads/Marks/' . $car->carMark->logo) }}"
-                                            alt=""> </li> <hr>
+                                            alt=""> </li>
+                                    <hr>
                                     <li> <strong> الموديل : </strong> <span> {{ $car['carBrand']->name }} </span> <img
-                                            src="{{ asset('assets/icons/car2.svg') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car2.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> سنة الصنع : </strong> <span> {{ $car->c_year }} </span> <img
-                                            src="{{ asset('assets/icons/car3.svg') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car3.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> المحافظة : </strong> <span> {{ $car['City']->name }} </span> <img
                                             src="{{ asset('assets/icons/car4.png') }}" alt=""> </li>
 
                                 </ul>
-                                <ul> <hr>
+                                <ul>
+                                    <hr>
                                     <li> <strong> اللون : </strong> <span
                                             style="border: 5px solid {{ $car['c_color'] }};width:40px "></span> <img
-                                            src="{{ asset('assets/icons/car5.svg') }}" alt=""> </li>  <hr>
+                                            src="{{ asset('assets/icons/car5.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> نمط السيارة : </strong> <span> {{ $car['c_style'] }} </span> <img
-                                            src="{{ asset('assets/icons/car6.svg') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car6.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> ناقل الحركة : </strong> <span> {{ $car['c_trans'] }} </span> <img
-                                            src="{{ asset('assets/icons/car7.svg') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car7.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> الوقود : </strong> <span> {{ $car['c_fuel'] }} </span> <img
-                                            src="{{ asset('assets/icons/car8.svg') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car8.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> حالة السيارة : </strong> <span>
                                             @if ($car['c_type'] == 1)
                                                 جديدة
@@ -158,16 +167,21 @@
                                             @endif
                                         </span> <img src="{{ asset('assets/icons/car9.svg') }}" alt=""> </li>
                                 </ul>
-                                <ul>  <hr>
+                                <ul>
+                                    <hr>
                                     <li> <strong> كم : </strong> <span> {{ $car->c_km }} كم </span> <img
-                                            src="{{ asset('assets/icons/car1.png') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car1.png') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> الماركة : </strong> <span> {{ $car->carMark->name }} </span> <img
                                             src="{{ asset('assets/uploads/Marks/' . $car->carMark->logo) }}"
-                                            alt=""> </li> <hr>
+                                            alt=""> </li>
+                                    <hr>
                                     <li> <strong> الموديل : </strong> <span> {{ $car['carBrand']->name }} </span> <img
-                                            src="{{ asset('assets/icons/car2.svg') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car2.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> سنة الصنع : </strong> <span> {{ $car->c_year }} </span> <img
-                                            src="{{ asset('assets/icons/car3.svg') }}" alt=""> </li> <hr>
+                                            src="{{ asset('assets/icons/car3.svg') }}" alt=""> </li>
+                                    <hr>
                                     <li> <strong> المحافظة : </strong> <span> {{ $car['City']->name }} </span> <img
                                             src="{{ asset('assets/icons/car4.png') }}" alt=""> </li>
 
